@@ -1,0 +1,5 @@
+src\entity\UserTest.class
+src\service\ServiceTest.class
+src\entity\PedidoTest.class
+src\factory\FactoryImplTest.class
+src\entity\LibroTest.class

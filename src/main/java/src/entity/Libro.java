@@ -1,0 +1,64 @@
+package src.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import src.inter.Prototype;
+
+
+@Entity
+@Table(name="LIBROS")
+@NamedQueries({
+		@NamedQuery(name="libros todos", query="SELECT b FROM Libro b"),
+		@NamedQuery(name="libros byAuthor", query="SELECT b FROM Libro b WHERE b.author LIKE :autor"),
+
+		@NamedQuery(name="libros byTitle", query="SELECT b FROM Libro b WHERE b.title LIKE :titulo")}
+		
+		)
+public class Libro extends Product implements Serializable{
+	
+
+	private static final long serialVersionUID = 11L;
+	
+	@Column(name="TITLE")
+	private String title;
+	@Column(name="AUTHOR")
+	private String author;
+	
+	
+	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	@Override
+	public Libro clone(){
+		Libro libro = new Libro();
+		libro.setAuthor(this.getAuthor());
+		libro.setTitle(this.getTitle());
+		libro.setName(this.getName());
+		libro.setTipo(this.getTipo());
+		return libro;
+	}
+	
+	
+	
+	
+	
+
+}
