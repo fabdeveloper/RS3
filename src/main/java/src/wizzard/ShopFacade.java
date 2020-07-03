@@ -1,6 +1,8 @@
 package src.wizzard;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
@@ -63,6 +65,27 @@ public class ShopFacade implements Shopper<Oferta, Articulo, Pedido>, Serializab
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	@Override
+	public void verOfertas() {
+		System.out.println("ShopFacade.verOfertas()  *** "  + new Date());		
+
+		List<Oferta> listaOfertas;
+		
+		getCatalogo().loadCatalogo("TODO");
+		listaOfertas = getCatalogo().getProducts();
+		listaOfertas.forEach(e -> System.out.println( "oferta id = " + e.getId() + ", descripcion = " + e.getDescripcion()));
+				
+	}
+	@Override
+	public void seleccionarArticulo() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void crearPedido() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

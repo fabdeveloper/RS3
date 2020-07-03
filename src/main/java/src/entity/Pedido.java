@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,10 +29,17 @@ public class Pedido implements Serializable, IPedido{
 	@Column(name="IDCLIENT")
 	private Integer idClient;
 
-//	@Column(name="LISTPRODS")
-	@OneToMany(cascade= CascadeType.ALL, orphanRemoval= true)
-	@JoinColumn(name="pedido_id")
-	private List<? extends Articulo> listProds;
+//	@OneToMany(cascade= CascadeType.ALL, orphanRemoval= true)
+//	@JoinColumn(name="pedido_id")
+	
+	
+	@Column(name="LISTPRODS")
+	@ManyToMany
+	@JoinTable(name="PEDIDO_ARTICULO",
+			joinColumns=@JoinColumn(name="id_Pedido", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="id_Articulo", referencedColumnName="id")	)
+
+	private List<? extends Articulo> listaProds;
 	
 	@Column(name="VALOR")
 	private Double valor;
@@ -111,10 +119,10 @@ public class Pedido implements Serializable, IPedido{
 	}
 	@Override
 	public List<? extends Articulo> getListProds() {
-		return listProds;
+		return listaProds;
 	}
 	public void setListProds(List<? extends Articulo> listProds) {
-		this.listProds = listProds;
+		this.listaProds = listProds;
 	}
 	public void setValor(Double valor) {
 		this.valor = valor;

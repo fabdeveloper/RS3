@@ -8,6 +8,15 @@ public interface Shopper<OFER, ARTI, PEDIDO> {
 	public IPedido getPedido();
 	public IUser getUser();
 	public Caja getCaja();
+	
+	
+	/*************************/
+	
+	
+	
+	public void verOfertas();
+	public void seleccionarArticulo();
+	public void crearPedido();
 
 
 

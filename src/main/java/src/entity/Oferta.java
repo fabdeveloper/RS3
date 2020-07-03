@@ -19,8 +19,14 @@ public class Oferta implements Serializable{
 	@Column(name="ID")
 	private Integer id;
 	
+	@Column(name="NAME")
+	private String name;
+	
 	@Column(name="product_id")
 	private Integer product_id;
+	
+	@Column(name="articulo_id")
+	private Integer articulo_id;
 	
 	@Column(name="precio")
 	private Float precio;
@@ -35,9 +41,13 @@ public class Oferta implements Serializable{
 	public Oferta clone(){
 		Oferta oferta = new Oferta();
 		oferta.setId(this.getId());
+		oferta.setName(this.getName());
+
 		oferta.setDescripcion(this.getDescripcion());
 		oferta.setPrecio(this.getPrecio());
 		oferta.setProduct_id(this.getProduct_id());
+		oferta.setArticulo_id(this.getArticulo_id());
+
 		return oferta;
 	}
 	
@@ -73,6 +83,26 @@ public class Oferta implements Serializable{
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public Integer getArticulo_id() {
+		return articulo_id;
+	}
+
+
+	public void setArticulo_id(Integer articulo_id) {
+		this.articulo_id = articulo_id;
 	}
 	
 	

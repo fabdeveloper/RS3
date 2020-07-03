@@ -19,12 +19,14 @@ public class Articulo implements Serializable{
 	@Column(name="ID")
 	private Integer id;
 	
-	@Column(name="pedido_id")
-	private Integer pedido_id;
+//	@Column(name="pedido_id")
+//	private Integer pedido_id;
 	
 	@Column(name="product_id")
-	private Integer product_id;
-
+	private Integer product_id; //FK
+	
+	@Column(name="NAME")
+	private String name;
 	
 	@Column(name="descripcion")
 	private String descripcion;
@@ -44,14 +46,6 @@ public class Articulo implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getPedido_id() {
-		return pedido_id;
-	}
-
-	public void setPedido_id(Integer pedido_id) {
-		this.pedido_id = pedido_id;
 	}
 
 	public Integer getProduct_id() {
@@ -78,13 +72,23 @@ public class Articulo implements Serializable{
 		this.price = price;
 	}
 	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public Articulo clone(){
 		
 		Articulo nuevo = new Articulo();
 		nuevo.setDescripcion(this.getDescripcion());
-		nuevo.setPedido_id(this.getPedido_id());
 		nuevo.setPrice(this.getPrice());
+		nuevo.setName(this.getName());
 		nuevo.setProduct_id(this.getProduct_id());
 		return nuevo;
 	}
