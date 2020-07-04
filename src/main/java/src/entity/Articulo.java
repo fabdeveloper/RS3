@@ -7,11 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="ARTICULOS")
+@NamedQueries({
+	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product_id LIKE :product_id")}
+	)
 public class Articulo implements Serializable{
 	
 	@Id
@@ -19,10 +26,9 @@ public class Articulo implements Serializable{
 	@Column(name="ID")
 	private Integer id;
 	
-//	@Column(name="pedido_id")
-//	private Integer pedido_id;
-	
 	@Column(name="product_id")
+	@ManyToOne
+	@JoinColumn(table="PRODUCTS", name="ID" )
 	private Integer product_id; //FK
 	
 	@Column(name="NAME")
@@ -81,11 +87,18 @@ public class Articulo implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public Articulo clone(){
 		
 		Articulo nuevo = new Articulo();
+		nuevo.setId(this.getId());
 		nuevo.setDescripcion(this.getDescripcion());
 		nuevo.setPrice(this.getPrice());
 		nuevo.setName(this.getName());

@@ -56,6 +56,18 @@ public class Product implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	@Override
+	public Product clone(){
+		
+		Product nuevo = new Product();
+		nuevo.setId(this.getId());
+		nuevo.setName(this.getName());
+		nuevo.setTipo(this.getTipo());
+		
+		return nuevo;
+		
+	}
 
 
 	

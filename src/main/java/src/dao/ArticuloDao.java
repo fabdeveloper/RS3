@@ -1,5 +1,7 @@
 package src.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +21,10 @@ public class ArticuloDao extends AbstractDao<Articulo>{
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
+	}
+	
+	public List<Articulo> getListaArticulosPorProduct_Id(Integer product_id){
+		return getEntityManager().createNamedQuery("articulos por product_id", Articulo.class).setParameter("product_id", product_id).getResultList();
 	}
 
 }

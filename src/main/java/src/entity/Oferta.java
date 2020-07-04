@@ -7,11 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="OFERTAS")
+@NamedQueries({
+	@NamedQuery(name="ofertas por articulo_id", query="SELECT b FROM Oferta b WHERE b.articulo_id LIKE :articulo_id"),
+	@NamedQuery(name="ofertas por product_id", query="SELECT b FROM Oferta b WHERE b.product_id LIKE :product_id")
+	})
 public class Oferta implements Serializable{
 	
 	@Id
@@ -23,10 +31,14 @@ public class Oferta implements Serializable{
 	private String name;
 	
 	@Column(name="product_id")
-	private Integer product_id;
+	@ManyToOne
+	@JoinColumn(table="PRODUCTS", name="ID" )
+	private Integer product_id; //FK
 	
+	@ManyToOne
+	@JoinColumn(table="ARTICULOS", name="ID" )
 	@Column(name="articulo_id")
-	private Integer articulo_id;
+	private Integer articulo_id; //FK
 	
 	@Column(name="precio")
 	private Float precio;
