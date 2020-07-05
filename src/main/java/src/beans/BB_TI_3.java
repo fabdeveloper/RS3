@@ -3,23 +3,109 @@ package src.beans;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import src.dao.ArticuloDao;
+import src.dao.LibroDao;
+import src.dao.OfertaDao;
+import src.dao.PlantaDao;
+import src.dao.ProductDao;
+import src.dao.UserDao;
+import src.entity.Articulo;
+import src.entity.Libro;
+import src.entity.Oferta;
+import src.entity.Planta;
+import src.entity.Product;
+import src.factory.FactoryImpl;
 
 
 @Named
 @SessionScoped
 public class BB_TI_3 implements Serializable{
 	
+	@Inject private FactoryImpl factory;
+	
+	@Inject private ProductDao productDao;
+	@Inject private ArticuloDao articuloDao;
+	@Inject private LibroDao libroDao;
+	@Inject private PlantaDao plantaDao;
+	@Inject private OfertaDao ofertaDao;
+	@Inject private UserDao userDao;
+	
+	private Product p1;
+	private Product p2;
+	
+	private Articulo a1;
+	private Articulo a2;
+	private Articulo a3;
+	private Articulo a4;
+	
+	private Oferta o1;
+	private Oferta o2;
+	private Oferta o3;
+	private Oferta o4;
+	private Oferta o5;
+	private Oferta o6;
+	private Oferta o7;
+
+
+
+	
 	
 	public void crearProductos(){
+		p1 = (Product)factory.crear("PRODUCT");
+		p1.setName("LIBROS");
+		p1.setTipo("LIBRERIA");
+		productDao.create(p1);
+				
+		p2 = (Product)factory.crear("PRODUCT");
+		p2.setName("PLANTAS");
+		p2.setTipo("JARDIN");
+		productDao.create(p2);		
 		
 	}
 	
 	public void crearArticulos(){
+		Libro libro1 = (Libro)factory.crear("LIBRO");
+		libro1.setProduct_id(p1.getId());
+		libro1.setAuthor("Verne");
+		libro1.setTitle("Viaje");
+		libro1.setPrice(27f);		
+		libroDao.create(libro1);	
+		a1 = libro1;
+		
+		Libro libro2 = (Libro)factory.crear("LIBRO");
+		libro2.setProduct_id(p1.getId());
+		libro2.setAuthor("Yo");
+		libro2.setTitle("super genial");
+		libro2.setPrice(55f);		
+		libroDao.create(libro2);	
+		a2 = libro2;
+		
+		Libro libro3 = (Libro)factory.crear("LIBRO");
+		libro3.setProduct_id(p1.getId());
+		libro3.setAuthor("Un vecino");
+		libro3.setTitle("Barrio");
+		libro3.setPrice(16f);	
+		libroDao.create(libro3);	
+		a3 = libro3;
+		
+		
+		Planta planta1 = (Planta)factory.crear("PLANTA");
+		planta1.setProduct_id(p2.getId());
+		planta1.setEspecie("trepadora");
+		planta1.setNombreComercial("tomate");
+		planta1.setPrice(7f);
+		planta1.setDescripcion("en maceta");
+		plantaDao.create(planta1);
+		a4 = planta1;
 		
 	}
 	
 	public void crearOfertas(){
+		
+		
 		
 	}
 	

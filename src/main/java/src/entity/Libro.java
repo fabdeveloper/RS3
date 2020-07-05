@@ -20,7 +20,7 @@ import src.inter.Prototype;
 		@NamedQuery(name="libros byTitle", query="SELECT b FROM Libro b WHERE b.title LIKE :titulo")}
 		
 		)
-public class Libro extends Product implements Serializable{
+public class Libro extends Articulo implements Serializable{
 	
 
 	private static final long serialVersionUID = 11L;
@@ -52,7 +52,11 @@ public class Libro extends Product implements Serializable{
 		libro.setAuthor(this.getAuthor());
 		libro.setTitle(this.getTitle());
 		libro.setName(this.getName());
-		libro.setTipo(this.getTipo());
+		libro.setDescripcion(this.getDescripcion());
+		libro.setId(this.getId());
+		libro.setName(this.getName());
+		libro.setPrice(this.getPrice());
+		libro.setProduct_id(this.getProduct_id());
 		return libro;
 	}
 	
