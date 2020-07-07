@@ -84,6 +84,14 @@ public class DispoImpl implements IDispo, Serializable {
 		setProductoSeleccionado(producto_id);
 		setArticuloSeleccionado(articulo_id);		
 	}
+	@Override
+	public boolean isArticuloOk() {
+		return articuloSeleccionado == null;
+	}
+	@Override
+	public boolean isProductOk() {
+		return productoSeleccionado == null;
+	}
 	
 	
 	

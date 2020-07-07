@@ -105,6 +105,32 @@ public class BB_TI_3 implements Serializable{
 	
 	public void crearOfertas(){
 		
+		Oferta oferta1 = (Oferta)factory.crear("OFERTA");
+		oferta1.setArticulo_id(a1.getId());
+		oferta1.setProduct_id(a1.getProduct_id());
+		oferta1.setName("Primavera");
+		oferta1.setPrecio(25f);
+		ofertaDao.create(oferta1);
+		o1 = oferta1;
+		
+		Oferta oferta2 = (Oferta)factory.crear("OFERTA");
+		oferta2.setArticulo_id(a1.getId());
+		oferta2.setProduct_id(a1.getProduct_id());
+		oferta2.setName("Verano");
+		oferta2.setPrecio(20f);
+		ofertaDao.create(oferta2);
+		o2 = oferta2;
+		
+		Oferta oferta3 = (Oferta)factory.crear("OFERTA");
+		oferta3.setArticulo_id(a1.getId());
+		oferta3.setProduct_id(a1.getProduct_id());
+		oferta3.setName("Invierno");
+		oferta3.setPrecio(15f);
+		ofertaDao.create(oferta3);
+		o1 = oferta3;
+		
+		
+		
 		
 		
 	}

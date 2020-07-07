@@ -13,11 +13,11 @@ import src.factory.Factory;
 import src.factory.FactoryImpl;
 import src.factory.PedidoFactory;
 import src.factory.ProductFactory;
-import src.inter.Gestor;
+import src.inter.IGestorE;
 
 
 @RequestScoped
-public class PedidoGestor implements Gestor<Pedido>{
+public class PedidoGestor implements IGestorE<Pedido>{
 	
 	@Inject private PedidoFactory factory;
 	@Inject private PedidoDao dao;

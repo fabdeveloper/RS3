@@ -21,7 +21,7 @@ import src.entity.Oferta;
 import src.entity.Pedido;
 import src.entity.User;
 import src.factory.FactoryImpl;
-import src.inter.Carrito;
+import src.inter.ICarrito;
 import src.inter.Catalogo;
 import src.wizzard.CarritoArticulo;
 import src.wizzard.ShopFacade;
@@ -126,7 +126,7 @@ public class BB_TI_2 implements Serializable{
 	public void seleccionarOferta(){
 		System.out.println("BB_TI_2.seleccionarOfertas()  *** "  + new Date());		
 
-		Carrito carrito = shop.getCarrito();
+		ICarrito carrito = shop.getCarrito();
 		Catalogo catalogo = shop.getCatalogo();
 		catalogo.loadCatalogo("TODO");
 		catalogo.selectProduct(catalogo.getProducts().get(numOferta));

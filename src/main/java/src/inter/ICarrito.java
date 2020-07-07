@@ -2,7 +2,7 @@ package src.inter;
 
 import java.util.List;
 
-public interface Carrito<P> {
+public interface ICarrito<P> {
 	
 	public void add(P prod);
 	public void remove(P prod);

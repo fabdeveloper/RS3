@@ -8,12 +8,12 @@ import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 
 import src.entity.Articulo;
-import src.inter.Carrito;
+import src.inter.ICarrito;
 
 
 
 @SessionScoped
-public class CarritoArticulo implements Carrito<Articulo>, Serializable{
+public class CarritoArticulo implements ICarrito<Articulo>, Serializable{
 	
 	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
 
