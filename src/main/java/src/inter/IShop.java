@@ -1,5 +1,7 @@
 package src.inter;
 
+import java.util.List;
+
 public interface IShop {
 	
 	public IDispo getDispoManager();
@@ -13,9 +15,9 @@ public interface IShop {
 	/*************************/
 	
 	
-	public void verProductos();
-	public void verArticulos();
-	public void verOfertas();
+	public List<? extends Object> getListaProductos();
+	public List<? extends Object> getListaArticulos();
+	public List<? extends Object> getListaOfertas();
 	public void seleccionarArticulo(Integer idArticulo);
 	public void seleccionarProducto(Integer idProducto);
 	public void seleccionarOferta(Integer idOferta);

@@ -2,6 +2,7 @@ package src.wizzard;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Pedido;
+import src.entity.Product;
 import src.entity.User;
 import src.impl.DispoImpl;
 import src.inter.Caja;
@@ -23,16 +25,13 @@ import src.inter.IShop;
 import src.inter.IUser;
 import src.inter.Shopper;
 
-//@Stateful
 @SessionScoped
 public class ShopFacade implements IShop, Serializable{
 	
-//	@Inject
-//	private CatalogoOfertas catalogo;
 	@Inject
 	private DispoImpl dispo;
 	@Inject
-	private CarritoArticulo carrito;
+	private CarritoOfertas carrito;
 	@Inject
 	private PedidoGestor gestorPedidos;
 	
@@ -42,7 +41,7 @@ public class ShopFacade implements IShop, Serializable{
 	
 
 	@Override
-	public ICarrito<Articulo> getCarrito() {
+	public ICarrito<Oferta> getCarrito() {
 		return carrito;
 	}
 	@Override
@@ -69,10 +68,20 @@ public class ShopFacade implements IShop, Serializable{
 		this.user = user;
 	}
 
-
 	@Override
 	public void crearPedido() {
-		// TODO Auto-generated method stub
+		Pedido pedido = getGestorPedidos().getFactory().crear();
+		
+		pedido.setListProds(listProds);
+		pedido.setIdClient(idClient);
+		pedido.setValor(valor);
+		pedido.setEstadoPago(estadoPago);
+		pedido.setTipoEnvio(tipoEnvio);
+		pedido.setLugarEntrega(lugarEntrega);
+		
+		getGestorPedidos().getDao().create(pedido);
+		
+		setPedido(pedido);		
 		
 	}
 	@Override
@@ -80,45 +89,41 @@ public class ShopFacade implements IShop, Serializable{
 		return dispo;
 	}
 	@Override
-	public void verProductos() {
-		// TODO Auto-generated method stub
-		
+	public List<Product> getListaProductos() {		
+		return dispo.getListaProductos();		
 	}
 	@Override
-	public void verArticulos() {
-		// TODO Auto-generated method stub
-		
-	}
-	
+	public List<Articulo> getListaArticulos() {
+		return dispo.getListaArticulos();
+	}	
 	@Override
-	public void verOfertas() {
-		System.out.println("ShopFacade.verOfertas()  *** "  + new Date());		
+	public List<Oferta> getListaOfertas() {
+//		System.out.println("ShopFacade.verOfertas()  *** "  + new Date());		
 
-		List<Oferta> listaOfertas;
-		
-		
-//		getCatalogo().loadCatalogo("TODO");
-//		listaOfertas = getCatalogo().getProducts();
-		listaOfertas.forEach(e -> System.out.println( "oferta id = " + e.getId() + ", descripcion = " + e.getDescripcion()));
-				
+		return dispo.getListaOfertas();		
+
+//		listaOfertas.forEach(e -> System.out.println( "oferta id = " + e.getId() + ", descripcion = " + e.getDescripcion()));
+						
 	}
 	@Override
 	public void seleccionarArticulo(Integer idArticulo) {
 		dispo.setArticuloSeleccionado(idArticulo);		
-	}
-	
+	}	
 	@Override
 	public void seleccionarProducto(Integer idProducto) {
 		dispo.setProductoSeleccionado(idProducto);		
-	}
-	
+	}	
 	@Override
 	public void seleccionarOferta(Integer idOferta) {
-		// TODO Auto-generated method stub
+		Oferta of = null;
+		List<Oferta> listaOfertas = dispo.getListaOfertas();
+		for(Oferta oferta : listaOfertas){
+			if(oferta.getId() == idOferta)of = oferta;
+		}
+		if(of != null)
+		carrito.add(of);
 		
 	}
-	
-
 
 
 

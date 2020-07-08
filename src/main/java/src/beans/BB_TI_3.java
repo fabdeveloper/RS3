@@ -1,6 +1,7 @@
 package src.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -18,11 +19,14 @@ import src.entity.Oferta;
 import src.entity.Planta;
 import src.entity.Product;
 import src.factory.FactoryImpl;
+import src.wizzard.ShopFacade;
 
 
 @Named
 @SessionScoped
 public class BB_TI_3 implements Serializable{
+	
+	@Inject private ShopFacade shop;
 	
 	@Inject private FactoryImpl factory;
 	
@@ -122,8 +126,8 @@ public class BB_TI_3 implements Serializable{
 		o2 = oferta2;
 		
 		Oferta oferta3 = (Oferta)factory.crear("OFERTA");
-		oferta3.setArticulo_id(a1.getId());
-		oferta3.setProduct_id(a1.getProduct_id());
+		oferta3.setArticulo_id(a4.getId());
+		oferta3.setProduct_id(a4.getProduct_id());
 		oferta3.setName("Invierno");
 		oferta3.setPrecio(15f);
 		ofertaDao.create(oferta3);
@@ -135,15 +139,26 @@ public class BB_TI_3 implements Serializable{
 		
 	}
 	
-	public void verProductos(){
+	public void verProductos(){		
+		List<Product> listaProductos = shop.getListaProductos();
 		
 	}
 	
 	public void verArticulos(){
+		List<Articulo> listaArticulos = shop.getListaArticulos();
 		
 	}
 	
 	public void verOfertas(){
+		List<Oferta> listaOfertas = shop.getListaOfertas();
+		
+	}
+	
+	public void seleccionarProducto(){
+		
+	}
+	
+	public void seleccionarArticulo(){
 		
 	}
 	
