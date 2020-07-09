@@ -72,17 +72,25 @@ public class ShopFacade implements IShop, Serializable{
 	public void crearPedido() {
 		Pedido pedido = getGestorPedidos().getFactory().crear();
 		
-		pedido.setListProds(listProds);
-		pedido.setIdClient(idClient);
-		pedido.setValor(valor);
-		pedido.setEstadoPago(estadoPago);
-		pedido.setTipoEnvio(tipoEnvio);
-		pedido.setLugarEntrega(lugarEntrega);
+		pedido.setListProds(carrito.getProducts());
+		pedido.setIdClient(user.getId());
+		pedido.setValor(valora(carrito.getProducts()));
+		pedido.setEstadoPago("PENDIENTE");
+		pedido.setTipoEnvio("NORMAL");
+		pedido.setLugarEntrega("ALMACEN");
 		
 		getGestorPedidos().getDao().create(pedido);
 		
 		setPedido(pedido);		
 		
+	}
+	
+	private Float valora(List<Oferta> lista){
+		Float retorno = 0f;
+		for(Oferta oferta: lista){
+			retorno += oferta.getPrecio();
+		}
+		return retorno;
 	}
 	@Override
 	public IDispo getDispoManager() {

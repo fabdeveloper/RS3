@@ -1,7 +1,14 @@
 package src.factory;
 
-public interface ProductFactory<Prod>{
+import src.entity.Product;
 
-	public Prod crear();	
+public class ProductFactory implements BeanFactory<Product> {
+	
+	private Product product = new Product();
+
+	@Override
+	public Product crear() {
+		return product.clone();
+	}
 
 }

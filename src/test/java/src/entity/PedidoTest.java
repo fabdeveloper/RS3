@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import src.beans.PedidoFacade;
 import src.factory.FactoryImpl;
 import src.factory.PedidoFactory;
 import src.inter.IPedido;
@@ -14,7 +13,7 @@ public class PedidoTest {
 	
 	private FactoryImpl factory;
 	
-	private PedidoFacade pedidoFacade;
+//	private PedidoFacade pedidoFacade;
 	
 	
 //	@Test

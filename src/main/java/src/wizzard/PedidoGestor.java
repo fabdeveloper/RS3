@@ -4,15 +4,14 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import src.beans.AbstractFacade;
-import src.beans.PedidoFacade;
+
 import src.dao.AbstractDao;
 import src.dao.PedidoDao;
 import src.entity.Pedido;
 import src.factory.Factory;
 import src.factory.FactoryImpl;
 import src.factory.PedidoFactory;
-import src.factory.ProductFactory;
+import src.factory.BeanFactory;
 import src.inter.IGestorE;
 
 
@@ -26,7 +25,7 @@ public class PedidoGestor implements IGestorE<Pedido>{
 	
 	
 	@Override
-	public ProductFactory<Pedido> getFactory() {
+	public BeanFactory<Pedido> getFactory() {
 		return factory;
 	}
 	@Override

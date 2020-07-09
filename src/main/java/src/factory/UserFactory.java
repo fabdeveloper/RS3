@@ -9,7 +9,7 @@ import src.inter.IUser;
 
 
 @RequestScoped
-public class UserFactory implements ProductFactory<User>{
+public class UserFactory implements BeanFactory<User>{
 	
 	private User user = new User();
 

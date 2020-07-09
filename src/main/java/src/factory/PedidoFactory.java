@@ -10,7 +10,7 @@ import src.inter.IPedido;
 //@Singleton
 //@Stateless
 @RequestScoped
-public class PedidoFactory implements ProductFactory<Pedido>{
+public class PedidoFactory implements BeanFactory<Pedido>{
 	
 	private IPedido pedido = new Pedido();
 

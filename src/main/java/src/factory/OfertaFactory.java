@@ -5,7 +5,7 @@ import javax.enterprise.context.RequestScoped;
 import src.entity.Oferta;
 
 @RequestScoped
-public class OfertaFactory implements ProductFactory<Oferta>{
+public class OfertaFactory implements BeanFactory<Oferta>{
 	
 	private Oferta oferta = new Oferta();
 

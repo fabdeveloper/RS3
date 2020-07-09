@@ -3,6 +3,7 @@ package src.inter;
 import java.util.List;
 
 import src.entity.Articulo;
+import src.entity.Oferta;
 import src.entity.Product;
 
 public interface IPedido {
@@ -14,9 +15,9 @@ public interface IPedido {
 
 	public abstract Integer getIdClient();
 
-	public abstract List<? extends Articulo> getListProds();
+	public abstract List<? extends Oferta> getListProds();
 
-	public abstract Double getValor();
+	public abstract Float getValor();
 
 	public abstract String getEstadoPago();
 

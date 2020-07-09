@@ -6,7 +6,7 @@ import src.entity.Articulo;
 
 
 @RequestScoped
-public class ArticuloFactory implements ProductFactory<Articulo>{
+public class ArticuloFactory implements BeanFactory<Articulo>{
 	
 	Articulo articulo = new Articulo();
 

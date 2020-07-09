@@ -11,13 +11,12 @@ import src.entity.Libro;
 
 @RequestScoped
 //@Singleton
-public class LibroFactory implements ProductFactory<Libro>{
+public class LibroFactory implements BeanFactory<Libro>{
 	
 	private Libro libro = new Libro();
 
 	@Override
-	public Libro crear() {		
-
+	public Libro crear() {	
 		return libro.clone();
 	}
 

@@ -1,6 +1,7 @@
 package src.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -27,6 +28,11 @@ import src.wizzard.ShopFacade;
 public class BB_TI_3 implements Serializable{
 	
 	@Inject private ShopFacade shop;
+	
+	private Integer idProducto;
+	private Integer idArticulo;
+	private Integer idOferta;
+
 	
 	@Inject private FactoryImpl factory;
 	
@@ -141,33 +147,43 @@ public class BB_TI_3 implements Serializable{
 	
 	public void verProductos(){		
 		List<Product> listaProductos = shop.getListaProductos();
+		System.out.println("PRODUCTOS DISPONIBLES " + new Date() );
+		listaProductos.forEach(e -> {
+			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", tipo: " + e.getTipo()); });
 		
 	}
 	
 	public void verArticulos(){
 		List<Articulo> listaArticulos = shop.getListaArticulos();
-		
+		System.out.println("ARTICULOS DISPONIBLES " + new Date() );
+		listaArticulos.forEach(e -> {
+			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_producto: " + e.getProduct_id() + ", price: " + e.getPrice() + ", description: " + e.getDescripcion()); });
 	}
 	
 	public void verOfertas(){
 		List<Oferta> listaOfertas = shop.getListaOfertas();
+		System.out.println("OFERTAS DISPONIBLES " + new Date() );
+		listaOfertas.forEach(e -> {
+			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_articulo: " + e.getArticulo_id() + ", precio: " + e.getPrecio() + ", descripcion: " + e.getDescripcion() + ", id_producto: " + e.getProduct_id()); });
 		
 	}
 	
 	public void seleccionarProducto(){
-		
+		shop.seleccionarProducto(idProducto);
 	}
 	
 	public void seleccionarArticulo(){
+		shop.seleccionarArticulo(idArticulo);
 		
 	}
 	
 	public void seleccionarOferta(){
+		shop.seleccionarOferta(idOferta);
 		
 	}
 	
 	public void grabarPedido(){
-		
+		shop.crearPedido();
 	}
 	
 	

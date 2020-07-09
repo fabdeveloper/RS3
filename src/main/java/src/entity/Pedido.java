@@ -39,10 +39,10 @@ public class Pedido implements Serializable, IPedido{
 			joinColumns=@JoinColumn(name="id_Pedido", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="id_Articulo", referencedColumnName="id")	)
 
-	private List<? extends Articulo> listaProds;
+	private List<? extends Oferta> listaProds;
 	
 	@Column(name="VALOR")
-	private Double valor;
+	private Float valor;
 
 	@Column(name="ESTADOPAGO")
 	private String estadoPago;
@@ -95,7 +95,7 @@ public class Pedido implements Serializable, IPedido{
 	}
 
 	@Override
-	public Double getValor() {
+	public Float getValor() {
 		return valor;
 	}
 
@@ -118,13 +118,13 @@ public class Pedido implements Serializable, IPedido{
 		return lugarEntrega;
 	}
 	@Override
-	public List<? extends Articulo> getListProds() {
+	public List<? extends Oferta> getListProds() {
 		return listaProds;
 	}
-	public void setListProds(List<? extends Articulo> listProds) {
-		this.listaProds = listProds;
+	public void setListProds(List<? extends Oferta> list) {
+		this.listaProds = list;
 	}
-	public void setValor(Double valor) {
+	public void setValor(Float valor) {
 		this.valor = valor;
 	}
 	public void setEstadoPago(String estadoPago) {
