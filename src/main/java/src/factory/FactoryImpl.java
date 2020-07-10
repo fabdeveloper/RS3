@@ -10,6 +10,8 @@ public class FactoryImpl implements Factory{
 	@Inject
 	private LibroFactory libroFactory;
 	@Inject
+	private PlantaFactory plantaFactory;
+	@Inject
 	private UserFactory userFactory;
 	@Inject
 	private OfertaFactory ofertaFactory;
@@ -17,7 +19,8 @@ public class FactoryImpl implements Factory{
 	private ArticuloFactory articuloFactory;
 	@Inject
 	private PedidoFactory pedidoFactory;
-	
+	@Inject
+	private ProductFactory productFactory;
 	
 	@Override
 	public Object crear(String type) {
@@ -30,6 +33,9 @@ public class FactoryImpl implements Factory{
 		case "LIBRO":
 			loquesea = libroFactory.crear();
 			break;
+		case "PLANTA":
+			loquesea = plantaFactory.crear();
+			break;
 		case "USER":
 			loquesea = userFactory.crear();
 			break;
@@ -38,6 +44,9 @@ public class FactoryImpl implements Factory{
 			break;
 		case "ARTICULO":
 			loquesea = articuloFactory.crear();
+			break;
+		case "PRODUCT":
+			loquesea = productFactory.crear();
 			break;
 
 			default:;		

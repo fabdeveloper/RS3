@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.dao.ArticuloDao;
 import src.dao.LibroDao;
@@ -29,9 +30,9 @@ public class BB_TI_3 implements Serializable{
 	
 	@Inject private ShopFacade shop;
 	
-	private Integer idProducto;
-	private Integer idArticulo;
-	private Integer idOferta;
+	private Integer idProducto = 0;
+	private Integer idArticulo = 0;
+	private Integer idOferta = 0;
 
 	
 	@Inject private FactoryImpl factory;
@@ -76,9 +77,10 @@ public class BB_TI_3 implements Serializable{
 		
 	}
 	
+	@Transactional
 	public void crearArticulos(){
 		Libro libro1 = (Libro)factory.crear("LIBRO");
-		libro1.setProduct_id(p1.getId());
+		libro1.setProduct(p1);
 		libro1.setAuthor("Verne");
 		libro1.setTitle("Viaje");
 		libro1.setPrice(27f);		
@@ -86,7 +88,7 @@ public class BB_TI_3 implements Serializable{
 		a1 = libro1;
 		
 		Libro libro2 = (Libro)factory.crear("LIBRO");
-		libro2.setProduct_id(p1.getId());
+		libro2.setProduct(p1);
 		libro2.setAuthor("Yo");
 		libro2.setTitle("super genial");
 		libro2.setPrice(55f);		
@@ -94,7 +96,7 @@ public class BB_TI_3 implements Serializable{
 		a2 = libro2;
 		
 		Libro libro3 = (Libro)factory.crear("LIBRO");
-		libro3.setProduct_id(p1.getId());
+		libro3.setProduct(p1);
 		libro3.setAuthor("Un vecino");
 		libro3.setTitle("Barrio");
 		libro3.setPrice(16f);	
@@ -103,7 +105,7 @@ public class BB_TI_3 implements Serializable{
 		
 		
 		Planta planta1 = (Planta)factory.crear("PLANTA");
-		planta1.setProduct_id(p2.getId());
+		planta1.setProduct(p2);
 		planta1.setEspecie("trepadora");
 		planta1.setNombreComercial("tomate");
 		planta1.setPrice(7f);
@@ -113,27 +115,25 @@ public class BB_TI_3 implements Serializable{
 		
 	}
 	
+	@Transactional
 	public void crearOfertas(){
 		
 		Oferta oferta1 = (Oferta)factory.crear("OFERTA");
-		oferta1.setArticulo_id(a1.getId());
-		oferta1.setProduct_id(a1.getProduct_id());
+		oferta1.setArticulo(a1);
 		oferta1.setName("Primavera");
 		oferta1.setPrecio(25f);
 		ofertaDao.create(oferta1);
 		o1 = oferta1;
 		
 		Oferta oferta2 = (Oferta)factory.crear("OFERTA");
-		oferta2.setArticulo_id(a1.getId());
-		oferta2.setProduct_id(a1.getProduct_id());
+		oferta2.setArticulo(a1);
 		oferta2.setName("Verano");
 		oferta2.setPrecio(20f);
 		ofertaDao.create(oferta2);
 		o2 = oferta2;
 		
 		Oferta oferta3 = (Oferta)factory.crear("OFERTA");
-		oferta3.setArticulo_id(a4.getId());
-		oferta3.setProduct_id(a4.getProduct_id());
+		oferta3.setArticulo(a4);
 		oferta3.setName("Invierno");
 		oferta3.setPrecio(15f);
 		ofertaDao.create(oferta3);
@@ -157,14 +157,14 @@ public class BB_TI_3 implements Serializable{
 		List<Articulo> listaArticulos = shop.getListaArticulos();
 		System.out.println("ARTICULOS DISPONIBLES " + new Date() );
 		listaArticulos.forEach(e -> {
-			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_producto: " + e.getProduct_id() + ", price: " + e.getPrice() + ", description: " + e.getDescripcion()); });
+			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_producto: " + e.getProduct().getId() + ", price: " + e.getPrice() + ", description: " + e.getDescripcion()); });
 	}
 	
 	public void verOfertas(){
 		List<Oferta> listaOfertas = shop.getListaOfertas();
 		System.out.println("OFERTAS DISPONIBLES " + new Date() );
 		listaOfertas.forEach(e -> {
-			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_articulo: " + e.getArticulo_id() + ", precio: " + e.getPrecio() + ", descripcion: " + e.getDescripcion() + ", id_producto: " + e.getProduct_id()); });
+			System.out.println("id: " + e.getId() + ", name: " + e.getName() + ", id_articulo: " + e.getArticulo().getId() + ", precio: " + e.getPrecio() + ", descripcion: " + e.getDescripcion()); });
 		
 	}
 	
@@ -182,6 +182,38 @@ public class BB_TI_3 implements Serializable{
 		
 	}
 	
+	public void verCarrito(){
+		List<Oferta> listaOfertas = shop.getListaOfertas();
+		System.out.println("CARRITO :  " + new Date() );
+		listaOfertas.forEach(e -> {
+		System.out.println("oferta - id: " + e.getId() + ", name: " + e.getName() + ", id_articulo: " + e.getArticulo().getId() + ", precio: " + e.getPrecio() + ", descripcion: " + e.getDescripcion()); });
+	
+	}
+	
+	public Integer getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(Integer idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public Integer getIdArticulo() {
+		return idArticulo;
+	}
+
+	public void setIdArticulo(Integer idArticulo) {
+		this.idArticulo = idArticulo;
+	}
+
+	public Integer getIdOferta() {
+		return idOferta;
+	}
+
+	public void setIdOferta(Integer idOferta) {
+		this.idOferta = idOferta;
+	}
+
 	public void grabarPedido(){
 		shop.crearPedido();
 	}

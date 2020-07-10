@@ -27,6 +27,7 @@ src\impl\DispoImpl.class
 src\beans\BB_TI_3.class
 src\inter\IDispo.class
 src\dao\ProductDao.class
+src\factory\PlantaFactory.class
 src\service\RS3App.class
 src\wizzard\CarritoOfertas.class
 src\dao\UserDao.class

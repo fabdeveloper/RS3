@@ -47,36 +47,46 @@ public class DispoImpl implements IDispo, Serializable {
 	}
 	@Override
 	public List<Articulo> getListaArticulos() {
-		if(productoSeleccionado == null)return null;		
-		if(id_ultimoProductoCargado == null || id_ultimoProductoCargado != productoSeleccionado.getId()){
-			listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
-			id_ultimoProductoCargado = productoSeleccionado.getId();
-		}
+		if(productoSeleccionado == null)return null;	
+		
+		listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
+
+//		if(id_ultimoProductoCargado == null || id_ultimoProductoCargado != productoSeleccionado.getId()){
+//			listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
+//			id_ultimoProductoCargado = productoSeleccionado.getId();
+//		}
 		return listaArticulos;
 	}
 	@Override
 	public List<Oferta> getListaOfertas() {
 		if(productoSeleccionado == null || articuloSeleccionado == null)return null;	
 		
-		if(id_ultimoProductoCargado == null || id_ultimoArticuloCargado == null || 
-				id_ultimoProductoCargado != productoSeleccionado.getId() || id_ultimoArticuloCargado != articuloSeleccionado.getId()
-				){
-			listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
-			id_ultimoProductoCargado = productoSeleccionado.getId();
-			id_ultimoArticuloCargado = articuloSeleccionado.getId();
-		}
+		listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
+
+		
+//		if(id_ultimoProductoCargado == null || id_ultimoArticuloCargado == null || 
+//				id_ultimoProductoCargado != productoSeleccionado.getId() || id_ultimoArticuloCargado != articuloSeleccionado.getId()
+//				){
+//			listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
+//			id_ultimoProductoCargado = productoSeleccionado.getId();
+//			id_ultimoArticuloCargado = articuloSeleccionado.getId();
+//		}
 		
 		return listaOfertas;
 	}
 	@Override
-	public void setArticuloSeleccionado(Integer articulo_id) {
-		articuloSeleccionado = getListaArticulos().get(articulo_id).clone();
-		
+	public void setArticuloSeleccionado(Integer articulo_id) {		
+		for(Articulo articulo: getListaArticulos()){
+			if(articulo.getId() == articulo_id)
+				articuloSeleccionado = articulo;				
+		}		
 	}
 	@Override
-	public void setProductoSeleccionado(Integer producto_id) {
-		productoSeleccionado = getListaProductos().get(producto_id).clone();
-		
+	public void setProductoSeleccionado(Integer producto_id) {		
+		for(Product product: getListaProductos()){
+			if(product.getId() == producto_id)
+				productoSeleccionado = product;
+		}		
 	}
 	@Override
 	public void init(Integer producto_id, Integer articulo_id) {

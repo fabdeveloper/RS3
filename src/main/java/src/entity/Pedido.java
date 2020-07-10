@@ -33,7 +33,7 @@ public class Pedido implements Serializable, IPedido{
 //	@JoinColumn(name="pedido_id")
 	
 	
-	@Column(name="LISTPRODS")
+	@JoinColumn(name="LISTPRODS")
 	@ManyToMany
 	@JoinTable(name="PEDIDO_ARTICULO",
 			joinColumns=@JoinColumn(name="id_Pedido", referencedColumnName="id"),

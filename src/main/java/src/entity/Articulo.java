@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ARTICULOS")
 @NamedQueries({
-	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product_id LIKE :product_id")}
+	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id")}
 	)
 public class Articulo implements Serializable{
 	
@@ -26,10 +27,9 @@ public class Articulo implements Serializable{
 	@Column(name="ID")
 	private Integer id;
 	
-	@Column(name="product_id")
-	@ManyToOne
-	@JoinColumn(table="PRODUCTS", name="ID" )
-	private Integer product_id; //FK
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="PRODUCT_ID" )
+	private Product product; //FK
 	
 	@Column(name="NAME")
 	private String name;
@@ -54,12 +54,14 @@ public class Articulo implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getProduct_id() {
-		return product_id;
+
+
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProduct_id(Integer product_id) {
-		this.product_id = product_id;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public String getDescripcion() {
@@ -102,7 +104,7 @@ public class Articulo implements Serializable{
 		nuevo.setDescripcion(this.getDescripcion());
 		nuevo.setPrice(this.getPrice());
 		nuevo.setName(this.getName());
-		nuevo.setProduct_id(this.getProduct_id());
+		nuevo.setProduct(this.getProduct());
 		return nuevo;
 	}
 	

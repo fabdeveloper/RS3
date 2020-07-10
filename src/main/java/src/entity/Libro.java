@@ -56,7 +56,7 @@ public class Libro extends Articulo implements Serializable{
 		libro.setId(this.getId());
 		libro.setName(this.getName());
 		libro.setPrice(this.getPrice());
-		libro.setProduct_id(this.getProduct_id());
+		libro.setProduct(this.getProduct());
 		return libro;
 	}
 	

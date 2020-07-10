@@ -20,14 +20,14 @@ public class Planta extends Articulo implements Serializable{
 	
 	
 	@Override
-	public Articulo clone(){
+	public Planta clone(){
 		
 		Planta nuevo = new Planta();
 		nuevo.setId(this.getId());
 		nuevo.setDescripcion(this.getDescripcion());
 		nuevo.setPrice(this.getPrice());
 		nuevo.setName(this.getName());
-		nuevo.setProduct_id(this.getProduct_id());
+		nuevo.setProduct(this.getProduct());
 		nuevo.setEspecie(this.getEspecie());
 		nuevo.setNombreComercial(this.getNombreComercial());
 		return nuevo;

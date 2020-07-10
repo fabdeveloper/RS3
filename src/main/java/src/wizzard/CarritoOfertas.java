@@ -1,12 +1,16 @@
 package src.wizzard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.enterprise.context.SessionScoped;
 
 import src.entity.Oferta;
 import src.inter.ICarrito;
 
-public class CarritoOfertas implements ICarrito<Oferta> {
+@SessionScoped
+public class CarritoOfertas implements ICarrito<Oferta>, Serializable {
 	
 	private List<Oferta> listaOfertas = new ArrayList<Oferta>();
 

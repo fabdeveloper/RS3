@@ -4,8 +4,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 
-@Named
-@SessionScoped
+//@Named
+//@SessionScoped
 public class BB_TI_4 {
 	
 	
