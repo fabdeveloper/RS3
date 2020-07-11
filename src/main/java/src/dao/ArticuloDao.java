@@ -3,12 +3,14 @@ package src.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import src.entity.Articulo;
 
-@Stateless
+@RequestScoped
+//@Stateless
 public class ArticuloDao extends AbstractDao<Articulo>{
 	
 	@PersistenceContext(unitName="MyPU")

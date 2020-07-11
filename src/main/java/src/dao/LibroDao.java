@@ -1,12 +1,14 @@
 package src.dao;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import src.entity.Libro;
 
-@Stateless
+//@Stateless
+@RequestScoped
 public class LibroDao extends AbstractDao<Libro> {
 	
 	@PersistenceContext(unitName="MyPU")

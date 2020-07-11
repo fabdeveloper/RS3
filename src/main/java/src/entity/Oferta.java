@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="OFERTAS")
 @NamedQueries({
-	@NamedQuery(name="ofertas por articulo_id", query="SELECT b FROM Oferta b WHERE b.articulo.id LIKE :articulo_id"),
-	@NamedQuery(name="ofertas por product_id", query="SELECT b FROM Oferta b WHERE b.articulo.product.id LIKE :product_id")
+	@NamedQuery(name="ofertas por articulo_id", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
+	@NamedQuery(name="ofertas por product_id", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id")
 	})
 public class Oferta implements Serializable{
 	

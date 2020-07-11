@@ -40,16 +40,16 @@ public class DispoImpl implements IDispo, Serializable {
 	@Override
 	public List<Product> getListaProductos() {
 		
-		if(listaProductos == null){
-			listaProductos = productDao.getAll();
-		}
+//		if(listaProductos == null){
+//			listaProductos = productDao.getAll();
+//		}
 		return listaProductos;
 	}
 	@Override
 	public List<Articulo> getListaArticulos() {
-		if(productoSeleccionado == null)return null;	
-		
-		listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
+//		if(productoSeleccionado == null)return null;	
+//		
+//		listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
 
 //		if(id_ultimoProductoCargado == null || id_ultimoProductoCargado != productoSeleccionado.getId()){
 //			listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());
@@ -59,11 +59,11 @@ public class DispoImpl implements IDispo, Serializable {
 	}
 	@Override
 	public List<Oferta> getListaOfertas() {
-		if(productoSeleccionado == null || articuloSeleccionado == null)return null;	
-		
-		listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
-
-		
+//		if(productoSeleccionado == null || articuloSeleccionado == null)return null;	
+//		
+//		listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
+//
+//		
 //		if(id_ultimoProductoCargado == null || id_ultimoArticuloCargado == null || 
 //				id_ultimoProductoCargado != productoSeleccionado.getId() || id_ultimoArticuloCargado != articuloSeleccionado.getId()
 //				){
@@ -101,6 +101,21 @@ public class DispoImpl implements IDispo, Serializable {
 	@Override
 	public boolean isProductOk() {
 		return productoSeleccionado == null;
+	}
+	
+	@Override
+	public void refreshListaProductos(){
+		listaProductos = productDao.getAll();
+	}
+	@Override
+	public void refreshListaArticulos(){
+		if(productoSeleccionado != null){ listaArticulos = articuloDao.getListaArticulosPorProduct_Id(productoSeleccionado.getId());}
+		else listaArticulos = articuloDao.getAll();		
+	}
+	@Override
+	public void refreshListaOfertas(){
+		if(articuloSeleccionado != null) listaOfertas = ofertaDao.getListaOfertasPorArticulo_Id(articuloSeleccionado.getId());
+		else listaOfertas = ofertaDao.getAll();		
 	}
 	
 	

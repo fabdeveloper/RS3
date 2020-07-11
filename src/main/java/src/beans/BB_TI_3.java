@@ -31,8 +31,8 @@ public class BB_TI_3 implements Serializable{
 	@Inject private ShopFacade shop;
 	
 	private Integer idProducto = 0;
-	private Integer idArticulo = 0;
-	private Integer idOferta = 0;
+	private Integer idArticulo = 1;
+	private Integer idOferta = 2;
 
 	
 	@Inject private FactoryImpl factory;
@@ -63,7 +63,7 @@ public class BB_TI_3 implements Serializable{
 
 
 	
-	
+	@Transactional
 	public void crearProductos(){
 		p1 = (Product)factory.crear("PRODUCT");
 		p1.setName("LIBROS");
@@ -183,7 +183,7 @@ public class BB_TI_3 implements Serializable{
 	}
 	
 	public void verCarrito(){
-		List<Oferta> listaOfertas = shop.getListaOfertas();
+		List<Oferta> listaOfertas = shop.getCarrito().getProducts();
 		System.out.println("CARRITO :  " + new Date() );
 		listaOfertas.forEach(e -> {
 		System.out.println("oferta - id: " + e.getId() + ", name: " + e.getName() + ", id_articulo: " + e.getArticulo().getId() + ", precio: " + e.getPrecio() + ", descripcion: " + e.getDescripcion()); });

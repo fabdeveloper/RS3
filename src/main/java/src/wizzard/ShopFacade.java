@@ -97,21 +97,19 @@ public class ShopFacade implements IShop, Serializable{
 		return dispo;
 	}
 	@Override
-	public List<Product> getListaProductos() {		
+	public List<Product> getListaProductos() {	
+		dispo.refreshListaProductos();
 		return dispo.getListaProductos();		
 	}
 	@Override
 	public List<Articulo> getListaArticulos() {
+		dispo.refreshListaArticulos();
 		return dispo.getListaArticulos();
 	}	
 	@Override
 	public List<Oferta> getListaOfertas() {
-//		System.out.println("ShopFacade.verOfertas()  *** "  + new Date());		
-
-		return dispo.getListaOfertas();		
-
-//		listaOfertas.forEach(e -> System.out.println( "oferta id = " + e.getId() + ", descripcion = " + e.getDescripcion()));
-						
+		dispo.refreshListaOfertas();
+		return dispo.getListaOfertas();							
 	}
 	@Override
 	public void seleccionarArticulo(Integer idArticulo) {
@@ -129,8 +127,21 @@ public class ShopFacade implements IShop, Serializable{
 			if(oferta.getId() == idOferta)of = oferta;
 		}
 		if(of != null)
-		carrito.add(of);
-		
+		carrito.add(of);		
+	}
+	
+	
+	
+	/**********************************/
+	
+	public void refreshListaProductos(){
+		dispo.refreshListaProductos();
+	}
+	public void refreshListaArticulos(){
+		dispo.refreshListaArticulos();
+	}
+	public void refreshListaOfertas(){
+		dispo.refreshListaOfertas();
 	}
 
 

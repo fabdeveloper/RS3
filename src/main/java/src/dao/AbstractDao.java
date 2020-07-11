@@ -2,12 +2,17 @@ package src.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
+@RequestScoped
+//@Stateless
 public abstract class AbstractDao<T> {
 	
 	private Class<T> entityClass;
@@ -18,14 +23,15 @@ public abstract class AbstractDao<T> {
 	
 	protected abstract EntityManager getEntityManager();
 	
+//	@Transactional
 	public void create(T entity){
 		getEntityManager().persist(entity);		
 	}
-	
+//	@Transactional
 	public void edit(T entity){
 		getEntityManager().merge(entity);
 	}
-	
+//	@Transactional
 	public void remove(T entity){
 		getEntityManager().remove(getEntityManager().merge(entity));
 	}

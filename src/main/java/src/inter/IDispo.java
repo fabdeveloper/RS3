@@ -12,5 +12,11 @@ public interface IDispo {
 	public boolean isArticuloOk();
 	public boolean isProductOk();
 	public void init(Integer producto_id, Integer articulo_id);
+	
+	
+	
+	public void refreshListaProductos();	
+	public void refreshListaArticulos();	
+	public void refreshListaOfertas();
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import src.entity.Oferta;
 
 @RequestScoped
+//@Stateless
 public class OfertaDao extends AbstractDao<Oferta>{
 	
 	@PersistenceContext(unitName="MyPU")
