@@ -20,6 +20,7 @@ import src.entity.Libro;
 import src.entity.Oferta;
 import src.entity.Planta;
 import src.entity.Product;
+import src.entity.User;
 import src.factory.FactoryImpl;
 import src.wizzard.ShopFacade;
 
@@ -33,6 +34,10 @@ public class BB_TI_3 implements Serializable{
 	private Integer idProducto = 0;
 	private Integer idArticulo = 1;
 	private Integer idOferta = 2;
+	
+	private String email;
+	private String name;
+	private String password;
 
 	
 	@Inject private FactoryImpl factory;
@@ -43,6 +48,9 @@ public class BB_TI_3 implements Serializable{
 	@Inject private PlantaDao plantaDao;
 	@Inject private OfertaDao ofertaDao;
 	@Inject private UserDao userDao;
+	
+	private User usuario;
+
 	
 	private Product p1;
 	private Product p2;
@@ -137,12 +145,21 @@ public class BB_TI_3 implements Serializable{
 		oferta3.setName("Invierno");
 		oferta3.setPrecio(15f);
 		ofertaDao.create(oferta3);
-		o1 = oferta3;
-		
-		
-		
-		
-		
+		o1 = oferta3;		
+	}
+	
+	@Transactional
+	public void grabarPedido(){
+		shop.setUser(usuario);
+		shop.crearPedido();
+	}	
+	@Transactional
+	public void crearUsuario(){		
+		usuario = (User)factory.crear("USER");
+		usuario.setEmail(email);
+		usuario.setName(name);
+		usuario.setPassword(password);
+		userDao.create(usuario);		
 	}
 	
 	public void verProductos(){		
@@ -214,8 +231,29 @@ public class BB_TI_3 implements Serializable{
 		this.idOferta = idOferta;
 	}
 
-	public void grabarPedido(){
-		shop.crearPedido();
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
