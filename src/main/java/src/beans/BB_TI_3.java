@@ -12,12 +12,14 @@ import javax.transaction.Transactional;
 import src.dao.ArticuloDao;
 import src.dao.LibroDao;
 import src.dao.OfertaDao;
+import src.dao.PedidoDao;
 import src.dao.PlantaDao;
 import src.dao.ProductDao;
 import src.dao.UserDao;
 import src.entity.Articulo;
 import src.entity.Libro;
 import src.entity.Oferta;
+import src.entity.Pedido;
 import src.entity.Planta;
 import src.entity.Product;
 import src.entity.User;
@@ -35,9 +37,9 @@ public class BB_TI_3 implements Serializable{
 	private Integer idArticulo = 1;
 	private Integer idOferta = 2;
 	
-	private String email;
-	private String name;
-	private String password;
+	private String email = "email";
+	private String name = "name";
+	private String password = "password";
 
 	
 	@Inject private FactoryImpl factory;
@@ -48,6 +50,7 @@ public class BB_TI_3 implements Serializable{
 	@Inject private PlantaDao plantaDao;
 	@Inject private OfertaDao ofertaDao;
 	@Inject private UserDao userDao;
+	@Inject private PedidoDao pedidoDao;
 	
 	private User usuario;
 
@@ -148,10 +151,28 @@ public class BB_TI_3 implements Serializable{
 		o1 = oferta3;		
 	}
 	
+	public void verPedidos(){
+		for(Pedido pedido: pedidoDao.getAll()){
+			System.out.println("pedido - id : " + pedido.getId() + ", id_client : " + pedido.getIdClient() + ", valor : " + pedido.getValor());
+			for(Oferta oferta: pedido.getListProds()){
+				System.out.println(" oferta - id : " + oferta.getId() + ", name : " + oferta.getName() + ", precio : " + oferta.getPrecio() + ", articulo_id" + oferta.getArticulo().getId());
+
+			}
+		};
+	}
+	
 	@Transactional
 	public void grabarPedido(){
 		shop.setUser(usuario);
 		shop.crearPedido();
+		Pedido pedido = (Pedido)shop.getPedido();
+		System.out.println("PEDIDO : " + new Date());
+		System.out.println("id : " + pedido.getId() + ", id_client : " + pedido.getIdClient() + ", valoracion : " + pedido.getValor());
+
+		for(Oferta oferta: pedido.getListProds()){
+			System.out.println("oferta - id :  " + oferta.getId() + ", name : " + oferta.getName() + ", precio : " + oferta.getPrecio());
+
+		}		
 	}	
 	@Transactional
 	public void crearUsuario(){		

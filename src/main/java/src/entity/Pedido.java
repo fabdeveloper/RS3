@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,17 +30,13 @@ public class Pedido implements Serializable, IPedido{
 	
 	@Column(name="IDCLIENT")
 	private Integer idClient;
-
-//	@OneToMany(cascade= CascadeType.ALL, orphanRemoval= true)
-//	@JoinColumn(name="pedido_id")
 	
-	
-	@JoinColumn(name="LISTPRODS")
+//	@JoinColumn(name="LISTAPRODS")
 	@ManyToMany
-	@JoinTable(name="PEDIDO_ARTICULO",
-			joinColumns=@JoinColumn(name="id_Pedido", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="id_Articulo", referencedColumnName="id")	)
-
+	@JoinTable(name="PEDIDO_OFERTAS",
+			joinColumns=@JoinColumn(name="id_Pedido", table="PEDIDOS", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="id_Oferta", table="OFERTAS",  referencedColumnName="id"))	
+	@ElementCollection(fetch=FetchType.EAGER)
 	private List<? extends Oferta> listaProds;
 	
 	@Column(name="VALOR")
@@ -70,11 +68,9 @@ public class Pedido implements Serializable, IPedido{
 		nuevoClon.setListProds(this.getListProds());
 		nuevoClon.setLugarEntrega(this.getLugarEntrega());
 		nuevoClon.setTipoEnvio(this.getTipoEnvio());
-		nuevoClon.setValor(this.getValor());		
+		nuevoClon.setValor(this.getValor());			
 		
-		
-		return nuevoClon;
-		
+		return nuevoClon;		
 	}
 	@Override
 	public Integer getId() {
