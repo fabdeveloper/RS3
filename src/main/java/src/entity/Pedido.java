@@ -1,11 +1,14 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +24,7 @@ import src.inter.IPedido;
 
 @Entity
 @Table(name="PEDIDOS")
+@Embeddable
 public class Pedido implements Serializable, IPedido{
 	
 	@Id
@@ -31,13 +35,17 @@ public class Pedido implements Serializable, IPedido{
 	@Column(name="IDCLIENT")
 	private Integer idClient;
 	
-//	@JoinColumn(name="LISTAPRODS")
+	@JoinColumn(name="LISTAPRODS")
 	@ManyToMany
 	@JoinTable(name="PEDIDO_OFERTAS",
 			joinColumns=@JoinColumn(name="id_Pedido", table="PEDIDOS", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="id_Oferta", table="OFERTAS",  referencedColumnName="id"))	
-	@ElementCollection(fetch=FetchType.EAGER)
-	private List<? extends Oferta> listaProds;
+
+	
+	
+//	@ElementCollection(fetch=FetchType.EAGER)
+//	@CollectionTable(name="PEDIDO_OFERTAS", joinColumns={@JoinColumn(name="PEDIDO_ID"), @JoinColumn(name="OFERTA_ID")})
+	private List<Oferta> listaProds;
 	
 	@Column(name="VALOR")
 	private Float valor;
@@ -114,10 +122,10 @@ public class Pedido implements Serializable, IPedido{
 		return lugarEntrega;
 	}
 	@Override
-	public List<? extends Oferta> getListProds() {
+	public List<Oferta> getListProds() {
 		return listaProds;
 	}
-	public void setListProds(List<? extends Oferta> list) {
+	public void setListProds(List<Oferta> list) {
 		this.listaProds = list;
 	}
 	public void setValor(Float valor) {

@@ -15,7 +15,7 @@ public interface IPedido {
 
 	public abstract Integer getIdClient();
 
-	public abstract List<? extends Oferta> getListProds();
+	public abstract List getListProds();
 
 	public abstract Float getValor();
 
