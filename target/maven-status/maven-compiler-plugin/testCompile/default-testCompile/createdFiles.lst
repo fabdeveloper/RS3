@@ -1,5 +1,6 @@
 src\entity\UserTest.class
 src\service\ServiceTest.class
+src\dao\OfertaDaoTest.class
 src\entity\PedidoTest.class
 src\factory\FactoryImplTest.class
 src\entity\LibroTest.class

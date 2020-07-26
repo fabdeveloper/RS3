@@ -1,5 +1,9 @@
 package src.inter;
 
+import java.util.List;
+
+import src.entity.Grupo;
+
 public interface IUser {
 
 	public abstract IUser clone();
@@ -19,5 +23,11 @@ public interface IUser {
 	public abstract String getPassword();
 
 	public abstract void setPassword(String password);
+	
+	public abstract void setListaGrupos(List<Grupo> listaGrupos);
+	
+	public abstract List<Grupo> getListaGrupos();
+
+
 
 }

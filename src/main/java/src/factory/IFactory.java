@@ -1,6 +1,6 @@
 package src.factory;
 
-public interface Factory{
+public interface IFactory{
 	
 	public Object crear(String type);
 

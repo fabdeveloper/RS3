@@ -5,7 +5,7 @@ import javax.inject.Inject;
 
 
 @RequestScoped
-public class FactoryImpl implements Factory{
+public class FactoryImpl implements IFactory{
 	
 	@Inject
 	private LibroFactory libroFactory;
@@ -21,6 +21,8 @@ public class FactoryImpl implements Factory{
 	private PedidoFactory pedidoFactory;
 	@Inject
 	private ProductFactory productFactory;
+	@Inject
+	private GrupoFactory grupoFactory;
 	
 	@Override
 	public Object crear(String type) {
@@ -47,6 +49,9 @@ public class FactoryImpl implements Factory{
 			break;
 		case "PRODUCT":
 			loquesea = productFactory.crear();
+			break;
+		case "GRUPO":
+			loquesea = grupoFactory.crear();
 			break;
 
 			default:;		

@@ -10,7 +10,7 @@ import src.entity.Oferta;
 import src.inter.ICarrito;
 
 @SessionScoped
-public class CarritoOfertas implements ICarrito<Oferta>, Serializable {
+public class CarritoOfertas implements ICarrito<Oferta, ValorationStrategyImpl>, Serializable {
 	
 	private List<Oferta> listaOfertas = new ArrayList<Oferta>();
 
@@ -30,9 +30,8 @@ public class CarritoOfertas implements ICarrito<Oferta>, Serializable {
 	}
 
 	@Override
-	public void valuate(String strategy) {
-		// TODO Auto-generated method stub
-		
+	public Float valuate(ValorationStrategyImpl strategy) {
+		return strategy.valora(listaOfertas);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import src.entity.Pedido;
 import src.entity.Product;
 import src.entity.User;
 import src.impl.DispoImpl;
-import src.inter.Caja;
+import src.inter.ICajaStrategy;
 import src.inter.ICarrito;
 import src.inter.Catalogo;
 import src.inter.IDispo;
@@ -23,17 +23,15 @@ import src.inter.IGestorE;
 import src.inter.IPedido;
 import src.inter.IShop;
 import src.inter.IUser;
-import src.inter.Shopper;
+import src.inter.IValoracionStrategy;
 
 @SessionScoped
 public class ShopFacade implements IShop, Serializable{
 	
-	@Inject
-	private DispoImpl dispo;
-	@Inject
-	private CarritoOfertas carrito;
-	@Inject
-	private PedidoGestor gestorPedidos;
+	@Inject	private DispoImpl dispo;
+	@Inject	private CarritoOfertas carrito;
+	@Inject	private PedidoGestor gestorPedidos;
+	@Inject private ValorationStrategyImpl valorationStrategy;
 	
 	private Pedido pedido;
 	private User user;
@@ -41,7 +39,7 @@ public class ShopFacade implements IShop, Serializable{
 	
 
 	@Override
-	public ICarrito<Oferta> getCarrito() {
+	public ICarrito<Oferta, ValorationStrategyImpl> getCarrito() {
 		return carrito;
 	}
 	@Override
@@ -57,7 +55,7 @@ public class ShopFacade implements IShop, Serializable{
 		return user;
 	}
 	@Override
-	public Caja getCaja() {
+	public ICajaStrategy getCaja() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -74,7 +72,7 @@ public class ShopFacade implements IShop, Serializable{
 		
 		pedido.setListProds(carrito.getProducts());
 		pedido.setIdClient(user.getId());
-		pedido.setValor(valora(carrito.getProducts()));
+		pedido.setValor(valorationStrategy.valora(carrito.getProducts()));
 		pedido.setEstadoPago("PENDIENTE");
 		pedido.setTipoEnvio("NORMAL");
 		pedido.setLugarEntrega("ALMACEN");
@@ -84,14 +82,7 @@ public class ShopFacade implements IShop, Serializable{
 		setPedido(pedido);		
 		
 	}
-	
-	private Float valora(List<Oferta> lista){
-		Float retorno = 0f;
-		for(Oferta oferta: lista){
-			retorno += oferta.getPrecio();
-		}
-		return retorno;
-	}
+
 	@Override
 	public IDispo getDispoManager() {
 		return dispo;
@@ -142,6 +133,10 @@ public class ShopFacade implements IShop, Serializable{
 	}
 	public void refreshListaOfertas(){
 		dispo.refreshListaOfertas();
+	}
+	@Override
+	public IValoracionStrategy getValorationStrategy() {
+		return valorationStrategy;
 	}
 
 

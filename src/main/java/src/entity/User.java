@@ -1,12 +1,16 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,6 +37,14 @@ public class User implements Serializable, IUser{
 	@Column(name="PASSWORD")	
 	private String password;
 	
+	@JoinColumn(name="LISTAGRUPOS")
+	@ManyToMany
+	@JoinTable(name="USER_GRUPO",
+			joinColumns=@JoinColumn(name="ID_USER", table="USERS", referencedColumnName="ID"),
+			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
+
+	private List<Grupo> listaGrupos;
+	
 	
 	
 	@Override
@@ -42,6 +54,8 @@ public class User implements Serializable, IUser{
 		user.setId(this.getId());
 		user.setName(this.getName());
 		user.setPassword(this.getPassword());
+		user.setListaGrupos(this.getListaGrupos());
+		
 		return user;
 	}
 	
@@ -112,6 +126,20 @@ public class User implements Serializable, IUser{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+
+	@Override
+	public List<Grupo> getListaGrupos() {
+		return listaGrupos;
+	}
+
+
+	@Override
+	public void setListaGrupos(List<Grupo> listaGrupos) {
+		this.listaGrupos = listaGrupos;
+	}
+	
 	
 	
 }

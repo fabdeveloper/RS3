@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import src.dao.ArticuloDao;
+import src.dao.GrupoDao;
 import src.dao.LibroDao;
 import src.dao.OfertaDao;
 import src.dao.PedidoDao;
@@ -17,6 +18,7 @@ import src.dao.PlantaDao;
 import src.dao.ProductDao;
 import src.dao.UserDao;
 import src.entity.Articulo;
+import src.entity.Grupo;
 import src.entity.Libro;
 import src.entity.Oferta;
 import src.entity.Pedido;
@@ -51,8 +53,10 @@ public class BB_TI_3 implements Serializable{
 	@Inject private OfertaDao ofertaDao;
 	@Inject private UserDao userDao;
 	@Inject private PedidoDao pedidoDao;
-	
+	@Inject private GrupoDao grupoDao;
+
 	private User usuario;
+	private Grupo grupo;
 
 	
 	private Product p1;
@@ -181,6 +185,35 @@ public class BB_TI_3 implements Serializable{
 		usuario.setName(name);
 		usuario.setPassword(password);
 		userDao.create(usuario);		
+	}
+	
+	@Transactional
+	public void crearGrupo(){
+		grupo = (Grupo)factory.crear("GRUPO");
+		
+		grupo.setName("USERS_DE4TA");
+		grupo.setDescription("todos los usuarios de cuarta");
+		
+		grupoDao.create(grupo);
+		
+		
+		usuario = (User)factory.crear("USER");
+		usuario.setName("Usuario Con Grupo");
+		usuario.setEmail("usuariocongrupo@email.com");
+		usuario.setListaGrupos(grupoDao.getAll());
+		
+		userDao.create(usuario);
+		
+		for(User user: userDao.getAll()){
+			System.out.println("usuario - id : " + user.getId() + ", name : " + user.getName() + ", email : " + user.getEmail());
+			
+			for(Grupo grupo_user: user.getListaGrupos()){
+				System.out.println("grupo - id : " + grupo_user.getId() + ", name : " + grupo_user.getName() + ", description : " + grupo_user.getDescription());
+
+			}
+		}
+		
+		
 	}
 	
 	public void verProductos(){		

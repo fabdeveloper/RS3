@@ -40,11 +40,6 @@ public class Pedido implements Serializable, IPedido{
 	@JoinTable(name="PEDIDO_OFERTAS",
 			joinColumns=@JoinColumn(name="id_Pedido", table="PEDIDOS", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="id_Oferta", table="OFERTAS",  referencedColumnName="id"))	
-
-	
-	
-//	@ElementCollection(fetch=FetchType.EAGER)
-//	@CollectionTable(name="PEDIDO_OFERTAS", joinColumns={@JoinColumn(name="PEDIDO_ID"), @JoinColumn(name="OFERTA_ID")})
 	private List<Oferta> listaProds;
 	
 	@Column(name="VALOR")

@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import src.dao.AbstractDao;
 import src.dao.PedidoDao;
 import src.entity.Pedido;
-import src.factory.Factory;
+import src.factory.IFactory;
 import src.factory.FactoryImpl;
 import src.factory.PedidoFactory;
 import src.factory.BeanFactory;
