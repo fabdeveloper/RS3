@@ -6,12 +6,17 @@
 	  <persistence-unit name="MyPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     
+        <jta-data-source>jdbc/myDS</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <!-- 
     <class>src.entity.Libro</class>
     <class>src.entity.User</class>
-    
+     -->
     <properties>
+    <!-- 
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/MyDB;create=true"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+     -->  
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       
       

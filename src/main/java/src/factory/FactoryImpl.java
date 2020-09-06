@@ -3,26 +3,35 @@ package src.factory;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import src.entity.Articulo;
+import src.entity.Grupo;
+import src.entity.Libro;
+import src.entity.Oferta;
+import src.entity.Pedido;
+import src.entity.Planta;
+import src.entity.Product;
+import src.entity.User;
+
 
 @RequestScoped
 public class FactoryImpl implements IFactory{
 	
 	@Inject
-	private LibroFactory libroFactory;
+	private BeanFactory<Libro> libroFactory; // LibroFactory
 	@Inject
-	private PlantaFactory plantaFactory;
+	private BeanFactory<Planta> plantaFactory; // PlantaFactory
 	@Inject
-	private UserFactory userFactory;
+	private BeanFactory<User> userFactory; // UserFactory
 	@Inject
-	private OfertaFactory ofertaFactory;
+	private BeanFactory<Oferta> ofertaFactory; //OfertaFactory
 	@Inject
-	private ArticuloFactory articuloFactory;
+	private BeanFactory<Articulo> articuloFactory; // ArticuloFactory
 	@Inject
-	private PedidoFactory pedidoFactory;
+	private BeanFactory<Pedido> pedidoFactory; // PedidoFactory
 	@Inject
-	private ProductFactory productFactory;
+	private BeanFactory<Product> productFactory; // ProductFactory
 	@Inject
-	private GrupoFactory grupoFactory;
+	private BeanFactory<Grupo> grupoFactory; // GrupoFactory
 	
 	@Override
 	public Object crear(String type) {

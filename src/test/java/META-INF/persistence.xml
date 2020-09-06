@@ -4,8 +4,10 @@
 
 
   <persistence-unit name="integration" transaction-type="RESOURCE_LOCAL">
-  		<class>src.entity.Libro</class>
-  
+  <!--      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+  -->
+  	<!-- 	<class>src.entity.Libro</class>
+  	 -->  
 		<class>src.entity.Oferta</class>
 		 <exclude-unlisted-classes>true</exclude-unlisted-classes>
 		
@@ -13,7 +15,8 @@
 		<properties>		
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:MyTestDB;create=true"></property> 
 				<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"></property>
-				<property name="eclipselink.ddl-generation" value="create-tables"></property>			
+				<property name="eclipselink.ddl-generation" value="drop-and-create"></property> 			
+	<!--  	      <property name="javax.persistence.schema-generation.database.action" value="create"/> -->
 		
 		</properties>	
 	

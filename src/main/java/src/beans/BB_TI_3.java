@@ -189,17 +189,23 @@ public class BB_TI_3 implements Serializable{
 	
 	@Transactional
 	public void crearGrupo(){
+		
+		for(Grupo instancia: grupoDao.getAll()){
+			grupoDao.remove(instancia);
+		}
+		
 		grupo = (Grupo)factory.crear("GRUPO");
 		
-		grupo.setName("USERS_DE4TA");
-		grupo.setDescription("todos los usuarios de cuarta");
+		grupo.setName("ADMIN");
+		grupo.setDescription("administradores");
 		
 		grupoDao.create(grupo);
 		
 		
 		usuario = (User)factory.crear("USER");
-		usuario.setName("Usuario Con Grupo");
-		usuario.setEmail("usuariocongrupo@email.com");
+		usuario.setName("admin");
+		usuario.setPassword("admin");
+		usuario.setEmail("admin@email.com");
 		usuario.setListaGrupos(grupoDao.getAll());
 		
 		userDao.create(usuario);

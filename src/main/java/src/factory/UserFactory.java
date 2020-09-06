@@ -26,8 +26,5 @@ public class UserFactory implements BeanFactory<User>{
 		this.user = user;
 	}
 	
-	
-	
-	
 
 }

@@ -32,16 +32,23 @@
     	<welcome-file>ITclient3.xhtml</welcome-file>
     </welcome-file-list>
     
+    <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>myJDBC-realm</realm-name>
+    <form-login-config>
+    <form-login-page>/login/logn.xhtml</form-login-page>
+    <form-error-page>/login/error.xhtml</form-error-page>
     
-        <security-role>
+    </form-login-config>
+    
+    </login-config>
+    
+    <security-role>
         <description/>
         <role-name>CLIENT</role-name>
     </security-role>
     
-        <security-role>
-        <description/>
-        <role-name>PARTNER</role-name>
-    </security-role>
+
     
     
     
@@ -53,32 +60,16 @@
     	
     	</web-resource-collection>
     	<auth-constraint>
-    		<role-name>PARTNER</role-name>
+    		<role-name>CLIENT</role-name>
     	
     	</auth-constraint>
     	<user-data-constraint>
     		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    	</user-data-constraint>
-    
-    
-    </security-constraint>
-    
-        <security-constraint>
-    	<web-resource-collection>
-    		<web-resource-name>RS3</web-resource-name>
-    		<url-pattern>/app/service/cancel</url-pattern>
-    	
-    	</web-resource-collection>
-    	<auth-constraint>
-    	    <role-name>CLIENT</role-name>
-    	
-    	</auth-constraint>
-    	<user-data-constraint>
-    		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    	</user-data-constraint>
-    
+    	</user-data-constraint>    
     
     </security-constraint>
-      <!-- --> 
+    
+
+     
     
 </web-app>

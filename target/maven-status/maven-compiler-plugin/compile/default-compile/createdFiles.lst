@@ -16,6 +16,7 @@ src\impl\DispoImpl.class
 src\beans\BB_TI_3.class
 src\wizzard\ValorationStrategyImpl.class
 src\dao\ProductDao.class
+src\service\ServiceLocator.class
 src\timers\TimedBean.class
 src\inter\IUser.class
 src\inter\Crud.class
