@@ -41,6 +41,7 @@ src\wizzard\CatalogoOfertas.class
 src\dao\AbstractDao.class
 src\inter\IDispo.class
 src\entity\Grupo.class
+src\inter\IServiceLocator.class
 src\factory\PlantaFactory.class
 src\service\RS3App.class
 src\wizzard\CarritoOfertas.class

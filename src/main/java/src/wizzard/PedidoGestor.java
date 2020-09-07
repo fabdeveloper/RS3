@@ -17,6 +17,7 @@ public class PedidoGestor implements IGestorE<Pedido>{
 	
 	@Inject private BeanFactory<Pedido> factory;
 	@Inject private PedidoDao dao;
+
 	
 	
 	

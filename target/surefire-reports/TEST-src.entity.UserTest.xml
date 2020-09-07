@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="src.entity.UserTest" time="0.006" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="src.entity.UserTest" time="0.003" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="ES"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\fabo_\AppData\Local\Temp\surefire2183661038946244554\surefirebooter7723088948371572400.jar C:\Users\fabo_\AppData\Local\Temp\surefire2183661038946244554 2020-09-06T20-45-48_489-jvmRun1 surefire7537603593297691236tmp surefire_02695306417912652067tmp"/>
+    <property name="sun.java.command" value="C:\Users\fabo_\AppData\Local\Temp\surefire1508228387298846108\surefirebooter6098162919464593631.jar C:\Users\fabo_\AppData\Local\Temp\surefire1508228387298846108 2020-09-07T20-14-25_211-jvmRun1 surefire6600305213886012155tmp surefire_08515009682501254416tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\fabo_\workspaceJEE7\RS3\target\test-classes;C:\Users\fabo_\workspaceJEE7\RS3\target\classes;C:\Users\fabo_\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\fabo_\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\fabo_\.m2\repository\javax\javaee-api\8.0\javaee-api-8.0.jar;C:\Users\fabo_\.m2\repository\com\sun\mail\javax.mail\1.6.0\javax.mail-1.6.0.jar;C:\Users\fabo_\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;C:\Users\fabo_\.m2\repository\org\mockito\mockito-all\1.10.19\mockito-all-1.10.19.jar;C:\Users\fabo_\.m2\repository\org\apache\derby\derbyclient\10.7.1.1\derbyclient-10.7.1.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\fabo_"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\fabo_\AppData\Local\Temp\surefire2183661038946244554\surefirebooter7723088948371572400.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\fabo_\AppData\Local\Temp\surefire1508228387298846108\surefirebooter6098162919464593631.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
