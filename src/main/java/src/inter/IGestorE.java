@@ -1,11 +1,11 @@
 package src.inter;
 
-import src.dao.AbstractDao;
+import src.dao.IDao;
 import src.factory.BeanFactory;
 
 public interface IGestorE<T> {
 	
 	public BeanFactory<T> getFactory();
-	public AbstractDao<T> getDao();
+	public IDao<T> getDao();
 
 }

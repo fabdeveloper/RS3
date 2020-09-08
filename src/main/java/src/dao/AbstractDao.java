@@ -13,7 +13,7 @@ import src.inter.IServiceLocator;
 import src.service.ServiceLocator;
 
 
-public abstract class AbstractDao<T> {
+public abstract class AbstractDao<T> implements IDao<T> {
 	
 	@Inject
 	private IServiceLocator sl;	
@@ -25,7 +25,8 @@ public abstract class AbstractDao<T> {
 		this.entityClass = entityClass;
 	}
 	
-	protected EntityManager getEntityManager() {
+	@Override
+	public EntityManager getEntityManager() {
 		if(em == null){
 			em = sl.getEntityManager();
 		}
@@ -33,20 +34,25 @@ public abstract class AbstractDao<T> {
 	}
 	
 	
+	@Override
 	public void create(T entity){
 		getEntityManager().persist(entity);		
 	}
+	@Override
 	public void edit(T entity){
 		getEntityManager().merge(entity);
 	}
+	@Override
 	public void remove(T entity){
 		getEntityManager().remove(getEntityManager().merge(entity));
 	}
 	
+	@Override
 	public T find(Object id){
 		return getEntityManager().find(entityClass, id);		
 	}
 	
+	@Override
 	public int count(){
 		
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -57,6 +63,7 @@ public abstract class AbstractDao<T> {
 
 	}
 	
+	@Override
 	public List<T> getAll(){
 		
 		EntityManager em = getEntityManager();

@@ -17,9 +17,9 @@ public class OfertaDaoTestIT {
 //	@Before
 	public void initializeDependencies(){
 		
-		ofertaDao = new OfertaDao();
-		ofertaDao.setEm(Persistence.createEntityManagerFactory("integration").createEntityManager());
-		et = ofertaDao.getEm().getTransaction();
+//		ofertaDao = new OfertaDao();
+//		ofertaDao.setEm(Persistence.createEntityManagerFactory("integration").createEntityManager());
+//		et = ofertaDao.getEm().getTransaction();
 	}
 	
 //	@Test

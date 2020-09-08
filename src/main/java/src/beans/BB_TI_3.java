@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import src.dao.ArticuloDao;
 import src.dao.GrupoDao;
+import src.dao.IDao;
 import src.dao.LibroDao;
 import src.dao.OfertaDao;
 import src.dao.PedidoDao;
@@ -46,7 +47,7 @@ public class BB_TI_3 implements Serializable{
 	
 	@Inject private FactoryImpl factory;
 	
-	@Inject private ProductDao productDao;
+	@Inject private IDao<Product> productDao;
 	@Inject private ArticuloDao articuloDao;
 	@Inject private LibroDao libroDao;
 	@Inject private PlantaDao plantaDao;

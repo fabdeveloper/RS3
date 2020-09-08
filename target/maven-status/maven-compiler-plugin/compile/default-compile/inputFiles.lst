@@ -34,6 +34,7 @@ C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\dao\GrupoDao.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\entity\Oferta.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\inter\IDispo.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\inter\ICarrito.java
+C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\dao\IDao.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\factory\BeanFactory.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\dao\ProductDao.java
 C:\Users\fabo_\workspaceJEE7\RS3\src\main\java\src\inter\ICajaStrategy.java

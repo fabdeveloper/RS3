@@ -11,16 +11,7 @@ import src.entity.User;
 @RequestScoped
 public class UserDao extends AbstractDao<User>{
 	
-	@PersistenceContext(unitName="MyPU")
-	private EntityManager em;
-
 	public UserDao() {
 		super(User.class);
 	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		return em;
-	}
-
 }

@@ -5,7 +5,8 @@ import javax.inject.Inject;
 
 
 
-import src.dao.AbstractDao;
+
+import src.dao.IDao;
 import src.dao.PedidoDao;
 import src.entity.Pedido;
 import src.factory.BeanFactory;
@@ -16,7 +17,7 @@ import src.inter.IGestorE;
 public class PedidoGestor implements IGestorE<Pedido>{
 	
 	@Inject private BeanFactory<Pedido> factory;
-	@Inject private PedidoDao dao;
+	@Inject private IDao<Pedido> dao;
 
 	
 	
@@ -27,7 +28,7 @@ public class PedidoGestor implements IGestorE<Pedido>{
 		return factory;
 	}
 	@Override
-	public AbstractDao<Pedido> getDao() {
+	public IDao<Pedido> getDao() {
 		return dao;
 	}
 

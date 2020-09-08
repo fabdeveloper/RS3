@@ -6,6 +6,7 @@ src\dao\GrupoDao.class
 src\entity\Articulo.class
 src\inter\ICarrito.class
 src\service\Service.class
+src\dao\IDao.class
 src\entity\Pedido.class
 src\dao\PlantaDao.class
 src\factory\OfertaFactory.class
