@@ -3,40 +3,33 @@
 
 
   
-	  <persistence-unit name="MyPU" transaction-type="JTA">
+	  <persistence-unit name="RS3_PU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    
-        <jta-data-source>jdbc/myDS</jta-data-source>
+    <jta-data-source>jdbc/RS3_MySql_DS</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <!-- 
-    <class>src.entity.Libro</class>
-    <class>src.entity.User</class>
-     -->
+
     <properties>
-    <!-- 
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/MyDB;create=true"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-     -->  
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      
+    
+
+ 
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>      
+    
+
       
       <!-- 
-              <property name="javax.persistence.schema-generation.create-source"
-                  value="script"/>
-        <property name="javax.persistence.schema-generation.create-script-source"
-                  value="META-INF/sql/create.sql" />
-                  
-            
-             -->      
-      <property name="javax.persistence.jdbc.user" value="Fab"/>
+      
+            <property name="javax.persistence.jdbc.user" value="Fab"/>
       <property name="javax.persistence.jdbc.password" value="nomelase"/>
       
-      <!-- 
+      
+                <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/RS3DB;create=true"/>
+       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       
       <property name="javax.persistence.jdbc.user" value=""/>
       <property name="javax.persistence.jdbc.password" value=""/>
       
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>     
       
         -->
       
@@ -45,44 +38,6 @@
     </properties>
   </persistence-unit>
   
-<!-- 
-  <persistence-unit name="integration" transaction-type="RESOURCE_LOCAL">
-      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-  
-		<class>src.entity.Libro</class>
-		
-		
-		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:MyTestDB;create=true"></property>
-				<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"></property>
-				<property name="eclipselink.ddl-generation" value="create-tables"></property>
-			
-		
-		</properties>
-	
-	
-	
-	</persistence-unit>
-	
-  <persistence-unit name="integrationPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>src.entity.Libro</class>
-		
-		
-		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/MyDB;create=true"></property>
-				<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"></property>
-				<property name="javax.persistence.schema-generation.database.action" value="create"></property>
-			
-		            <property name="javax.persistence.jdbc.user" value="Fab"/>
-            <property name="javax.persistence.jdbc.password" value="nomelase"/>
-		
-		</properties>
-	
-	
-	
-	</persistence-unit>
-	
- -->
+
 
 </persistence>

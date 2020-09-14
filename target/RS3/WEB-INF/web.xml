@@ -32,6 +32,7 @@
     	<welcome-file>ITclient3.xhtml</welcome-file>
     </welcome-file-list>
     
+    <!-- 
     <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>myJDBC-realm</realm-name>
@@ -39,10 +40,9 @@
     <form-login-page>/login/logn.xhtml</form-login-page>
     <form-error-page>/login/error.xhtml</form-error-page>
     
-    </form-login-config>
-    
+    </form-login-config>    
     </login-config>
-    
+  
     <security-role>
         <description/>
         <role-name>CLIENT</role-name>
@@ -69,7 +69,7 @@
     
     </security-constraint>
     
-
+   -->
      
     
 </web-app>

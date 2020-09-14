@@ -13,10 +13,10 @@
 		
 		
 		<properties>		
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:MyTestDB;create=true"></property> 
+	<!-- 		<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:MyTestDB;create=true"></property> 
 				<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"></property>
 				<property name="eclipselink.ddl-generation" value="drop-and-create"></property> 			
-	<!--  	      <property name="javax.persistence.schema-generation.database.action" value="create"/> -->
+	 	      <property name="javax.persistence.schema-generation.database.action" value="create"/> -->
 		
 		</properties>	
 	
@@ -24,5 +24,5 @@
 	 
 	 
 
-    </persistence>
+   
 </persistence>

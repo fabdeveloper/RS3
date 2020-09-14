@@ -10,7 +10,7 @@ import src.inter.IServiceLocator;
 @Singleton
 public class ServiceLocator implements IServiceLocator{
 	
-	@PersistenceContext(unitName="MyPU")
+	@PersistenceContext(unitName="RS3_PU")
 	private EntityManager em;
 	
 	@Override
