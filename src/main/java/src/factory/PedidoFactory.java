@@ -19,13 +19,13 @@ public class PedidoFactory implements BeanFactory<Pedido>{
 		return (Pedido)pedido.clone();
 	}
 
-	public IPedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(IPedido pedido) {
-		this.pedido = pedido;
-	}
+//	public IPedido getPedido() {
+//		return pedido;
+//	}
+//
+//	public void setPedido(IPedido pedido) {
+//		this.pedido = pedido;
+//	}
 	
 	
 	

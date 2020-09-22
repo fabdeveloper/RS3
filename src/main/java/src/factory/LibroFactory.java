@@ -20,9 +20,9 @@ public class LibroFactory implements BeanFactory<Libro>{
 		return libro.clone();
 	}
 
-	public Libro getLibro() {
-		return libro;
-	}
+//	public Libro getLibro() {
+//		return libro;
+//	}
 
 
 

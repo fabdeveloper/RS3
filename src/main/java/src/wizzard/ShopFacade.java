@@ -14,6 +14,7 @@ import src.entity.Oferta;
 import src.entity.Pedido;
 import src.entity.Product;
 import src.entity.User;
+import src.gestor.PedidoGestor;
 import src.impl.DispoImpl;
 import src.inter.ICajaStrategy;
 import src.inter.ICarrito;
