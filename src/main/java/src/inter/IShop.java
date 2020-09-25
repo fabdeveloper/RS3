@@ -2,6 +2,8 @@ package src.inter;
 
 import java.util.List;
 
+import src.gestor.IGestorE;
+
 public interface IShop {
 	
 	public IDispo getDispoManager();

@@ -17,21 +17,21 @@ import src.entity.User;
 public class FactoryImpl implements IFactory{
 	
 	@Inject
-	private BeanFactory<Libro> libroFactory; // LibroFactory
+	private IBeanFactory<Libro> libroFactory; // LibroFactory
 	@Inject
-	private BeanFactory<Planta> plantaFactory; // PlantaFactory
+	private IBeanFactory<Planta> plantaFactory; // PlantaFactory
 	@Inject
-	private BeanFactory<User> userFactory; // UserFactory
+	private IBeanFactory<User> userFactory; // UserFactory
 	@Inject
-	private BeanFactory<Oferta> ofertaFactory; //OfertaFactory
+	private IBeanFactory<Oferta> ofertaFactory; //OfertaFactory
+//	@Inject
+//	private IBeanFactory<Articulo> articuloFactory; // ArticuloFactory
 	@Inject
-	private BeanFactory<Articulo> articuloFactory; // ArticuloFactory
+	private IBeanFactory<Pedido> pedidoFactory; // PedidoFactory
 	@Inject
-	private BeanFactory<Pedido> pedidoFactory; // PedidoFactory
+	private IBeanFactory<Product> productFactory; // ProductFactory
 	@Inject
-	private BeanFactory<Product> productFactory; // ProductFactory
-	@Inject
-	private BeanFactory<Grupo> grupoFactory; // GrupoFactory
+	private IBeanFactory<Grupo> grupoFactory; // GrupoFactory
 	
 	@Override
 	public Object crear(String type) {
@@ -53,9 +53,9 @@ public class FactoryImpl implements IFactory{
 		case "OFERTA":
 			loquesea = ofertaFactory.crear();
 			break;
-		case "ARTICULO":
-			loquesea = articuloFactory.crear();
-			break;
+//		case "ARTICULO":
+//			loquesea = articuloFactory.crear();
+//			break;
 		case "PRODUCT":
 			loquesea = productFactory.crear();
 			break;

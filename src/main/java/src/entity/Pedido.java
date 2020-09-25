@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 
 import src.inter.IPedido;
 
+@RequestScoped
 @Entity
 @Table(name="PEDIDOS")
 @Embeddable

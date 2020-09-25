@@ -3,6 +3,7 @@ package src.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +18,12 @@ import javax.persistence.Table;
 
 import src.inter.IUser;
 
+@RequestScoped
 @Entity
 @Table(name="USERS")
 @NamedQueries({
 	@NamedQuery(name="porId", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
-	@NamedQuery(name="todos", query="SELECT u FROM User u")
-	
+	@NamedQuery(name="todos", query="SELECT u FROM User u")	
 })
 public class User implements Serializable, IUser{
 	
@@ -48,8 +49,8 @@ public class User implements Serializable, IUser{
 	
 	
 	@Override
-	public IUser clone(){
-		IUser user = new User();
+	public User clone(){
+		User user = new User();
 		user.setEmail(this.getEmail());
 		user.setId(this.getId());
 		user.setName(this.getName());

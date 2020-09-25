@@ -2,6 +2,7 @@ package src.entity;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@RequestScoped
 @Entity
 @Table(name="PRODUCTS")
 @NamedQueries({

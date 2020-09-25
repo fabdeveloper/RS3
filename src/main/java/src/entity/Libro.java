@@ -2,6 +2,7 @@ package src.entity;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 
 import src.inter.Prototype;
 
-
+@RequestScoped
 @Entity
 @Table(name="LIBROS")
 @NamedQueries({

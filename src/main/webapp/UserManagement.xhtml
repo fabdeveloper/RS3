@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<p:form>
+		<p:inputText id="textid" name="textid" value="#{userManagementViewHelperBB.transferObject.id}" style="width: 357px; "></p:inputText><br/>
+		<p:inputText id="textname" name="textname" value="#{userManagementViewHelperBB.transferObject.name}" style="width: 357px; "></p:inputText><br/>
+		<p:inputText id="textemail" name="textemail" value="#{userManagementViewHelperBB.transferObject.email}" style="width: 357px; "></p:inputText><br/>
+		<p:inputText id="textpassword" name="textpassword" value="#{userManagementViewHelperBB.transferObject.password}" style="width: 357px; "></p:inputText><br/>
+
+		<p:commandButton id="botoncrear" name="botoncrear" value="crear user" action="#{userManagementViewHelperBB.callCreate}" ></p:commandButton>
+		<p:commandButton id="botonvertodos" name="botonvertodos" value="ver todos" action="#{userManagementViewHelperBB.callReadAll()}" ></p:commandButton>
+	</p:form>
+</body>
+</html>

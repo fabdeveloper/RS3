@@ -4,16 +4,15 @@ import javax.inject.Inject;
 
 import src.dao.IDao;
 import src.entity.Pedido;
-import src.factory.BeanFactory;
-import src.inter.IGestorE;
+import src.factory.IBeanFactory;
 
 public abstract class AbstractGestor<T> implements IGestorE<T> {
 	
-	@Inject private BeanFactory<T> factory;
+	@Inject private IBeanFactory<T> factory;
 	@Inject private IDao<T> dao;
 
 	@Override
-	public BeanFactory<T> getFactory() {
+	public IBeanFactory<T> getFactory() {
 		return factory;
 	}
 

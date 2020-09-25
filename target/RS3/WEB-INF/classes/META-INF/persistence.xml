@@ -5,8 +5,11 @@
   
 	  <persistence-unit name="RS3_PU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>jdbc/RS3_MySql_DS</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    
+    <jta-data-source>jdbc/myDS</jta-data-source>
+    
+        <class>src.entity.Libro</class>
+    <class>src.entity.User</class>
 
     <properties>
     
@@ -17,6 +20,10 @@
 
       
       <!-- 
+          <exclude-unlisted-classes>false</exclude-unlisted-classes>
+      
+          <jta-data-source>jdbc/RS3_MySql_DS</jta-data-source>
+      
       
             <property name="javax.persistence.jdbc.user" value="Fab"/>
       <property name="javax.persistence.jdbc.password" value="nomelase"/>
