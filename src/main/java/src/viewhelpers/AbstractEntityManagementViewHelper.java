@@ -3,7 +3,9 @@ package src.viewhelpers;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
+import src.entity.User;
 import src.entityservices.IEntityServices;
 
 public abstract class AbstractEntityManagementViewHelper<E> implements
@@ -14,31 +16,36 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 	@Inject
 	private IEntityServices<E> entityServices;
 
+
 	@Override
-	public E getTransferObject() {
+	public E getTransferObject(){
 		return transferObject;
 	}
 
+
+	@Transactional
 	@Override
-	public void create(E e) {
-		entityServices.create(e);
+	public void create() {
+		entityServices.create(getTransferObjectClone());		
+	}
+	
+	@Override
+	public E read() {
+		return entityServices.read(getId());
 	}
 
+	@Transactional
 	@Override
-	public E read(Integer id) {
-		return entityServices.read(id);
+	public void update() {
+		entityServices.update(getTransferObjectClone());		
 	}
 
+	@Transactional
 	@Override
-	public void update(E e) {
-		entityServices.update(e);		
+	public void delete() {
+		entityServices.delete(getTransferObjectClone());			
 	}
-
-	@Override
-	public void delete(E e) {
-		entityServices.delete(e);		
-	}
-
+	
 	@Override
 	public List<E> readAll() {
 		return entityServices.readAll();

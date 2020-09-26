@@ -14,27 +14,11 @@ public class UserManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<User> implements Serializable {
 	
 
-
-	@Transactional
 	@Override
-	public void callCreate() {
-		create(getTransferObject().clone());		
-	}
-	
-	@Override
-	public User callRead() {
-		return read(getTransferObject().clone().getId());
+	public User getTransferObjectClone() {
+		return getTransferObject().clone();
 	}
 
-	@Override
-	public void callUpdate() {
-		update(getTransferObject().clone());		
-	}
-
-	@Override
-	public void callDelete() {
-		delete(getTransferObject().clone());			
-	}
 	
 	public void callReadAll(){
 		for(User user : super.readAll()){
@@ -66,6 +50,7 @@ public class UserManagementViewHelperBB extends
 	
 	/***************************************/
 	
+	@Override
 	public Integer getId(){
 		return getTransferObject().getId();
 	}

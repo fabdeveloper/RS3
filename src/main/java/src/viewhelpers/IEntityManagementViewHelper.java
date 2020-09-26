@@ -2,24 +2,25 @@ package src.viewhelpers;
 
 import java.util.List;
 
+import src.entityservices.IEntityServices;
+
 public interface IEntityManagementViewHelper<E> {
 	
 	// metodos para implementar en la clase abstracta
 	
 	public E getTransferObject();
-	public void create(E e);
-	public E read(Integer id);
-	public void update(E e);
-	public void delete(E e);
+	public void create();
+	public E read();
+	public void update();
+	public void delete();
 	public List<E> readAll();
 	
 	
 	// metodos para implementar en el view helper
 	
-	public void callCreate(); // llama a create
-	public E callRead(); // llama a read
-	public void callUpdate(); // llama a update
-	public void callDelete(); // llama a delete
+	public E getTransferObjectClone();
+	public Integer getId();
+
 	
 
 }
