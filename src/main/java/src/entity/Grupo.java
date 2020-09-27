@@ -24,6 +24,7 @@ public class Grupo {
 	@Column(name="DESCRIPTION")
 	private String description;
 	
+	@Override
 	public Grupo clone(){
 		
 		Grupo nuevo = new Grupo();

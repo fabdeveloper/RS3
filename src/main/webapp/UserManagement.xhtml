@@ -13,7 +13,7 @@
 		<p:inputText id="textemail" name="textemail" value="#{userManagementViewHelperBB.transferObject.email}" style="width: 357px; "></p:inputText><br/>
 		<p:inputText id="textpassword" name="textpassword" value="#{userManagementViewHelperBB.transferObject.password}" style="width: 357px; "></p:inputText><br/>
 
-		<p:commandButton id="botoncrear" name="botoncrear" value="crear user" action="#{userManagementViewHelperBB.callCreate}" ></p:commandButton>
+		<p:commandButton id="botoncrear" name="botoncrear" value="crear user" action="#{userManagementViewHelperBB.create}" ></p:commandButton>
 		<p:commandButton id="botonvertodos" name="botonvertodos" value="ver todos" action="#{userManagementViewHelperBB.callReadAll()}" ></p:commandButton>
 	</p:form>
 </body>
