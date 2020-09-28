@@ -1,11 +1,13 @@
 package src.viewhelpers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import src.entity.Grupo;
 import src.entity.User;
 
 @Named
@@ -48,6 +50,10 @@ public class UserManagementViewHelperBB extends
 		getTransferObject().setPassword(password);
 	}
 	
+	public void setListaGrupos(List<Grupo> listaGrupos) {
+		getTransferObject().setListaGrupos(listaGrupos);
+	}
+	
 	/***************************************/
 	
 	@Override
@@ -65,6 +71,10 @@ public class UserManagementViewHelperBB extends
 	
 	public String getPassword(){
 		return getTransferObject().getPassword();
+	}	
+	
+	public List<Grupo> getListaGrupos() {
+		return getTransferObject().getListaGrupos();
 	}
 	
 	/*******************************/

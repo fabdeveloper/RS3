@@ -1,6 +1,7 @@
 package src.viewhelpers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -12,10 +13,12 @@ import src.entity.Grupo;
 public class GroupManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<Grupo> implements Serializable{
 
+	
 	@Override
 	public Grupo getTransferObjectClone() {
 		return getTransferObject().clone();
 	}
+	
 	
 	/****************************************/
 	// GETTERS AND SETTERS
@@ -55,5 +58,9 @@ public class GroupManagementViewHelperBB extends
 
 		}
 	}
+	
+
+	
+
 
 }

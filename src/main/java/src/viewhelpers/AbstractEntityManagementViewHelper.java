@@ -21,6 +21,11 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 	public E getTransferObject(){
 		return transferObject;
 	}
+	
+	@Override
+	public void setTransferObject(E e){
+		transferObject = e;		
+	}
 
 
 	@Transactional

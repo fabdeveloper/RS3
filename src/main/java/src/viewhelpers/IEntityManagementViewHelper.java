@@ -9,6 +9,7 @@ public interface IEntityManagementViewHelper<E> {
 	// metodos para implementar en la clase abstracta
 	
 	public E getTransferObject();
+	public void setTransferObject(E e);
 	public void create();
 	public E read();
 	public void update();
