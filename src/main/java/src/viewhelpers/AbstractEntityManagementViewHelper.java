@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import src.entity.User;
 import src.entityservices.IEntityServices;
+import src.inter.IServiceLocator;
 
 public abstract class AbstractEntityManagementViewHelper<E> implements
 		IEntityManagementViewHelper<E> {
@@ -25,6 +26,16 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 	@Override
 	public void setTransferObject(E e){
 		transferObject = e;		
+	}
+	
+	@Override
+	public IEntityServices<E> getEntityServices(){
+		return entityServices;
+	}
+	
+	@Override
+	public IServiceLocator getServiceLocator(){
+		return entityServices.getServiceLocator();
 	}
 
 

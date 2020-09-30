@@ -6,5 +6,6 @@ import src.entity.User;
 
 @RequestScoped
 public class UserServices extends AbstractEntityServices<User> {
+	
 
 }

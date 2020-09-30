@@ -3,6 +3,7 @@ package src.viewhelpers;
 import java.util.List;
 
 import src.entityservices.IEntityServices;
+import src.inter.IServiceLocator;
 
 public interface IEntityManagementViewHelper<E> {
 	
@@ -10,6 +11,8 @@ public interface IEntityManagementViewHelper<E> {
 	
 	public E getTransferObject();
 	public void setTransferObject(E e);
+	public IEntityServices<E> getEntityServices();
+	public IServiceLocator getServiceLocator();
 	public void create();
 	public E read();
 	public void update();

@@ -3,16 +3,25 @@ package src.entityservices;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import src.gestor.IGestorE;
+import src.inter.IServiceLocator;
 
 public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 	
 	@Inject
 	private IGestorE<E> gestor;
+	@Inject
+	private IServiceLocator serviceLocator;
 
 	@Override
 	public E getTransferObject() {
 		return gestor.getFactory().crear();
+	}
+	
+	@Override
+	public IServiceLocator getServiceLocator(){
+		return serviceLocator;
 	}
 
 	@Override

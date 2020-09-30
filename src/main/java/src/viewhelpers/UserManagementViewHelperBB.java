@@ -1,6 +1,7 @@
 package src.viewhelpers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -15,16 +16,36 @@ import src.entity.User;
 public class UserManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<User> implements Serializable {
 	
+	private Integer idGrupo;
 
 	@Override
 	public User getTransferObjectClone() {
 		return getTransferObject().clone();
 	}
 
+	@Transactional
+	public void callCreate(){
+		Grupo grupo = getServiceLocator().getGrupoServices().read(idGrupo);
+		List<Grupo> lista = new ArrayList<Grupo>();
+		lista.add(grupo);
+		getTransferObject().setListaGrupos(lista);
+//		User user = getTransferObject().clone();
+//		getEntityServices().create(user);
+//		getEntityServices().update(user);
+		
+		create();
+
+//		System.out.println("CREADO USER con id = " + user.getId());
+	}
 	
 	public void callReadAll(){
 		for(User user : super.readAll()){
 			System.out.println("USER - id = " + user.getId() + ", name = " + user.getName() + ", email = " + user.getEmail() + ", pass = " + user.getPassword());
+
+			for(Grupo grupo : user.getListaGrupos()){
+				System.out.println("GRUPO - id = " + grupo.getId() + ", name = " + grupo.getName() + ", descripcion = " + grupo.getDescription());
+
+			}
 		}		
 	}
 
@@ -76,8 +97,17 @@ public class UserManagementViewHelperBB extends
 	public List<Grupo> getListaGrupos() {
 		return getTransferObject().getListaGrupos();
 	}
+
+	public Integer getIdGrupo() {
+		return idGrupo;
+	}
+
+	public void setIdGrupo(Integer idGrupo) {
+		this.idGrupo = idGrupo;
+	}
 	
 	/*******************************/
 
 
+	
 }

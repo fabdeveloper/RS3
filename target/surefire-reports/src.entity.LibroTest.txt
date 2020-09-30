@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: src.entity.LibroTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 s - in src.entity.LibroTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s - in src.entity.LibroTest
