@@ -2,10 +2,12 @@ package src.viewhelpers;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.jms.Session;
 import javax.transaction.Transactional;
 
 import src.entity.Grupo;
@@ -16,26 +18,21 @@ import src.entity.User;
 public class UserManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<User> implements Serializable {
 	
-	private Integer idGrupo;
+	private Integer idGrupo = new Integer(2); // grupo generico usuarios plataforma id = 2
 
-	@Override
-	public User getTransferObjectClone() {
-		return getTransferObject().clone();
-	}
+
 
 	@Transactional
 	public void callCreate(){
 		Grupo grupo = getServiceLocator().getGrupoServices().read(idGrupo);
 		List<Grupo> lista = new ArrayList<Grupo>();
 		lista.add(grupo);
-		getTransferObject().setListaGrupos(lista);
-//		User user = getTransferObject().clone();
-//		getEntityServices().create(user);
-//		getEntityServices().update(user);
-		
-		create();
+		getTransferObject().setListaGrupos(lista);		
 
-//		System.out.println("CREADO USER con id = " + user.getId());
+		create();
+		getEntityServices().getServiceLocator().getEntityManager().flush();		
+
+		System.out.println("creado USER ID = " + getTransferObject().getId() + " - " + new Date());		
 	}
 	
 	public void callReadAll(){

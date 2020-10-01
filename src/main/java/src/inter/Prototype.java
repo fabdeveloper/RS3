@@ -1,7 +1,8 @@
 package src.inter;
 
-public interface Prototype <Type>{
+public interface Prototype<T>{
 	
-	public Type clone();
+	
+	public T clone();
 
 }

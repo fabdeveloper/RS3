@@ -1,5 +1,6 @@
 package src.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,10 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import src.inter.Prototype;
+
 @RequestScoped
 @Entity
 @Table(name="STORES")
-public class Store {
+public class Store implements Serializable, Prototype<Store>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import src.inter.IServiceLocator;
 public abstract class AbstractEntityManagementViewHelper<E> implements
 		IEntityManagementViewHelper<E> {
 	
-	@Inject
+	
 	private E transferObject;
 	@Inject
 	private IEntityServices<E> entityServices;
@@ -20,6 +20,9 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 
 	@Override
 	public E getTransferObject(){
+		if(transferObject == null){
+			transferObject = entityServices.getTransferObject();
+		}
 		return transferObject;
 	}
 	
@@ -42,7 +45,7 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 	@Transactional
 	@Override
 	public void create() {
-		entityServices.create(getTransferObjectClone());		
+		entityServices.create(getTransferObject());		
 	}
 	
 	@Override
@@ -53,13 +56,13 @@ public abstract class AbstractEntityManagementViewHelper<E> implements
 	@Transactional
 	@Override
 	public void update() {
-		entityServices.update(getTransferObjectClone());		
+		entityServices.update(getTransferObject());		
 	}
 
 	@Transactional
 	@Override
 	public void delete() {
-		entityServices.delete(getTransferObjectClone());			
+		entityServices.delete(getTransferObject());			
 	}
 	
 	@Override

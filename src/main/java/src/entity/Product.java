@@ -14,6 +14,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import src.inter.Prototype;
+
 @RequestScoped
 @Entity
 @Table(name="PRODUCTS")
@@ -23,7 +25,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="productos por tipo", query="SELECT b FROM Product b WHERE b.tipo LIKE :tipo")}	
 	)
 //@MappedSuperclass
-public class Product implements Serializable{
+public class Product implements Serializable, Prototype<Product>{
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)

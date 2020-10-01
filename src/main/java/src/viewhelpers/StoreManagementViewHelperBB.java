@@ -15,10 +15,6 @@ import src.entity.User;
 public class StoreManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<Store> implements Serializable{
 
-	@Override
-	public Store getTransferObjectClone() {
-		return getTransferObject().clone();
-	}
 
 	@Override
 	public Integer getId() {

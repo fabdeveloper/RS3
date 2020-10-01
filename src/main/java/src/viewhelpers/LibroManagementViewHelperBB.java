@@ -5,10 +5,7 @@ import src.entity.Libro;
 public class LibroManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<Libro> {
 
-	@Override
-	public Libro getTransferObjectClone() {
-		return getTransferObject().clone();
-	}
+
 	
 	/*******************************************/
 	// GETTERS AND SETTERS

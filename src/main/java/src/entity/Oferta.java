@@ -14,6 +14,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import src.inter.Prototype;
+
 @RequestScoped
 @Entity
 @Table(name="OFERTAS")
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="ofertas por articulo_id", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
 	@NamedQuery(name="ofertas por product_id", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id")
 	})
-public class Oferta implements Serializable{
+public class Oferta implements Serializable, Prototype<Oferta>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

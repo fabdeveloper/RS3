@@ -14,11 +14,7 @@ public class GroupManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<Grupo> implements Serializable{
 
 	
-	@Override
-	public Grupo getTransferObjectClone() {
-		return getTransferObject().clone();
-	}
-	
+
 	
 	/****************************************/
 	// GETTERS AND SETTERS

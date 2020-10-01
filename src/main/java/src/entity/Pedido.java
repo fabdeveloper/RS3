@@ -22,12 +22,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import src.inter.IPedido;
+import src.inter.Prototype;
 
 @RequestScoped
 @Entity
 @Table(name="PEDIDOS")
 @Embeddable
-public class Pedido implements Serializable, IPedido{
+public class Pedido implements Serializable, IPedido, Prototype<Pedido>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -64,7 +65,7 @@ public class Pedido implements Serializable, IPedido{
 	
 	
 	@Override
-	public IPedido clone(){
+	public Pedido clone(){
 		
 		Pedido nuevoClon = new Pedido();
 //		nuevoClon.setId(this.getId());

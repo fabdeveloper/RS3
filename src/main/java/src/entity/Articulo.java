@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import src.inter.Prototype;
+
 @RequestScoped
 @Entity
 @Table(name="ARTICULOS")

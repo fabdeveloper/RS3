@@ -7,11 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import src.inter.Prototype;
+
 
 @RequestScoped
 @Entity
 @Table(name="PLANTAS")
-public class Planta extends Articulo implements Serializable{
+public class Planta extends Articulo implements Serializable, Prototype<Planta>{
 	
 	@Column(name="NOMBRE_COMERCIAL")
 	private String nombreComercial;

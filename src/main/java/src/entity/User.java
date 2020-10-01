@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import src.inter.IUser;
+import src.inter.Prototype;
 
 @RequestScoped
 @Entity
@@ -25,7 +26,7 @@ import src.inter.IUser;
 	@NamedQuery(name="porId", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
 	@NamedQuery(name="todos", query="SELECT u FROM User u")	
 })
-public class User implements Serializable, IUser{
+public class User implements Serializable, IUser, Prototype<User>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

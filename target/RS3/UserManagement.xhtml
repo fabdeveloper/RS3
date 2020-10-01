@@ -9,18 +9,22 @@
 </head>
 <body>
 	<p:form>
+		<p:outputLabel value="id"></p:outputLabel>
 		<p:inputText id="textid" name="textid"
 			value="#{userManagementViewHelperBB.transferObject.id}"
 			style="width: 357px; "></p:inputText>
 		<br />
+		<p:outputLabel value="name"></p:outputLabel>
 		<p:inputText id="textname" name="textname"
 			value="#{userManagementViewHelperBB.transferObject.name}"
 			style="width: 357px; "></p:inputText>
 		<br />
+		<p:outputLabel value="email"></p:outputLabel>
 		<p:inputText id="textemail" name="textemail"
 			value="#{userManagementViewHelperBB.transferObject.email}"
 			style="width: 357px; "></p:inputText>
 		<br />
+		<p:outputLabel value="password"></p:outputLabel>
 		<p:inputText id="textpassword" name="textpassword"
 			value="#{userManagementViewHelperBB.transferObject.password}"
 			style="width: 357px; "></p:inputText>
@@ -32,6 +36,7 @@
 			value="ver todos"
 			action="#{userManagementViewHelperBB.callReadAll()}"></p:commandButton>
 		<br />
+		<p:outputLabel value="id grupo"></p:outputLabel>
 		<p:inputText id="textidgroup" name="textidgroup"
 			value="#{userManagementViewHelperBB.idGrupo}"
 			style="width: 357px; "></p:inputText>

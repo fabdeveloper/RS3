@@ -22,7 +22,6 @@ public interface IEntityManagementViewHelper<E> {
 	
 	// metodos para implementar en el view helper
 	
-	public E getTransferObjectClone();
 	public Integer getId();
 
 	

@@ -21,7 +21,7 @@ import src.inter.Prototype;
 		@NamedQuery(name="libros byTitle", query="SELECT b FROM Libro b WHERE b.title LIKE :titulo")}
 		
 		)
-public class Libro extends Articulo implements Serializable{
+public class Libro extends Articulo implements Serializable, Prototype<Libro>{
 	
 
 	private static final long serialVersionUID = 11L;
