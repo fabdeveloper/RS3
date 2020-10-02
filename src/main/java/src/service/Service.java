@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.ejb.Schedule;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,7 +20,8 @@ public class Service {
 	
 	@GET
 	@Path("/get")
-	public String getMethod(){
+	public String getMethod(HttpServletRequest request){
+		String username = request.getUserPrincipal().getName();
 		return " getMethod ";
 	}
 	

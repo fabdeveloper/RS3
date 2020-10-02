@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 public interface IDao<T> {
 
 	public abstract EntityManager getEntityManager();
+	
+	public T namedQuery(String name, String param);
 
 	public abstract void create(T entity);
 

@@ -1,5 +1,6 @@
 package src.inter;
 
+import javax.ejb.SessionContext;
 import javax.persistence.EntityManager;
 
 import src.entity.Articulo;
@@ -9,6 +10,8 @@ import src.entity.User;
 import src.entityservices.IEntityServices;
 
 public interface IServiceLocator {
+	
+	public SessionContext getSessionContext();
 	
 	public EntityManager getEntityManager();
 	

@@ -20,6 +20,11 @@ public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 	}
 	
 	@Override
+	public IGestorE<E> getGestorE(){
+		return gestor;
+	}
+	
+	@Override
 	public IServiceLocator getServiceLocator(){
 		return serviceLocator;
 	}

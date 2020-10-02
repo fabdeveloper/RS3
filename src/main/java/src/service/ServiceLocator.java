@@ -1,5 +1,7 @@
 package src.service;
 
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,6 +18,9 @@ import src.inter.IServiceLocator;
 @Singleton
 public class ServiceLocator implements IServiceLocator{
 	
+	@Resource
+	private SessionContext ctx;
+	
 	@PersistenceContext(unitName="RS3_PU")
 	private EntityManager em;
 	
@@ -27,6 +32,12 @@ public class ServiceLocator implements IServiceLocator{
 //	private IEntityServices<Product> productServices;
 //	@Inject
 //	private IEntityServices<Articulo> articuloServices;
+	
+	
+	@Override 
+	public SessionContext getSessionContext(){
+		return ctx;
+	}
 	
 	@Override
 	public EntityManager getEntityManager(){

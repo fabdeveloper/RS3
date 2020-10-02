@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
@@ -33,12 +35,20 @@ public class Store implements Serializable, Prototype<Store>{
 	@Column(name="DESCRIPTION")
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name="OWNER_ID")
+	@ManyToOne()
+	@JoinColumn(name="USERS_ID")
 	private User owner;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="GRUPOS_ID")
+	private Grupo clientGroup;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="GRUPOS_ID")
+	private Grupo adminGroup;
+	
 	@JoinColumn(name="LISTAGRUPOS")
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="STORE_GRUPO",
 			joinColumns=@JoinColumn(name="ID_STORE", table="STORES", referencedColumnName="ID"),
 			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
@@ -79,6 +89,22 @@ public class Store implements Serializable, Prototype<Store>{
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}	
+
+	public Grupo getClientGroup() {
+		return clientGroup;
+	}
+
+	public void setClientGroup(Grupo clientGroup) {
+		this.clientGroup = clientGroup;
+	}
+
+	public Grupo getAdminGroup() {
+		return adminGroup;
+	}
+
+	public void setAdminGroup(Grupo adminGroup) {
+		this.adminGroup = adminGroup;
 	}
 
 	public List<Grupo> getListaGrupos() {
@@ -87,6 +113,14 @@ public class Store implements Serializable, Prototype<Store>{
 
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
+	}	
+	
+	public void addGrupo(Grupo grupo){
+		this.listaGrupos.add(grupo);
+	}
+	
+	public void removeGrupo(Grupo grupo){
+		this.listaGrupos.remove(grupo);
 	}
 	
 	/*******************************************/

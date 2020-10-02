@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +24,8 @@ import src.inter.Prototype;
 @Entity
 @Table(name="USERS")
 @NamedQueries({
-	@NamedQuery(name="porId", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
-	@NamedQuery(name="todos", query="SELECT u FROM User u")	
+	@NamedQuery(name="byName", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
+	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.password LIKE :pass")	
 })
 public class User implements Serializable, IUser, Prototype<User>{
 	
@@ -32,15 +33,15 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")	
 	private Integer id;
-	@Column(name="NAME")	
+	@Column(name="NAME", unique=true)	
 	private String name;
-	@Column(name="EMAIL")	
+	@Column(name="EMAIL", unique=true)	
 	private String email;
 	@Column(name="PASSWORD")	
 	private String password;
 	
 	@JoinColumn(name="LISTAGRUPOS")
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="USER_GRUPO",
 			joinColumns=@JoinColumn(name="ID_USER", table="USERS", referencedColumnName="ID"),
 			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
@@ -140,6 +141,14 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@Override
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
+	}
+	
+	public void addGrupo(Grupo grupo){
+		this.listaGrupos.add(grupo);
+	}
+	
+	public void removeGrupo(Grupo grupo){
+		this.listaGrupos.remove(grupo);
 	}
 	
 	
