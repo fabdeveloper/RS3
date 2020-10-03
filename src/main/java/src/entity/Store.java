@@ -1,6 +1,7 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -39,13 +40,13 @@ public class Store implements Serializable, Prototype<Store>{
 	@JoinColumn(name="USERS_ID")
 	private User owner;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="GRUPOS_ID")
-	private Grupo clientGroup;
+//	@OneToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="GRUPOS_ID")
+//	private Grupo clientGroup;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="GRUPOS_ID")
-	private Grupo adminGroup;
+//	@OneToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="GRUPOS_ID")
+//	private Grupo adminGroup;
 	
 	@JoinColumn(name="LISTAGRUPOS")
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -91,21 +92,21 @@ public class Store implements Serializable, Prototype<Store>{
 		this.owner = owner;
 	}	
 
-	public Grupo getClientGroup() {
-		return clientGroup;
-	}
-
-	public void setClientGroup(Grupo clientGroup) {
-		this.clientGroup = clientGroup;
-	}
-
-	public Grupo getAdminGroup() {
-		return adminGroup;
-	}
-
-	public void setAdminGroup(Grupo adminGroup) {
-		this.adminGroup = adminGroup;
-	}
+//	public Grupo getClientGroup() {
+//		return clientGroup;
+//	}
+//
+//	public void setClientGroup(Grupo clientGroup) {
+//		this.clientGroup = clientGroup;
+//	}
+//
+//	public Grupo getAdminGroup() {
+//		return adminGroup;
+//	}
+//
+//	public void setAdminGroup(Grupo adminGroup) {
+//		this.adminGroup = adminGroup;
+//	}
 
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;
@@ -116,6 +117,9 @@ public class Store implements Serializable, Prototype<Store>{
 	}	
 	
 	public void addGrupo(Grupo grupo){
+		if(getListaGrupos() == null){
+			setListaGrupos(new ArrayList<Grupo>());
+		}
 		this.listaGrupos.add(grupo);
 	}
 	

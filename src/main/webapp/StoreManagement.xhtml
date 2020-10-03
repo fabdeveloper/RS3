@@ -9,25 +9,25 @@
 <body>
 	<p:form>
 		<p:outputLabel value="id"></p:outputLabel>
-		<p:inputText></p:inputText><br/>
+		<p:inputText id="textidtienda" name="textidtienda" value="#{storeManagementViewHelperBB.id}"></p:inputText><br/>
 				<p:outputLabel value="nombre"></p:outputLabel>
-		<p:inputText></p:inputText><br/>
+		<p:inputText id="textnametienda" name="textnametienda" value="#{storeManagementViewHelperBB.name}"></p:inputText><br/>
 				<p:outputLabel value="descripcion"></p:outputLabel>
-		<p:inputText></p:inputText><br/><br/>
-				<p:outputLabel value="id owner"></p:outputLabel>
-		<p:inputText></p:inputText><br/>
+		<p:inputText id="textdescriptiontienda" name="textdescriptiontienda" value="#{storeManagementViewHelperBB.description}"></p:inputText><br/><br/>
+	<!-- 			<p:outputLabel value="id owner"></p:outputLabel>
+		<p:inputText id="textidowner" name="textidowner" value="#{storeManagementViewHelperBB.owner.id}"></p:inputText><br/>
 				<p:outputLabel value="nombre owner"></p:outputLabel>
-		<p:inputText></p:inputText><br/><br/>
+		<p:inputText id="textnameowner" name="textnameowner" value="#{storeManagementViewHelperBB.owner.name}"></p:inputText><br/><br/>
 				<p:outputLabel value="id grupo usuarios"></p:outputLabel>
-		<p:inputText></p:inputText><br/>
+		<p:inputText id="textidgrupousers" name="textidgrupousers" value="#{}"></p:inputText><br/>
 						<p:outputLabel value="nombre grupo usuarios"></p:outputLabel>
-		<p:inputText></p:inputText><br/><br/>
+		<p:inputText id="textnamegrupousers" name="textnamegrupousers" value="#{}"></p:inputText><br/><br/>
 				<p:outputLabel value="id grupo admin"></p:outputLabel>
-		<p:inputText></p:inputText><br/>
+		<p:inputText id="textidgrupoadmin" name="textidgrupoadmin" value="#{}"></p:inputText><br/>
 						<p:outputLabel value="nombre grupo admin"></p:outputLabel>
-		<p:inputText></p:inputText><br/><br/>
-
-		<p:commandButton></p:commandButton>
+		<p:inputText id="textnamegrupoadmin" name="textnamegrupoadmin" value="#{}"></p:inputText><br/><br/>
+ -->
+		<p:commandButton id="botoncreartienda" name="botoncreartienda" value="crear tienda" action="#{}"></p:commandButton>
 
 	</p:form>
 </body>

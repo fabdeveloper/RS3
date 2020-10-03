@@ -41,7 +41,6 @@ src\dao\PedidoDao.class
 src\dao\ArticuloDao.class
 src\factory\FactoryImpl.class
 src\factory\PedidoFactory.class
-src\beans\BB_TI_4.class
 src\gestor\OfertaGestor.class
 src\gestor\ProductGestor.class
 src\entity\Store.class

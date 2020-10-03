@@ -1,6 +1,7 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -144,6 +145,9 @@ public class User implements Serializable, IUser, Prototype<User>{
 	}
 	
 	public void addGrupo(Grupo grupo){
+		if(getListaGrupos() == null){
+			setListaGrupos(new ArrayList<Grupo>());
+		}
 		this.listaGrupos.add(grupo);
 	}
 	

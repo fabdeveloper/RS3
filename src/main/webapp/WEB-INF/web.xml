@@ -32,7 +32,7 @@
     	<welcome-file>ITclient3.xhtml</welcome-file>
     </welcome-file-list>
     
-    <!-- 
+ 
     <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>myJDBC-realm</realm-name>
@@ -48,15 +48,12 @@
         <role-name>CLIENT</role-name>
     </security-role>
     
-
-    
-    
-    
   
     <security-constraint>
     	<web-resource-collection>
     		<web-resource-name>RS3</web-resource-name>
     		<url-pattern>/app/service/get</url-pattern>
+    	    <url-pattern>/StoreManagement.xhtml</url-pattern>
     	
     	</web-resource-collection>
     	<auth-constraint>
@@ -69,7 +66,7 @@
     
     </security-constraint>
     
-   -->
+  
      
     
 </web-app>

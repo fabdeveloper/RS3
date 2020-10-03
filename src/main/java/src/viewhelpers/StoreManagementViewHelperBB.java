@@ -62,7 +62,7 @@ public class StoreManagementViewHelperBB extends
 	
 	/**********************************************/
 	
-	@RolesAllowed("CLIENT")
+//	@RolesAllowed("CLIENT")
 	public void callCreate(){
 		
 		IServiceLocator serviceLocator = getEntityServices().getServiceLocator();
@@ -80,11 +80,11 @@ public class StoreManagementViewHelperBB extends
 		Grupo grupoUsuarios = serviceLocator.getGrupoServices().getGestorE().getFactory().crear();
 		Grupo grupoAdmin = serviceLocator.getGrupoServices().getGestorE().getFactory().crear();
 		
-		grupoUsuarios.setName("USUARIOS-" + getTransferObject().getId());
+		grupoUsuarios.setName("USERGROUP-" + getTransferObject().getId());
 		grupoUsuarios.setDescription("clientes tienda con id : " + getTransferObject().getId());
 		serviceLocator.getGrupoServices().create(grupoUsuarios);
 		
-		grupoAdmin.setName("ADMIN-" + getTransferObject().getId());
+		grupoAdmin.setName("ADMINGROUP-" + getTransferObject().getId());
 		grupoAdmin.setDescription("administradores tienda con id : " + getTransferObject().getId());
 		serviceLocator.getGrupoServices().create(grupoAdmin);	
 		
@@ -102,6 +102,17 @@ public class StoreManagementViewHelperBB extends
 		update();
 		
 		serviceLocator.getEntityManager().flush();
+		
+		// log datos
+		Store store = read();
+		System.out.println("CREADO STORE - id : " + store.getId() + ", name : " + store.getName() + ", description : " + store.getDescription() );
+		System.out.println("	OWNER - id : " + store.getOwner().getId() + ", name : " + store.getOwner().getName() + ", email : " + store.getOwner().getEmail() );
+		for(Grupo grupo : store.getListaGrupos()){
+			System.out.println("		GRUPO  - id : " + grupo.getId() + ", name : " + grupo.getName() + ", description : " + grupo.getDescription() );
+
+		}
+
+
 		
 		
 	}

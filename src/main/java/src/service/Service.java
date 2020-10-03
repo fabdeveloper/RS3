@@ -20,8 +20,7 @@ public class Service {
 	
 	@GET
 	@Path("/get")
-	public String getMethod(HttpServletRequest request){
-		String username = request.getUserPrincipal().getName();
+	public String getMethod(){
 		return " getMethod ";
 	}
 	
