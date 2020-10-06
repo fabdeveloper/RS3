@@ -36,8 +36,8 @@ public class Store implements Serializable, Prototype<Store>{
 	@Column(name="DESCRIPTION")
 	private String description;
 	
-	@ManyToOne()
-	@JoinColumn(name="USERS_ID")
+	@ManyToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="USERS_ID")
 	private User owner;
 	
 //	@OneToOne(cascade=CascadeType.ALL)

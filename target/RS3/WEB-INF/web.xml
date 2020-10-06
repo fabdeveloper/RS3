@@ -35,9 +35,9 @@
  
     <login-config>
     <auth-method>FORM</auth-method>
-    <realm-name>myJDBC-realm</realm-name>
+    <realm-name>securityRealm</realm-name>
     <form-login-config>
-    <form-login-page>/login/logn.xhtml</form-login-page>
+    <form-login-page>/login/LoginForm.xhtml</form-login-page>
     <form-error-page>/login/error.xhtml</form-error-page>
     
     </form-login-config>    
@@ -53,8 +53,8 @@
     	<web-resource-collection>
     		<web-resource-name>RS3</web-resource-name>
     		<url-pattern>/app/service/get</url-pattern>
-    	    <url-pattern>/StoreManagement.xhtml</url-pattern>
-    	
+    <!-- 	    <url-pattern>/StoreManagement.xhtml</url-pattern>
+    	 -->
     	</web-resource-collection>
     	<auth-constraint>
     		<role-name>CLIENT</role-name>

@@ -78,8 +78,8 @@ public abstract class AbstractDao<T> implements IDao<T> {
 	}
 	
 	@Override
-	public T namedQuery(String name, String param){
-		return getEntityManager().createNamedQuery(name, entityClass).setParameter(0, param).getSingleResult();
+	public T createNamedQuery(String queryname, String paramname, String paramvalue){
+		return getEntityManager().createNamedQuery(queryname, entityClass).setParameter(paramname, paramvalue).getSingleResult();
 	}
 		
 

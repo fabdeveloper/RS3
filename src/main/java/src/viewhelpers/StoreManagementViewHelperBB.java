@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.entity.Grupo;
 import src.entity.Store;
@@ -17,6 +18,19 @@ import src.inter.IServiceLocator;
 public class StoreManagementViewHelperBB extends
 		AbstractEntityManagementViewHelper<Store> implements Serializable{
 
+	
+	
+	private String ownerName;	
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+	
+	/*********************************************/
 
 	@Override
 	public Integer getId() {
@@ -62,14 +76,14 @@ public class StoreManagementViewHelperBB extends
 	
 	/**********************************************/
 	
-//	@RolesAllowed("CLIENT")
+	@Transactional
 	public void callCreate(){
 		
 		IServiceLocator serviceLocator = getEntityServices().getServiceLocator();
 
 		// obtiene el usuario 
-		String nombreUsuario = serviceLocator.getSessionContext().getCallerPrincipal().getName();
-		User user = serviceLocator.getUserServices().getGestorE().getDao().namedQuery("byName", nombreUsuario);
+//		String ownerName = serviceLocator.getSessionContext().getCallerPrincipal().getName();
+		User user = serviceLocator.getUserServices().getGestorE().getDao().createNamedQuery("byName", "nombre", ownerName);
 		
 		// crea la tienda
 		getTransferObject().setOwner(user);

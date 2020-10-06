@@ -10,6 +10,8 @@
     
         <class>src.entity.Libro</class>
     <class>src.entity.User</class>
+        <class>src.entity.Grupo</class>
+    
 
     <properties>
     

@@ -8,7 +8,7 @@ public interface IDao<T> {
 
 	public abstract EntityManager getEntityManager();
 	
-	public T namedQuery(String name, String param);
+	public T createNamedQuery(String queryname, String paramname, String paramvalue);
 
 	public abstract void create(T entity);
 

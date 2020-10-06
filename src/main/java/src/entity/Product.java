@@ -20,7 +20,6 @@ import src.inter.Prototype;
 @Entity
 @Table(name="PRODUCTS")
 @NamedQueries({
-	@NamedQuery(name="productos todos", query="SELECT b FROM Product b"),
 	@NamedQuery(name="productos por nombre", query="SELECT b FROM Product b WHERE b.name LIKE :name"),
 	@NamedQuery(name="productos por tipo", query="SELECT b FROM Product b WHERE b.tipo LIKE :tipo")}	
 	)
