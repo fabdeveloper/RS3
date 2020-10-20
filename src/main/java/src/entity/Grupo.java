@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
@@ -28,6 +30,11 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 	@Column(name="DESCRIPTION")
 	private String description;
 	
+	
+	@ManyToOne
+	@JoinColumn(name="FK_STORE")
+	private Store store;
+	
 	@Override
 	public Grupo clone(){
 		
@@ -35,6 +42,7 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 		nuevo.setId(this.getId());
 		nuevo.setName(this.getName());
 		nuevo.setDescription(this.getDescription());
+		nuevo.setStore(this.getStore());
 
 		return nuevo;		
 	}
@@ -64,6 +72,16 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+	
+	
 
 
 

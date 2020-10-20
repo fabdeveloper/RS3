@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 
 import src.entity.Articulo;
 import src.entity.Grupo;
+import src.entity.Oferta;
 import src.entity.Product;
 import src.entity.User;
 import src.entityservices.IEntityServices;
@@ -18,5 +19,13 @@ public interface IServiceLocator {
 	public IEntityServices<Grupo> getGrupoServices();
 	
 	public IEntityServices<User> getUserServices();
+	
+	public IEntityServices<Product> getProductServices();
+
+	public IEntityServices<Articulo> getArticuloServices();
+
+	public IEntityServices<Oferta> getOfertaServices();
+
+	
 
 }

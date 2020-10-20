@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,12 +34,19 @@ public class Product implements Serializable, Prototype<Product>{
 	@OneToMany(mappedBy="product")
 	private Integer id;
 	
-	@Column(name="NAME")
+	@Column(name="NAME", unique=true)
 	private String name;
 	
 	@Column(name="TIPO")
 	private String tipo;
 
+	@ManyToOne
+	@JoinColumn(name="FK_STORE")
+	private Store store;
+	
+	
+	/***************************************/
+	
 	public Integer getId() {
 		return id;
 	}
@@ -62,6 +71,18 @@ public class Product implements Serializable, Prototype<Product>{
 		this.tipo = tipo;
 	}
 	
+	
+	
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+	
+	/*******************************************/
+
 	@Override
 	public Product clone(){
 		
@@ -69,6 +90,7 @@ public class Product implements Serializable, Prototype<Product>{
 		nuevo.setId(this.getId());
 		nuevo.setName(this.getName());
 		nuevo.setTipo(this.getTipo());
+		nuevo.setStore(this.getStore());
 		
 		return nuevo;
 		

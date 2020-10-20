@@ -1,8 +1,10 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
@@ -31,7 +34,7 @@ public class Articulo implements Serializable{
 	private Integer id;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="PRODUCT_ID" )
+	@JoinColumn(name="FK_PRODUCT") //(name="PRODUCT_ID" )
 	private Product product; //FK
 	
 	@Column(name="NAME")
@@ -42,6 +45,9 @@ public class Articulo implements Serializable{
 	
 	@Column(name="price")
 	private Float price;
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="articulo")
+	private List<Atributo> listaAtributos;
 	
 	
 	

@@ -3,11 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
+
+<p:head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
+<title>RS3</title>
+<p:outputStylesheet>
+
+</p:outputStylesheet>
+
+</p:head>
+
 <body>
+	
 	<p:form>
 		<p:outputLabel value="id"></p:outputLabel>
 		<p:inputText id="textid" name="textid"
@@ -29,7 +37,7 @@
 			value="#{userManagementViewHelperBB.transferObject.password}"
 			style="width: 357px; "></p:inputText>
 		<br />
-
+		
 		<p:commandButton id="botoncrear" name="botoncrear" value="crear user"
 			action="#{userManagementViewHelperBB.callCreate}"></p:commandButton>
 		<p:commandButton id="botonvertodos" name="botonvertodos"

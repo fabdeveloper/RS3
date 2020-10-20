@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,23 +37,11 @@ public class Store implements Serializable, Prototype<Store>{
 	@Column(name="DESCRIPTION")
 	private String description;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="USERS_ID")
-	private User owner;
+//	@OneToOne//(mappedBy="id")
+//	@JoinColumn(name="id")
+//	private User owner;
 	
-//	@OneToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="GRUPOS_ID")
-//	private Grupo clientGroup;
-	
-//	@OneToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="GRUPOS_ID")
-//	private Grupo adminGroup;
-	
-	@JoinColumn(name="LISTAGRUPOS")
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="STORE_GRUPO",
-			joinColumns=@JoinColumn(name="ID_STORE", table="STORES", referencedColumnName="ID"),
-			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="store")
 	private List<Grupo> listaGrupos;
 
 	
@@ -84,29 +73,13 @@ public class Store implements Serializable, Prototype<Store>{
 		this.description = description;
 	}
 
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}	
-
-//	public Grupo getClientGroup() {
-//		return clientGroup;
+//	public User getOwner() {
+//		return owner;
 //	}
 //
-//	public void setClientGroup(Grupo clientGroup) {
-//		this.clientGroup = clientGroup;
-//	}
-//
-//	public Grupo getAdminGroup() {
-//		return adminGroup;
-//	}
-//
-//	public void setAdminGroup(Grupo adminGroup) {
-//		this.adminGroup = adminGroup;
-//	}
+//	public void setOwner(User owner) {
+//		this.owner = owner;
+//	}	
 
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;
@@ -136,7 +109,7 @@ public class Store implements Serializable, Prototype<Store>{
 		nuevo.setId(this.getId());
 		nuevo.setName(this.getName());
 		nuevo.setDescription(this.getDescription());
-		nuevo.setOwner(this.getOwner());
+//		nuevo.setOwner(this.getOwner());
 		nuevo.setListaGrupos(this.listaGrupos);
 		
 		return nuevo;

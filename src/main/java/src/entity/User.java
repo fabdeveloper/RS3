@@ -8,12 +8,14 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -41,12 +43,15 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@Column(name="PASSWORD")	
 	private String password;
 	
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="id")
+//	private Store store;
+	
 	@JoinColumn(name="LISTAGRUPOS")
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
 			joinColumns=@JoinColumn(name="ID_USER", table="USERS", referencedColumnName="ID"),
 			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
-
 	private List<Grupo> listaGrupos;
 	
 	
@@ -59,6 +64,7 @@ public class User implements Serializable, IUser, Prototype<User>{
 		user.setName(this.getName());
 		user.setPassword(this.getPassword());
 		user.setListaGrupos(this.getListaGrupos());
+//		user.setStore(this.getStore());
 		
 		return user;
 	}
@@ -144,6 +150,19 @@ public class User implements Serializable, IUser, Prototype<User>{
 		this.listaGrupos = listaGrupos;
 	}
 	
+	
+	
+//	public Store getStore() {
+//		return store;
+//	}
+//
+//	public void setStore(Store store) {
+//		this.store = store;
+//	}
+
+
+
+
 	public void addGrupo(Grupo grupo){
 		if(getListaGrupos() == null){
 			setListaGrupos(new ArrayList<Grupo>());

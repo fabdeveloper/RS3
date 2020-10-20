@@ -44,6 +44,7 @@ src\factory\PedidoFactory.class
 src\gestor\OfertaGestor.class
 src\gestor\ProductGestor.class
 src\entity\Store.class
+src\entity\Atributo.class
 src\factory\GrupoFactory.class
 src\timers\ScheduledBean.class
 src\gestor\StoreGestor.class

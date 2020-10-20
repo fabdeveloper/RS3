@@ -5,8 +5,8 @@
   
 	  <persistence-unit name="RS3_PU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    
-    <jta-data-source>jdbc/myDS</jta-data-source>
+
+                        <jta-data-source>SuperDS</jta-data-source>
     
         <class>src.entity.Libro</class>
     <class>src.entity.User</class>
@@ -14,7 +14,7 @@
     
 
     <properties>
-    
+   
 
  
       <property name="javax.persistence.schema-generation.database.action" value="create"/>      
@@ -25,6 +25,10 @@
           <exclude-unlisted-classes>false</exclude-unlisted-classes>
       
           <jta-data-source>jdbc/RS3_MySql_DS</jta-data-source>
+          
+              <jta-data-source>jdbc/myDS</jta-data-source>
+          
+                    <jta-data-source>SuperDS</jta-data-source>
       
       
             <property name="javax.persistence.jdbc.user" value="Fab"/>
@@ -32,7 +36,7 @@
       
       
                 <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/RS3DB;create=true"/>
-       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       
       <property name="javax.persistence.jdbc.user" value=""/>
       <property name="javax.persistence.jdbc.password" value=""/>

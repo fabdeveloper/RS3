@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import src.entity.Articulo;
 import src.entity.Grupo;
+import src.entity.Oferta;
 import src.entity.Product;
 import src.entity.User;
 import src.entityservices.IEntityServices;
@@ -28,10 +29,12 @@ public class ServiceLocator implements IServiceLocator{
 	private IEntityServices<Grupo> grupoServices;
 	@Inject
 	private IEntityServices<User> userServices;
-//	@Inject
-//	private IEntityServices<Product> productServices;
-//	@Inject
-//	private IEntityServices<Articulo> articuloServices;
+	@Inject
+	private IEntityServices<Product> productServices;
+	@Inject
+	private IEntityServices<Articulo> articuloServices;
+	@Inject
+	private IEntityServices<Oferta> ofertaServices;
 	
 	
 	@Override 
@@ -48,20 +51,27 @@ public class ServiceLocator implements IServiceLocator{
 	public IEntityServices<Grupo> getGrupoServices(){
 		return grupoServices;
 	}
-
-//	@Override
-//	public IEntityServices<Product> getProductServices() {
-//		return productServices;
-//	}
-//
-//	@Override
-//	public IEntityServices<Articulo> getArticuloServices() {
-//		return articuloServices;
-//	}
-
+	
 	@Override
 	public IEntityServices<User> getUserServices() {
 		return userServices;
 	}
+
+	@Override
+	public IEntityServices<Product> getProductServices() {
+		return productServices;
+	}
+
+	@Override
+	public IEntityServices<Articulo> getArticuloServices() {
+		return articuloServices;
+	}
+	
+	@Override
+	public IEntityServices<Oferta> getOfertaServices() {
+		return ofertaServices;
+	}
+
+
 
 }
