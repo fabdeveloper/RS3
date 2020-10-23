@@ -9,9 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import src.entity.Articulo;
+import src.entity.Cart;
+import src.entity.DeliveryDetails;
 import src.entity.Grupo;
 import src.entity.Oferta;
+import src.entity.Order;
 import src.entity.Product;
+import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.entityservices.IEntityServices;
 import src.inter.IServiceLocator;
@@ -35,7 +39,14 @@ public class ServiceLocator implements IServiceLocator{
 	private IEntityServices<Articulo> articuloServices;
 	@Inject
 	private IEntityServices<Oferta> ofertaServices;
-	
+	@Inject 
+	private IEntityServices<Cart> cartServices;
+	@Inject 
+	private IEntityServices<Order> orderServices;
+	@Inject 
+	private IEntityServices<PurchaseStatus> purchaseStatusServices;
+	@Inject 
+	private IEntityServices<DeliveryDetails> deliveryDetailsServices;
 	
 	@Override 
 	public SessionContext getSessionContext(){
@@ -71,6 +82,28 @@ public class ServiceLocator implements IServiceLocator{
 	public IEntityServices<Oferta> getOfertaServices() {
 		return ofertaServices;
 	}
+	
+	@Override
+	public IEntityServices<Cart> getCartServices() {
+		return cartServices;
+	}
+
+	@Override
+	public IEntityServices<Order> getOrderServices() {
+		return orderServices;
+	}
+
+	@Override
+	public IEntityServices<PurchaseStatus> getPurchaseStatusServices() {
+		return purchaseStatusServices;
+	}
+
+	@Override
+	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices() {
+		return deliveryDetailsServices;
+	}
+	
+	
 
 
 

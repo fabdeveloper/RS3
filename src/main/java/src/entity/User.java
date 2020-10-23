@@ -31,7 +31,9 @@ import src.inter.Prototype;
 	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.password LIKE :pass")	
 })
 public class User implements Serializable, IUser, Prototype<User>{
-	
+
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")	
@@ -43,10 +45,7 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@Column(name="PASSWORD")	
 	private String password;
 	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="id")
-//	private Store store;
-	
+
 	@JoinColumn(name="LISTAGRUPOS")
 	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
@@ -64,7 +63,6 @@ public class User implements Serializable, IUser, Prototype<User>{
 		user.setName(this.getName());
 		user.setPassword(this.getPassword());
 		user.setListaGrupos(this.getListaGrupos());
-//		user.setStore(this.getStore());
 		
 		return user;
 	}
@@ -149,18 +147,6 @@ public class User implements Serializable, IUser, Prototype<User>{
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
 	}
-	
-	
-	
-//	public Store getStore() {
-//		return store;
-//	}
-//
-//	public void setStore(Store store) {
-//		this.store = store;
-//	}
-
-
 
 
 	public void addGrupo(Grupo grupo){
@@ -172,6 +158,13 @@ public class User implements Serializable, IUser, Prototype<User>{
 	
 	public void removeGrupo(Grupo grupo){
 		this.listaGrupos.remove(grupo);
+	}
+
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	
