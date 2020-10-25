@@ -2,6 +2,7 @@ package src.entity;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,11 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
 
-
+@RequestScoped
 @Entity
 @Table(name="DELIVERY_DETAILS")
 public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>{
@@ -37,7 +39,7 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	private String remark;
 	
 	@OneToOne
-	@JoinColumn(name="Id")
+	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 	
 	public DeliveryDetails clone(){

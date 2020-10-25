@@ -26,8 +26,11 @@ import src.inter.Prototype;
 @NamedQueries({
 	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id")}
 	)
-public class Articulo implements Serializable{
+public class Articulo implements Serializable, Prototype<Articulo>{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="ID")
@@ -114,7 +117,20 @@ public class Articulo implements Serializable{
 		nuevo.setPrice(this.getPrice());
 		nuevo.setName(this.getName());
 		nuevo.setProduct(this.getProduct());
+		nuevo.setListaAtributos(this.getListaAtributos());
 		return nuevo;
+	}
+
+	public List<Atributo> getListaAtributos() {
+		return listaAtributos;
+	}
+
+	public void setListaAtributos(List<Atributo> listaAtributos) {
+		this.listaAtributos = listaAtributos;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 

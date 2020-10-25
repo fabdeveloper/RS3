@@ -3,6 +3,7 @@ package src.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
 
+@RequestScoped
 @Entity
 @Table(name="PURCHASE_STATUS")
 public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
@@ -31,7 +34,7 @@ public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
 	private String remark;
 	
 	@OneToOne
-	@JoinColumn(name="Id")
+	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 	
 	@Column(name="MODIFICATION_DATE")

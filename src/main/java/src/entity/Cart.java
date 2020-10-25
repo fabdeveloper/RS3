@@ -3,6 +3,7 @@ package src.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import src.inter.Prototype;
 
-
+@RequestScoped
 @Entity
 @Table(name="CARTS")
 public class Cart implements Serializable, Prototype<Cart>{
@@ -31,7 +33,7 @@ public class Cart implements Serializable, Prototype<Cart>{
 	private Integer id;
 	
 	@JoinColumn(name="LISTAOFERTAS")
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name="CART_OFERTA",
 	joinColumns=@JoinColumn(name="ID_CART", table="CARTS", referencedColumnName="ID"),
 	inverseJoinColumns=@JoinColumn(name="ID_OFERTA", table="OFERTAS", referencedColumnName="ID"))
@@ -41,7 +43,7 @@ public class Cart implements Serializable, Prototype<Cart>{
 	private Float value;
 	
 	@OneToOne
-	@JoinColumn(name="Id")
+	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 
 	public Cart clone(){

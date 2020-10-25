@@ -7,8 +7,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
                         <jta-data-source>SuperDS</jta-data-source>
-    
-        <class>src.entity.Libro</class>
     <class>src.entity.User</class>
         <class>src.entity.Grupo</class>
     

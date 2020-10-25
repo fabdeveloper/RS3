@@ -3,6 +3,7 @@ package src.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import src.inter.Prototype;
 
-
+@RequestScoped
 @Entity
 @Table(name="ORDERS")
 public class Order implements Serializable, Prototype<Order>{

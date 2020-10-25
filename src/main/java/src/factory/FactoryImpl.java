@@ -5,10 +5,8 @@ import javax.inject.Inject;
 
 import src.entity.Articulo;
 import src.entity.Grupo;
-import src.entity.Libro;
 import src.entity.Oferta;
 import src.entity.Pedido;
-import src.entity.Planta;
 import src.entity.Product;
 import src.entity.User;
 
@@ -16,10 +14,7 @@ import src.entity.User;
 @RequestScoped
 public class FactoryImpl implements IFactory{
 	
-	@Inject
-	private IBeanFactory<Libro> libroFactory; // LibroFactory
-	@Inject
-	private IBeanFactory<Planta> plantaFactory; // PlantaFactory
+
 	@Inject
 	private IBeanFactory<User> userFactory; // UserFactory
 	@Inject
@@ -41,12 +36,7 @@ public class FactoryImpl implements IFactory{
 		case "PEDIDO":
 			loquesea = pedidoFactory.crear();
 			break;
-		case "LIBRO":
-			loquesea = libroFactory.crear();
-			break;
-		case "PLANTA":
-			loquesea = plantaFactory.crear();
-			break;
+
 		case "USER":
 			loquesea = userFactory.crear();
 			break;
