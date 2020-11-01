@@ -53,8 +53,7 @@ public class CartManager implements ICartManager, Serializable {
 	
 	private Float valuate(){
 		Float result = 0f;
-		valuationManager.setItems(cart.getListaOfertas());
-//		valuationManager.setUser(user);
+		valuationManager.setListaItems(cart.getListaOfertas());
 		result = valuationManager.valuate();
 		return result;
 	}
