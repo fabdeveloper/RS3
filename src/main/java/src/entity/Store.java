@@ -41,8 +41,8 @@ public class Store implements Serializable, Prototype<Store>{
 //	@JoinColumn(name="id")
 //	private User owner;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="store")
-	private List<Grupo> listaGrupos;
+//	@OneToMany(cascade=CascadeType.ALL, mappedBy="store")
+//	private List<Grupo> listaGrupos;
 
 	
 	/**********************************************/
@@ -81,24 +81,24 @@ public class Store implements Serializable, Prototype<Store>{
 //		this.owner = owner;
 //	}	
 
-	public List<Grupo> getListaGrupos() {
-		return listaGrupos;
-	}
-
-	public void setListaGrupos(List<Grupo> listaGrupos) {
-		this.listaGrupos = listaGrupos;
-	}	
-	
-	public void addGrupo(Grupo grupo){
-		if(getListaGrupos() == null){
-			setListaGrupos(new ArrayList<Grupo>());
-		}
-		this.listaGrupos.add(grupo);
-	}
-	
-	public void removeGrupo(Grupo grupo){
-		this.listaGrupos.remove(grupo);
-	}
+//	public List<Grupo> getListaGrupos() {
+//		return listaGrupos;
+//	}
+//
+//	public void setListaGrupos(List<Grupo> listaGrupos) {
+//		this.listaGrupos = listaGrupos;
+//	}	
+//	
+//	public void addGrupo(Grupo grupo){
+//		if(getListaGrupos() == null){
+//			setListaGrupos(new ArrayList<Grupo>());
+//		}
+//		this.listaGrupos.add(grupo);
+//	}
+//	
+//	public void removeGrupo(Grupo grupo){
+//		this.listaGrupos.remove(grupo);
+//	}
 	
 	/*******************************************/
 	
@@ -110,7 +110,7 @@ public class Store implements Serializable, Prototype<Store>{
 		nuevo.setName(this.getName());
 		nuevo.setDescription(this.getDescription());
 //		nuevo.setOwner(this.getOwner());
-		nuevo.setListaGrupos(this.listaGrupos);
+//		nuevo.setListaGrupos(this.listaGrupos);
 		
 		return nuevo;
 	}

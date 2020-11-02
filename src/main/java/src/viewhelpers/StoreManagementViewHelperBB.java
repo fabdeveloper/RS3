@@ -66,13 +66,13 @@ public class StoreManagementViewHelperBB extends
 //		getTransferObject().setOwner(owner);
 //	}
 
-	public List<Grupo> getListaGrupos() {
-		return getTransferObject().getListaGrupos();
-	}
-
-	public void setListaGrupos(List<Grupo> listaGrupos) {
-		getTransferObject().setListaGrupos(listaGrupos);
-	}
+//	public List<Grupo> getListaGrupos() {
+//		return getTransferObject().getListaGrupos();
+//	}
+//
+//	public void setListaGrupos(List<Grupo> listaGrupos) {
+//		getTransferObject().setListaGrupos(listaGrupos);
+//	}
 	
 	
 	/**********************************************/

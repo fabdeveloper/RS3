@@ -1,5 +1,9 @@
 package src.shopping.impl;
 
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -12,7 +16,8 @@ import src.inter.IServiceLocator;
 import src.shopping.inter.IPurchaseManager;
 
 @SessionScoped
-public class PurchaseManager implements IPurchaseManager {
+@RolesAllowed("CLIENT")
+public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	private Order order;
 	private User owner;
@@ -23,7 +28,9 @@ public class PurchaseManager implements IPurchaseManager {
 
 	@Override
 	public Order createOrder() {
-		// TODO Auto-generated method stub
+
+
+		System.out.println("PURCHASEMANAGER - createOrder() - " + new Date());
 		return order;
 	}
 

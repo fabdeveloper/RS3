@@ -28,7 +28,9 @@ import src.inter.Prototype;
 @Table(name="USERS")
 @NamedQueries({
 	@NamedQuery(name="byName", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
-	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.password LIKE :pass")	
+	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.password LIKE :pass"),
+	@NamedQuery(name="byNick", query="SELECT u FROM User u WHERE u.nick LIKE :nick")
+
 })
 public class User implements Serializable, IUser, Prototype<User>{
 
@@ -38,9 +40,11 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")	
 	private Integer id;
-	@Column(name="NAME", unique=true)	
+	@Column(name="NAME")	
 	private String name;
-	@Column(name="EMAIL", unique=true)	
+	@Column(name="NICK", unique=true)	
+	private String nick;
+	@Column(name="EMAIL")	
 	private String email;
 	@Column(name="PASSWORD")	
 	private String password;
@@ -49,8 +53,8 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@JoinColumn(name="LISTAGRUPOS")
 	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
-			joinColumns=@JoinColumn(name="ID_USER", table="USERS", referencedColumnName="ID"),
-			inverseJoinColumns=@JoinColumn(name="ID_GRUPO", table="GRUPOS", referencedColumnName="ID"))
+			joinColumns=@JoinColumn(name="NICK_USER", table="USERS", referencedColumnName="NICK"),
+			inverseJoinColumns=@JoinColumn(name="NAME_GRUPO", table="GRUPOS", referencedColumnName="NAME"))
 	private List<Grupo> listaGrupos;
 	
 	
@@ -61,37 +65,14 @@ public class User implements Serializable, IUser, Prototype<User>{
 		user.setEmail(this.getEmail());
 		user.setId(this.getId());
 		user.setName(this.getName());
+		user.setNick(this.getNick());
 		user.setPassword(this.getPassword());
 		user.setListaGrupos(this.getListaGrupos());
 		
 		return user;
 	}
 	
-	
-	
-	
-	public User() {
-		super();
-	}
-	
-	
-	public User(String name, String email, String password) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
-	
-	
 
-
-	public User(Integer id, String name, String email, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
 
 
 	@Override
@@ -113,6 +94,14 @@ public class User implements Serializable, IUser, Prototype<User>{
 	@Override
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
 	@Override

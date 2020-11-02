@@ -61,6 +61,10 @@ public class UserManagementViewHelperBB extends
 		getTransferObject().setName(name);
 	}
 	
+	public void setNick(String nick){
+		getTransferObject().setNick(nick);
+	}
+	
 	public void setEmail(String email){
 		getTransferObject().setEmail(email);
 	}
@@ -82,6 +86,10 @@ public class UserManagementViewHelperBB extends
 	
 	public String getName(){
 		return getTransferObject().getName();
+	}
+	
+	public String getNick(){
+		return getTransferObject().getNick();
 	}
 	
 	public String getEmail(){

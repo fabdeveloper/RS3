@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import javax.persistence.Table;
 
 import src.inter.Prototype;
@@ -17,6 +20,9 @@ import src.inter.Prototype;
 @RequestScoped
 @Entity
 @Table(name="GRUPOS")
+@NamedQueries({
+	@NamedQuery(name="grupo_byName", query="SELECT g FROM Grupo g WHERE g.name LIKE :name")
+})
 public class Grupo implements Serializable, Prototype<Grupo>{
 	
 	@Id
@@ -31,9 +37,9 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 	private String description;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="FK_STORE")
-	private Store store;
+//	@ManyToOne
+//	@JoinColumn(name="FK_STORE")
+//	private Store store;
 	
 	@Override
 	public Grupo clone(){
@@ -42,7 +48,7 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 		nuevo.setId(this.getId());
 		nuevo.setName(this.getName());
 		nuevo.setDescription(this.getDescription());
-		nuevo.setStore(this.getStore());
+//		nuevo.setStore(this.getStore());
 
 		return nuevo;		
 	}
@@ -73,13 +79,7 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 		this.description = description;
 	}
 
-	public Store getStore() {
-		return store;
-	}
 
-	public void setStore(Store store) {
-		this.store = store;
-	}
 	
 	
 

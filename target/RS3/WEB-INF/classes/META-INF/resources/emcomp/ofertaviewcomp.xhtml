@@ -9,19 +9,22 @@
 </head>
 <p:body>
 	<composite:interface>
-		<composite:attribute name="urlimage" required="false"></composite:attribute>
-		<composite:attribute name="texttop" required="false"></composite:attribute>
-		<composite:attribute name="textcenter" required="false"></composite:attribute>
-		<composite:attribute name="textbottom" required="false"></composite:attribute>
-
+		<composite:attribute name="urlimage" required="false" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="texttop" required="false" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="textcenter" required="false" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="textbottom" required="false" type="java.lang.String"></composite:attribute>
+		<composite:attribute name="bean"></composite:attribute>
+		<composite:attribute name="clickaction" method-signature="void action()"></composite:attribute>
+		<composite:attribute name="id"></composite:attribute>
 	</composite:interface>
 	<composite:implementation>
-		<div style="height: 137px; width: 178px">
+		<div onclick="#{cc.attrs.clickaction}" style="height: 137px; width: 178px">
 			<p:form>
 				<p:graphicImage style="width: 139px; height: 125px; " url="#{cc.attrs.urlimage}"></p:graphicImage><br/>				
 				<p:outputText value="#{cc.attrs.texttop}"></p:outputText><br/>
 				<p:outputText value="#{cc.attrs.textcenter}"></p:outputText><br/>
-				<p:outputText value="#{cc.attrs.textbottom}"></p:outputText>				
+				<p:outputText value="#{cc.attrs.textbottom}"></p:outputText>
+				
 			</p:form>
 		</div>
 	</composite:implementation>
