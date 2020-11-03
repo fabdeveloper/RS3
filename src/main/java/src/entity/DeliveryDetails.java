@@ -38,6 +38,9 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	@Column(name="REMARKS")
 	private String remark;
 	
+	@Column(name="DELIVERY_TYPE")
+	private String deliveryType;
+	
 	@OneToOne
 	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
@@ -75,6 +78,14 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}	
+
+	public String getDeliveryType() {
+		return deliveryType;
+	}
+
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
 	}
 
 	public Order getOrder() {

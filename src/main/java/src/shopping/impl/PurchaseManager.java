@@ -3,9 +3,13 @@ package src.shopping.impl;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.annotation.Resource;
+import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJBContext;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
 
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
@@ -13,24 +17,40 @@ import src.entity.Order;
 import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.inter.IServiceLocator;
+import src.shopping.inter.ICartManager;
 import src.shopping.inter.IPurchaseManager;
 
 @SessionScoped
+@DeclareRoles({"CLIENT", "ADMIN"})
 @RolesAllowed("CLIENT")
 public class PurchaseManager implements IPurchaseManager, Serializable {
 	
+//	@Inject
+//	private SecurityContext sc;
+	
+	@Resource
+	private EJBContext securityContext;
+	
+	@Inject
+	private ICartManager cartManager;
+	
 	private Order order;
-	private User owner;
-	private Cart purchaseCart;
+
 	
 	@Inject
 	private IServiceLocator serviceLocator;
 
 	@Override
 	public Order createOrder() {
+		System.out.println("PURCHASEMANAGER - createOrder() - " + new Date());		
+		
+		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
+		setClient();
+		setCart();
+		order.setConfirmationDate(new Date());
+		setPurchaseStatus();
+		setDeliveryDetails();
 
-
-		System.out.println("PURCHASEMANAGER - createOrder() - " + new Date());
 		return order;
 	}
 
@@ -40,48 +60,67 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		return order;
 	}
 
-	@Override
-	public void setClient(User client) {
-		owner = client;		
+	
+	private void setClient() {
+		String clientNick = securityContext.getCallerPrincipal().getName();
+		User user = serviceLocator.getUserServices().getGestorE().getDao()
+				.createNamedQuery("byNick", "nick", clientNick);
+		
+		order.setClient(user);
+	}
+	
+	private void setCart() {
+		order.setCart(cartManager.getCart());
+	}
+
+	public void setPurchaseStatus() {
+		PurchaseStatus purchaseStatus = serviceLocator.getPurchaseStatusServices()
+				.getGestorE().getFactory().crear();
+		
+		purchaseStatus.setLastModification(new Date());
+		purchaseStatus.setRemark("starting");
+		purchaseStatus.setOrder(order);
+		order.setPurchaseStatus(purchaseStatus);		
+	}
+
+
+	public void setDeliveryDetails() {
+		DeliveryDetails deliveryDetails = serviceLocator.getDeliveryDetailsServices()
+				.getGestorE().getFactory().crear();
+		
+		deliveryDetails.setDeliveryAddress(getClient().getAddress());
+		deliveryDetails.setOrder(order);
+		deliveryDetails.setRemark("pendiente");
+		deliveryDetails.setDeliveryType("normal");
+		
+		order.setDeliveryDetails(deliveryDetails);		
 	}
 
 	@Override
 	public User getClient() {
-		return owner;
+		return order.getClient();
 	}
 
 	@Override
 	public Cart getCart() {
-		return purchaseCart;
+		return order.getCart();
 	}
 
 	@Override
-	public void setCart(Cart cart) {
-		purchaseCart = cart;
-	}
-
-	@Override
-	public void setStatus(PurchaseStatus status) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public PurchaseStatus getStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setDeliveryDetails(DeliveryDetails deliverydetails) {
-		// TODO Auto-generated method stub
-
+	public PurchaseStatus getPurchaseStatus() {
+		return order.getPurchaseStatus();
 	}
 
 	@Override
 	public DeliveryDetails getDeliveryDetails() {
-		// TODO Auto-generated method stub
-		return null;
+		return order.getDeliveryDetails();
 	}
+
+	@Override
+	public Order getOrder() {
+		return order;
+	}
+
+
 
 }

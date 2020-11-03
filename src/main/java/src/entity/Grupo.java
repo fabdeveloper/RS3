@@ -79,10 +79,4 @@ public class Grupo implements Serializable, Prototype<Grupo>{
 		this.description = description;
 	}
 
-
-	
-	
-
-
-
 }

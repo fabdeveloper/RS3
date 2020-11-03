@@ -58,6 +58,7 @@ public class CartManager implements ICartManager, Serializable {
 		return result;
 	}
 
+	@Override
 	public Cart getCart() {
 		return cart;
 	}

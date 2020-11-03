@@ -2,20 +2,26 @@ package src.backingbean;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Cart;
+import src.shopping.impl.ShoppingFacade;
+import src.shopping.inter.IShoppingFacade;
 
 
 @Named
-@SessionScoped
-public class CartValuedBB implements Serializable{
+@RequestScoped
+public class CartValuedBB{
 
-
-	private static final long serialVersionUID = 1L;
+	@Inject 
+	private IShoppingFacade shoppingFacade;
 	
 	private Cart cart;
+	
+	
 	
 	public void moreItems(){
 		
@@ -29,8 +35,8 @@ public class CartValuedBB implements Serializable{
 		
 	}
 	
-	public void purchaseConfirm(){
-		
+	public void createOrder(){
+		shoppingFacade.createOrder();
 	}
 
 	public Cart getCart() {
@@ -41,9 +47,6 @@ public class CartValuedBB implements Serializable{
 		this.cart = cart;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 

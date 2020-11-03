@@ -48,6 +48,8 @@ public class User implements Serializable, IUser, Prototype<User>{
 	private String email;
 	@Column(name="PASSWORD")	
 	private String password;
+	@Column(name="ADDRESS")
+	private String address;
 	
 
 	@JoinColumn(name="LISTAGRUPOS")
@@ -124,7 +126,13 @@ public class User implements Serializable, IUser, Prototype<User>{
 		this.password = password;
 	}
 
+	public String getAddress() {
+		return address;
+	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public List<Grupo> getListaGrupos() {

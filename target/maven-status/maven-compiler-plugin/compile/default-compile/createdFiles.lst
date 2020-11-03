@@ -60,6 +60,7 @@ src\viewhelpers\IEntityManagementViewHelper.class
 src\dao\GrupoDao.class
 src\entity\Pedido.class
 src\gestor\AbstractGestor.class
+src\backingbean\PurchaseViewBB.class
 src\gestor\PurchaseStatusGestor.class
 src\factory\IFactory.class
 src\entityservices\AbstractEntityServices.class
