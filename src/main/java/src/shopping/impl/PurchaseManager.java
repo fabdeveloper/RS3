@@ -56,8 +56,20 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public Order confirm() {
-		// TODO Auto-generated method stub
+		
+		if(paymentProcess()){ // OK
+			
+			serviceLocator.getOrderServices().create(order);
+			
+		}else{  // PAYMENT ERROR
+			throw new RuntimeException("Payment Error");
+		}
+
 		return order;
+	}
+	
+	private boolean paymentProcess(){
+		return true;
 	}
 
 	

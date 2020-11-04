@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
+import src.shopping.inter.IShoppingFacade;
 
 
 @Named
@@ -18,6 +20,9 @@ public class AvailabilityManagementBB implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private IShoppingFacade shoppingFacade;
 	
 	private List<Product> listaProductos;
 	private List<Articulo> listaArticulos;
@@ -28,12 +33,12 @@ public class AvailabilityManagementBB implements Serializable{
 	}
 	
 	public void addItemToCart(){
-		
+		shoppingFacade.addItemToCart(item);
 	}
 	
 	@PostConstruct
 	public void loadProducts(){
-		
+		listaProductos = shoppingFacade.getAvail();		
 	}
 	
 	
