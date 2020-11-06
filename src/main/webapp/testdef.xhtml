@@ -9,23 +9,18 @@
 <title>Insert title here</title>
 </head>
 <p:body>
-	<ui:composition template="templates/template.xhtml">
-		<ui:define name="top">
-		<p:form>
-				<p:inputText></p:inputText>
-				<p:commandButton></p:commandButton>
-			</p:form>
-		
+	<ui:composition template="template.xhtml">
+		<ui:define name="top">	
+		<L1>PRODUCTOS</L1>	
+				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaProd}"></em:tableviewcomp>		
 		</ui:define>
 		<ui:define name="left">
-<p:form>
-				<em:ofertaviewcomp urlimage="no" texttop="oferta especial" textcenter="super producto" textbottom="barato"></em:ofertaviewcomp>  
-			</p:form>
+		<l1>ARTICULOS</l1>
+				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaOf}"></em:tableviewcomp>
 		</ui:define>
 		<ui:define name="right">
-<p:form>
-				<em:testcomp mivar="algo"></em:testcomp> 
-			</p:form>
+		<l1>OFERTAS</l1>
+				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaObjetos}"></em:tableviewcomp>
 		</ui:define>
 	</ui:composition>
 

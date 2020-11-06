@@ -40,9 +40,9 @@ public class Product implements Serializable, Prototype<Product>{
 	@Column(name="TIPO")
 	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name="FK_STORE")
-	private Store store;
+//	@ManyToOne
+//	@JoinColumn(name="FK_STORE")
+//	private Store store;
 	
 	
 	/***************************************/
@@ -73,13 +73,13 @@ public class Product implements Serializable, Prototype<Product>{
 	
 	
 	
-	public Store getStore() {
-		return store;
-	}
-
-	public void setStore(Store store) {
-		this.store = store;
-	}
+//	public Store getStore() {
+//		return store;
+//	}
+//
+//	public void setStore(Store store) {
+//		this.store = store;
+//	}
 	
 	/*******************************************/
 
@@ -90,7 +90,7 @@ public class Product implements Serializable, Prototype<Product>{
 		nuevo.setId(this.getId());
 		nuevo.setName(this.getName());
 		nuevo.setTipo(this.getTipo());
-		nuevo.setStore(this.getStore());
+//		nuevo.setStore(this.getStore());
 		
 		return nuevo;
 		
