@@ -9,18 +9,18 @@
 <title>Insert title here</title>
 </head>
 <p:body>
-	<ui:composition template="template.xhtml">
+	<ui:composition template="templates/template.xhtml">
 		<ui:define name="top">	
 		<L1>PRODUCTOS</L1>	
-				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaProd}"></em:tableviewcomp>		
+				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaProductosTO}"></em:tableviewcomp>		
 		</ui:define>
 		<ui:define name="left">
 		<l1>ARTICULOS</l1>
-				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaOf}"></em:tableviewcomp>
+				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaArticulosTO}"></em:tableviewcomp>
 		</ui:define>
 		<ui:define name="right">
 		<l1>OFERTAS</l1>
-				<em:tableviewcomp bean="#{viewHelper}" lista="#{viewHelper.listaObjetos}"></em:tableviewcomp>
+				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaOfertasTO}"></em:tableviewcomp>
 		</ui:define>
 	</ui:composition>
 

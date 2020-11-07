@@ -27,9 +27,9 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
-	private List<Product> listaProductos;
-	private List<Articulo> listaArticulos;
-	private List<Oferta> listaOfertas;
+	private List<Product> listaProductos = new ArrayList<Product>();
+	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
+	private List<Oferta> listaOfertas = new ArrayList<Oferta>();
 	
 	
 	private List<EntityViewTransferObject> listaProductosTO;
@@ -71,14 +71,9 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 				}
 				break;
 				default:
-					;
-			
-			}
-			
-		}
-
-
-		
+					;			
+			}			
+		}		
 		return resp;
 	}
 
@@ -140,13 +135,22 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	}
 
 	public String getAvail(Object objEntity){
-		
+		if(objEntity instanceof Product){
+			listaArticulos = shoppingFacade.getAvail((Product)objEntity);
+			System.out.println("AvailabilityManagementBB getAvail() - recibidos articulos = " + listaArticulos.size());
+		}
+		else if(objEntity instanceof Articulo){
+			listaOfertas = shoppingFacade.getAvail((Articulo)objEntity);
+			System.out.println("AvailabilityManagementBB getAvail() - recibidos ofertas = " + listaOfertas.size());
+		}
 		
 		return null;		
 	}
 	
 	public String addItemToCart(Oferta item){
-		return shoppingFacade.addItemToCart(item);
+		System.out.println("AvailabilityManagementBB addItemToCart() - NO IMPLEMENTADO ");
+//		return shoppingFacade.addItemToCart(item);
+		return null;
 	}
 	
 	@PostConstruct
