@@ -51,22 +51,24 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 				type = lista[0];
 				id = lista[1];
 			}
+			System.out.println("type = " + type + ", id = " + id);
+
 			switch(type){
 			case "Product":
 				for(Product prod : listaProductos){
-					if(prod.getId().toString() == id)
+					if(prod.getId().toString().matches(id))
 					resp = getAvail(prod);
 				}
 				break;
 			case "Articulo":
 				for(Articulo prod : listaArticulos){
-					if(prod.getId().toString() == id)
+					if(prod.getId().toString().matches(id))
 					resp = getAvail(prod);
 				}
 				break;
 			case "Oferta":
 				for(Oferta prod : listaOfertas){
-					if(prod.getId().toString() == id)
+					if(prod.getId().toString().matches(id))
 					resp = addItemToCart(prod);
 				}
 				break;
@@ -126,7 +128,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			to.setTexttop(item.getName());
 			to.setTextcenter(item.getArticulo().getName());
 			to.setTextbottom(item.getPrecio().toString());
-			to.setTextobotonenviar("consulta");			
+			to.setTextobotonenviar("compra ya");			
 			to.setUrlimage("image/image" + "Product" + item.getId());			
 			
 			listaOfertasTO.add(to);			

@@ -12,6 +12,8 @@ public interface IDao<T> {
 
 	public List<T> createNamedQueryListResult(String queryname, String paramname, String paramvalue);
 
+	public List<T> createNamedQueryListResultIntParam(String queryname, String paramname, Integer paramvalue);
+
 	public abstract void create(T entity);
 
 	public abstract void edit(T entity);

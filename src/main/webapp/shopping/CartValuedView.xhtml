@@ -8,8 +8,12 @@
 </head>
 <body>
 	<p:form>
+		<p:commandButton name="buttonvaciarcarrito" value="vaciar carrito" action="#{cartValuedBB.reset}"></p:commandButton>
+		<p:commandButton name="buttonborraritem" value="borrar item" action="#{cartValuedBB.removeItem}"></p:commandButton>
 
 		<p:commandButton name="buttoncrearorden" value="crear orden" action="#{cartValuedBB.createOrder}"></p:commandButton>
+		<p:commandButton name="buttonseguircomprando" value="comprar mas" action="#{cartValuedBB.moreItems}"></p:commandButton>
+	
 	</p:form>
 </body>
 </html>

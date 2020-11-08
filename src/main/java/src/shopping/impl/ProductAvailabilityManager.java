@@ -25,12 +25,12 @@ public class ProductAvailabilityManager implements IAvailabilityManager {
 	@Override
 	public  List<Articulo> getAvail(Product prod){
 		return serviceLocator.getArticuloServices().getGestorE()
-				.getDao().createNamedQueryListResult("articulos por product_id", "product_id", prod.getId().toString());
+				.getDao().createNamedQueryListResultIntParam("articulos por product_id", "product_id", prod.getId());
 	}
 	@Override
 	public List<Oferta> getAvail(Articulo articulo){
 		return serviceLocator.getOfertaServices().getGestorE()
-				.getDao().createNamedQueryListResult("ofertas por articulo_id", "articulo_id", articulo.getId().toString());
+				.getDao().createNamedQueryListResultIntParam("ofertas por articulo_id", "articulo_id", articulo.getId());
 	}
 
 }

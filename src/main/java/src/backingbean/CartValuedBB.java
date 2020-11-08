@@ -1,14 +1,11 @@
 package src.backingbean;
 
-import java.io.Serializable;
-
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Cart;
-import src.shopping.impl.ShoppingFacade;
+import src.entity.Oferta;
 import src.shopping.inter.IShoppingFacade;
 
 
@@ -20,6 +17,7 @@ public class CartValuedBB{
 	private IShoppingFacade shoppingFacade;
 	
 	private Cart cart;
+	private Oferta itemSeleccionado;
 	
 	
 	
@@ -28,11 +26,11 @@ public class CartValuedBB{
 	}
 	
 	public void removeItem(){
-		
+		shoppingFacade.removeItemFromCart(itemSeleccionado);
 	}
 	
 	public void reset(){
-		
+		shoppingFacade.resetCart();
 	}
 	
 	public void createOrder(){
@@ -46,6 +44,24 @@ public class CartValuedBB{
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
+	}
+
+	public Oferta getItemSeleccionado() {
+		return itemSeleccionado;
+	}
+
+	public void setItemSeleccionado(Oferta itemSeleccionado) {
+		this.itemSeleccionado = itemSeleccionado;
+	}
+	
+	
 
 	
 	

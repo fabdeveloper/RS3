@@ -15,7 +15,7 @@
 	<composite:interface>
 		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
 		<composite:attribute name="lista" type="java.util.List"></composite:attribute>
-		
+		<composite:clientBehavior name="actionevent" event="itemviewaction" target="itemview"></composite:clientBehavior>
 	</composite:interface>
 
 	<composite:implementation>
@@ -24,7 +24,7 @@
 	<tr>
 		<ui:repeat value="#{cc.attrs.lista}" var="objeto">
 		<td>
-			<em:ofertaviewcomp  urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
+			<em:ofertaviewcomp id="itemview"  urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
 					textcenter="#{objeto.textcenter}" textbottom="#{objeto.textbottom}"
 					bean="#{cc.attrs.bean}" ofid="#{objeto.ofid}"
 					textobotonenviar="#{objeto.textobotonenviar}"></em:ofertaviewcomp>

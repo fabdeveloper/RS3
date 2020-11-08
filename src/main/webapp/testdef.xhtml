@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:em="http://java.sun.com/jsf/composite/emcomp">
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
+	xmlns:p="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
-<p:body>
+<h:body>
 	<ui:composition template="templates/template.xhtml">
-		<ui:define name="top">	
-		<L1>PRODUCTOS</L1>	
-				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaProductosTO}"></em:tableviewcomp>		
+		<ui:define name="top">
+			<L1>PRODUCTOS</L1>
+			<em:tableviewcomp id="listaproductos" bean="#{availabilityManagementBB}"
+				lista="#{availabilityManagementBB.listaProductosTO}">
+				<p:ajax event="actionevent" execute="listaarticulos"></p:ajax>
+				</em:tableviewcomp>
 		</ui:define>
 		<ui:define name="left">
-		<l1>ARTICULOS</l1>
-				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaArticulosTO}"></em:tableviewcomp>
+			<l1>ARTICULOS</l1>
+			<em:tableviewcomp id="listaarticulos" bean="#{availabilityManagementBB}"
+				lista="#{availabilityManagementBB.listaArticulosTO}">
+				<p:ajax event="actionevent" execute="listaofertas"></p:ajax>
+			</em:tableviewcomp>
 		</ui:define>
 		<ui:define name="right">
-		<l1>OFERTAS</l1>
-				<em:tableviewcomp bean="#{availabilityManagementBB}" lista="#{availabilityManagementBB.listaOfertasTO}"></em:tableviewcomp>
+			<l1>OFERTAS</l1>
+			<em:tableviewcomp id="listaofertas" bean="#{availabilityManagementBB}"
+				lista="#{availabilityManagementBB.listaOfertasTO}"></em:tableviewcomp>
 		</ui:define>
 	</ui:composition>
 
 
 
-</p:body>
+</h:body>
 </html>
