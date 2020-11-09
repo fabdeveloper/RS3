@@ -151,8 +151,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	
 	public String addItemToCart(Oferta item){
 		System.out.println("AvailabilityManagementBB addItemToCart() - NO IMPLEMENTADO ");
-//		return shoppingFacade.addItemToCart(item);
-		return null;
+		return shoppingFacade.addItemToCart(item);
 	}
 	
 	@PostConstruct

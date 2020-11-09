@@ -39,13 +39,14 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 	@JoinColumn(name="ARTICULO_ID" )
 	private Articulo articulo; //FK
 	
-	@Column(name="precio")
+	@Column(name="PRECIO")
 	private Float precio;
 	
-	@Column(name="descripcion")
+	@Column(name="DESCRIPCION")
 	private String descripcion;
 
-	
+	@Column(name="URL_IMAGE")
+	private String urlImage;
 	
 	
 	@Override
@@ -53,10 +54,10 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 		Oferta oferta = new Oferta();
 		oferta.setId(this.getId());
 		oferta.setName(this.getName());
-
 		oferta.setDescripcion(this.getDescripcion());
 		oferta.setPrecio(this.getPrecio());
 		oferta.setArticulo(this.getArticulo());
+		oferta.setUrlImage(this.getUrlImage());
 
 		return oferta;
 	}
@@ -71,17 +72,13 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 		this.id = id;
 	}
 
-
-
 	public Articulo getArticulo() {
 		return articulo;
 	}
 
-
 	public void setArticulo(Articulo articulo) {
 		this.articulo = articulo;
 	}
-
 
 	public Float getPrecio() {
 		return precio;
@@ -99,15 +96,22 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 		this.descripcion = descripcion;
 	}
 
-
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+	
 
 
 
