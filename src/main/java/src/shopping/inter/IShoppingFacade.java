@@ -18,7 +18,7 @@ public interface IShoppingFacade {
 	public Cart resetCart();
 	public Order purchaseConfirm();
 	public Order createOrder();
-	public ICartManager getCartManager();
 	public Cart getCart();
+	public Order getOrder();
 
 }

@@ -20,6 +20,8 @@ public interface IServiceLocator {
 	
 	public EntityManager getEntityManager();
 	
+	public IEncripter getEncripter();
+	
 	public IEntityServices<Grupo> getGrupoServices();
 	
 	public IEntityServices<User> getUserServices();

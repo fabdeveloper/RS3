@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;
+import javax.ejb.SessionContext;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
@@ -28,8 +29,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 //	@Inject
 //	private SecurityContext sc;
 	
-	@Resource
-	private EJBContext securityContext;
+//	@Resource
+//	private EJBContext securityContext;
+	
+//	@Resource
+//	private SessionContext securityContext;
 	
 	@Inject
 	private ICartManager cartManager;
@@ -74,11 +78,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	
 	private void setClient() {
-		String clientNick = securityContext.getCallerPrincipal().getName();
-		User user = serviceLocator.getUserServices().getGestorE().getDao()
-				.createNamedQuery("byNick", "nick", clientNick);
-		
-		order.setClient(user);
+//		String clientNick = securityContext.getCallerPrincipal().getName();
+//		User user = serviceLocator.getUserServices().getGestorE().getDao()
+//				.createNamedQuery("byNick", "nick", clientNick);
+//		
+//		order.setClient(user);
 	}
 	
 	private void setCart() {

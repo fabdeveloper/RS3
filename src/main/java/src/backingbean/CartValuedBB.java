@@ -51,7 +51,13 @@ public class CartValuedBB implements IProcessable{
 
 	@Override
 	public String process(Object obj) {
-		int indice = Integer.valueOf((String)obj);
+		int indice = 0;
+		if(obj instanceof Integer){
+			indice = (Integer)obj;
+		}
+		if(obj instanceof String){
+			indice = Integer.valueOf((String)obj);
+		}
 		for(Oferta of : shoppingFacade.getCart().getListaOfertas()){
 			if(of.getId().intValue() == indice){
 				removeItem(of);

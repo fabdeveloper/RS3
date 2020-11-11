@@ -35,7 +35,7 @@
 
     <login-config>
     <auth-method>FORM</auth-method>
-    <realm-name>MyRealm</realm-name>
+    <realm-name>SHA256</realm-name>
     
     <form-login-config>
     <form-login-page>/login/logn.xhtml</form-login-page>

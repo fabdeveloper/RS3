@@ -24,12 +24,21 @@ public class UserManagementViewHelperBB extends
 
 
 	@Transactional
-	public void callCreate(){
+	public void callCreate() throws Exception{
+		// encripta password
+		
+//		getTransferObject().setPassword(getServiceLocator().getEncripter().encriptStringToSha256(getTransferObject().getPassword()));
+		String pass = getTransferObject().getPassword();
+		String encoded = getServiceLocator().getEncripter().encriptStringToSha256(pass);
+		getTransferObject().setPassword(encoded);
+		
+		// asigna el grupo
 		Grupo grupo = getServiceLocator().getGrupoServices().read(idGrupo);
 		List<Grupo> lista = new ArrayList<Grupo>();
 		lista.add(grupo);
 		getTransferObject().setListaGrupos(lista);		
 
+		// crea usuario
 		create();
 		getEntityServices().getServiceLocator().getEntityManager().flush();		
 

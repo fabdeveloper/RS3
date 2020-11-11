@@ -1,9 +1,12 @@
 package src.service;
 
+import java.io.Serializable;
+
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,10 +21,12 @@ import src.entity.Product;
 import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.entityservices.IEntityServices;
+import src.inter.IEncripter;
 import src.inter.IServiceLocator;
 
 @Singleton
-public class ServiceLocator implements IServiceLocator{
+//@SessionScoped
+public class ServiceLocator implements IServiceLocator, Serializable{
 	
 	@Resource
 	private SessionContext ctx;
@@ -29,6 +34,8 @@ public class ServiceLocator implements IServiceLocator{
 	@PersistenceContext(unitName="RS3_PU")
 	private EntityManager em;
 	
+	@Inject
+	private IEncripter encripter;
 	@Inject
 	private IEntityServices<Grupo> grupoServices;
 	@Inject
@@ -56,6 +63,11 @@ public class ServiceLocator implements IServiceLocator{
 	@Override
 	public EntityManager getEntityManager(){
 		return em;
+	}
+
+	@Override
+	public IEncripter getEncripter() {
+		return encripter;
 	}
 	
 	@Override
@@ -102,9 +114,6 @@ public class ServiceLocator implements IServiceLocator{
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices() {
 		return deliveryDetailsServices;
 	}
-	
-	
-
 
 
 }

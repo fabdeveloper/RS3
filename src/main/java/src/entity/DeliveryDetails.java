@@ -38,6 +38,7 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	@Column(name="REMARKS")
 	private String remark;
 	
+//	@ManyToOne
 	@Column(name="DELIVERY_TYPE")
 	private String deliveryType;
 	
@@ -50,7 +51,8 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 		nuevo.setDeliveryAddress(this.getDeliveryAddress());
 		nuevo.setId(this.getId());
 		nuevo.setOrder(this.getOrder());
-		nuevo.setRemark(this.getRemark());		
+		nuevo.setRemark(this.getRemark());	
+		nuevo.setDeliveryType(this.getDeliveryType());
 		
 		
 		return nuevo;

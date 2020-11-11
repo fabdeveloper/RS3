@@ -33,7 +33,7 @@ public class Order implements Serializable, Prototype<Order>{
 	private User client;
 	
 	@NotNull
-	@OneToOne(mappedBy="order")
+	@OneToOne(mappedBy="order", optional=false)
 	private Cart cart;
 	
 	@Column(name="CONFIRMATION_DATE")

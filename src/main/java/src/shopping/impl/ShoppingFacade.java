@@ -75,14 +75,6 @@ public class ShoppingFacade implements IShoppingFacade {
 		this.availabilityManager = availabilityManager;
 	}
 
-	@Override
-	public ICartManager getCartManager() {
-		return cartManager;
-	}
-
-	public void setCartManager(ICartManager cartManager) {
-		this.cartManager = cartManager;
-	}
 
 	public IPurchaseManager getPurchaseManager() {
 		return purchaseManager;
@@ -95,6 +87,19 @@ public class ShoppingFacade implements IShoppingFacade {
 	@Override
 	public Cart getCart() {
 		return cartManager.getCart();
+	}
+
+	@Override
+	public Order getOrder() {		
+		return purchaseManager.getOrder();
+	}
+
+	public ICartManager getCartManager() {
+		return cartManager;
+	}
+
+	public void setCartManager(ICartManager cartManager) {
+		this.cartManager = cartManager;
 	}
 
 
