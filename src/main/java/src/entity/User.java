@@ -28,7 +28,7 @@ import src.inter.Prototype;
 @Table(name="USERS")
 @NamedQueries({
 	@NamedQuery(name="byName", query="SELECT u FROM User u WHERE u.name LIKE :nombre"),
-	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.password LIKE :pass"),
+	@NamedQuery(name="byEmail", query="SELECT u FROM User u WHERE u.email LIKE :email"),
 	@NamedQuery(name="byNick", query="SELECT u FROM User u WHERE u.nick LIKE :nick")
 
 })
@@ -46,7 +46,7 @@ public class User implements Serializable, IUser, Prototype<User>{
 	private String nick;
 	@Column(name="EMAIL")	
 	private String email;
-	@Column(name="PASSWORD")	
+	@Column(name="PASS")	
 	private String password;
 	@Column(name="ADDRESS")
 	private String address;

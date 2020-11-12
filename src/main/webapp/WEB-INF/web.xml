@@ -60,7 +60,7 @@
     	<web-resource-collection>
     		<web-resource-name>RS3</web-resource-name>
     		<url-pattern>/app/service/get</url-pattern>
-    		<url-pattern>/UserManagement.xhtml</url-pattern>
+<!--     		<url-pattern>/UserManagement.xhtml</url-pattern> -->
     		
     	
     	</web-resource-collection>

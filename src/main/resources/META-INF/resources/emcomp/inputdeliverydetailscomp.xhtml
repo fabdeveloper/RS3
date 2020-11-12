@@ -16,9 +16,9 @@
 		<composite:attribute name="titulotexto2"></composite:attribute>
 		<composite:attribute name="texto2"></composite:attribute>
 		
-		<composite:attribute name="titulolistadesplegable"></composite:attribute>
+		<composite:attribute name="titulo3"></composite:attribute>
 		<composite:attribute name="seleccion"></composite:attribute>
-		<composite:attribute name="lista" type="java.util.List"></composite:attribute>
+<!-- 		<composite:attribute name="lista" type="java.util.List"></composite:attribute> -->
 
 	</composite:interface>
 	<composite:implementation>
@@ -29,10 +29,11 @@
 			<p:outputText value="#{cc.attrs.titulotexto2}"></p:outputText><br/>
 			<p:inputTextarea value="#{cc.attrs.texto2}"></p:inputTextarea><br/>
 			
-			<p:outputText value="#{cc.attrs.titulolistadesplegable}"></p:outputText><br/>
-			<p:selectOneListbox value="#{cc.attrs.selecction}">
-				<p:selectItems value="#{cc.attrs.lista}"></p:selectItems>
-			</p:selectOneListbox>
+			<p:outputText value="#{cc.attrs.titulo3}"></p:outputText><br/>
+			<p:inputText value="#{cc.attrs.selecction}"></p:inputText>
+<!-- 			<p:selectOneListbox value="#{cc.attrs.selecction}"> -->
+<!-- 				<p:selectItems value="#{cc.attrs.lista}"></p:selectItems> -->
+<!-- 			</p:selectOneListbox> -->
 
 		</p:form>
 	

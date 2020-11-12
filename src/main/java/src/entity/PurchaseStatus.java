@@ -34,6 +34,7 @@ public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
 	private String remark;
 	
 	@OneToOne
+	@JoinColumn(name="ORDER")
 	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 	

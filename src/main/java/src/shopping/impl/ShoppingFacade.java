@@ -58,12 +58,12 @@ public class ShoppingFacade implements IShoppingFacade {
 	}
 
 	@Override
-	public Order purchaseConfirm() {
+	public String purchaseConfirm() {
 		return purchaseManager.confirm();
 	}
 
 	@Override
-	public Order createOrder() {
+	public String createOrder() {
 		return purchaseManager.createOrder();
 	}
 

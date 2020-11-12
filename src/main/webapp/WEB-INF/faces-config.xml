@@ -18,12 +18,31 @@
    </navigation-rule>
    
 
-      <navigation-rule>
+   <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
 		   <from-outcome>availview</from-outcome>
 		   <to-view-id>/testdef.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
+   
+   <navigation-rule>
+	   <from-view-id>/*</from-view-id>
+	   <navigation-case>
+		   <from-outcome>purchaseview</from-outcome>
+		   <to-view-id>/shopping/PurchaseView.xhtml</to-view-id>
+	   </navigation-case>   
+   </navigation-rule>
+   
+   <navigation-rule>
+	   <from-view-id>/*</from-view-id>
+	   <navigation-case>
+		   <from-outcome>order</from-outcome>
+		   <to-view-id>/shopping/PurchaseView.xhtml</to-view-id>
+	   </navigation-case>   
+   </navigation-rule>
+   
+   
+   
  
 </faces-config>

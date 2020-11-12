@@ -3,6 +3,7 @@ package src.backingbean;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
@@ -19,9 +20,9 @@ public class PurchaseViewBB implements IProcessable{
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
-	
-	public void purchaseConfirm(){
-		shoppingFacade.purchaseConfirm();		
+	@Transactional
+	public String purchaseConfirm(){
+		return shoppingFacade.purchaseConfirm();		
 	}
 	
 	public Order getOrder(){

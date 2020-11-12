@@ -45,7 +45,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	private IServiceLocator serviceLocator;
 
 	@Override
-	public Order createOrder() {
+	public String createOrder() {
 		System.out.println("PURCHASEMANAGER - createOrder() - " + new Date());		
 		
 		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
@@ -55,11 +55,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		setPurchaseStatus();
 		setDeliveryDetails();
 
-		return order;
+		return "purchaseview";
 	}
 
 	@Override
-	public Order confirm() {
+	public String confirm() {
 		
 		if(paymentProcess()){ // OK
 			
@@ -69,7 +69,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			throw new RuntimeException("Payment Error");
 		}
 
-		return order;
+		return "purchaseview";
 	}
 	
 	private boolean paymentProcess(){
@@ -78,14 +78,27 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	
 	private void setClient() {
-//		String clientNick = securityContext.getCallerPrincipal().getName();
-//		User user = serviceLocator.getUserServices().getGestorE().getDao()
-//				.createNamedQuery("byNick", "nick", clientNick);
-//		
-//		order.setClient(user);
+		String clientNick = serviceLocator.getSessionContext().getCallerPrincipal().getName();
+		System.out.println("PURCHASE MANAGER - " + new Date() + " - setClient() - clientNick = " + clientNick);
+//		if(clientNick.matches("ANONYMOUS") || clientNick == null || clientNick.length() < 1){
+//			User user = serviceLocator.getUserServices().getGestorE().getFactory().crear();
+//			user.setAddress("NO INICIADO");
+//			user.setEmail("NO INICIADO");
+//			user.setName("NO INICIADO");
+//			user.setNick(clientNick);
+//			
+//			order.setClient(user);
+//		}else{
+			User user = serviceLocator.getUserServices().getGestorE().getDao()
+					.createNamedQuery("byNick", "nick", clientNick);
+			
+			order.setClient(user);
+//		}
+
 	}
 	
 	private void setCart() {
+		cartManager.getCart().setOrder(order);
 		order.setCart(cartManager.getCart());
 	}
 
@@ -95,6 +108,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 		purchaseStatus.setLastModification(new Date());
 		purchaseStatus.setRemark("starting");
+		
 		purchaseStatus.setOrder(order);
 		order.setPurchaseStatus(purchaseStatus);		
 	}
@@ -105,10 +119,10 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				.getGestorE().getFactory().crear();
 		
 		deliveryDetails.setDeliveryAddress(getClient().getAddress());
-		deliveryDetails.setOrder(order);
 		deliveryDetails.setRemark("pendiente");
 		deliveryDetails.setDeliveryType("normal");
 		
+		deliveryDetails.setOrder(order);
 		order.setDeliveryDetails(deliveryDetails);		
 	}
 

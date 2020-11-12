@@ -31,8 +31,8 @@ public class CartValuedBB implements IProcessable{
 		shoppingFacade.resetCart();
 	}
 	
-	public void createOrder(){
-		shoppingFacade.createOrder();
+	public String createOrder(){
+		return shoppingFacade.createOrder();
 	}
 
 	public Cart getCart() {

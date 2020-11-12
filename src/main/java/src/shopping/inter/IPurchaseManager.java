@@ -8,8 +8,8 @@ import src.entity.User;
 
 public interface IPurchaseManager {
 	
-	public Order createOrder();
-	public Order confirm();
+	public String createOrder();
+	public String confirm();
 	public User getClient();
 	public Cart getCart();
 	public PurchaseStatus getPurchaseStatus();
