@@ -15,5 +15,6 @@ public interface IPurchaseManager {
 	public PurchaseStatus getPurchaseStatus();
 	public DeliveryDetails getDeliveryDetails();
 	public Order getOrder();
+	public void setOrder(Order neworder);
 
 }

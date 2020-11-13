@@ -20,17 +20,24 @@
 		<composite:attribute name="seleccion"></composite:attribute>
 <!-- 		<composite:attribute name="lista" type="java.util.List"></composite:attribute> -->
 
+		<composite:editableValueHolder name="it_texto1"></composite:editableValueHolder>
+		<composite:editableValueHolder name="it_texto2"></composite:editableValueHolder>
+		<composite:editableValueHolder name="it_seleccion"></composite:editableValueHolder>
+		
+		<composite:clientBehavior name="modificado" event="valueChange" target="formulario"></composite:clientBehavior>
+
+
 	</composite:interface>
 	<composite:implementation>
 	
-	<p:form>
+	<p:form id="formulario">
 			<p:outputText value="#{cc.attrs.titulotexto1}"></p:outputText><br/>
-			<p:inputTextarea value="#{cc.attrs.texto1}"></p:inputTextarea><br/>
+			<p:inputTextarea id="it_texto1" value="#{cc.attrs.texto1}"></p:inputTextarea><br/>
 			<p:outputText value="#{cc.attrs.titulotexto2}"></p:outputText><br/>
-			<p:inputTextarea value="#{cc.attrs.texto2}"></p:inputTextarea><br/>
+			<p:inputTextarea id="it_text2" value="#{cc.attrs.texto2}"></p:inputTextarea><br/>
 			
 			<p:outputText value="#{cc.attrs.titulo3}"></p:outputText><br/>
-			<p:inputText value="#{cc.attrs.selecction}"></p:inputText>
+			<p:inputText id="it_seleccion" value="#{cc.attrs.seleccion}"></p:inputText>
 <!-- 			<p:selectOneListbox value="#{cc.attrs.selecction}"> -->
 <!-- 				<p:selectItems value="#{cc.attrs.lista}"></p:selectItems> -->
 <!-- 			</p:selectOneListbox> -->

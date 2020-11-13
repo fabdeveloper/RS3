@@ -26,23 +26,15 @@ import src.shopping.inter.IPurchaseManager;
 @RolesAllowed("CLIENT")
 public class PurchaseManager implements IPurchaseManager, Serializable {
 	
-//	@Inject
-//	private SecurityContext sc;
-	
-//	@Resource
-//	private EJBContext securityContext;
-	
-//	@Resource
-//	private SessionContext securityContext;
-	
 	@Inject
 	private ICartManager cartManager;
+	@Inject
+	private IServiceLocator serviceLocator;
 	
 	private Order order;
 
 	
-	@Inject
-	private IServiceLocator serviceLocator;
+
 
 	@Override
 	public String createOrder() {
@@ -60,7 +52,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public String confirm() {
-		
+		System.out.println("PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);		
+		System.out.println("remark = " + getOrder().getDeliveryDetails().getRemark());		
+
 		if(paymentProcess()){ // OK
 			
 			serviceLocator.getOrderServices().create(order);
@@ -102,7 +96,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		order.setCart(cartManager.getCart());
 	}
 
-	public void setPurchaseStatus() {
+	private void setPurchaseStatus() {
 		PurchaseStatus purchaseStatus = serviceLocator.getPurchaseStatusServices()
 				.getGestorE().getFactory().crear();
 		
@@ -112,9 +106,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		purchaseStatus.setOrder(order);
 		order.setPurchaseStatus(purchaseStatus);		
 	}
-
-
-	public void setDeliveryDetails() {
+	
+	private void setDeliveryDetails() {
 		DeliveryDetails deliveryDetails = serviceLocator.getDeliveryDetailsServices()
 				.getGestorE().getFactory().crear();
 		
@@ -149,6 +142,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	@Override
 	public Order getOrder() {
 		return order;
+	}
+
+	@Override
+	public void setOrder(Order neworder) {
+		order = neworder;
 	}
 
 

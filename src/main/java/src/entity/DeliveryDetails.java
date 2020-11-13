@@ -43,8 +43,8 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	private String deliveryType;
 	
 	@OneToOne
-	@JoinColumn(name="ORDER")
-	@PrimaryKeyJoinColumn(name="Id")
+//	@JoinColumn(name="ORDER")
+//	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 	
 	public DeliveryDetails clone(){

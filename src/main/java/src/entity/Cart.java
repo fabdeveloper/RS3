@@ -32,7 +32,6 @@ public class Cart implements Serializable, Prototype<Cart>{
 	@Column(name="ID")
 	private Integer id;
 	
-//	@JoinColumn(name="LISTAOFERTAS")
 	@ManyToMany
 	@JoinTable(name="CART_OFERTA",
 	joinColumns=@JoinColumn(name="ID_CART", table="CARTS", referencedColumnName="ID"),
@@ -43,8 +42,8 @@ public class Cart implements Serializable, Prototype<Cart>{
 	private Float value;
 	
 	@OneToOne
-	@JoinColumn(name="ORDER")
-	@PrimaryKeyJoinColumn(name="Id")
+//	@JoinColumn(name="ORDER")
+//	@PrimaryKeyJoinColumn(name="Id")
 	private Order order;
 
 	public Cart clone(){

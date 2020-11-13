@@ -52,7 +52,7 @@ public class User implements Serializable, IUser, Prototype<User>{
 	private String address;
 	
 
-	@JoinColumn(name="LISTAGRUPOS")
+//	@JoinColumn(name="LISTAGRUPOS")
 	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
 			joinColumns=@JoinColumn(name="NICK_USER", table="USERS", referencedColumnName="NICK"),

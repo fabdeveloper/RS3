@@ -20,5 +20,7 @@ public interface IShoppingFacade {
 	public String createOrder();
 	public Cart getCart();
 	public Order getOrder();
+	public void setOrder(Order order);
+	public IPurchaseManager getPurchaseManager();
 
 }

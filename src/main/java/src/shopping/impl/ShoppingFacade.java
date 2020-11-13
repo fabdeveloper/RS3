@@ -1,8 +1,10 @@
 package src.shopping.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
@@ -16,7 +18,7 @@ import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
 
 @RequestScoped
-public class ShoppingFacade implements IShoppingFacade {
+public class ShoppingFacade implements IShoppingFacade{
 	
 	@Inject
 	private IAvailabilityManager availabilityManager;
@@ -75,7 +77,7 @@ public class ShoppingFacade implements IShoppingFacade {
 		this.availabilityManager = availabilityManager;
 	}
 
-
+	@Override
 	public IPurchaseManager getPurchaseManager() {
 		return purchaseManager;
 	}
@@ -100,6 +102,12 @@ public class ShoppingFacade implements IShoppingFacade {
 
 	public void setCartManager(ICartManager cartManager) {
 		this.cartManager = cartManager;
+	}
+
+	@Override
+	public void setOrder(Order neworder) {
+		purchaseManager.setOrder(neworder);
+		
 	}
 
 

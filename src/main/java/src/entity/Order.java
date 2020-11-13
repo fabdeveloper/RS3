@@ -32,29 +32,31 @@ public class Order implements Serializable, Prototype<Order>{
 	private Integer id;
 	
 	@NotNull
-	@JoinColumn(name="CLIENT")
 	@ManyToOne(optional=false)
-	@PrimaryKeyJoinColumn(name="Id")
+//	@PrimaryKeyJoinColumn(name="Id")
 	private User client;
 	
 	@NotNull
-	@JoinColumn(name="CART")
-	@PrimaryKeyJoinColumn(name="Id")
-	@OneToOne(mappedBy="order", optional=false, cascade=CascadeType.ALL)
+//	@JoinColumn(name="CART")
+//	@PrimaryKeyJoinColumn(name="Id")
+	//mappedBy="order",
+	@OneToOne(optional=false, cascade=CascadeType.ALL)
 	private Cart cart;
 	
 	@Column(name="CONFIRMATION_DATE")
 	private Date confirmationDate;
 	
-	@JoinColumn(name="PURCHASE_STATUS")
-	@PrimaryKeyJoinColumn(name="Id")
-	@OneToOne(mappedBy="order", cascade=CascadeType.ALL)
+//	@JoinColumn(name="PURCHASE_STATUS")
+//	@PrimaryKeyJoinColumn(name="Id")
+//	mappedBy="order",
+	@OneToOne(cascade=CascadeType.ALL)
 	private PurchaseStatus purchaseStatus;
 	
 	@NotNull
-	@JoinColumn(name="DELIVERY_DETAILS")
-	@PrimaryKeyJoinColumn(name="Id")
-	@OneToOne(mappedBy="order", cascade=CascadeType.ALL)
+//	@JoinColumn(name="DELIVERY_DETAILS")
+//	@PrimaryKeyJoinColumn(name="Id")
+//	mappedBy="order", 
+	@OneToOne(cascade=CascadeType.ALL)
 	private DeliveryDetails deliveryDetails;
 	
 	
