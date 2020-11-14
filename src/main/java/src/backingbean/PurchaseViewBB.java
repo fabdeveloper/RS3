@@ -28,9 +28,9 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	
 	@Transactional
 	public String purchaseConfirm(){
+		System.out.println("remark = " + order.getDeliveryDetails().getRemark());	
 		System.out.println("PURCHASEVIEWBB - purchaseConfirm() - " + new Date() + " - order= " + getOrder());		
 		System.out.println("remark = " + getOrder().getDeliveryDetails().getRemark());		
-		System.out.println("remark = " + order.getDeliveryDetails().getRemark());		
 
 		shoppingFacade.setOrder(getOrder());
 		return shoppingFacade.purchaseConfirm();		
@@ -52,8 +52,8 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark antes= " + remark);		
 
 		getOrder().getDeliveryDetails().setRemark(remark);
+		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark despues= " + order.getDeliveryDetails().getRemark());	
 		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark despues= " + getOrder().getDeliveryDetails().getRemark());		
-		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark despues= " + order.getDeliveryDetails().getRemark());		
 
 	}
 	
