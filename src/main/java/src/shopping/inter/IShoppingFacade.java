@@ -22,5 +22,6 @@ public interface IShoppingFacade {
 	public Order getOrder();
 	public void setOrder(Order order);
 	public IPurchaseManager getPurchaseManager();
+	public String findOrder(Integer order_id);
 
 }

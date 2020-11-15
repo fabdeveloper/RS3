@@ -149,6 +149,13 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		order = neworder;
 	}
 
+	@Override
+	public Order findOrder(Integer order_id) {
+		order = serviceLocator.getOrderServices().getGestorE().getDao().find(order_id);
+		
+		return order;
+	}
+
 
 
 }

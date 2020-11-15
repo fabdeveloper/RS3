@@ -16,5 +16,6 @@ public interface IPurchaseManager {
 	public DeliveryDetails getDeliveryDetails();
 	public Order getOrder();
 	public void setOrder(Order neworder);
+	public Order findOrder(Integer order_id);
 
 }

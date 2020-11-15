@@ -110,6 +110,12 @@ public class ShoppingFacade implements IShoppingFacade{
 		
 	}
 
+	@Override
+	public String findOrder(Integer order_id) {
+		purchaseManager.findOrder(order_id);
+		return "purchasedetailview";
+	}
+
 
 	
 	
