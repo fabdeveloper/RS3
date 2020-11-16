@@ -2,6 +2,8 @@ package src.shopping.impl;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
@@ -26,6 +28,8 @@ import src.shopping.inter.IPurchaseManager;
 @RolesAllowed("CLIENT")
 public class PurchaseManager implements IPurchaseManager, Serializable {
 	
+	static Logger logger = Logger.getLogger(PurchaseManager.class.getName());
+	
 	@Inject
 	private ICartManager cartManager;
 	@Inject
@@ -38,7 +42,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public String createOrder() {
-		System.out.println("PURCHASEMANAGER - createOrder() - " + new Date());		
+		logger.log(Level.INFO, "PURCHASEMANAGER - createOrder() - " + new Date());
 		
 		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
 		setClient();
@@ -52,8 +56,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public String confirm() {
-		System.out.println("PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);		
-		System.out.println("remark = " + getOrder().getDeliveryDetails().getRemark());		
+		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
+	
 
 		if(paymentProcess()){ // OK
 			
@@ -69,11 +73,15 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	private boolean paymentProcess(){
 		return true;
 	}
+	
+	private boolean refundProcess(){
+		return true;
+	}
 
 	
 	private void setClient() {
 		String clientNick = serviceLocator.getSessionContext().getCallerPrincipal().getName();
-		System.out.println("PURCHASE MANAGER - " + new Date() + " - setClient() - clientNick = " + clientNick);
+		logger.log(Level.INFO, "PURCHASE MANAGER - " + new Date() + " - setClient() - clientNick = " + clientNick);
 //		if(clientNick.matches("ANONYMOUS") || clientNick == null || clientNick.length() < 1){
 //			User user = serviceLocator.getUserServices().getGestorE().getFactory().crear();
 //			user.setAddress("NO INICIADO");
@@ -151,9 +159,38 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public Order findOrder(Integer order_id) {
-		order = serviceLocator.getOrderServices().getGestorE().getDao().find(order_id);
+		logger.log(Level.INFO, "PurchaseManager-find: order_id = " + order_id);
 		
+		order = serviceLocator.getOrderServices().getGestorE().getDao().find(order_id);
+		logger.log(Level.INFO, "PurchaseManager-find: encontrada order = " + order);
+
 		return order;
+	}
+
+	@Override
+	public Order cancelOrder(Integer order_id) {
+		logger.log(Level.INFO, "PURCHASEMANAGER - cancelOrder() - " + new Date() + " - ORDER_ID = " + order_id);
+		
+		try{
+			if(isCancelable()){
+				order.getPurchaseStatus().setRemark("CANCELLED");
+				serviceLocator.getOrderServices().update(order);
+				if(!refundProcess()){
+					throw new Exception("Refund ERROR");
+				}			
+			}
+			serviceLocator.getOrderServices().getGestorE().getDao().getEntityManager().flush();
+			
+		}catch(Exception e){
+			logger.log(Level.SEVERE, "Rollback transaction : ORDER = " + order.getId() + " - " + e.getMessage() + " - " + e.getStackTrace());
+			serviceLocator.getSessionContext().setRollbackOnly();
+			order.getPurchaseStatus().setRemark("NOT CANCELLED");
+		}
+		return order;
+	}
+	
+	private boolean isCancelable(){
+		return true;
 	}
 
 

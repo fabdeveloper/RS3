@@ -3,10 +3,13 @@ package src.backingbean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
@@ -14,11 +17,15 @@ import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.PurchaseStatus;
 import src.entity.User;
+import src.inter.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 @Named
 @SessionScoped
-public class PurchaseDetailViewBB implements Serializable {
+public class PurchaseDetailViewBB implements IProcessable, Serializable {
+	
+	static Logger logger = Logger.getLogger(PurchaseDetailViewBB.class.getName());
+	
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;	
@@ -29,6 +36,8 @@ public class PurchaseDetailViewBB implements Serializable {
 
 
 	public String find(){
+		logger.log(Level.INFO, "PurchaseDetailViewBB-find() - localizador = " + localizador);
+		
 		order = null;
 		return shoppingFacade.findOrder(localizador);
 	}
@@ -63,6 +72,10 @@ public class PurchaseDetailViewBB implements Serializable {
 
 	public String getDeliveryRemarks() {
 		return getDeliveryDetails().getRemark();
+	}
+	
+	public String getDeliveryType() {
+		return getDeliveryDetails().getDeliveryType();
 	}
 
 	public String getCartNumItems() {
@@ -122,6 +135,25 @@ public class PurchaseDetailViewBB implements Serializable {
 	
 	private Cart getCart() {
 		return getOrder().getCart();
+	}
+
+	@Override
+	public String process(Object obj) {
+		return null;
+	}
+	
+	@Override
+	public String process() {
+		return find();
+	}
+	
+	@Transactional
+	public String cancelOrder(){
+		return shoppingFacade.cancelOrder(localizador);
+	}
+	
+	public String modifyOrder(){
+		return null;
 	}
 	
 	

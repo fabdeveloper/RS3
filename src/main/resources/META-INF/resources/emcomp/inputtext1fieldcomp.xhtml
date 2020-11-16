@@ -14,14 +14,16 @@
 		<composite:attribute name="label"></composite:attribute>
 		<composite:attribute name="text"></composite:attribute>
 		<composite:attribute name="buttontext"></composite:attribute>
-		<composite:attribute name="buttonaction"></composite:attribute>		
+		<composite:attribute name="buttonaction"></composite:attribute>	
+		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>		
+			
 	</composite:interface>
 
 	<composite:implementation>
 	<p:form>
 		<p:outputText value="#{cc.attrs.label}"></p:outputText><br/>
 		<p:inputText value="#{cc.attrs.text}"></p:inputText><br/>
-		<p:commandButton value="#{cc.attrs.buttontext}" action="buttonaction"></p:commandButton><br/>
+		<p:commandButton value="#{cc.attrs.buttontext}" action="#{cc.attrs.bean.process()}"></p:commandButton><br/>
 		</p:form>
 	</composite:implementation>
 </p:body>

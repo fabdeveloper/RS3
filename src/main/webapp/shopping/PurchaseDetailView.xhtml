@@ -18,8 +18,16 @@
 				label="localizador del pedido"
 				text="#{purchaseDetailViewBB.localizador}"
 				buttontext="Buscar pedido"
-				buttonaction="#{purchaseDetailViewBB.find}"
+				bean="#{purchaseDetailViewBB}"
 			></em:inputtext1fieldcomp>
+		</ui:define>
+		<ui:define name="cancel-modify">
+			<div>
+			<p:form>
+					<p:commandButton value="Cancel Order" action="#{purchaseDetailViewBB.cancelOrder()}"></p:commandButton>
+					<p:commandButton value="Modify Order" action="#{purchaseDetailViewBB.modifyOrder()}"></p:commandButton>
+				</p:form>
+			</div>
 		</ui:define>
 		<ui:define name="order">
 			<em:output3fieldscom

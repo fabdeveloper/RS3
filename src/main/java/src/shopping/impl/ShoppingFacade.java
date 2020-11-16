@@ -2,6 +2,8 @@ package src.shopping.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
@@ -19,6 +21,8 @@ import src.shopping.inter.IPurchaseManager;
 
 @RequestScoped
 public class ShoppingFacade implements IShoppingFacade{
+	
+	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
 	
 	@Inject
 	private IAvailabilityManager availabilityManager;
@@ -112,9 +116,23 @@ public class ShoppingFacade implements IShoppingFacade{
 
 	@Override
 	public String findOrder(Integer order_id) {
-		purchaseManager.findOrder(order_id);
+		logger.log(Level.INFO, "ShoppingFacade-findOrder - order_id = " + order_id);
+		
+		Order order = purchaseManager.findOrder(order_id);
+		
+		logger.log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
+
 		return "purchasedetailview";
 	}
+
+	@Override
+	public String cancelOrder(Integer order_id) {
+		purchaseManager.cancelOrder(order_id);
+		return "purchasedetailview";
+
+	}
+
+
 
 
 	
