@@ -41,18 +41,12 @@ public class Cart implements Serializable, Prototype<Cart>{
 	@Column(name="VALUE")
 	private Float value;
 	
-	@OneToOne
-//	@JoinColumn(name="ORDER")
-//	@PrimaryKeyJoinColumn(name="Id")
-	private Order order;
 
 	public Cart clone(){
 		Cart nuevo = new Cart();
 		nuevo.setId(this.getId());
 		nuevo.setValue(this.getValue());
 		nuevo.setListaOfertas(this.getListaOfertas());
-		nuevo.setOrder(this.getOrder());
-		
 		
 		return nuevo;
 	}
@@ -84,15 +78,6 @@ public class Cart implements Serializable, Prototype<Cart>{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
 	
 
 }

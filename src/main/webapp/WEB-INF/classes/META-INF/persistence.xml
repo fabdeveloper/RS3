@@ -4,18 +4,25 @@
 
   
 	  <persistence-unit name="RS3_PU" transaction-type="JTA">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-                        <jta-data-source>SuperDS</jta-data-source>
-    <class>src.entity.User</class>
-        <class>src.entity.Grupo</class>
+        <jta-data-source>SuperDS</jta-data-source>
+    			<class>src.entity.User</class>
+        		<class>src.entity.Grupo</class>
+                <class>src.entity.Order</class>
+                <class>src.entity.PurchaseStatus</class>
+                <class>src.entity.DeliveryDetails</class>
+                <class>src.entity.Cart</class>
+                
+        
+    
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
     
 
-    <properties>
-   
-
- 
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>      
+    <properties> 
+          <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>      
+    
+<!--       <property name="javax.persistence.schema-generation.database.action" value="create-or-extend-tables"/>       -->
     
 
       

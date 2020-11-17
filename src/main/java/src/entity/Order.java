@@ -33,29 +33,21 @@ public class Order implements Serializable, Prototype<Order>{
 	
 	@NotNull
 	@ManyToOne(optional=false)
-//	@PrimaryKeyJoinColumn(name="Id")
 	private User client;
 	
 	@NotNull
-//	@JoinColumn(name="CART")
-//	@PrimaryKeyJoinColumn(name="Id")
-	//mappedBy="order",
-	@OneToOne(optional=false, cascade=CascadeType.ALL)
+	@OneToOne(optional=false, cascade={CascadeType.ALL})
 	private Cart cart;
 	
+	@NotNull
 	@Column(name="CONFIRMATION_DATE")
 	private Date confirmationDate;
 	
-//	@JoinColumn(name="PURCHASE_STATUS")
-//	@PrimaryKeyJoinColumn(name="Id")
-//	mappedBy="order",
+	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
 	private PurchaseStatus purchaseStatus;
 	
 	@NotNull
-//	@JoinColumn(name="DELIVERY_DETAILS")
-//	@PrimaryKeyJoinColumn(name="Id")
-//	mappedBy="order", 
 	@OneToOne(cascade=CascadeType.ALL)
 	private DeliveryDetails deliveryDetails;
 	
@@ -72,71 +64,56 @@ public class Order implements Serializable, Prototype<Order>{
 		return nuevo;		
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public User getClient() {
 		return client;
 	}
-
 
 	public void setClient(User client) {
 		this.client = client;
 	}
 
-
 	public Cart getCart() {
 		return cart;
 	}
-
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
 
-
 	public Date getConfirmationDate() {
 		return confirmationDate;
 	}
-
 
 	public void setConfirmationDate(Date confirmationDate) {
 		this.confirmationDate = confirmationDate;
 	}
 
-
 	public PurchaseStatus getPurchaseStatus() {
 		return purchaseStatus;
 	}
-
 
 	public void setPurchaseStatus(PurchaseStatus purchaseStatus) {
 		this.purchaseStatus = purchaseStatus;
 	}
 
-
 	public DeliveryDetails getDeliveryDetails() {
 		return deliveryDetails;
 	}
-
 
 	public void setDeliveryDetails(DeliveryDetails deliveryDetails) {
 		this.deliveryDetails = deliveryDetails;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-	
+	}	
 
 }

@@ -24,5 +24,6 @@ public interface IShoppingFacade {
 	public IPurchaseManager getPurchaseManager();
 	public String findOrder(Integer order_id);
 	public String cancelOrder(Integer order_id);
+	public String deleteOrder(Order order);
 
 }

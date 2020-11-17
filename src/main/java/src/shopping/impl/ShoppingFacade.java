@@ -132,6 +132,12 @@ public class ShoppingFacade implements IShoppingFacade{
 
 	}
 
+	@Override
+	public String deleteOrder(Order order) {
+		purchaseManager.deleteOrder(order);
+		return "purchasedetailview";
+	}
+
 
 
 

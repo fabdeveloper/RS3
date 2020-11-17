@@ -52,7 +52,6 @@ public class User implements Serializable, IUser, Prototype<User>{
 	private String address;
 	
 
-//	@JoinColumn(name="LISTAGRUPOS")
 	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
 			joinColumns=@JoinColumn(name="NICK_USER", table="USERS", referencedColumnName="NICK"),
@@ -74,14 +73,10 @@ public class User implements Serializable, IUser, Prototype<User>{
 		return user;
 	}
 	
-
-
-
 	@Override
 	public Integer getId() {
 		return id;
 	}
-
 
 	@Override
 	public void setId(Integer id) {
@@ -139,12 +134,10 @@ public class User implements Serializable, IUser, Prototype<User>{
 		return listaGrupos;
 	}
 
-
 	@Override
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
 	}
-
 
 	public void addGrupo(Grupo grupo){
 		if(getListaGrupos() == null){
@@ -157,13 +150,9 @@ public class User implements Serializable, IUser, Prototype<User>{
 		this.listaGrupos.remove(grupo);
 	}
 
-
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 	
 	
 }

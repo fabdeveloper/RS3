@@ -18,5 +18,6 @@ public interface IPurchaseManager {
 	public void setOrder(Order neworder);
 	public Order findOrder(Integer order_id);
 	public Order cancelOrder(Integer order_id);
+	public Order deleteOrder(Order order);
 
 }

@@ -42,19 +42,16 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	@Column(name="DELIVERY_TYPE")
 	private String deliveryType;
 	
-	@OneToOne
-//	@JoinColumn(name="ORDER")
-//	@PrimaryKeyJoinColumn(name="Id")
-	private Order order;
+//	@OneToOne
+//	private Order order;
 	
 	public DeliveryDetails clone(){
 		DeliveryDetails nuevo = new DeliveryDetails();
 		nuevo.setDeliveryAddress(this.getDeliveryAddress());
 		nuevo.setId(this.getId());
-		nuevo.setOrder(this.getOrder());
+//		nuevo.setOrder(this.getOrder());
 		nuevo.setRemark(this.getRemark());	
-		nuevo.setDeliveryType(this.getDeliveryType());
-		
+		nuevo.setDeliveryType(this.getDeliveryType());		
 		
 		return nuevo;
 	}
@@ -91,18 +88,16 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 		this.deliveryType = deliveryType;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+//	public Order getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-	
+	}	
 
 }

@@ -100,7 +100,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 	
 	private void setCart() {
-		cartManager.getCart().setOrder(order);
+//		cartManager.getCart().setOrder(order);
 		order.setCart(cartManager.getCart());
 	}
 
@@ -111,7 +111,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		purchaseStatus.setLastModification(new Date());
 		purchaseStatus.setRemark("starting");
 		
-		purchaseStatus.setOrder(order);
+//		purchaseStatus.setOrder(order);
 		order.setPurchaseStatus(purchaseStatus);		
 	}
 	
@@ -123,7 +123,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		deliveryDetails.setRemark("pendiente");
 		deliveryDetails.setDeliveryType("normal");
 		
-		deliveryDetails.setOrder(order);
+//		deliveryDetails.setOrder(order);
 		order.setDeliveryDetails(deliveryDetails);		
 	}
 
@@ -191,6 +191,16 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	private boolean isCancelable(){
 		return true;
+	}
+
+	@Override
+	public Order deleteOrder(Order order) {
+		logger.log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
+
+		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
+		order.getPurchaseStatus().setRemark("DELETED");
+		setOrder(order);		
+		return order;
 	}
 
 

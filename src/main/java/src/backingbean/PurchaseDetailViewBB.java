@@ -18,6 +18,7 @@ import src.entity.Order;
 import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.inter.IProcessable;
+import src.service.ServiceLocator;
 import src.shopping.inter.IShoppingFacade;
 
 @Named
@@ -152,8 +153,9 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return shoppingFacade.cancelOrder(localizador);
 	}
 	
+	@Transactional
 	public String modifyOrder(){
-		return null;
+		return shoppingFacade.deleteOrder(order);
 	}
 	
 	

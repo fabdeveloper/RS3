@@ -33,10 +33,8 @@ public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
 	@Column(name="REMARKS")
 	private String remark;
 	
-	@OneToOne
-//	@JoinColumn(name="ORDER")
-//	@PrimaryKeyJoinColumn(name="Id")
-	private Order order;
+//	@OneToOne
+//	private Order order;
 	
 	@Column(name="MODIFICATION_DATE")
 	private Date lastModification;
@@ -48,7 +46,7 @@ public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
 		PurchaseStatus nuevo = new PurchaseStatus();
 		nuevo.setId(this.getId());
 		nuevo.setLastModification(this.getLastModification());
-		nuevo.setOrder(this.getOrder());
+//		nuevo.setOrder(this.getOrder());
 		nuevo.setRemark(this.getRemark());
 		
 		
@@ -71,13 +69,13 @@ public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
 		this.remark = remark;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+//	public Order getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
 
 	public Date getLastModification() {
 		return lastModification;
