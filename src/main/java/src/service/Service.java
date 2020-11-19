@@ -1,15 +1,8 @@
 package src.service;
 
-import java.util.Date;
-
 import javax.ejb.Schedule;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-
-import src.timers.ScheduledBean;
 
 
 @Path("/service")
@@ -42,11 +35,11 @@ public class Service {
 		return " cancelMethod ";
 	}
 	
-	@Schedule(second="*")
-	public void hazloatiempo(){
-		System.out.println(new Date() + " - ***************************** TODOVABIEN ***************************** - " + new Date() );
-		
-	}
+//	@Schedule(second="*")
+//	public void hazloatiempo(){
+//		System.out.println(new Date() + " - ***************************** TODOVABIEN ***************************** - " + new Date() );
+//		
+//	}
 
 	
 

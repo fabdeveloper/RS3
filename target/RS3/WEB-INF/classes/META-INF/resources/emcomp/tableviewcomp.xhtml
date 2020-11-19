@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+
+</p:head>
+<p:body>
+	<composite:interface>
+		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
+		<composite:attribute name="lista" type="java.util.List"></composite:attribute>
+		<composite:clientBehavior name="actionevent" event="itemviewaction" target="itemview"></composite:clientBehavior>
+	</composite:interface>
+
+	<composite:implementation>
+	<table>
+	<tbody>
+	<tr>
+		<ui:repeat value="#{cc.attrs.lista}" var="objeto">
+		<td>
+			<em:ofertaviewcomp id="itemview"  urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
+					textcenter="#{objeto.textcenter}" textbottom="#{objeto.textbottom}"
+					bean="#{cc.attrs.bean}" ofid="#{objeto.ofid}"
+					textobotonenviar="#{objeto.textobotonenviar}"></em:ofertaviewcomp>
+					</td>
+					</ui:repeat>
+					</tr>
+					</tbody>
+					
+					</table>
+	</composite:implementation>
+
+</p:body>
+</html>

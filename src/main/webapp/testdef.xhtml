@@ -5,30 +5,41 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
 	xmlns:p="http://java.sun.com/jsf/core">
-<head>
+
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
-</head>
+<!-- 	<h:outputStylesheet  library="css" name="draft1.css" ></h:outputStylesheet> -->
+</h:head>
+
 <h:body>
+	
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="top">
 			<L1>PRODUCTOS</L1>
+			<div class="divrcorners">
 			<em:tableviewcomp id="listaproductos" bean="#{availabilityManagementBB}"
 				lista="#{availabilityManagementBB.listaProductosTO}">
 				<p:ajax event="actionevent" execute="listaarticulos"></p:ajax>
 				</em:tableviewcomp>
+				</div>
 		</ui:define>
 		<ui:define name="left">
 			<l1>ARTICULOS</l1>
+			<div class="divrcorners">
+			
 			<em:tableviewcomp id="listaarticulos" bean="#{availabilityManagementBB}"
 				lista="#{availabilityManagementBB.listaArticulosTO}">
 				<p:ajax event="actionevent" execute="listaofertas"></p:ajax>
 			</em:tableviewcomp>
+			</div>
 		</ui:define>
 		<ui:define name="right">
 			<l1>OFERTAS</l1>
+			<div class="divrcorners">
 			<em:tableviewcomp id="listaofertas" bean="#{availabilityManagementBB}"
 				lista="#{availabilityManagementBB.listaOfertasTO}"></em:tableviewcomp>
+				</div>
 		</ui:define>
 	</ui:composition>
 

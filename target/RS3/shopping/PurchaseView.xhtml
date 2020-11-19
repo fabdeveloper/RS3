@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:core="http://java.sun.com/jsf/core">
+
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</p:head>
+
+<p:body>
+	<ui:composition template="../templates/templatePurchaseView.xhtml">
+		
+		<ui:define name="order">
+			<p:form>
+				<p:commandButton value="Confirmar"
+					action="#{purchaseViewBB.purchaseConfirm}"></p:commandButton>
+				<br />
+				<p:outputText value="Order id: "></p:outputText>
+				<p:outputText value="#{purchaseViewBB.getOrder().id}"></p:outputText>
+				<br />
+			</p:form>
+		</ui:define>
+
+		<ui:define name="client">
+			<em:outputusercomp label1="Nick: "
+				text1="#{purchaseViewBB.getUser().nick}" label2="Name: "
+				text2="#{purchaseViewBB.getUser().name}" label3="Email: "
+				text3="#{purchaseViewBB.getUser().email}"></em:outputusercomp>
+		</ui:define>
+
+		<ui:define id="deliverydetails" name="delivery">
+			<em:inputdeliverydetailscomp titulotexto1="Direccion de envio: "
+				texto1="#{purchaseViewBB.deliveryAddress}"
+				titulotexto2="Comentarios: "
+				texto2="#{purchaseViewBB.remark}"
+				titulo3="Tipo de envio: "
+				texto3="#{purchaseViewBB.deliveryType}" >
+				
+<!-- 				<core:ajax event="modificado" execute="deliverydetails"></core:ajax> -->
+			</em:inputdeliverydetailscomp>
+		</ui:define>
+
+		<ui:define name="cart">
+			<em:outputcartcomp titulo1="Numero de items: "
+				texto1="#{purchaseViewBB.getCart().getListaOfertas().size()}"
+				titulo2="Precio total: " texto2="#{purchaseViewBB.getCart().value}"
+				lista="#{purchaseViewBB.getCart().listaOfertas}"></em:outputcartcomp>
+		</ui:define>
+
+	</ui:composition>
+
+</p:body>
+
+</html>

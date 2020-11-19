@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<p:form>
+
+		<p:inputText id="inputT_idProducto" value="#{bB_TI_3.idProducto}"></p:inputText>
+		<p:commandButton id="buttom_selproducto" value="seleccionar producto" action="#{bB_TI_3.seleccionarProducto}"></p:commandButton>
+		<br/>
+		<p:inputText id="inputT_idArticulo" value="#{bB_TI_3.idArticulo}"></p:inputText>
+				<p:commandButton id="buttom_selArticulo" value="seleccionar articulo" action="#{bB_TI_3.seleccionarArticulo}"></p:commandButton>
+		<br/>
+		<p:inputText id="inputT_idOferta" value="#{bB_TI_3.idOferta}"></p:inputText>
+				<p:commandButton id="buttom_selOferta" value="seleccionar oferta" action="#{bB_TI_3.seleccionarOferta}"></p:commandButton>
+		<br/>
+				<br/>
+				<p:commandButton id="buttom_verCarrito" value="ver carrito" action="#{bB_TI_3.verCarrito}"></p:commandButton>		
+				<p:commandButton id="buttom_comprar" value="comprar" action="#{bB_TI_3.grabarPedido}"></p:commandButton>
+
+		<br/>
+				<br/>
+				<p:commandButton id="buttom_verProducto" value="ver productos" action="#{bB_TI_3.verProductos}"></p:commandButton>
+				<p:commandButton id="buttom_verArticulos" value="ver Articulos" action="#{bB_TI_3.verArticulos}"></p:commandButton>
+				<p:commandButton id="buttom_verOfertas" value="ver ofertas" action="#{bB_TI_3.verOfertas}"></p:commandButton>
+
+		
+		<br/>
+		<br/>
+
+
+
+				<p:commandButton id="buttom_crearProductos" value="crear productos" action="#{bB_TI_3.crearProductos}"></p:commandButton>
+				<p:commandButton id="buttom_crearArticulos" value="crear articulos" action="#{bB_TI_3.crearArticulos}"></p:commandButton>
+				<p:commandButton id="buttom_crearOfertas" value="crear ofertas" action="#{bB_TI_3.crearOfertas}"></p:commandButton>
+				
+
+		<br/>
+				<br/>
+				
+		<p:inputText id="inputT_name" value="#{bB_TI_3.name}"></p:inputText>
+		
+		<br/>
+		<p:inputText id="inputT_email" value="#{bB_TI_3.email}"></p:inputText>
+				
+		<br/>
+		<p:inputText id="inputT_password" value="#{bB_TI_3.password}"></p:inputText>
+				<p:commandButton id="buttom_crearUsuario" value="crear usuario" action="#{bB_TI_3.crearUsuario}"></p:commandButton>
+		<br/>
+				<br/>
+				<p:commandButton id="buttom_verPedidos" value="ver pedidos" action="#{bB_TI_3.verPedidos}"></p:commandButton>
+
+		<br/>
+		<br/>
+
+				<p:commandButton id="buttom_crearGrupo" value="crear grupo" action="#{bB_TI_3.crearGrupo}"></p:commandButton>
+
+	</p:form>
+</body>
+</html>

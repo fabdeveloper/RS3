@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp">
+
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PurchaseDetailView</title>
+</p:head>
+
+<p:body>
+	<ui:composition template="../templates/templatePurchaseDetailView.xhtml">
+
+		<ui:define name="findorder">
+			<em:inputtext1fieldcomp
+				label="localizador del pedido"
+				text="#{purchaseDetailViewBB.localizador}"
+				buttontext="Buscar pedido"
+				bean="#{purchaseDetailViewBB}"
+			></em:inputtext1fieldcomp>
+		</ui:define>
+		<ui:define name="cancel-modify">
+			<div>
+			<p:form>
+					<p:commandButton value="Cancel Order" action="#{purchaseDetailViewBB.cancelOrder()}"></p:commandButton>
+					<p:commandButton value="Modify Order" action="#{purchaseDetailViewBB.modifyOrder()}"></p:commandButton>
+				</p:form>
+			</div>
+		</ui:define>
+		<ui:define name="order">
+			<em:output3fieldscom
+				at1="Identificador: "
+				at2="#{purchaseDetailViewBB.orderId}"
+				at3="Fecha de confirmacion: "
+				at4="#{purchaseDetailViewBB.confirmationDate}"
+				at5="Estado: "
+				at6="#{purchaseDetailViewBB.orderStatus}"
+			></em:output3fieldscom>
+		</ui:define>		
+		<ui:define name="client">
+			<em:output6fieldscom
+				at1="Cliente: "
+				at2="#{purchaseDetailViewBB.clientName}"
+				at3="Nick: "
+				at4="#{purchaseDetailViewBB.clientNick}"
+				at5="Direccion: "
+				at6="#{purchaseDetailViewBB.clientAddress}"
+				at7="Email: "
+				at8="#{purchaseDetailViewBB.clientEmail}"				
+
+			></em:output6fieldscom>
+		</ui:define>		
+		<ui:define name="delivery">
+			<em:output3fieldscom
+				at1="Direccion de entrega: "
+				at2="#{purchaseDetailViewBB.deliveryAddress}"
+				at3="Comentarios de entrega: "
+				at4="#{purchaseDetailViewBB.deliveryRemarks}"
+				at5="Tipo de envio: "
+				at6="#{purchaseDetailViewBB.deliveryType}"
+			></em:output3fieldscom>		
+		</ui:define>		
+		<ui:define name="cart">
+			<em:outputcartcomp
+				titulo1="Numero de items: "
+				texto1="#{purchaseDetailViewBB.cartNumItems}"
+				titulo2="Precio total: "
+				texto2="#{purchaseDetailViewBB.cartTotalPrice}"
+				lista="#{purchaseDetailViewBB.cartItemsList}"		
+			></em:outputcartcomp>		
+		</ui:define>
+	</ui:composition>
+</p:body>
+</html>
