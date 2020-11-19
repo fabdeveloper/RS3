@@ -7,22 +7,24 @@
 
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>CartValuedView</title>
+	<title>Cart Valued View</title>
+				<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet>
+	
 </p:head>
 
 <p:body>
-	<div>
+	<div class="divauto">
 		<p:outputLabel value="Num items : "></p:outputLabel>
 		<p:outputText value="#{cartValuedBB.getCart().getListaOfertas().size()}"></p:outputText><br/>
 		<p:outputLabel value="Precio total : "></p:outputLabel>
 		<p:outputText value="#{cartValuedBB.getCart().getValue()}"></p:outputText><br/>
 		
 	</div>
-	<div>
+	<div class="divauto">
 		<p:form>
-		<p:commandButton name="buttonvaciarcarrito" value="vaciar carrito" action="#{cartValuedBB.reset}"></p:commandButton>
-		<p:commandButton name="buttoncrearorden" value="crear orden" action="#{cartValuedBB.createOrder}"></p:commandButton>
-		<p:commandButton name="buttonseguircomprando" value="comprar mas" action="#{cartValuedBB.moreItems}"></p:commandButton>
+		<p:commandButton class="botonrcorner" name="buttonvaciarcarrito" value="vaciar carrito" action="#{cartValuedBB.reset}"></p:commandButton>
+		<p:commandButton class="botonrcorner" name="buttoncrearorden" value="crear orden" action="#{cartValuedBB.createOrder}"></p:commandButton>
+		<p:commandButton class="botonrcorner" name="buttonseguircomprando" value="comprar mas" action="#{cartValuedBB.moreItems}"></p:commandButton>
 	
 	</p:form>
 	

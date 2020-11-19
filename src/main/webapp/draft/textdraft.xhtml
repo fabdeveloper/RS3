@@ -6,18 +6,26 @@
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp">
 	
 	
-<head>
+<p:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
-</head>
+				<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet>
+
+</p:head>
+
+
 <p:body>
 
+<div class="divauto">
 			<em:inputtext1fieldcomp
 				label="localizador del pedido"
 				text="#{purchaseDetailViewBB.localizador}"
 				buttontext="Buscar pedido"
 				bean="#{purchaseDetailViewBB}"
+				buttonclass="botonrcorner"
+				inputtextclass="inputtext"
 			></em:inputtext1fieldcomp>
+			</div>
 
 </p:body>
 </html>

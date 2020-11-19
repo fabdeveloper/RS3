@@ -9,6 +9,8 @@
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
+<!-- 		<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet> -->
+	
 </p:head>
 
 <p:body>
@@ -16,7 +18,7 @@
 		
 		<ui:define name="order">
 			<p:form>
-				<p:commandButton value="Confirmar"
+				<p:commandButton class="botonrcorner" value="Confirmar"
 					action="#{purchaseViewBB.purchaseConfirm}"></p:commandButton>
 				<br />
 				<p:outputText value="Order id: "></p:outputText>
@@ -38,7 +40,8 @@
 				titulotexto2="Comentarios: "
 				texto2="#{purchaseViewBB.remark}"
 				titulo3="Tipo de envio: "
-				texto3="#{purchaseViewBB.deliveryType}" >
+				texto3="#{purchaseViewBB.deliveryType}" 
+				buttonclass="botonrcorner">
 				
 <!-- 				<core:ajax event="modificado" execute="deliverydetails"></core:ajax> -->
 			</em:inputdeliverydetailscomp>

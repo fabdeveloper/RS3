@@ -68,7 +68,7 @@ public class CartManager implements ICartManager, Serializable {
 
 	@Override
 	public Cart reset() {
-		cart = factory.crear();
+		cart = getFactory().crear();
 		if(cart.getListaOfertas() == null)cart.setListaOfertas(new ArrayList<Oferta>());
 		cart.setValue(valuate());
 

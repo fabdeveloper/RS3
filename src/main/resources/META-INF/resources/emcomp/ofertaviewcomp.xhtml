@@ -24,8 +24,8 @@
 				<p:graphicImage style="width: 139px; height: 125px; " url="#{cc.attrs.urlimage}"></p:graphicImage><br/>				
 				<p:outputText value="#{cc.attrs.texttop}"></p:outputText><br/>
 				<p:outputText value="#{cc.attrs.textcenter}"></p:outputText><br/>
-				<p:outputText value="#{cc.attrs.textbottom}"></p:outputText>
-				<p:commandButton id="botonenviar" value="#{cc.attrs.textobotonenviar}" action="#{cc.attrs.bean.process(cc.attrs.ofid)}"></p:commandButton>
+				<p:outputText value="#{cc.attrs.textbottom}"></p:outputText><br/>
+				<p:commandButton class="botonrcorner" id="botonenviar" value="#{cc.attrs.textobotonenviar}" action="#{cc.attrs.bean.process(cc.attrs.ofid)}"></p:commandButton>
 			</p:form>
 		</div>
 	</composite:implementation>
