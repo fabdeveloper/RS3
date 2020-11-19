@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import src.entity.Cart;
 import src.entity.Oferta;
+import src.factory.IBeanFactory;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.IValuationManager;
@@ -15,15 +16,38 @@ import src.shopping.inter.IValuationManager;
 @SessionScoped
 public class CartManager implements ICartManager, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 
 	@Inject
 	private IValuationManager valuationManager;
-	
-	private static final long serialVersionUID = 1L;
+	@Inject
+	private IServiceLocator serviceLocator;	
 	
 	private Cart cart;
-	@Inject
-	private IServiceLocator serviceLocator;
+	private IBeanFactory<Cart> factory;
+	
+	
+	
+	public IValuationManager getValuationManager() {
+		return valuationManager;
+	}
+
+	public void setValuationManager(IValuationManager valuationManager) {
+		this.valuationManager = valuationManager;
+	}
+
+	public IBeanFactory<Cart> getFactory() {
+		if(factory == null){
+			factory = serviceLocator.getCartServices().getGestorE().getFactory();
+		}
+		return factory;
+	}
+
+	public void setFactory(IBeanFactory<Cart> factory) {
+		this.factory = factory;
+	}
+
 
 	@Override
 	public Cart addItem(Oferta item) {
@@ -44,7 +68,7 @@ public class CartManager implements ICartManager, Serializable {
 
 	@Override
 	public Cart reset() {
-		cart = serviceLocator.getCartServices().getGestorE().getFactory().crear();
+		cart = factory.crear();
 		if(cart.getListaOfertas() == null)cart.setListaOfertas(new ArrayList<Oferta>());
 		cart.setValue(valuate());
 

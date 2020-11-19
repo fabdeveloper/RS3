@@ -1,11 +1,11 @@
-package src.entity;
+package src.shopping;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserTest {
+public class PurchaseManagerTest {
 	
 	@Before
 	public void initDependencies(){
@@ -13,11 +13,10 @@ public class UserTest {
 	}
 	
 	@Test
-	public void test(){
-		boolean condition = true;
+	public void test(){		
 		
-		assertTrue(condition);
-
+		assertTrue("error", true);
 	}
+	
 
 }
