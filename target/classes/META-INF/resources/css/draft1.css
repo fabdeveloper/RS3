@@ -1,9 +1,0 @@
-@CHARSET "ISO-8859-1";
-
-.divrcorners {
-  border-radius: 25px;
-  border: 2px solid #618bf4;
-  padding: 20px; 
-  width: 800px;
-  height: 250px;  
-}
