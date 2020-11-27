@@ -5,15 +5,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.Resource;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.EJBContext;
-import javax.ejb.SessionContext;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
-import javax.security.enterprise.SecurityContext;
-
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
 import src.entity.Order;
@@ -36,6 +31,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	private IServiceLocator serviceLocator;
 	
 	private Order order;
+	private Boolean paymentProcessOK = true;
 
 	
 
@@ -59,9 +55,10 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
 	
 
-		if(paymentProcess()){ // OK
+		if(isPaymentProcessOK()){ // OK
 			
-			serviceLocator.getOrderServices().create(order);
+			order.getPurchaseStatus().setRemark("CONFIRMADO");
+			serviceLocator.getOrderServices().create(order); // graba la orden en DB
 			
 		}else{  // PAYMENT ERROR
 			throw new RuntimeException("Payment Error");
@@ -70,14 +67,23 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		return "purchaseview";
 	}
 	
-	private boolean paymentProcess(){
-		return true;
-	}
+	private boolean isPaymentProcessOK(){
+		return paymentProcessOK;
+	}	
 	
+	@Override
+	public Boolean getPaymentProcessOK() {
+		return paymentProcessOK;
+	}
+
+	@Override
+	public void setPaymentProcessOK(Boolean paymentProcessOK) {
+		this.paymentProcessOK = paymentProcessOK;
+	}
+
 	private boolean refundProcess(){
 		return true;
 	}
-
 	
 	private void setClient() {
 		String clientNick = serviceLocator.getSessionContext().getCallerPrincipal().getName();
@@ -109,7 +115,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				.getGestorE().getFactory().crear();
 		
 		purchaseStatus.setLastModification(new Date());
-		purchaseStatus.setRemark("starting");
+		purchaseStatus.setRemark("NO CONFIRMADO");
 		
 //		purchaseStatus.setOrder(order);
 		order.setPurchaseStatus(purchaseStatus);		

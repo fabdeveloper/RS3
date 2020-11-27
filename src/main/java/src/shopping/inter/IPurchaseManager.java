@@ -19,5 +19,7 @@ public interface IPurchaseManager {
 	public Order findOrder(Integer order_id);
 	public Order cancelOrder(Integer order_id);
 	public Order deleteOrder(Order order);
+	public Boolean getPaymentProcessOK();
+	public void setPaymentProcessOK(Boolean result);
 
 }

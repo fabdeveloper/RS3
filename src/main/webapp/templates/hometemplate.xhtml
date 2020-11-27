@@ -3,21 +3,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
-	<p:outputStylesheet library="css" name="draft1.css"></p:outputStylesheet>
-	<p:outputStylesheet library="css" name="NewFile.css"></p:outputStylesheet> 
-	 
+	<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet>
+	
 </p:head>
+<p:body>
+	<ui:insert name="searchbar">searchbar</ui:insert>
+	<ui:insert name="menubar">menubar</ui:insert>
+	<ui:insert name="body">body</ui:insert>
+	<ui:insert name="foot">foot</ui:insert>
+	
+	
+	
 
-<p:body>	
-	<ui:insert name="top">Top Section</ui:insert>	
-	
-	<ui:insert name="left">Left Section</ui:insert>	
-	
-	<ui:insert name="right">Right Section</ui:insert>
-	
+
 </p:body>
 </html>

@@ -51,6 +51,22 @@
 	   </navigation-case>   
    </navigation-rule>
    
+         <navigation-rule>
+	   <from-view-id>/*</from-view-id>
+	   <navigation-case>
+		   <from-outcome>pagoOK</from-outcome>
+		   <to-view-id>http://localhost:8080/RS3/app/pagos/pagook</to-view-id>
+	   </navigation-case>   
+   </navigation-rule>
+   
+         <navigation-rule>
+	   <from-view-id>/*</from-view-id>
+	   <navigation-case>
+		   <from-outcome>pagoKO</from-outcome>
+		   <to-view-id>http://localhost:8080/RS3/app/pagos/pagoko</to-view-id>
+	   </navigation-case>   
+   </navigation-rule>
+   
    
  
 </faces-config>

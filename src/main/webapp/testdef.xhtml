@@ -17,7 +17,7 @@
 	<ui:composition template="templates/template.xhtml">
 		<ui:define name="top">
 			<L1>PRODUCTOS</L1>
-			<div class="divrcorners">
+			<div class="divrcorners2">
 			<em:tableviewcomp id="listaproductos" bean="#{availabilityManagementBB}"
 				lista="#{availabilityManagementBB.listaProductosTO}">
 				<p:ajax event="actionevent" execute="listaarticulos"></p:ajax>
@@ -36,7 +36,7 @@
 		</ui:define>
 		<ui:define name="right">
 			<l1>OFERTAS</l1>
-			<div class="divrcorners">
+			<div class="divrcorners3">
 			<em:tableviewcomp id="listaofertas" bean="#{availabilityManagementBB}"
 				lista="#{availabilityManagementBB.listaOfertasTO}"></em:tableviewcomp>
 				</div>

@@ -17,10 +17,18 @@
 	<ui:composition template="../templates/templatePurchaseView.xhtml">
 		
 		<ui:define name="order">
+		
 			<p:form>
-				<p:commandButton class="botonrcorner" value="Confirmar"
+				<p:commandButton class="botonrcorner" value="Confirmar sin pagar"
 					action="#{purchaseViewBB.purchaseConfirm}"></p:commandButton>
+			
+				<p:commandButton class="botonrcorner" value="Simula pago OK"
+					action="#{purchaseViewBB.simulaPagoOK()}"></p:commandButton>
+				
+				<p:commandButton class="botonrcorner" value="Simula pago KO"
+					action="#{purchaseViewBB.simulaPagoKO()}"></p:commandButton>
 				<br />
+				<p:button id="stripebutton" value="Pagar con Stripe"></p:button><br />
 				<p:outputText value="Order id: "></p:outputText>
 				<p:outputText value="#{purchaseViewBB.getOrder().id}"></p:outputText>
 				<br />
@@ -28,6 +36,7 @@
 		</ui:define>
 
 		<ui:define name="client">
+		
 			<em:outputusercomp label1="Nick: "
 				text1="#{purchaseViewBB.getUser().nick}" label2="Name: "
 				text2="#{purchaseViewBB.getUser().name}" label3="Email: "
@@ -35,19 +44,22 @@
 		</ui:define>
 
 		<ui:define id="deliverydetails" name="delivery">
+		
 			<em:inputdeliverydetailscomp titulotexto1="Direccion de envio: "
 				texto1="#{purchaseViewBB.deliveryAddress}"
 				titulotexto2="Comentarios: "
 				texto2="#{purchaseViewBB.remark}"
 				titulo3="Tipo de envio: "
 				texto3="#{purchaseViewBB.deliveryType}" 
-				buttonclass="botonrcorner">
+				buttonclass="botonrcorner"
+				inputtextclass="inputtext">
 				
 <!-- 				<core:ajax event="modificado" execute="deliverydetails"></core:ajax> -->
 			</em:inputdeliverydetailscomp>
 		</ui:define>
 
 		<ui:define name="cart">
+		
 			<em:outputcartcomp titulo1="Numero de items: "
 				texto1="#{purchaseViewBB.getCart().getListaOfertas().size()}"
 				titulo2="Precio total: " texto2="#{purchaseViewBB.getCart().value}"

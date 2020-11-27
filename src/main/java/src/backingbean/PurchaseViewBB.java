@@ -32,8 +32,16 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		System.out.println("PURCHASEVIEWBB - purchaseConfirm() - " + new Date() + " - order= " + getOrder());		
 		System.out.println("remark = " + getOrder().getDeliveryDetails().getRemark());		
 
-		shoppingFacade.setOrder(getOrder());
+		//shoppingFacade.setOrder(getOrder());
 		return shoppingFacade.purchaseConfirm();		
+	}
+	
+	public String simulaPagoOK(){		
+		return "pagoOK";
+	}
+	
+	public String simulaPagoKO(){		
+		return "pagoKO";
 	}
 	
 	public Order getOrder(){

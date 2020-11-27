@@ -1,12 +1,10 @@
 package src.shopping.impl;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
@@ -136,6 +134,12 @@ public class ShoppingFacade implements IShoppingFacade{
 	public String deleteOrder(Order order) {
 		purchaseManager.deleteOrder(order);
 		return "purchasedetailview";
+	}
+
+	@Override
+	public String setPaymentProcessOK(Boolean result) {
+		purchaseManager.setPaymentProcessOK(result);
+		return purchaseManager.confirm();
 	}
 
 

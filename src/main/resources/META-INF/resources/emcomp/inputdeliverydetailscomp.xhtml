@@ -19,6 +19,8 @@
 		<composite:attribute name="titulotexto3" default="Tipo de envio: "></composite:attribute>
 		<composite:attribute name="texto3"></composite:attribute>
 		<composite:attribute  name="buttonclass"></composite:attribute>
+		<composite:attribute  name="inputtextclass"></composite:attribute>
+		
 		<!-- 		<composite:attribute name="lista" type="java.util.List"></composite:attribute> -->
 
 <!-- 		<composite:attribute name="bean" type="src.backingbean.PurchaseViewBB"></composite:attribute> -->
@@ -32,12 +34,12 @@
 	
 	<p:form id="formulario">
 			<p:outputText value="#{cc.attrs.titulotexto1}"></p:outputText><br/>
-			<p:inputTextarea id="it_texto1" value="#{cc.attrs.texto1}"></p:inputTextarea><br/>
+			<p:inputTextarea class="#{cc.attrs.inputtextclass}" id="it_texto1" value="#{cc.attrs.texto1}"></p:inputTextarea><br/>
 			<p:outputText value="#{cc.attrs.titulotexto2}"></p:outputText><br/>
-			<p:inputTextarea id="it_text2" value="#{cc.attrs.texto2}" required="true"></p:inputTextarea><br/>
+			<p:inputTextarea class="#{cc.attrs.inputtextclass}" id="it_text2" value="#{cc.attrs.texto2}" required="true"></p:inputTextarea><br/>
 			
 			<p:outputText value="#{cc.attrs.titulotexto3}"></p:outputText><br/>
-			<p:inputText id="it_seleccion" value="#{cc.attrs.texto3}"></p:inputText><br/>
+			<p:inputText class="#{cc.attrs.inputtextclass}" id="it_seleccion" value="#{cc.attrs.texto3}"></p:inputText><br/>
 			<p:commandButton class="#{cc.attrs.buttonclass}" value="actualizar datos de envio" ></p:commandButton><br/>
 
 			<!-- 			<p:selectOneListbox value="#{cc.attrs.selecction}"> -->
