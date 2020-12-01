@@ -12,7 +12,7 @@ import javax.ejb.Singleton;
 @Singleton
 public class ScheduledBean {
 	
-	@Schedule(second="*", persistent=false)
+//	@Schedule(second="*", persistent=false)
 	public void hazloatiempo(){
 		System.out.println(new Date() + " - ***************************** TODOVABIEN ***************************** - " + new Date() );
 		

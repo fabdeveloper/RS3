@@ -21,7 +21,7 @@ public class TimedBean {
 	
 	@PostConstruct
 	public void init(){
-		ts.createIntervalTimer(1000, 1000, new TimerConfig());
+//		ts.createIntervalTimer(1000, 1000, new TimerConfig());
 	}
 	
 	

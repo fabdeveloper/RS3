@@ -3,6 +3,7 @@ package src.dao;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,9 +11,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import src.inter.IServiceLocator;
+import src.interceptors.AuditInterceptor;
 import src.service.ServiceLocator;
 
-
+@Interceptors(value=AuditInterceptor.class)
 public abstract class AbstractDao<T> implements IDao<T> {
 	
 	@Inject
@@ -33,7 +35,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
 		return em;
 	}
 	
-	
+	@Interceptors(value=AuditInterceptor.class)
 	@Override
 	public void create(T entity){
 		getEntityManager().persist(entity);		
