@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 import javax.transaction.Transactional;
 
 import src.entity.Cart;
@@ -14,6 +15,7 @@ import src.entity.DeliveryDetails;
 import src.entity.Order;
 import src.entity.User;
 import src.inter.IProcessable;
+import src.interceptors.AuditInterceptor;
 import src.shopping.inter.IShoppingFacade;
 
 
@@ -26,11 +28,10 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
+	@Interceptors({AuditInterceptor.class})
 	@Transactional
 	public String purchaseConfirm(){
-		System.out.println("remark = " + order.getDeliveryDetails().getRemark());	
 		System.out.println("PURCHASEVIEWBB - purchaseConfirm() - " + new Date() + " - order= " + getOrder());		
-		System.out.println("remark = " + getOrder().getDeliveryDetails().getRemark());		
 
 		//shoppingFacade.setOrder(getOrder());
 		return shoppingFacade.purchaseConfirm();		

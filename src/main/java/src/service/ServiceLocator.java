@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
 import src.entity.Articulo;
 import src.entity.Cart;
@@ -30,6 +31,8 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	
 	@Resource
 	private SessionContext ctx;
+	
+	private HttpServletRequest httpServletRequest;
 	
 	@PersistenceContext(unitName="RS3_PU")
 	private EntityManager em;
@@ -113,6 +116,11 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Override
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices() {
 		return deliveryDetailsServices;
+	}
+	
+	@Override
+	public @Inject HttpServletRequest getRequest(){
+		return httpServletRequest;
 	}
 
 

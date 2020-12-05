@@ -1,7 +1,9 @@
 package src.inter;
 
 import javax.ejb.SessionContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 
 import src.entity.Articulo;
 import src.entity.Cart;
@@ -39,6 +41,8 @@ public interface IServiceLocator {
 	public IEntityServices<PurchaseStatus> getPurchaseStatusServices();
 
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices();
+	
+	public HttpServletRequest getRequest();
 
 
 	

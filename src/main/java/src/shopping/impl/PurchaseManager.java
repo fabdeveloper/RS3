@@ -102,6 +102,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 			order.setClient(user);
 //		}
+		
 
 	}
 	

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp">
+<p:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+		<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>
+
+</p:head>
+<p:body>
+
+<em:slideShowComp
+
+bean="#{availabilityManagementBB}"
+lista="#{availabilityManagementBB.listaProductosTO}"
+divclass="divslide"
+boton1class="botonslide"
+boton2class="botonslide"
+boton1text="I"
+boton2text="D"
+
+
+></em:slideShowComp>
+
+
+</p:body>
+</html>
