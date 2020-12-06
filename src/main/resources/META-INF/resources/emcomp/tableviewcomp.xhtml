@@ -22,20 +22,24 @@
 	<composite:implementation>
 	<table>
 	<tbody>
-	<tr>
-		<ui:repeat value="#{cc.attrs.lista}" var="objeto">
-		<td>
-			<em:ofertaviewcomp id="itemview"  urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
-					textcenter="#{objeto.textcenter}" textbottom="#{objeto.textbottom}"
-					bean="#{cc.attrs.bean}" ofid="#{objeto.ofid}"
-					textobotonenviar="#{objeto.textobotonenviar}"
-					botonclass="#{cc.attrs.botonclass}"></em:ofertaviewcomp>
-					</td>
-					</ui:repeat>
-					</tr>
-					</tbody>
+		<tr>
+			<ui:repeat value="#{cc.attrs.lista}" var="objeto">
+				<td>
+					<em:ofertaviewcomp id="itemview"  
+							urlimage="#{objeto.urlimage}" 
+							texttop="#{objeto.texttop}"
+							textcenter="#{objeto.textcenter}" 
+							textbottom="#{objeto.textbottom}"
+							bean="#{cc.attrs.bean}" ofid="#{objeto.ofid}"
+							textobotonenviar="#{objeto.textobotonenviar}"
+							botonclass="#{cc.attrs.botonclass}"
+							></em:ofertaviewcomp>
+				</td>
+			</ui:repeat>
+		</tr>
+	</tbody>
 					
-					</table>
+	</table>
 	</composite:implementation>
 
 </p:body>

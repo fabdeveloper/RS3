@@ -17,13 +17,14 @@
 		<composite:attribute name="ofid" type="java.lang.String"></composite:attribute>
 		<composite:attribute name="textobotonenviar" required="false" type="java.lang.String"></composite:attribute>
 
-		<composite:attribute name="botonclass" default="botonrcorner"></composite:attribute>
+		<composite:attribute name="botonclass" default="botonclass"></composite:attribute>
+		<composite:attribute name="divclass" default="divclass"></composite:attribute>
 
 
 		<composite:clientBehavior name="itemviewaction" event="action" target="formulario"></composite:clientBehavior>
 	</composite:interface>
 	<composite:implementation>
-		<div style="height: 137px; width: 178px">
+		<div class="#{cc.attrs.divclass}" style="height: 80%; width: 250px; text-align:center;">
 			<p:form id="formulario" method="post">
 				<p:graphicImage style="width: 139px; height: 125px; " url="#{cc.attrs.urlimage}"></p:graphicImage><br/>				
 				<p:outputText value="#{cc.attrs.texttop}"></p:outputText><br/>

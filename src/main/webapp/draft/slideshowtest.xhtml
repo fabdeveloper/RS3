@@ -7,22 +7,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 		<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>
-
 </p:head>
 <p:body>
-
-<em:slideShowComp
-
-bean="#{availabilityManagementBB}"
-lista="#{availabilityManagementBB.listaProductosTO}"
-divclass="divslide"
-boton1class="botonslide"
-boton2class="botonslide"
-boton1text="I"
-boton2text="D"
-
-
-></em:slideShowComp>
+	<em:slideShowComp	
+		bean="#{availabilityManagementBB}"
+		lista="#{availabilityManagementBB.listaProductosTO}"
+		divclass="divslide"
+		boton1class="botonslide"
+		boton2class="botonslide margenderecho"
+		boton1text="I"
+		boton2text="D"	
+	
+	></em:slideShowComp>
+	<br/>
+		<em:slideShowComp	
+		bean="#{availabilityManagementBB}"
+		lista="#{availabilityManagementBB.listaProductosTO}"
+		divclass="divpannelclass"
+		boton1class="botonslide"
+		boton2class="botonslide margenderecho"
+		boton1text="I"
+		boton2text="D"	
+	
+	></em:slideShowComp>
 
 
 </p:body>
