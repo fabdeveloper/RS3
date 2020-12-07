@@ -4,8 +4,6 @@
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  height: 250px;
-  position: relative;
   cursor: pointer;
   padding: 20px 7px;
   overflow: hidden;

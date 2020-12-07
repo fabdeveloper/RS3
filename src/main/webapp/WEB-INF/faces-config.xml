@@ -13,7 +13,7 @@
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
 		   <from-outcome>cartview</from-outcome>
-		   <to-view-id>/shopping/cartvaluedview.xhtml</to-view-id>
+		   <to-view-id>/shopping/CartView.xhtml</to-view-id>
 	   </navigation-case> 
 
    </navigation-rule>
@@ -23,7 +23,7 @@
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
 		   <from-outcome>availview</from-outcome>
-		   <to-view-id>/testdef.xhtml</to-view-id>
+		   <to-view-id>/shopping/AvailabilityView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    

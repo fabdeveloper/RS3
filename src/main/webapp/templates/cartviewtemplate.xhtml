@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>cart view template</title>
+	<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>	
+</p:head>
+
+<p:body>
+
+
+	<div class="divclass" style="width:100%; height:100%;">
+		<div class="divclass magenizquierdo margensuperior" style="width:70%; position:absolute; display:block;">
+			<div class="divclass" >
+			
+				<p>listado de ofertas</p>			
+				<ui:insert name="listado de ofertas"></ui:insert>
+			</div><br/>
+			
+			<div class="divclass">
+				<p>Totales</p>
+				<ui:insert name="totales"></ui:insert>
+			</div>
+		</div>
+		
+		<div class="divclass margenderecho margensuperior" style="width:30%; position:absolute; display:block;">	
+			<div class="divclass" style="height:30%;">
+				<p>confirmar</p>				
+				<ui:insert name="confirmar compra"></ui:insert>
+			</div>
+			<br/>
+			
+			<div class="divclass">	
+				<p>otra informacion</p>				
+				<ui:insert name="otra informacion"></ui:insert>
+			</div>
+		
+		</div>		
+	</div>
+
+</p:body>
+</html>
