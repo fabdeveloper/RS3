@@ -21,11 +21,33 @@
 			></em:cartlistaofertascomp>			
 		</ui:define>
 
+		<ui:define name="totales">		
+		
+			<em:output4botoncomp
+				texto1="Numero de articulos : "
+				texto2="#{cartValuedBB.getCart().getListaOfertas().size()}"
+				texto3="Precio total : "
+				texto4="#{cartValuedBB.getCart().getValue()}"
+				bean="#{cartValuedBB}"
+				botonclass="botonclass"
+				botontext="Confirmar compra"				
+			></em:output4botoncomp>		
+		
+		</ui:define>
+
 		<ui:define name="confirmar compra">
 		
-			<p:form>
-				<p:commandButton value="confirmar compra" action="#{cartValuedBB.createOrder()}"></p:commandButton>
-			</p:form>
+		<em:output4botoncomp
+			texto1="Numero de articulos : "
+			texto2="#{cartValuedBB.getCart().getListaOfertas().size()}"
+			texto3="Precio total : "
+			texto4="#{cartValuedBB.getCart().getValue()}"
+			bean="#{cartValuedBB}"
+			botonclass="botonclass"
+			botontext="Confirmar compra"	
+		
+		></em:output4botoncomp>
+
 		</ui:define>
 		<ui:define name="otra informacion">
 

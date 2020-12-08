@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>PurchaseView 2</title>
+</head>
+<p:body>
+
+	<ui:composition template="../templates/PurchaseViewTemplate.xhtml">
+
+
+		<ui:define name="datos de usuario">
+		
+		<em:outputusercomp label1="Nick: "
+				text1="#{purchaseViewBB.getUser().nick}" label2="Name: "
+				text2="#{purchaseViewBB.getUser().name}" label3="Email: "
+				text3="#{purchaseViewBB.getUser().email}"></em:outputusercomp>
+		
+		
+		</ui:define>
+		
+		<ui:define name="datos de entrega">
+		
+					<em:inputdeliverydetailscomp titulotexto1="Direccion de envio: "
+				texto1="#{purchaseViewBB.deliveryAddress}"
+				titulotexto2="Comentarios: "
+				texto2="#{purchaseViewBB.remark}"
+				titulo3="Tipo de envio: "
+				texto3="#{purchaseViewBB.deliveryType}" 
+				buttonclass="botonclass"
+				inputtextclass="inputclass">
+				
+<!-- 				<core:ajax event="modificado" execute="deliverydetails"></core:ajax> -->
+			</em:inputdeliverydetailscomp>
+		
+		</ui:define>
+		
+		<ui:define name="listado de articulos">		
+		listado de articulos
+		</ui:define>		
+		<ui:define name="totales">
+		totales
+		</ui:define>
+		<ui:define name="otros datos">
+		otros datos
+		</ui:define>
+		<ui:define name="columna izquierda">columna izquierda</ui:define>
+		<ui:define name="columna derecha">columna derecha</ui:define>
+
+
+
+
+	</ui:composition>
+
+
+
+
+
+
+
+
+</p:body>
+</html>
