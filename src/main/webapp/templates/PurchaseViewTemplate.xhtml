@@ -10,13 +10,14 @@
 	
 </p:head>
 <p:body>
-	<div class="divclass" style="display:inline;">
-		<div id="columnaizquierda" class="divclass" style="width:20%;position:absolute;float:left;display:block;"><ui:insert name="columna izquierda"></ui:insert></div>
-		<div id="columnaderecha" class="divclass" style="right:0px;width:20%;position:absolute;"><ui:insert name="columna derecha"></ui:insert></div>
+	<div class="divclass" >
+		<div id="columnaizquierda" class="divclass margenizquierdo" style="width:20%;"><ui:insert name="columna izquierda"></ui:insert></div>
+		<div id="columnaderecha" class="divclass margenderecho" style="width:15%;"><ui:insert name="columna derecha"></ui:insert></div>
 			
 			
 			
-		<div id="columnacentral" class="divclass margensuperior" style="margin:auto;text-align:center;width:70%;position:absolute;display:block;">
+		<div id="columnacentral" class="divclass centradohorizontal" 
+			style="text-align:center;width:60%;">
 	
 			
 			<ui:insert name="datos de usuario"></ui:insert>	

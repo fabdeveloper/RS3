@@ -142,9 +142,15 @@
   background: none;
 }
 
-
+.centradohorizontal{
+	
+	margin-left: auto;
+	margin-right: auto; 
+}
 .margenizquierdo {
 	left:0;
+	right:auto;
+	float:left;
 }
 
 .margenderecho {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Purchase Detail</title>
+	<p:outputStylesheet library="css" name="slideshowcontrol.css"></p:outputStylesheet>
+
+</p:head>
+<p:body>
+	<ui:composition template="../templates/ColumnDataViewTemplate.xhtml">
+
+
+		<ui:define name="bloque1"></ui:define>
+
+<!-- 
+		<ui:define name="findorder">
+		<div class="divauto">
+			<em:inputtext1fieldcomp
+				label="localizador del pedido"
+				text="#{purchaseDetailViewBB.localizador}"
+				buttontext="Buscar pedido"
+				bean="#{purchaseDetailViewBB}"
+				buttonclass="botonrcorner"
+				inputtextclass="inputtext"
+			></em:inputtext1fieldcomp>
+			</div>
+		</ui:define>
+		<ui:define name="cancel-modify">
+			<div class="divauto">
+			<p:form>
+					<p:commandButton class="botonrcorner" value="Cancel Order" action="#{purchaseDetailViewBB.cancelOrder()}"></p:commandButton>
+					<p:commandButton class="botonrcorner" value="Modify Order" action="#{purchaseDetailViewBB.modifyOrder()}"></p:commandButton>
+				</p:form>
+			</div>
+		</ui:define>
+		<ui:define name="order">
+		<div class="divauto">
+			<em:output3fieldscom
+				at1="Identificador: "
+				at2="#{purchaseDetailViewBB.orderId}"
+				at3="Fecha de confirmacion: "
+				at4="#{purchaseDetailViewBB.confirmationDate}"
+				at5="Estado: "
+				at6="#{purchaseDetailViewBB.orderStatus}"
+			></em:output3fieldscom>
+			</div>
+		</ui:define>		
+		<ui:define name="client">
+		<div class="divauto">
+			<em:output6fieldscom
+				at1="Cliente: "
+				at2="#{purchaseDetailViewBB.clientName}"
+				at3="Nick: "
+				at4="#{purchaseDetailViewBB.clientNick}"
+				at5="Direccion: "
+				at6="#{purchaseDetailViewBB.clientAddress}"
+				at7="Email: "
+				at8="#{purchaseDetailViewBB.clientEmail}"				
+
+			></em:output6fieldscom>
+			</div>
+		</ui:define>		
+		<ui:define name="delivery">
+		<div class="divauto">
+			<em:output3fieldscom
+				at1="Direccion de entrega: "
+				at2="#{purchaseDetailViewBB.deliveryAddress}"
+				at3="Comentarios de entrega: "
+				at4="#{purchaseDetailViewBB.deliveryRemarks}"
+				at5="Tipo de envio: "
+				at6="#{purchaseDetailViewBB.deliveryType}"
+			></em:output3fieldscom>	
+			</div>	
+		</ui:define>		
+		<ui:define name="cart">
+		<div class="divauto">
+			<em:outputcartcomp
+				titulo1="Numero de items: "
+				texto1="#{purchaseDetailViewBB.cartNumItems}"
+				titulo2="Precio total: "
+				texto2="#{purchaseDetailViewBB.cartTotalPrice}"
+				lista="#{purchaseDetailViewBB.cartItemsList}"		
+			></em:outputcartcomp>	
+			</div>	
+		</ui:define>
+
+
+
+ -->
+
+
+
+	</ui:composition>
+
+
+</p:body>
+</html>
