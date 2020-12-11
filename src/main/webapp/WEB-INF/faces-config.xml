@@ -30,7 +30,7 @@
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>purchaseview</from-outcome>
+		   <from-outcome>orderconfigview</from-outcome>
 		   <to-view-id>/shopping/PurchaseView2.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
@@ -46,8 +46,8 @@
       <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>purchasedetailview</from-outcome>
-		   <to-view-id>/shopping/PurchaseDetailView.xhtml</to-view-id>
+		   <from-outcome>ofertadetailview</from-outcome>
+		   <to-view-id>/shopping/OfertaView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    

@@ -28,8 +28,18 @@ public class ShoppingFacade implements IShoppingFacade{
 	private ICartManager cartManager;
 	@Inject
 	private IPurchaseManager purchaseManager;
-
 	
+	private Oferta ofertaSeleccionada;
+
+	@Override
+	public Oferta getOfertaSeleccionada() {
+		return ofertaSeleccionada;
+	}
+
+	public void setOfertaSeleccionada(Oferta ofertaSeleccionada) {
+		this.ofertaSeleccionada = ofertaSeleccionada;
+	}
+
 	@Override
 	public List<Product> getAvail() {
 		return availabilityManager.getAvail();
@@ -140,6 +150,12 @@ public class ShoppingFacade implements IShoppingFacade{
 	public String setPaymentProcessOK(Boolean result) {
 		purchaseManager.setPaymentProcessOK(result);
 		return purchaseManager.confirm();
+	}
+
+	@Override
+	public String showOfertaDetail(Oferta oferta) {
+		setOfertaSeleccionada(oferta);		
+		return "ofertadetailview";
 	}
 
 

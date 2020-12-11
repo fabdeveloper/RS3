@@ -69,7 +69,8 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			case "Oferta":
 				for(Oferta prod : listaOfertas){
 					if(prod.getId().toString().matches(id))
-					resp = addItemToCart(prod);
+						resp= verOfertaDetails(prod);
+//					resp = addItemToCart(prod);
 				}
 				break;
 				default:
@@ -79,6 +80,11 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 		return resp;
 	}
 
+	public String verOfertaDetails(Oferta oferta){
+		return shoppingFacade.showOfertaDetail(oferta);
+	}
+	
+	
 	public List<EntityViewTransferObject> getListaProductosTO() {
 		
 		listaProductosTO = new ArrayList<EntityViewTransferObject>();
