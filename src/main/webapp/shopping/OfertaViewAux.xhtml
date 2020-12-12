@@ -13,11 +13,22 @@
 	<ui:composition template="../templates/shop/OfertaViewAuxTemplate.xhtml">
 
 		<ui:define name="bloque1">	
-		bloque1	
+		bloque1			
 		</ui:define>
 
 		<ui:define name="bloque2">		
-		bloque2		
+		bloque2	
+		<em:output6fieldscom
+		
+		at1="ID : "
+		at2="#{ofertaViewBB.getOferta().getId()}"
+		at3="NAME : "
+		at4="#{ofertaViewBB.getOferta().getName()}"
+		at5="PRICE : "
+		at6="#{ofertaViewBB.getOferta().getPrecio()}"
+		
+		
+		></em:output6fieldscom>	
 		</ui:define>
 
 		<ui:define name="bloque3">

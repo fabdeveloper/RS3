@@ -22,7 +22,7 @@ public class OfertaViewBB {
 	
 	
 	public String addToCart(){
-		return shop.addItemToCart(oferta);
+		return shop.addItemToCart(getOferta());
 	}
 	
 	
@@ -40,13 +40,12 @@ public class OfertaViewBB {
 	}
 
 	public Oferta getOferta() {
+		if(oferta == null){
+			oferta = shop.getOfertaSeleccionada();
+		}
 		return oferta;
 	}
-	
-	@PostConstruct
-	public void setOferta() {
-		this.oferta = shop.getOfertaSeleccionada();
-	}
+
 
 	public void setOferta(Oferta oferta) {
 		this.oferta = oferta;

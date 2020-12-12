@@ -51,6 +51,7 @@ public class CartValuedBB implements IProcessable{
 
 	@Override
 	public String process(Object obj) {
+		// elimina la oferta del carrito
 		int indice = 0;
 		if(obj instanceof Integer){
 			indice = (Integer)obj;

@@ -1,10 +1,12 @@
 package src.shopping.impl;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
@@ -17,8 +19,8 @@ import src.shopping.inter.ICartManager;
 import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
 
-@RequestScoped
-public class ShoppingFacade implements IShoppingFacade{
+@SessionScoped
+public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
 	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
 	
@@ -156,6 +158,11 @@ public class ShoppingFacade implements IShoppingFacade{
 	public String showOfertaDetail(Oferta oferta) {
 		setOfertaSeleccionada(oferta);		
 		return "ofertadetailview";
+	}
+
+	@Override
+	public String showOrder() {
+		return "order";
 	}
 
 

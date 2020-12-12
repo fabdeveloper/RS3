@@ -140,7 +140,31 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 
 	@Override
 	public String process(Object obj) {
-		return null;
+		String retorno = "";
+		String id = "0";
+		if(obj instanceof Integer){ id = ((Integer) obj).toString(); }
+		if(obj instanceof String){	id = (String)obj; }	
+		switch(id){
+		case "1":
+			retorno = simulaPagoOk();
+			break;
+		case "2":
+			retorno = simulaPagoKo();
+			break;
+			default:;			
+		}
+		
+		return retorno;
+	}
+	
+	private String simulaPagoOk(){		
+		return shoppingFacade.purchaseConfirm();
+	}
+	
+	private String simulaPagoKo(){
+		
+		
+		return "";
 	}
 	
 	@Override

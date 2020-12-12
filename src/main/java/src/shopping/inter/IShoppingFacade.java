@@ -28,5 +28,6 @@ public interface IShoppingFacade {
 	public String setPaymentProcessOK(Boolean result);
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
+	public String showOrder();
 
 }

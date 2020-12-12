@@ -47,7 +47,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		setPurchaseStatus();
 		setDeliveryDetails();
 
-		return "purchaseview";
+		return "orderconfigview";
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			throw new RuntimeException("Payment Error");
 		}
 
-		return "purchaseview";
+		return "order";
 	}
 	
 	private boolean isPaymentProcessOK(){

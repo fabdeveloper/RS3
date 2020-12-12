@@ -95,8 +95,7 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 
 	@Override
 	public String process(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
+		return shoppingFacade.showOrder();
 	}
 
 }
