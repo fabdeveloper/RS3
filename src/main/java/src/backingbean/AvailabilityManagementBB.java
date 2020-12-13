@@ -97,7 +97,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			to.setTextcenter(item.getTipo());
 			to.setTextbottom("");
 			to.setTextobotonenviar("consulta");			
-			to.setUrlimage("image/image" + "Product" + item.getId());			
+			to.setUrlimage(item.getUrlImage());			
 			
 			listaProductosTO.add(to);			
 		}
@@ -116,7 +116,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			to.setTextcenter(item.getDescripcion());
 			to.setTextbottom(item.getProduct().getName());
 			to.setTextobotonenviar("consulta");			
-			to.setUrlimage("image/image" + "Articulo" + item.getId());			
+			to.setUrlimage(item.getUrlImage());			
 			
 			listaArticulosTO.add(to);			
 		}
@@ -135,7 +135,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			to.setTextcenter(item.getArticulo().getName());
 			to.setTextbottom(item.getPrecio().toString());
 			to.setTextobotonenviar("compra ya");			
-			to.setUrlimage("image/image" + "Product" + item.getId());			
+			to.setUrlimage(item.getUrlImage());			
 			
 			listaOfertasTO.add(to);			
 		}

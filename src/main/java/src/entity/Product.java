@@ -39,6 +39,9 @@ public class Product implements Serializable, Prototype<Product>{
 	
 	@Column(name="TIPO")
 	private String tipo;
+	
+	@Column(name="URL_IMAGE")
+	private String urlImage;
 
 //	@ManyToOne
 //	@JoinColumn(name="FK_STORE")
@@ -81,6 +84,14 @@ public class Product implements Serializable, Prototype<Product>{
 //		this.store = store;
 //	}
 	
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+
 	/*******************************************/
 
 	@Override

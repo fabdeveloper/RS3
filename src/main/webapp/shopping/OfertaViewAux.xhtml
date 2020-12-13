@@ -13,27 +13,38 @@
 	<ui:composition template="../templates/shop/OfertaViewAuxTemplate.xhtml">
 
 		<ui:define name="bloque1">	
-		bloque1			
+		<em:output6fieldscom
+		
+			at1="Id : "
+			at2="#{ofertaViewBB.getOferta().getId()}"
+			at3="Name : "
+			at4="#{ofertaViewBB.getOferta().getName()}"
+			at5="Price : "
+			at6="#{ofertaViewBB.getOferta().getPrecio()}"		
+		></em:output6fieldscom>		
+		<em:output6fieldscom
+		
+			at1="Description : "
+			at2="#{ofertaViewBB.getOferta().getDescripcion()}"
+			
+			at4="#{ofertaViewBB.getOferta().getArticulo().getName()}"
+			at5="#{ofertaViewBB.getOferta().getArticulo().getProduct().getName()}"
+			at6="Otra informacion de la oferta"		
+		></em:output6fieldscom>			
 		</ui:define>
 
 		<ui:define name="bloque2">		
-		bloque2	
-		<em:output6fieldscom
+			
+	
+		Ventajas - garantias - comentarios
 		
-		at1="ID : "
-		at2="#{ofertaViewBB.getOferta().getId()}"
-		at3="NAME : "
-		at4="#{ofertaViewBB.getOferta().getName()}"
-		at5="PRICE : "
-		at6="#{ofertaViewBB.getOferta().getPrecio()}"
-		
-		
-		></em:output6fieldscom>	
 		</ui:define>
 
 		<ui:define name="bloque3">
-			bloque3		
+					
 
+		articulos relacionados
+		
 		</ui:define>
 
 

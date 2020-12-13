@@ -20,8 +20,10 @@
 
 	<composite:implementation>
 <p:form>
-			<p:commandButton id="boton1" class="#{cc.attrs.buttonclass}" value="#{cc.attrs.textoboton1}" action="#{cc.attrs.bean.process(new java.util.Integer(1))}"></p:commandButton>
-			<p:commandButton id="boton2" class="#{cc.attrs.buttonclass}" value="#{cc.attrs.textoboton2}" action="#{cc.attrs.bean.process(new java.util.Integer(2))}"></p:commandButton>
+			<p:commandButton id="boton1" class="#{cc.attrs.buttonclass}" 
+			value="#{cc.attrs.textoboton1}" action="#{cc.attrs.bean.process(new java.util.Integer(1))}"></p:commandButton>
+			<p:commandButton id="boton2" class="#{cc.attrs.buttonclass}" 
+			value="#{cc.attrs.textoboton2}" action="#{cc.attrs.bean.process(new java.util.Integer(2))}"></p:commandButton>
 		</p:form>
 	</composite:implementation>
 </p:body>

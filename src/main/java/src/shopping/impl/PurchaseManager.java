@@ -57,8 +57,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 		if(isPaymentProcessOK()){ // OK
 			
-			order.getPurchaseStatus().setRemark("CONFIRMADO");
 			serviceLocator.getOrderServices().create(order); // graba la orden en DB
+			order.getPurchaseStatus().setRemark("CONFIRMADO");
+
 			
 		}else{  // PAYMENT ERROR
 			throw new RuntimeException("Payment Error");

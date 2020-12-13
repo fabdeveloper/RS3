@@ -6,7 +6,7 @@
 
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title>
+	<title>Item Cart Comp</title>
 </p:head>
 <p:body>
 	<composite:interface>
@@ -25,21 +25,20 @@
 		<composite:clientBehavior name="actioneventitemcartcomp" event="action" target="formitemcart"></composite:clientBehavior>
 	</composite:interface>
 	<composite:implementation>
-		<div class="#{cc.attrs.divclass}" >
-			<div style="width:20%;">
+		<div class="#{cc.attrs.divclass}" style="height:125px;" >
+			<div class= "margenizquierdo" style="width:20%;" >
 				<p:graphicImage url="#{cc.attrs.urlimage}"></p:graphicImage>
 			</div>
-			<div style="with:70%">
+			<div class="divclass margenderecho" style="width:60%;">
 			<p:outputText value="#{cc.attrs.texto1}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto2}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto3}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/>
-			</div>
 			<p:form id="formitemcart">
+				<p:commandButton class="#{cc.attrs.botonclass}" style="float:right;"  value="#{cc.attrs.textoboton}" action="#{cc.attrs.bean.process(cc.attrs.iditem)}"></p:commandButton>
 
-			<p:commandButton class="#{cc.attrs.botonclass}" style="float:right;"  value="#{cc.attrs.textoboton}" action="#{cc.attrs.bean.process(cc.attrs.iditem)}"></p:commandButton>
-
-		</p:form>
+			</p:form>
+			</div>
 		</div>
 	</composite:implementation>
 

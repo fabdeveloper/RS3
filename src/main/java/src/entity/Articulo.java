@@ -49,6 +49,9 @@ public class Articulo implements Serializable, Prototype<Articulo>{
 	@Column(name="price")
 	private Float price;
 	
+	@Column(name="URL_IMAGE")
+	private String urlImage;
+	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="articulo")
 	private List<Atributo> listaAtributos;
 	
@@ -107,6 +110,14 @@ public class Articulo implements Serializable, Prototype<Articulo>{
 	
 	
 	
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
 
 	@Override
 	public Articulo clone(){

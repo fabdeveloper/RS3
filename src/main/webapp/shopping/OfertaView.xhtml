@@ -12,25 +12,20 @@
 <p:body>
 	<ui:composition template="../templates/shop/OfertaViewTemplate.xhtml">
 
-		<ui:define name="columna central">	
-		definicion columna central	
+		<ui:define name="columna central">				
 		<ui:include src="OfertaViewAux.xhtml"></ui:include>
 		</ui:define>
 
 		<ui:define name="columna izquierda">		
-		definicion columna izquierda
 		
+		<p:graphicImage  url="#{ofertaViewBB.getOferta().getUrlImage()}" style="height:50%;"> </p:graphicImage>
 		</ui:define>
 
-		<ui:define name="columna derecha">
-			definicion columna derecha
+		<ui:define name="columna derecha">			
 			<p:form>
 				<p:commandButton class="botonclass" id="botonaddtocart" value="agregar al carrito" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
 			</p:form>
 		</ui:define>
-
-
-
 	</ui:composition>
 </p:body>
 </html>
