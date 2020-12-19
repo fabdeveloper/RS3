@@ -7,6 +7,7 @@ import src.entity.Cart;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
+import src.inter.IServiceLocator;
 
 public interface IShoppingFacade {
 	
@@ -29,5 +30,7 @@ public interface IShoppingFacade {
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
 	public String showOrder();
+	public String nuevaCompra();
+	public IServiceLocator getServiceLocator();
 
 }

@@ -81,7 +81,16 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	}
 
 	public String verOfertaDetails(Oferta oferta){
-		return shoppingFacade.showOfertaDetail(oferta);
+		String retorno = null;
+		
+		try {
+			retorno = shoppingFacade.showOfertaDetail(oferta);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return retorno;
 	}
 	
 	

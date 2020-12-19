@@ -39,7 +39,7 @@
     
    
     <form-login-config>
-    <form-login-page>/login/LoginForm.xhtml</form-login-page>
+    <form-login-page>/login/login.html</form-login-page>
     <form-error-page>/login/error.xhtml</form-error-page>
     
     </form-login-config>  

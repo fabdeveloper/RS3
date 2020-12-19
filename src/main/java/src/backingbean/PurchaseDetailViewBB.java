@@ -182,6 +182,10 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return shoppingFacade.deleteOrder(order);
 	}
 	
+	public String nuevaCompra(){
+		return shoppingFacade.nuevaCompra();
+	}
+	
 	
 
 }

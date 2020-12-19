@@ -20,7 +20,7 @@ public class CartValuedBB implements IProcessable{
 	
 	
 	public String moreItems(){
-		return "availview";
+		return shoppingFacade.getServiceLocator().getViewStateMachine().setAvailabilityView();
 	}
 	
 	public void removeItem(Oferta oferta){

@@ -47,7 +47,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		setPurchaseStatus();
 		setDeliveryDetails();
 
-		return "orderconfigview";
+		return serviceLocator.getViewStateMachine().setConfigView();
 	}
 
 	@Override
@@ -61,11 +61,12 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			order.getPurchaseStatus().setRemark("CONFIRMADO");
 
 			
+			
 		}else{  // PAYMENT ERROR
 			throw new RuntimeException("Payment Error");
 		}
 
-		return "order";
+		return serviceLocator.getViewStateMachine().setOrderView();
 	}
 	
 	private boolean isPaymentProcessOK(){
@@ -209,6 +210,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		order.getPurchaseStatus().setRemark("DELETED");
 		setOrder(order);		
 		return order;
+	}
+
+	@Override
+	public void reset() {
+		this.order = null;
 	}
 
 

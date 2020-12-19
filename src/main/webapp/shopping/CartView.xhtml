@@ -49,9 +49,13 @@
 		></em:output4botoncomp>
 
 		</ui:define>
-		<ui:define name="otra informacion">
+		<ui:define name="columna izquierda">
+		
+		<p:form>
+				<p:commandButton id="botonvaciarcarrito" class="botonclass" value="Vaciar carrito" action="#{cartValuedBB.reset}"></p:commandButton>
+				<p:commandButton id="botoncomprarmas" class="botonclass" value="Comprar mas" action="#{cartValuedBB.moreItems}"></p:commandButton>
+			</p:form>
 
-			<ui:include src="cartvaluedview.xhtml"></ui:include>
 		</ui:define>
 
 

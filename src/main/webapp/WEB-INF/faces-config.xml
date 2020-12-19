@@ -22,7 +22,7 @@
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>availview</from-outcome>
+		   <from-outcome>availabilityview</from-outcome>
 		   <to-view-id>/shopping/AvailabilityView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
@@ -30,7 +30,7 @@
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>orderconfigview</from-outcome>
+		   <from-outcome>configview</from-outcome>
 		   <to-view-id>/shopping/ConfigView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
@@ -38,7 +38,7 @@
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>order</from-outcome>
+		   <from-outcome>orderview</from-outcome>
 		   <to-view-id>/shopping/OrderView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
@@ -46,7 +46,7 @@
       <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>ofertadetailview</from-outcome>
+		   <from-outcome>ofertaview</from-outcome>
 		   <to-view-id>/shopping/OfertaView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>

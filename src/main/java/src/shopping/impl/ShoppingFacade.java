@@ -14,6 +14,7 @@ import src.entity.Cart;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
+import src.inter.IServiceLocator;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.IShoppingFacade;
@@ -24,6 +25,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
 	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
 	
+	@Inject private IServiceLocator serviceLocator;
 	@Inject
 	private IAvailabilityManager availabilityManager;
 	@Inject
@@ -60,7 +62,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String addItemToCart(Oferta item) {
 		cartManager.addItem(item);
-		return "cartview";
+		return serviceLocator.getViewStateMachine().setCartView();
 	}
 
 	@Override
@@ -132,20 +134,20 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		
 		logger.log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
 
-		return "purchasedetailview";
+		return serviceLocator.getViewStateMachine().setOrderView();
 	}
 
 	@Override
 	public String cancelOrder(Integer order_id) {
 		purchaseManager.cancelOrder(order_id);
-		return "purchasedetailview";
+		return serviceLocator.getViewStateMachine().setOrderView();
 
 	}
 
 	@Override
 	public String deleteOrder(Order order) {
 		purchaseManager.deleteOrder(order);
-		return "purchasedetailview";
+		return serviceLocator.getViewStateMachine().setOrderView();
 	}
 
 	@Override
@@ -157,12 +159,24 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String showOfertaDetail(Oferta oferta) {
 		setOfertaSeleccionada(oferta);		
-		return "ofertadetailview";
+		return serviceLocator.getViewStateMachine().setOfertaView();
 	}
 
 	@Override
 	public String showOrder() {
-		return "order";
+		return serviceLocator.getViewStateMachine().setOrderView();
+	}
+
+	@Override
+	public String nuevaCompra() {
+		cartManager.reset();
+		purchaseManager.reset();
+		return serviceLocator.getViewStateMachine().setAvailabilityView();
+	}
+
+	@Override
+	public IServiceLocator getServiceLocator() {
+		return serviceLocator;
 	}
 
 

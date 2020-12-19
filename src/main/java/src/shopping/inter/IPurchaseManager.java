@@ -21,5 +21,6 @@ public interface IPurchaseManager {
 	public Order deleteOrder(Order order);
 	public Boolean getPaymentProcessOK();
 	public void setPaymentProcessOK(Boolean result);
+	public void reset();
 
 }

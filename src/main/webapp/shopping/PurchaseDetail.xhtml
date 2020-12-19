@@ -22,7 +22,6 @@
 <!-- 		<ui:define name="order"> -->
 		<ui:define name="bloque1">
 		
-		<div class="divclass">
 			<em:output3fieldscom
 				at1="Identificador: "
 				at2="#{purchaseDetailViewBB.orderId}"
@@ -31,13 +30,11 @@
 				at5="Estado: "
 				at6="#{purchaseDetailViewBB.orderStatus}"
 			></em:output3fieldscom>
-			</div>
 		</ui:define>	
 			
 <!-- 		<ui:define name="client"> -->
 		<ui:define name="bloque4">
 		
-		<div class="divclass">
 			<em:output6fieldscom
 				at1="Cliente: "
 				at2="#{purchaseDetailViewBB.clientName}"
@@ -49,13 +46,11 @@
 				at8="#{purchaseDetailViewBB.clientEmail}"				
 
 			></em:output6fieldscom>
-			</div>
 		</ui:define>	
 			
 <!-- 		<ui:define name="delivery"> -->
 		<ui:define name="bloque3">
 		
-		<div class="divclass">
 			<em:output3fieldscom
 				at1="Direccion de entrega: "
 				at2="#{purchaseDetailViewBB.deliveryAddress}"
@@ -64,13 +59,11 @@
 				at5="Tipo de envio: "
 				at6="#{purchaseDetailViewBB.deliveryType}"
 			></em:output3fieldscom>	
-			</div>	
 		</ui:define>
 				
 <!-- 		<ui:define name="cart"> -->
 		<ui:define name="bloque2">
 		
-		<div class="divclass">
 			<em:outputcartcomp
 				titulo1="Numero de items: "
 				texto1="#{purchaseDetailViewBB.cartNumItems}"
@@ -78,7 +71,6 @@
 				texto2="#{purchaseDetailViewBB.cartTotalPrice}"
 				lista="#{purchaseDetailViewBB.cartItemsList}"		
 			></em:outputcartcomp>	
-			</div>	
 		</ui:define>
 
 

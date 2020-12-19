@@ -17,7 +17,12 @@
 		</ui:define>
 		
 	
-		<ui:define name="columna izquierda">columna izquierda</ui:define>
+		<ui:define name="columna izquierda">
+			<p:form>
+			<p:commandButton id="botondestroy" class="botonclass" value="Destruir compra" action="#{purchaseDetailViewBB.nuevaCompra()}"></p:commandButton>
+		</p:form>
+		
+		</ui:define>
 		<ui:define name="columna derecha">			
 			<p:form>
 				<p:commandButton id="botonok" class="botonclass" value="simula pago OK" action="#{purchaseDetailViewBB.simulaPagoOk()}"></p:commandButton>

@@ -24,9 +24,9 @@ import src.entity.User;
 import src.entityservices.IEntityServices;
 import src.inter.IEncripter;
 import src.inter.IServiceLocator;
+import src.shopping.inter.IViewStateMachine;
 
 @Singleton
-//@SessionScoped
 public class ServiceLocator implements IServiceLocator, Serializable{
 	
 	@Resource
@@ -57,6 +57,9 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	private IEntityServices<PurchaseStatus> purchaseStatusServices;
 	@Inject 
 	private IEntityServices<DeliveryDetails> deliveryDetailsServices;
+	
+	@Inject
+	private IViewStateMachine viewStateMachine;
 	
 	@Override 
 	public SessionContext getSessionContext(){
@@ -121,6 +124,11 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Override
 	public @Inject HttpServletRequest getRequest(){
 		return httpServletRequest;
+	}
+
+	@Override
+	public IViewStateMachine getViewStateMachine() {
+		return viewStateMachine;
 	}
 
 
