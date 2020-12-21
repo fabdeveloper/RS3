@@ -49,6 +49,19 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 	private String urlImage;
 	
 	
+	@Column(name="URL_IMAGE_BIG")
+	private String urlImagebig;
+	
+	public String getUrlImagebig() {
+		return urlImagebig;
+	}
+
+
+	public void setUrlImagebig(String urlImagebig) {
+		this.urlImagebig = urlImagebig;
+	}
+
+
 	@Override
 	public Oferta clone(){
 		Oferta oferta = new Oferta();
@@ -58,6 +71,8 @@ public class Oferta implements Serializable, Prototype<Oferta>{
 		oferta.setPrecio(this.getPrecio());
 		oferta.setArticulo(this.getArticulo());
 		oferta.setUrlImage(this.getUrlImage());
+		oferta.setUrlImagebig(this.getUrlImagebig());
+
 
 		return oferta;
 	}
