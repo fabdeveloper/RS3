@@ -4,21 +4,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Home</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<ui:composition template="templates/hometemplate.xhtml">
+	<ui:composition template="bodytemplate.xhtml">
+	<ui:define name="columna central">
+	<ui:include src="../shopping/AvailabilityView.xhtml"></ui:include>
 	
-	<ui:define name="searchbar">	
-		<ui:include src="login/LoginForm.xhtml"></ui:include>	
-	</ui:define>
 	
-	<ui:define name="body">
-		<ui:include src="home/body.xhtml"></ui:include>		
 	</ui:define>
 	
 	
 	</ui:composition>
-
 </body>
 </html>

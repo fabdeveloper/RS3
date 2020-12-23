@@ -5,6 +5,25 @@
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp"	
 	xmlns:composite="http://java.sun.com/jsf/composite">	
 	
+	<script type="text/javascript">
+	
+		var panel = document.getElementById("divpanel");
+		var velocidad = 10;
+		
+		function iralaizquierda(){
+		alert("a la izquierda");
+			var vi = velocidad*(-1);
+			var pos = panel.style.left;
+			panel.style.left = pos + vi;
+			
+		}
+		
+		function iraladerecha(){
+			var vd = velocidad;
+		}
+	
+	
+	</script>
 	
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -22,7 +41,7 @@
 	</composite:interface>
 
 	<composite:implementation>
-		<div class="#{cc.attrs.divclass}">
+		<div id="divpanel" class="#{cc.attrs.divclass}">
 		
 			<em:tableviewcomp
 				bean="#{cc.attrs.bean}"
@@ -30,7 +49,7 @@
 			></em:tableviewcomp>
 
 
-			<p:button id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}"></p:button>
+			<p:button id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" onclick="iralaizquierda()"></p:button>
 			<p:button id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}"></p:button>
 
 		</div>
