@@ -3,31 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp"	
-	xmlns:composite="http://java.sun.com/jsf/composite">	
-	
-	<script type="text/javascript">
-	
-		var panel = document.getElementById("divpanel");
-		var velocidad = 10;
-		
-		function iralaizquierda(){
-		alert("a la izquierda");
-			var vi = velocidad*(-1);
-			var pos = panel.style.left;
-			panel.style.left = pos + vi;
-			
-		}
-		
-		function iraladerecha(){
-			var vd = velocidad;
-		}
-	
-	
-	</script>
+	xmlns:composite="http://java.sun.com/jsf/composite">		
+
 	
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>SlideShowComp</title>	
 </p:head>
 <p:body>
 	<composite:interface>
@@ -41,18 +21,47 @@
 	</composite:interface>
 
 	<composite:implementation>
-		<div id="divpanel" class="#{cc.attrs.divclass}">
+		<div class="#{cc.attrs.divclass}">
 		
-			<em:tableviewcomp
-				bean="#{cc.attrs.bean}"
-				lista="#{cc.attrs.lista}"		
-			></em:tableviewcomp>
-
-
-			<p:button id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" onclick="iralaizquierda()"></p:button>
-			<p:button id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}"></p:button>
+			<div id="divpanel" class="#{cc.attrs.divclass}" style="position:absolute;">
+			
+				<em:tableviewcomp
+					bean="#{cc.attrs.bean}"
+					lista="#{cc.attrs.lista}"		
+				></em:tableviewcomp>
+			
+			
+			</div>	
+			<form>
+				<input id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" type="button" onclick="iralaizquierda()"/>
+				<input id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}" type="button" onclick="iraladerecha()"/>
+				
+				<script type="text/javascript">
+						var panel = document.getElementById("divpanel");
+						var velocidad = 10;
+						var pos = 0;
+						
+						function iralaizquierda(){
+							var vi = velocidad*(-1);
+							pos = pos + vi;
+							panel.style.left = pos + "%";			
+						}
+						
+						function iraladerecha(){
+							var vd = velocidad;
+							pos = pos + vd;
+							panel.style.left = pos + "%";
+						}				
+				</script>
+			</form>
+<!-- 			<p:button id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" onfocus="iralaizquierda()" onclick="iralaizquierda()"></p:button> -->
+<!-- 			<p:button id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}" onfocus="iraladerecha()" onclick="iraladerecha()"></p:button> -->
 
 		</div>
+		
+
 	</composite:implementation>
+	
+
 </p:body>
 </html>
