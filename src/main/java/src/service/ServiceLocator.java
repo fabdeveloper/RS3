@@ -32,7 +32,7 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Resource
 	private SessionContext ctx;
 	
-	private HttpServletRequest httpServletRequest;
+//	private HttpServletRequest httpServletRequest;
 	
 	@PersistenceContext(unitName="RS3_PU")
 	private EntityManager em;
@@ -121,10 +121,10 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 		return deliveryDetailsServices;
 	}
 	
-	@Override
-	public @Inject HttpServletRequest getRequest(){
-		return httpServletRequest;
-	}
+//	@Override
+//	public @Inject HttpServletRequest getRequest(){
+//		return httpServletRequest;
+//	}
 
 	@Override
 	public IViewStateMachine getViewStateMachine() {

@@ -43,7 +43,7 @@ public interface IServiceLocator {
 
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices();
 	
-	public HttpServletRequest getRequest();
+//	public HttpServletRequest getRequest();
 	
 	public IViewStateMachine getViewStateMachine();
 

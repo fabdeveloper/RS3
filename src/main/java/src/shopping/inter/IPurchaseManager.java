@@ -15,10 +15,10 @@ public interface IPurchaseManager {
 	public PurchaseStatus getPurchaseStatus();
 	public DeliveryDetails getDeliveryDetails();
 	public Order getOrder();
-	public void setOrder(Order neworder);
+//	public void setOrder(Order neworder);
 	public Order findOrder(Integer order_id);
-	public Order cancelOrder(Integer order_id);
-	public Order deleteOrder(Order order);
+	public Order cancelOrder();
+	public Order deleteOrder();
 	public Boolean getPaymentProcessOK();
 	public void setPaymentProcessOK(Boolean result);
 	public void reset();

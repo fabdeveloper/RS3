@@ -23,7 +23,7 @@ import src.shopping.inter.IShoppingFacade;
 @SessionScoped
 public class PurchaseViewBB implements IProcessable, Serializable{
 	
-	private Order order;
+	//private Order order;
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;
@@ -31,9 +31,6 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	@Interceptors({AuditInterceptor.class})
 	@Transactional
 	public String purchaseConfirm(){
-		System.out.println("PURCHASEVIEWBB - purchaseConfirm() - " + new Date() + " - order= " + getOrder());		
-
-		//shoppingFacade.setOrder(getOrder());
 		return shoppingFacade.purchaseConfirm();		
 	}
 	
@@ -46,29 +43,23 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	}
 	
 	public Order getOrder(){
-		if(order == null){
-			order = shoppingFacade.getOrder();
-		}
-		return order;
+//		if(order == null){
+//			order = shoppingFacade.getOrder();
+//		}
+//		return order;
+		return shoppingFacade.getOrder();
 	}
 	
 	public Cart getCart(){
 		return getOrder().getCart();
 	}
-
 	
 	public void setRemark(String remark){
-		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark antes= " + remark);		
-
 		getOrder().getDeliveryDetails().setRemark(remark);
-		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark despues= " + order.getDeliveryDetails().getRemark());	
-		System.out.println("PURCHASEVIEWBB - setRemark() - " + new Date() + " - remark despues= " + getOrder().getDeliveryDetails().getRemark());		
-
 	}
 	
 	public String getRemark(){
 		return getOrder().getDeliveryDetails().getRemark();
-
 	}
 	
 	public String getDeliveryAddress(){
@@ -85,9 +76,7 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	
 	public void setDeliveryType(String deliveryType){
 		getOrder().getDeliveryDetails().setDeliveryType(deliveryType);
-	}
-	
-	
+	}	
 	
 	public User getUser(){
 		return getOrder().getClient();

@@ -30,7 +30,7 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;	
-	private Order order;	
+//	private Order order;	
 	private Integer localizador;
 
 	
@@ -39,7 +39,7 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	public String find(){
 		logger.log(Level.INFO, "PurchaseDetailViewBB-find() - localizador = " + localizador);
 		
-		order = null;
+//		order = null;
 		return shoppingFacade.findOrder(localizador);
 	}
 
@@ -112,15 +112,16 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	}
 
 	private Order getOrder() {
-		if(order == null){
-			order = shoppingFacade.getOrder();
-		}
-		return order;
+//		if(order == null){
+//			order = shoppingFacade.getOrder();
+//		}
+//		return order;
+		return shoppingFacade.getOrder();
 	}
 
-	private void setOrder(Order order) {
-		this.order = order;
-	}
+//	private void setOrder(Order order) {
+//		this.order = order;
+//	}
 
 	private User getUser() {
 		return getOrder().getClient();
@@ -130,9 +131,9 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return getOrder().getDeliveryDetails();
 	}
 
-	private PurchaseStatus getPurchaseStatus() {
-		return getOrder().getPurchaseStatus();
-	}
+//	private PurchaseStatus getPurchaseStatus() {
+//		return getOrder().getPurchaseStatus();
+//	}
 	
 	private Cart getCart() {
 		return getOrder().getCart();
@@ -161,8 +162,7 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return shoppingFacade.purchaseConfirm();
 	}
 	
-	public String simulaPagoKo(){
-		
+	public String simulaPagoKo(){		
 		
 		return "";
 	}
@@ -174,12 +174,12 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	
 	@Transactional
 	public String cancelOrder(){
-		return shoppingFacade.cancelOrder(localizador);
+		return shoppingFacade.cancelOrder();
 	}
 	
 	@Transactional
 	public String modifyOrder(){
-		return shoppingFacade.deleteOrder(order);
+		return shoppingFacade.deleteOrder();
 	}
 	
 	public String nuevaCompra(){

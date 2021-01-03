@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.persistence.Transient;
 
 import src.dao.ArticuloDao;
+import src.dao.IDao;
 import src.dao.OfertaDao;
 import src.dao.ProductDao;
 import src.entity.Articulo;
@@ -17,12 +19,12 @@ import src.inter.IDispo;
 @SessionScoped
 public class DispoImpl implements IDispo, Serializable {
 	
+	@Inject 
+	private /*IDao<Product>*/ ProductDao productDao;
 	@Inject
-	private ProductDao productDao;
+	private /*IDao<Articulo>*/ ArticuloDao articuloDao;
 	@Inject
-	private ArticuloDao articuloDao;
-	@Inject
-	private OfertaDao ofertaDao;
+	private /*IDao<Oferta>*/ OfertaDao ofertaDao;
 	
 	private Product productoSeleccionado;
 	private Articulo articuloSeleccionado;

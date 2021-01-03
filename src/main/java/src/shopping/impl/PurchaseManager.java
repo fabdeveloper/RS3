@@ -104,7 +104,6 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 			order.setClient(user);
 //		}
-		
 
 	}
 	
@@ -161,10 +160,10 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		return order;
 	}
 
-	@Override
-	public void setOrder(Order neworder) {
-		order = neworder;
-	}
+//	@Override
+//	public void setOrder(Order neworder) {
+//		order = neworder;
+//	}
 
 	@Override
 	public Order findOrder(Integer order_id) {
@@ -177,8 +176,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 
 	@Override
-	public Order cancelOrder(Integer order_id) {
-		logger.log(Level.INFO, "PURCHASEMANAGER - cancelOrder() - " + new Date() + " - ORDER_ID = " + order_id);
+	public Order cancelOrder() {
+		logger.log(Level.INFO, "PURCHASEMANAGER - cancelOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 		
 		try{
 			if(isCancelable()){
@@ -203,12 +202,12 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 
 	@Override
-	public Order deleteOrder(Order order) {
+	public Order deleteOrder() {
 		logger.log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 
 		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
 		order.getPurchaseStatus().setRemark("DELETED");
-		setOrder(order);		
+//		setOrder(order);		
 		return order;
 	}
 

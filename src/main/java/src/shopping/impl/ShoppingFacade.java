@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import src.entity.Articulo;
 import src.entity.Cart;
@@ -23,6 +25,9 @@ import src.shopping.inter.IPurchaseManager;
 @SessionScoped
 public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
+
 	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
 	
 	@Inject private IServiceLocator serviceLocator;
@@ -120,11 +125,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		this.cartManager = cartManager;
 	}
 
-	@Override
-	public void setOrder(Order neworder) {
-		purchaseManager.setOrder(neworder);
-		
-	}
+//	@Override
+//	public void setOrder(Order neworder) {
+//		purchaseManager.setOrder(neworder);
+//		
+//	}
 
 	@Override
 	public String findOrder(Integer order_id) {
@@ -138,15 +143,15 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	}
 
 	@Override
-	public String cancelOrder(Integer order_id) {
-		purchaseManager.cancelOrder(order_id);
+	public String cancelOrder() {
+		purchaseManager.cancelOrder();
 		return serviceLocator.getViewStateMachine().setOrderView();
 
 	}
 
 	@Override
-	public String deleteOrder(Order order) {
-		purchaseManager.deleteOrder(order);
+	public String deleteOrder() {
+		purchaseManager.deleteOrder();
 		return serviceLocator.getViewStateMachine().setOrderView();
 	}
 
@@ -169,14 +174,25 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String nuevaCompra() {
-		cartManager.reset();
 		purchaseManager.reset();
+		cartManager.reset();
+
 		return serviceLocator.getViewStateMachine().setAvailabilityView();
 	}
 
 	@Override
 	public IServiceLocator getServiceLocator() {
 		return serviceLocator;
+	}
+
+	@Override
+	public String invalidateSession() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		Object session = externalContext.getSession(false);
+		HttpSession httpSession = (HttpSession) session;
+		httpSession.invalidate();
+		return serviceLocator.getViewStateMachine().setAvailabilityView();		
 	}
 
 

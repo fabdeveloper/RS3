@@ -21,16 +21,17 @@ public interface IShoppingFacade {
 	public String createOrder();
 	public Cart getCart();
 	public Order getOrder();
-	public void setOrder(Order order);
+//	public void setOrder(Order order);
 	public IPurchaseManager getPurchaseManager();
 	public String findOrder(Integer order_id);
-	public String cancelOrder(Integer order_id);
-	public String deleteOrder(Order order);
+	public String cancelOrder();
+	public String deleteOrder();
 	public String setPaymentProcessOK(Boolean result);
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
 	public String showOrder();
 	public String nuevaCompra();
 	public IServiceLocator getServiceLocator();
+	public String invalidateSession();
 
 }
