@@ -5,13 +5,9 @@ import java.io.Serializable;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpServletRequest;
-
 import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
@@ -24,6 +20,7 @@ import src.entity.User;
 import src.entityservices.IEntityServices;
 import src.inter.IEncripter;
 import src.inter.IServiceLocator;
+import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IViewStateMachine;
 
 @Singleton
@@ -60,6 +57,8 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	
 	@Inject
 	private IViewStateMachine viewStateMachine;
+	@Inject
+	private ISessionManager sessionManager;
 	
 	@Override 
 	public SessionContext getSessionContext(){
@@ -120,15 +119,15 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices() {
 		return deliveryDetailsServices;
 	}
-	
-//	@Override
-//	public @Inject HttpServletRequest getRequest(){
-//		return httpServletRequest;
-//	}
 
 	@Override
 	public IViewStateMachine getViewStateMachine() {
 		return viewStateMachine;
+	}
+
+	@Override
+	public ISessionManager getSessionManager() {
+		return sessionManager;
 	}
 
 

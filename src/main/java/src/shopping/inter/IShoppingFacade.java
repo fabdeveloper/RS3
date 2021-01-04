@@ -33,5 +33,7 @@ public interface IShoppingFacade {
 	public String nuevaCompra();
 	public IServiceLocator getServiceLocator();
 	public String invalidateSession();
+	public Boolean isClient();
+	public String getCallerName();
 
 }

@@ -15,6 +15,7 @@ import src.entity.Product;
 import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.entityservices.IEntityServices;
+import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IViewStateMachine;
 
 public interface IServiceLocator {
@@ -43,9 +44,9 @@ public interface IServiceLocator {
 
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices();
 	
-//	public HttpServletRequest getRequest();
-	
 	public IViewStateMachine getViewStateMachine();
+	
+	public ISessionManager getSessionManager();
 
 
 	

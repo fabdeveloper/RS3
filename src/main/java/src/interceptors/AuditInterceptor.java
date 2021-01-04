@@ -60,51 +60,34 @@ public class AuditInterceptor implements Serializable{
 		Object target = ctx.getTarget();
 		Method method = ctx.getMethod();
 		Object[] listaParam = ctx.getParameters();
-		Map<String, Object>  contextMap = ctx.getContextData();
-		
+		Map<String, Object>  contextMap = ctx.getContextData();		
 
-		HttpServletRequest request = serviceLocator.getRequest();
-		if(request != null){
-			String ip = serviceLocator.getRequest().getRemoteAddr();
-			String remoteAddr = serviceLocator.getRequest().getHeader("X-FORWARDED-FOR");
-			logger.log(Level.ALL, "ip = " + ip + ", remoteAddr = " + remoteAddr);
-
-			Enumeration<String> nombres = request.getHeaderNames();
-			while(nombres.hasMoreElements()){
-				String nombre = nombres.nextElement();
-				String texto = request.getHeader(nombre);
-				logger.log(Level.ALL, "nombre = " + nombre + ", texto = " + texto);
-
-			}
-			
-			
-			
-			
-		}
-
-
+//		HttpServletRequest request = serviceLocator.getRequest();
+//		if(request != null){
+//			String ip = serviceLocator.getRequest().getRemoteAddr();
+//			String remoteAddr = serviceLocator.getRequest().getHeader("X-FORWARDED-FOR");
+//			logger.log(Level.ALL, "ip = " + ip + ", remoteAddr = " + remoteAddr);
+//
+//			Enumeration<String> nombres = request.getHeaderNames();
+//			while(nombres.hasMoreElements()){
+//				String nombre = nombres.nextElement();
+//				String texto = request.getHeader(nombre);
+//				logger.log(Level.ALL, "nombre = " + nombre + ", texto = " + texto);
+//			}			
+//		}
 		
 		String log = "AUD - " + new Date() + " - ," +
 				"TARGET = " + target.toString() + ", " +
 				"METHOD = " + method.getName() + " - " +
-				"";
-		
-		
+				"";		
 		logger.log(Level.ALL, log);
-		logger.log(Level.INFO, log);
-
-		
+		logger.log(Level.INFO, log);		
 		try {
 			return ctx.proceed();
 		} catch (Exception e) {
 			logger.log(Level.ALL,  " EXCEPTION - " + log);
 			e.printStackTrace();
 		}
-		return null;
-		
+		return null;		
 	}
-	
-
-
-
 }

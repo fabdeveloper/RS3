@@ -7,6 +7,7 @@ public interface IViewStateMachine {
 	public String setCartView();
 	public String setOrderView();	
 	public String setConfigView();
+	public String setHomeView();
 
 
 }

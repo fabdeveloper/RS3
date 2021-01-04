@@ -186,13 +186,19 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	}
 
 	@Override
-	public String invalidateSession() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = context.getExternalContext();
-		Object session = externalContext.getSession(false);
-		HttpSession httpSession = (HttpSession) session;
-		httpSession.invalidate();
-		return serviceLocator.getViewStateMachine().setAvailabilityView();		
+	public String invalidateSession() {		
+		serviceLocator.getSessionManager().invalidateSession();
+		return serviceLocator.getViewStateMachine().setHomeView();		
+	}
+	
+	@Override
+	public Boolean isClient(){			
+		return serviceLocator.getSessionManager().isClient();
+	}
+	
+	@Override
+	public String getCallerName(){		
+		return serviceLocator.getSessionManager().getCallerName();		
 	}
 
 

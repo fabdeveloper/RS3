@@ -34,4 +34,9 @@ public class ViewStateMachine implements IViewStateMachine {
 		return "configview";
 	}
 
+	@Override
+	public String setHomeView() {
+		return "home";
+	}
+
 }
