@@ -1,5 +1,9 @@
 package src.shopping.impl;
 
+import java.io.Serializable;
+
+import javax.annotation.security.DeclareRoles;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -8,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ISessionManager;
 
-public class SessionManager implements ISessionManager {
+@DeclareRoles({"CLIENT","ADMIN"})
+@SessionScoped
+public class SessionManager implements ISessionManager, Serializable {
 	
 	@Inject
 	private IServiceLocator serviceLocator;
@@ -23,8 +29,12 @@ public class SessionManager implements ISessionManager {
 	}
 	
 	@Override
-	public Boolean isClient(){		
-		return serviceLocator.getSessionContext().isCallerInRole("CLIENT");
+	public Boolean isClient(){	
+		System.out.println("caller name = " + getCallerName());
+		System.out.println("is client ? = " + serviceLocator.getSessionContext().isCallerInRole("CLIENT"));
+		System.out.println("is admin ? = " + serviceLocator.getSessionContext().isCallerInRole("ADMIN"));
+
+		return (serviceLocator.getSessionContext().isCallerInRole("CLIENT")) || (serviceLocator.getSessionContext().isCallerInRole("ADMIN"));
 	}
 	
 	@Override
