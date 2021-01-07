@@ -7,6 +7,15 @@
    <context-root>RS3</context-root>
    
    
+   
+   <security-role-ref>
+<role-name>CLIENT</role-name>
+</security-role-ref>
+
+   <security-role-ref>
+<role-name>ADMIN</role-name>
+</security-role-ref>
+   
        <security-role-mapping>
     <role-name>CLIENT</role-name>
     <group-name>CLIENTS</group-name>

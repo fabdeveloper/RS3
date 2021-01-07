@@ -30,11 +30,10 @@ public class SessionManager implements ISessionManager, Serializable {
 	
 	@Override
 	public Boolean isClient(){	
-		System.out.println("caller name = " + getCallerName());
-		System.out.println("is client ? = " + serviceLocator.getSessionContext().isCallerInRole("CLIENT"));
-		System.out.println("is admin ? = " + serviceLocator.getSessionContext().isCallerInRole("ADMIN"));
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
 
-		return (serviceLocator.getSessionContext().isCallerInRole("CLIENT")) || (serviceLocator.getSessionContext().isCallerInRole("ADMIN"));
+		return externalContext.isUserInRole("CLIENT");		
 	}
 	
 	@Override

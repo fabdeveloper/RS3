@@ -11,7 +11,6 @@ import src.shopping.inter.IShoppingFacade;
 
 @Named
 @SessionScoped
-@DeclareRoles({"CLIENT","ADMIN"})
 public class SessionManagementBB implements Serializable {
 	
 	@Inject
