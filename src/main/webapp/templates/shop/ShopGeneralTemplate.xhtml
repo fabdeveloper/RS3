@@ -5,26 +5,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>hometemplate</title>
-	<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>
+	<title>Shop General Template</title>
+	<p:outputStylesheet library="css" name="slideshowcontrol.css"></p:outputStylesheet>
 	
 </p:head>
 <p:body>
-	<div class="divclass">
-		<ui:insert name="searchbar">searchbar</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="menubar">menubar</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="body">body</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="foot">foot</ui:insert>
-	</div>
 
-	
-	
+	<div class="divclass">
+		<ui:insert name="LogBar">LogBar</ui:insert>
+	</div>
+	<div class="divclass">	
+		<ui:insert name="Body">Body</ui:insert>
+	</div>
+	<div class="divclass">	
+		<ui:insert name="Ofertas">Ofertas</ui:insert>
+	</div>
+	<div class="divclass">	
+		<ui:insert name="Footer">Footer</ui:insert>
+	</div>
 
 
 </p:body>
