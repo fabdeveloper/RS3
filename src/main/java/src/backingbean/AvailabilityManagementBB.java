@@ -32,9 +32,9 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	private List<Oferta> listaOfertas = new ArrayList<Oferta>();
 	
 	
-	private List<EntityViewTransferObject> listaProductosTO;
-	private List<EntityViewTransferObject> listaArticulosTO;
-	private List<EntityViewTransferObject> listaOfertasTO;
+	private transient List<EntityViewTransferObject> listaProductosTO;
+	private transient List<EntityViewTransferObject> listaArticulosTO;
+	private transient List<EntityViewTransferObject> listaOfertasTO;
 	
 	
 
@@ -165,7 +165,6 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	}
 	
 	public String addItemToCart(Oferta item){
-		System.out.println("AvailabilityManagementBB addItemToCart() - NO IMPLEMENTADO ");
 		return shoppingFacade.addItemToCart(item);
 	}
 	

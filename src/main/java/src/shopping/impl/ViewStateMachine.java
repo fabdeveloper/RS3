@@ -11,27 +11,27 @@ public class ViewStateMachine implements IViewStateMachine {
 
 	@Override
 	public String setAvailabilityView() {
-		return "availabilityview";
+		return "availability";
 	}
 
 	@Override
 	public String setOfertaView() {
-		return "ofertaview";
+		return "oferta";
 	}
 
 	@Override
 	public String setCartView() {
-		return "cartview";
+		return "cart";
 	}
 
 	@Override
 	public String setOrderView() {
-		return "orderview";
+		return "order";
 	}
 
 	@Override
 	public String setConfigView() {
-		return "configview";
+		return "config";
 	}
 
 	@Override

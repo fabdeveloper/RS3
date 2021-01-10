@@ -5,49 +5,44 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
    
-   
- 
-    
-    
+       
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>cartview</from-outcome>
-		   <to-view-id>/shopping/CartView.xhtml</to-view-id>
+		   <from-outcome>cart</from-outcome>
+		   <to-view-id>/shopping/CartDetail.xhtml</to-view-id>
 	   </navigation-case> 
-
-   </navigation-rule>
-   
+   </navigation-rule>   
 
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>availabilityview</from-outcome>
-		   <to-view-id>/shopping/AvailabilityView.xhtml</to-view-id>
+		   <from-outcome>availability</from-outcome>
+		   <to-view-id>/shopping/Home.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>configview</from-outcome>
-		   <to-view-id>/shopping/ConfigView.xhtml</to-view-id>
+		   <from-outcome>config</from-outcome>
+		   <to-view-id>/shopping/ConfigDetail.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    
    <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>orderview</from-outcome>
-		   <to-view-id>/shopping/OrderView.xhtml</to-view-id>
+		   <from-outcome>order</from-outcome>
+		   <to-view-id>/shopping/OrderDetail.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    
   <navigation-rule>
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
-		   <from-outcome>ofertaview</from-outcome>
-		   <to-view-id>/shopping/OfertaView.xhtml</to-view-id>
+		   <from-outcome>oferta</from-outcome>
+		   <to-view-id>/shopping/OfertaDetail.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    
@@ -58,8 +53,6 @@
 		   <to-view-id>Home.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
-   
-
    
    
  
