@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.Oferta;
 import src.factory.IBeanFactory;
 import src.inter.IServiceLocator;
@@ -50,17 +51,27 @@ public class CartManager implements ICartManager, Serializable {
 
 
 	@Override
-	public Cart addItem(Oferta item) {
+	public Cart addItem(Oferta item, Integer numItems) {
 		if(cart == null)reset();
-		cart.getListaOfertas().add(item);
+		
+		// crear CartItem
+		CartItem nuevoItem = serviceLocator.getCartItemServices().getGestorE().getFactory().crear();
+		nuevoItem.setCounter(numItems);
+		nuevoItem.setOferta(item);
+		nuevoItem.setCart(cart);
+		
+		// agregar item
+		cart.getListaItems().add(nuevoItem);
 		cart.setValue(valuate());
+		
+		serviceLocator.getShoppingFacade().getPurchaseManager().updateOrder();
 		
 		return cart;
 	}
 
 	@Override
-	public Cart removeItem(Oferta item) {
-		cart.getListaOfertas().remove(item);
+	public Cart removeItem(CartItem item) {
+		cart.getListaItems().remove(item);
 		cart.setValue(valuate());
 
 		return cart;
@@ -69,7 +80,7 @@ public class CartManager implements ICartManager, Serializable {
 	@Override
 	public Cart reset() {
 		cart = getFactory().crear();
-		if(cart.getListaOfertas() == null)cart.setListaOfertas(new ArrayList<Oferta>());
+		if(cart.getListaItems() == null)cart.setListaItems(new ArrayList<CartItem>());
 		cart.setValue(valuate());
 
 		return cart;
@@ -77,7 +88,7 @@ public class CartManager implements ICartManager, Serializable {
 	
 	private Float valuate(){
 		Float result = 0f;
-		valuationManager.setListaItems(cart.getListaOfertas());
+		valuationManager.setListaItems(cart.getListaItems());
 		result = valuationManager.valuate();
 		return result;
 	}

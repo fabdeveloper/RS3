@@ -24,6 +24,11 @@
 		<ui:define name="columna derecha">			
 			<p:form>
 				<p:commandButton class="botonclass" id="botonaddtocart" value="agregar al carrito" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
+			<br/><br/>
+				<p:outputText value="Cantidad : "></p:outputText>
+				<p:inputText value="#{ofertaViewBB.counter}"></p:inputText>
+
+
 			</p:form>
 		</ui:define>
 	</ui:composition>

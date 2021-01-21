@@ -12,11 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
-public class Atributo implements Serializable, Prototype<Atributo>{
+public class Atributo implements Serializable, IPrototype<Atributo>{
 	
 
 	private static final long serialVersionUID = 1L;

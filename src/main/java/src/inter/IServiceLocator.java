@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import src.entity.Articulo;
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.DeliveryDetails;
 import src.entity.Grupo;
 import src.entity.Oferta;
@@ -16,6 +17,7 @@ import src.entity.PurchaseStatus;
 import src.entity.User;
 import src.entityservices.IEntityServices;
 import src.shopping.inter.ISessionManager;
+import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IViewStateMachine;
 
 public interface IServiceLocator {
@@ -38,6 +40,8 @@ public interface IServiceLocator {
 	
 	public IEntityServices<Cart> getCartServices();
 	
+	public IEntityServices<CartItem> getCartItemServices();
+	
 	public IEntityServices<Order> getOrderServices();
 
 	public IEntityServices<PurchaseStatus> getPurchaseStatusServices();
@@ -47,6 +51,8 @@ public interface IServiceLocator {
 	public IViewStateMachine getViewStateMachine();
 	
 	public ISessionManager getSessionManager();
+	
+	public IShoppingFacade getShoppingFacade();
 
 
 	

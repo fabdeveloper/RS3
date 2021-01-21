@@ -41,13 +41,26 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		logger.log(Level.INFO, "PURCHASEMANAGER - createOrder() - " + new Date());
 		
 		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
+		order.setLastModificationDate(new Date());
 		setClient();
 		setCart();
-		order.setConfirmationDate(new Date());
 		setPurchaseStatus();
 		setDeliveryDetails();
 
 		return serviceLocator.getViewStateMachine().setConfigView();
+	}
+	
+	@Override
+	public void updateOrder(){
+		
+		// if order is null (first item to cart)
+		
+		// add modif remove  item(not empty cart)
+		
+		// empty cart
+		
+		pppppppppppppppp
+		
 	}
 
 	@Override
@@ -59,6 +72,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 			serviceLocator.getOrderServices().create(order); // graba la orden en DB
 			order.getPurchaseStatus().setRemark("CONFIRMADO");
+			order.setLastModificationDate(new Date());
+			order.setConfirmationDate(new Date());
 
 			
 			

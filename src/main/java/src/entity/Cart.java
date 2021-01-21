@@ -4,25 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="CARTS")
-public class Cart implements Serializable, Prototype<Cart>{
+public class Cart implements Serializable, IPrototype<Cart>{
 	
 
 	private static final long serialVersionUID = 1L;
@@ -32,21 +27,25 @@ public class Cart implements Serializable, Prototype<Cart>{
 	@Column(name="ID")
 	private Integer id;
 	
-	@ManyToMany
-	@JoinTable(name="CART_OFERTA",
-	joinColumns=@JoinColumn(name="ID_CART", table="CARTS", referencedColumnName="ID"),
-	inverseJoinColumns=@JoinColumn(name="ID_OFERTA", table="OFERTAS", referencedColumnName="ID"))
-	private List<Oferta> listaOfertas;
+//	@ManyToMany
+//	@JoinTable(name="CART_OFERTA",
+//	joinColumns=@JoinColumn(name="ID_CART", table="CARTS", referencedColumnName="ID"),
+//	inverseJoinColumns=@JoinColumn(name="ID_OFERTA", table="OFERTAS", referencedColumnName="ID"))
+//	private List<Oferta> listaOfertas;
+	
+	@OneToMany(mappedBy="CART")
+	private List<CartItem> listaItems;
 	
 	@Column(name="VALUE")
 	private Float value;
+	
 	
 
 	public Cart clone(){
 		Cart nuevo = new Cart();
 		nuevo.setId(this.getId());
 		nuevo.setValue(this.getValue());
-		nuevo.setListaOfertas(this.getListaOfertas());
+		nuevo.setListaItems(this.getListaItems());
 		
 		return nuevo;
 	}
@@ -59,12 +58,12 @@ public class Cart implements Serializable, Prototype<Cart>{
 		this.id = id;
 	}
 
-	public List<Oferta> getListaOfertas() {
-		return listaOfertas;
+	public List<CartItem> getListaItems() {
+		return listaItems;
 	}
 
-	public void setListaOfertas(List<Oferta> listaOfertas) {
-		this.listaOfertas = listaOfertas;
+	public void setListaItems(List<CartItem> listaItems) {
+		this.listaItems = listaItems;
 	}
 
 	public Float getValue() {

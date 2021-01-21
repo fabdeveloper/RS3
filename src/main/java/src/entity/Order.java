@@ -17,12 +17,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="ORDERS")
-public class Order implements Serializable, Prototype<Order>{
+public class Order implements Serializable, IPrototype<Order>{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +44,15 @@ public class Order implements Serializable, Prototype<Order>{
 	private Date confirmationDate;
 	
 	@NotNull
+	@Column(name="LAST_MODIFICATION_DATE")
+	private Date lastModificationDate;
+	
+	@NotNull
+	@Column(name="CREATION_DATE")
+	private Date creationDate;
+	
+	//  REEMPLAZAR POR UN STRING ************************************
+	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
 	private PurchaseStatus purchaseStatus;
 	
@@ -57,6 +66,8 @@ public class Order implements Serializable, Prototype<Order>{
 		nuevo.setCart(this.getCart());
 		nuevo.setClient(this.getClient());
 		nuevo.setConfirmationDate(this.getConfirmationDate());
+		nuevo.setLastModificationDate(this.getLastModificationDate());
+		nuevo.setCreationDate(this.getCreationDate());
 		nuevo.setDeliveryDetails(this.getDeliveryDetails());
 		nuevo.setId(this.getId());
 		nuevo.setPurchaseStatus(this.getPurchaseStatus());
@@ -94,6 +105,22 @@ public class Order implements Serializable, Prototype<Order>{
 
 	public void setConfirmationDate(Date confirmationDate) {
 		this.confirmationDate = confirmationDate;
+	}
+
+	public Date getLastModificationDate() {
+		return lastModificationDate;
+	}
+
+	public void setLastModificationDate(Date lastModificationDate) {
+		this.lastModificationDate = lastModificationDate;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public PurchaseStatus getPurchaseStatus() {

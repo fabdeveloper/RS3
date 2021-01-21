@@ -2,12 +2,12 @@ package src.factory;
 
 import javax.inject.Inject;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 public abstract class AbstractBeanFactory<P> implements IBeanFactory<P> {
 	
 	@Inject
-	private Prototype<P> bean;	
+	private IPrototype<P> bean;	
 
 	@Override
 	public P crear() {

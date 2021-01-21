@@ -18,7 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
@@ -26,7 +26,7 @@ import src.inter.Prototype;
 @NamedQueries({
 	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id")}
 	)
-public class Articulo implements Serializable, Prototype<Articulo>{
+public class Articulo implements Serializable, IPrototype<Articulo>{
 	
 
 	private static final long serialVersionUID = 1L;

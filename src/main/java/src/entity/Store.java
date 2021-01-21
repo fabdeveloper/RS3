@@ -19,12 +19,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="STORES")
-public class Store implements Serializable, Prototype<Store>{
+public class Store implements Serializable, IPrototype<Store>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

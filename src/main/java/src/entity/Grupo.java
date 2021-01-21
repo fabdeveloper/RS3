@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 
 import javax.persistence.Table;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
@@ -23,7 +23,7 @@ import src.inter.Prototype;
 @NamedQueries({
 	@NamedQuery(name="grupo_byName", query="SELECT g FROM Grupo g WHERE g.name LIKE :name")
 })
-public class Grupo implements Serializable, Prototype<Grupo>{
+public class Grupo implements Serializable, IPrototype<Grupo>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

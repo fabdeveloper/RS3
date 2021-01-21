@@ -22,13 +22,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import src.inter.IPedido;
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="PEDIDOS")
 @Embeddable
-public class Pedido implements Serializable, IPedido, Prototype<Pedido>{
+public class Pedido implements Serializable, IPedido, IPrototype<Pedido>{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

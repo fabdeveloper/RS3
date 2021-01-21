@@ -15,12 +15,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="PURCHASE_STATUS")
-public class PurchaseStatus implements Serializable, Prototype<PurchaseStatus>{
+public class PurchaseStatus implements Serializable, IPrototype<PurchaseStatus>{
 	
 
 	private static final long serialVersionUID = 1L;

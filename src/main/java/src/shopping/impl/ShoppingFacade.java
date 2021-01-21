@@ -65,8 +65,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	}
 
 	@Override
-	public String addItemToCart(Oferta item) {
-		cartManager.addItem(item);
+	public String addItemToCart(Oferta item, Integer numItems) {
+		cartManager.addItem(item, numItems);
 		return serviceLocator.getViewStateMachine().setCartView();
 	}
 

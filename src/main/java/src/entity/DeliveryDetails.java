@@ -1,6 +1,7 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
@@ -13,13 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
 @Table(name="DELIVERY_DETAILS")
-public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>{
+public class DeliveryDetails implements Serializable, IPrototype<DeliveryDetails>{
 	
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,7 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	@Column(name="ID")
 	private Integer id;
 	
+	@NotNull
 	@Column(name="DELIVERY_ADDRESS")
 	private String deliveryAddress;
 	
@@ -37,6 +40,14 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	
 	@Column(name="REMARKS")
 	private String remark;
+	
+	@NotNull
+	@Column(name="STATUS")
+	private String status;
+	
+	@NotNull
+	@Column(name="LAST_MODIFICATION_DATE")
+	private Date lastModificationDate;
 	
 //	@ManyToOne
 	@Column(name="DELIVERY_TYPE")
@@ -51,6 +62,8 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 		nuevo.setId(this.getId());
 //		nuevo.setOrder(this.getOrder());
 		nuevo.setRemark(this.getRemark());	
+		nuevo.setStatus(this.getStatus());
+		nuevo.setLastModificationDate(this.getLastModificationDate());
 		nuevo.setDeliveryType(this.getDeliveryType());		
 		
 		return nuevo;
@@ -79,6 +92,22 @@ public class DeliveryDetails implements Serializable, Prototype<DeliveryDetails>
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getLastModificationDate() {
+		return lastModificationDate;
+	}
+
+	public void setLastModificationDate(Date lastModificationDate) {
+		this.lastModificationDate = lastModificationDate;
+	}
 
 	public String getDeliveryType() {
 		return deliveryType;

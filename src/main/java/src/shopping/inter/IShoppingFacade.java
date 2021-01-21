@@ -14,7 +14,7 @@ public interface IShoppingFacade {
 	public List<Product> getAvail();	
 	public  List<Articulo> getAvail(Product prod);	
 	public List<Oferta> getAvail(Articulo articulo);
-	public String addItemToCart(Oferta item);
+	public String addItemToCart(Oferta item, Integer numItems);
 	public Cart removeItemFromCart(Oferta item);
 	public Cart resetCart();
 	public String purchaseConfirm();

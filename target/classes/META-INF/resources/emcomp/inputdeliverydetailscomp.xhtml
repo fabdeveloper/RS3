@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</p:head>
+
+<p:body>
+	<composite:interface>
+		<composite:attribute name="titulotexto1" default="Direccion de envio: "></composite:attribute>
+		<composite:attribute name="texto1" ></composite:attribute>
+		<composite:attribute name="titulotexto2" default="Comentarios: "></composite:attribute>
+		<composite:attribute name="texto2" ></composite:attribute>
+		
+		<composite:attribute name="titulotexto3" default="Tipo de envio: "></composite:attribute>
+		<composite:attribute name="texto3"></composite:attribute>
+		<composite:attribute  name="buttonclass"></composite:attribute>
+		<composite:attribute  name="inputtextclass"></composite:attribute>
+				<composite:attribute  name="bean" type="src.inter.IProcessable"></composite:attribute>
+		
+		<!-- 		<composite:attribute name="lista" type="java.util.List"></composite:attribute> -->
+
+<!-- 		<composite:attribute name="bean" type="src.backingbean.PurchaseViewBB"></composite:attribute> -->
+
+		
+<!-- 		<composite:clientBehavior name="modificado" event="valueChange" target="it_texto2"></composite:clientBehavior> -->
+
+
+	</composite:interface>
+	<composite:implementation>
+	
+	<p:form id="formulario">
+			<p:outputText value="#{cc.attrs.titulotexto1}"></p:outputText><br/>
+			<p:inputTextarea class="#{cc.attrs.inputtextclass}" id="it_texto1" value="#{cc.attrs.texto1}"></p:inputTextarea><br/>
+			<p:outputText value="#{cc.attrs.titulotexto2}"></p:outputText><br/>
+			<p:inputTextarea class="#{cc.attrs.inputtextclass}" id="it_text2" value="#{cc.attrs.texto2}" required="true"></p:inputTextarea><br/>
+			
+			<p:outputText value="#{cc.attrs.titulotexto3}"></p:outputText><br/>
+			<p:inputText class="#{cc.attrs.inputtextclass}" id="it_seleccion" value="#{cc.attrs.texto3}"></p:inputText><br/>
+			<p:commandButton class="#{cc.attrs.buttonclass}" value="actualizar datos de envio" action="#{cc.attrs.bean.process(null)}"></p:commandButton><br/>
+
+			<!-- 			<p:selectOneListbox value="#{cc.attrs.selecction}"> -->
+<!-- 				<p:selectItems value="#{cc.attrs.lista}"></p:selectItems> -->
+<!-- 			</p:selectOneListbox> -->
+
+
+		</p:form>
+	
+	</composite:implementation>
+</p:body>
+
+</html>

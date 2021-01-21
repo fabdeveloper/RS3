@@ -8,8 +8,10 @@ import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import src.entity.Articulo;
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.DeliveryDetails;
 import src.entity.Grupo;
 import src.entity.Oferta;
@@ -21,6 +23,7 @@ import src.entityservices.IEntityServices;
 import src.inter.IEncripter;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ISessionManager;
+import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IViewStateMachine;
 
 @Singleton
@@ -48,6 +51,8 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	private IEntityServices<Oferta> ofertaServices;
 	@Inject 
 	private IEntityServices<Cart> cartServices;
+	@Inject
+	private IEntityServices<CartItem> cartItemServices;
 	@Inject 
 	private IEntityServices<Order> orderServices;
 	@Inject 
@@ -59,6 +64,8 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	private IViewStateMachine viewStateMachine;
 	@Inject
 	private ISessionManager sessionManager;
+	@Inject 
+	private IShoppingFacade shoppingFacade;
 	
 	@Override 
 	public SessionContext getSessionContext(){
@@ -104,6 +111,11 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	public IEntityServices<Cart> getCartServices() {
 		return cartServices;
 	}
+	
+	@Override
+	public IEntityServices<CartItem> getCartItemServices() {
+		return cartItemServices;
+	}
 
 	@Override
 	public IEntityServices<Order> getOrderServices() {
@@ -128,6 +140,11 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Override
 	public ISessionManager getSessionManager() {
 		return sessionManager;
+	}
+
+	@Override
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
 	}
 
 

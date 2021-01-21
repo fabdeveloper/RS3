@@ -16,19 +16,16 @@ public class OfertaViewBB {
 	@Inject
 	private IShoppingFacade shop;
 	
-	private Oferta oferta;
+	private Integer counter = 1;
+	
+//	private Oferta oferta;
 	
 	
 	
 	
 	public String addToCart(){
-		return shop.addItemToCart(getOferta());
+		return shop.addItemToCart(getOferta(), getCounter());
 	}
-	
-	
-	
-	
-	
 	
 
 	public IShoppingFacade getShop() {
@@ -40,16 +37,31 @@ public class OfertaViewBB {
 	}
 
 	public Oferta getOferta() {
-		if(oferta == null){
-			oferta = shop.getOfertaSeleccionada();
-		}
-		return oferta;
+//		if(oferta == null){
+//			oferta = shop.getOfertaSeleccionada();
+//		}
+//		return oferta;
+
+		return shop.getOfertaSeleccionada();
+
 	}
 
 
-	public void setOferta(Oferta oferta) {
-		this.oferta = oferta;
+	public Integer getCounter() {
+		return counter;
 	}
+
+
+	public void setCounter(Integer counter) {
+		this.counter = counter;
+	}
+
+
+//	public void setOferta(Oferta oferta) {
+//		this.oferta = oferta;
+//	}
+	
+	
 	
 	
 

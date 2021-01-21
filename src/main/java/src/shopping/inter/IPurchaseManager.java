@@ -9,6 +9,7 @@ import src.entity.User;
 public interface IPurchaseManager {
 	
 	public String createOrder();
+	public void updateOrder();
 	public String confirm();
 	public User getClient();
 	public Cart getCart();

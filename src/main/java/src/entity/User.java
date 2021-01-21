@@ -21,7 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import src.inter.IUser;
-import src.inter.Prototype;
+import src.inter.IPrototype;
 
 @RequestScoped
 @Entity
@@ -32,7 +32,7 @@ import src.inter.Prototype;
 	@NamedQuery(name="byNick", query="SELECT u FROM User u WHERE u.nick LIKE :nick")
 
 })
-public class User implements Serializable, IUser, Prototype<User>{
+public class User implements Serializable, IUser, IPrototype<User>{
 
 
 	private static final long serialVersionUID = 1L;
