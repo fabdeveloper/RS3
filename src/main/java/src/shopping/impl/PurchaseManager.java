@@ -19,14 +19,14 @@ import src.shopping.inter.ICartManager;
 import src.shopping.inter.IPurchaseManager;
 
 @SessionScoped
-@DeclareRoles({"CLIENT", "ADMIN"})
-@RolesAllowed("CLIENT")
+//@DeclareRoles({"CLIENT", "ADMIN"})
+//@RolesAllowed("CLIENT")
 public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	static Logger logger = Logger.getLogger(PurchaseManager.class.getName());
 	
 	@Inject
-	private ICartManager cartManager;
+	private ICartManager cartManager; // TODO : obtener esto con serviceLocator
 	@Inject
 	private IServiceLocator serviceLocator;
 	
@@ -36,30 +36,47 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 
 
+	private ICartManager getCartManager() {
+		return cartManager;
+	}
+
 	@Override
 	public String createOrder() {
 		logger.log(Level.INFO, "PURCHASEMANAGER - createOrder() - " + new Date());
 		
 		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
 		order.setLastModificationDate(new Date());
+		order.setCreationDate(new Date());
 		setClient();
 		setCart();
-		setPurchaseStatus();
+		setPurchaseStatus(); // TODO : revisar PurchaseStatus
 		setDeliveryDetails();
 
-		return serviceLocator.getViewStateMachine().setConfigView();
+		return "";
+//		return serviceLocator.getViewStateMachine().setConfigView();
 	}
 	
 	@Override
 	public void updateOrder(){
 		
-		// if order is null (first item to cart)
+		if(getCartManager().isCartEmpty()){// empty cart
+			
+		}else if(order == null){// if order is null (first item to cart)
+			createOrder();
+			order.setCreationDate(new Date());
+			persistOrder();
+			
+		}else{ // add modif remove  item(not empty cart)
+			
+		}
 		
-		// add modif remove  item(not empty cart)
 		
-		// empty cart
 		
-		pppppppppppppppp
+		
+		
+		
+		
+		
 		
 	}
 
@@ -82,6 +99,16 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		}
 
 		return serviceLocator.getViewStateMachine().setOrderView();
+	}
+	
+	private void persistOrder(){
+		order.setLastModificationDate(new Date());
+		serviceLocator.getOrderServices().create(order); // graba la orden en DB
+	}
+	
+	private void mergeOrder(){
+		order.setLastModificationDate(new Date());
+		serviceLocator.getOrderServices().update(order); // graba la orden en DB		
 	}
 	
 	private boolean isPaymentProcessOK(){

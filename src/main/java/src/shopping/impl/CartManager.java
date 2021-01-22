@@ -21,12 +21,12 @@ public class CartManager implements ICartManager, Serializable {
 
 
 	@Inject
-	private IValuationManager valuationManager;
+	private IValuationManager valuationManager; // TODO : obtener esto con serviceLocator
 	@Inject
 	private IServiceLocator serviceLocator;	
 	
 	private Cart cart;
-	private IBeanFactory<Cart> factory;
+	private IBeanFactory<Cart> factory; // TODO : obtener esto con serviceLocator
 	
 	
 	
@@ -62,9 +62,7 @@ public class CartManager implements ICartManager, Serializable {
 		
 		// agregar item
 		cart.getListaItems().add(nuevoItem);
-		cart.setValue(valuate());
-		
-		serviceLocator.getShoppingFacade().getPurchaseManager().updateOrder();
+		cart.setValue(valuate()); // TODO - obtener ValuationManager a traves de serviceLocator
 		
 		return cart;
 	}
@@ -96,6 +94,11 @@ public class CartManager implements ICartManager, Serializable {
 	@Override
 	public Cart getCart() {
 		return cart;
+	}
+	
+	@Override
+	public Boolean isCartEmpty(){		
+		return getCart().getListaItems().size()>0;
 	}
 
 	public void setCart(Cart cart) {
