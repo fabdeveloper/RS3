@@ -68,15 +68,10 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 		}else{ // add modif remove  item(not empty cart)
 			
+			order.setLastModificationDate(new Date());
+			mergeOrder();
+			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 
@@ -248,8 +243,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		logger.log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 
 		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
-		order.getPurchaseStatus().setRemark("DELETED");
-//		setOrder(order);		
+//		order.getPurchaseStatus().setRemark("DELETED");
+//		setOrder(order);	
+		reset();
 		return order;
 	}
 

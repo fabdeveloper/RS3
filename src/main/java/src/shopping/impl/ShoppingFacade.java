@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import src.entity.Articulo;
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
@@ -72,13 +73,17 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	}
 
 	@Override
-	public Cart removeItemFromCart(Oferta item) {
-		return cartManager.removeItem(item);
+	public String removeItemFromCart(CartItem item) {
+		cartManager.removeItem(item);
+		purchaseManager.updateOrder();
+		return serviceLocator.getViewStateMachine().setCartView();
 	}
 
 	@Override
-	public Cart resetCart() {
-		return cartManager.reset();
+	public String resetCart() {
+		cartManager.reset();
+		purchaseManager.updateOrder();
+		return serviceLocator.getViewStateMachine().setCartView();
 	}
 
 	@Override

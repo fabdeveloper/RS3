@@ -4,6 +4,7 @@ import java.util.List;
 
 import src.entity.Articulo;
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
@@ -15,8 +16,8 @@ public interface IShoppingFacade {
 	public  List<Articulo> getAvail(Product prod);	
 	public List<Oferta> getAvail(Articulo articulo);
 	public String addItemToCart(Oferta item, Integer numItems);
-	public Cart removeItemFromCart(Oferta item);
-	public Cart resetCart();
+	public String removeItemFromCart(CartItem item);
+	public String resetCart();
 	public String purchaseConfirm();
 	public String createOrder();
 	public Cart getCart();
