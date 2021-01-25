@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.Oferta;
 import src.inter.IProcessable;
 import src.shopping.inter.IShoppingFacade;
@@ -23,17 +24,22 @@ public class CartValuedBB implements IProcessable{
 		return shoppingFacade.getServiceLocator().getViewStateMachine().setAvailabilityView();
 	}
 	
-	public void removeItem(Oferta oferta){
-		shoppingFacade.removeItemFromCart(oferta);
+	public void removeItem(CartItem item){
+		shoppingFacade.removeItemFromCart(item);
 	}
 	
 	public void reset(){
 		shoppingFacade.resetCart();
 	}
 	
-	public String createOrder(){
-		return shoppingFacade.createOrder();
+	public String configOrder(){
+		return shoppingFacade.configOrder();
 	}
+	
+	
+//	public String createOrder(){
+//		return shoppingFacade.createOrder();
+//	}
 
 	public Cart getCart() {
 		return shoppingFacade.getCart();
@@ -59,7 +65,7 @@ public class CartValuedBB implements IProcessable{
 		if(obj instanceof String){
 			indice = Integer.valueOf((String)obj);
 		}
-		for(Oferta of : shoppingFacade.getCart().getListaOfertas()){
+		for(CartItem of : shoppingFacade.getCart().getListaItems()){
 			if(of.getId().intValue() == indice){
 				removeItem(of);
 			}			

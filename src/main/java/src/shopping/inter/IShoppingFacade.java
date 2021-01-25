@@ -18,8 +18,9 @@ public interface IShoppingFacade {
 	public String addItemToCart(Oferta item, Integer numItems);
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
+	public String configOrder();
 	public String purchaseConfirm();
-	public String createOrder();
+//	public String createOrder();
 	public Cart getCart();
 	public Order getOrder();
 //	public void setOrder(Order order);

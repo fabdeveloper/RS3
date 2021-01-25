@@ -82,11 +82,12 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 		if(isPaymentProcessOK()){ // OK
 			
-			serviceLocator.getOrderServices().create(order); // graba la orden en DB
+//			serviceLocator.getOrderServices().create(order); // graba la orden en DB
 			order.getPurchaseStatus().setRemark("CONFIRMADO");
 			order.setLastModificationDate(new Date());
 			order.setConfirmationDate(new Date());
 
+			mergeOrder();
 			
 			
 		}else{  // PAYMENT ERROR

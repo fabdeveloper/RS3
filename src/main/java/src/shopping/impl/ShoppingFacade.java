@@ -92,8 +92,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	}
 
 	@Override
-	public String createOrder() {
-		return purchaseManager.createOrder();
+	public String configOrder() {
+		return serviceLocator.getViewStateMachine().setConfigView();
 	}
 
 	public IAvailabilityManager getAvailabilityManager() {
