@@ -17,6 +17,8 @@
 		<composite:attribute name="texto4"></composite:attribute>
 		<composite:attribute name="textoboton"></composite:attribute>
 		<composite:attribute name="iditem"></composite:attribute>
+		<composite:attribute name="numItems"></composite:attribute>
+		
 		<composite:attribute name="divclass" default="divclass"></composite:attribute>
 		<composite:attribute name="botonclass" default="botonclass"></composite:attribute>
 		
@@ -33,7 +35,9 @@
 			<p:outputText value="#{cc.attrs.texto1}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto2}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto3}"></p:outputText><br/>
-			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/>
+			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/><p:form>
+			<p:inputText value="#{cc.attrs.numItems}" onchange="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"></p:inputText>
+				</p:form>
 			<p:form id="formitemcart">
 				<p:commandButton class="#{cc.attrs.botonclass}" style="float:right;"  value="#{cc.attrs.textoboton}" action="#{cc.attrs.bean.process(cc.attrs.iditem)}"></p:commandButton>
 

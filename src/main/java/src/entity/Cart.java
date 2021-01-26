@@ -33,7 +33,7 @@ public class Cart implements Serializable, IPrototype<Cart>{
 //	inverseJoinColumns=@JoinColumn(name="ID_OFERTA", table="OFERTAS", referencedColumnName="ID"))
 //	private List<Oferta> listaOfertas;
 	
-	@OneToMany(mappedBy="CART")
+	@OneToMany(mappedBy="cart")
 	private List<CartItem> listaItems;
 	
 	@Column(name="VALUE")

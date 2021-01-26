@@ -12,6 +12,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.DeliveryDetails;
 import src.entity.Oferta;
 import src.entity.Order;
@@ -87,8 +88,8 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return String.valueOf(getCart().getValue());
 	}
 
-	public List<Oferta> getCartItemsList() {
-		return getCart().getListaOfertas();
+	public List<CartItem> getCartItemsList() {
+		return getCart().getListaItems();
 	}
 
 	public IShoppingFacade getShoppingFacade() {

@@ -12,7 +12,7 @@
 
 		<ui:define name="listado de ofertas">		
 			<em:cartlistaofertascomp		
-				lista="#{cartValuedBB.getCart().getListaOfertas()}"		
+				lista="#{cartValuedBB.getCart().getListaItems()}"		
 				bean="#{cartValuedBB}"
 				botonclass="botonclass"
 				divclass="divclass"		
@@ -23,7 +23,7 @@
 		
 			<em:output4botoncomp
 				texto1="Numero de articulos : "
-				texto2="#{cartValuedBB.getCart().getListaOfertas().size()}"
+				texto2="#{cartValuedBB.getCart().getListaItems().size()}"
 				texto3="Precio total : "
 				texto4="#{cartValuedBB.getCart().getValue()}"
 				bean="#{cartValuedBB}"
@@ -37,7 +37,7 @@
 		
 		<em:output4botoncomp
 			texto1="Numero de articulos : "
-			texto2="#{cartValuedBB.getCart().getListaOfertas().size()}"
+			texto2="#{cartValuedBB.getCart().getListaItems().size()}"
 			texto3="Precio total : "
 			texto4="#{cartValuedBB.getCart().getValue()}"
 			bean="#{cartValuedBB}"

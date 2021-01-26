@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,14 +24,14 @@ public class CartItem implements Serializable, IPrototype<CartItem> {
 	@Column(name="ID")
 	private Integer id;
 	
-	@Column(name="OFERTA")
+	@JoinColumn(name="OFERTA")
 	@ManyToOne
 	private Oferta oferta;
 	
 	@Column(name="COUNTER")
 	private Integer counter;
 	
-	@Column(name="CART")
+	@JoinColumn(name="CART")
 	@ManyToOne
 	private Cart cart;
 
@@ -40,6 +41,7 @@ public class CartItem implements Serializable, IPrototype<CartItem> {
 		nuevo.setId(this.getId());
 		nuevo.setOferta(this.getOferta());
 		nuevo.setCounter(this.getCounter());
+		nuevo.setCart(this.getCart());
 		
 		return nuevo;
 	}

@@ -74,6 +74,10 @@ public class CartValuedBB implements IProcessable{
 	}
 	
 	
+	public void modifItem(Integer id, Integer numItems){
+		System.out.println("CartValuedBB.modifItem - itemid = " + id + ", nuevo numItems = " + numItems);
+	}
+	
 
 	
 	

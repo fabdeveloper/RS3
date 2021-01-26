@@ -164,9 +164,9 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 		return null;		
 	}
 	
-	public String addItemToCart(Oferta item){
-		return shoppingFacade.addItemToCart(item);
-	}
+//	public String addItemToCart(Oferta item){
+//		return shoppingFacade.addItemToCart(item);
+//	}
 	
 	@PostConstruct
 	public void loadProducts(){
