@@ -13,10 +13,13 @@
                 <class>src.entity.PurchaseStatus</class>
                 <class>src.entity.DeliveryDetails</class>
                 <class>src.entity.Cart</class>
-                
-        
+                <class>src.entity.CartItem</class>
+                <class>src.entity.Product</class>
+                <class>src.entity.Articulo</class>
+                <class>src.entity.Oferta</class>
+                <class>src.entity.Atributo</class>  
     
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+<!--         <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
     
 
     <properties> 

@@ -25,8 +25,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	static Logger logger = Logger.getLogger(PurchaseManager.class.getName());
 	
-	@Inject
-	private ICartManager cartManager; // TODO : obtener esto con serviceLocator
+//	@Inject
+//	private ICartManager cartManager; // TODO : obtener esto con serviceLocator
 	@Inject
 	private IServiceLocator serviceLocator;
 	
@@ -37,7 +37,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 
 	private ICartManager getCartManager() {
-		return cartManager;
+		return serviceLocator.getShoppingFacade().getCartManager();
 	}
 
 	@Override
@@ -60,14 +60,19 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	public void updateOrder(){
 		
 		if(getCartManager().isCartEmpty()){// empty cart
+			System.out.println("PurchaseManager.updateOrder() - empty cart");
+			
 			
 		}else if(order == null){// if order is null (first item to cart)
+			System.out.println("PurchaseManager.updateOrder() - order == null");
+
 			createOrder();
 			order.setCreationDate(new Date());
 			persistOrder();
 			
 		}else{ // add modif remove  item(not empty cart)
-			
+			System.out.println("PurchaseManager.updateOrder() - add or modify cart");
+
 			order.setLastModificationDate(new Date());
 			mergeOrder();
 			
@@ -98,13 +103,23 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 	
 	private void persistOrder(){
+		System.out.println("PurchaseManager.persistOrder()");
+
 		order.setLastModificationDate(new Date());
 		serviceLocator.getOrderServices().create(order); // graba la orden en DB
+		flush();
 	}
 	
 	private void mergeOrder(){
+		System.out.println("PurchaseManager.mergeOrder()");
+
 		order.setLastModificationDate(new Date());
-		serviceLocator.getOrderServices().update(order); // graba la orden en DB		
+		serviceLocator.getOrderServices().update(order); // graba la orden en DB	
+		flush();
+	}
+	
+	private void flush(){
+		serviceLocator.getEntityManager().flush();
 	}
 	
 	private boolean isPaymentProcessOK(){
@@ -147,7 +162,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	private void setCart() {
 //		cartManager.getCart().setOrder(order);
-		order.setCart(cartManager.getCart());
+		order.setCart(getCartManager().getCart());
 	}
 
 	private void setPurchaseStatus() {
@@ -166,8 +181,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				.getGestorE().getFactory().crear();
 		
 		deliveryDetails.setDeliveryAddress(getClient().getAddress());
-		deliveryDetails.setRemark("pendiente");
+		deliveryDetails.setStatus("pendiente");
 		deliveryDetails.setDeliveryType("normal");
+		deliveryDetails.setLastModificationDate(new Date());
 		
 //		deliveryDetails.setOrder(order);
 		order.setDeliveryDetails(deliveryDetails);		

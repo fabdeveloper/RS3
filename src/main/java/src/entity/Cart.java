@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Cart implements Serializable, IPrototype<Cart>{
 //	inverseJoinColumns=@JoinColumn(name="ID_OFERTA", table="OFERTAS", referencedColumnName="ID"))
 //	private List<Oferta> listaOfertas;
 	
-	@OneToMany(mappedBy="cart")
+	@OneToMany(mappedBy="cart", cascade={CascadeType.ALL})
 	private List<CartItem> listaItems;
 	
 	@Column(name="VALUE")

@@ -3,7 +3,6 @@ package src.gestor;
 import javax.inject.Inject;
 
 import src.dao.IDao;
-import src.entity.Pedido;
 import src.factory.IBeanFactory;
 
 public abstract class AbstractGestor<T> implements IGestorE<T> {

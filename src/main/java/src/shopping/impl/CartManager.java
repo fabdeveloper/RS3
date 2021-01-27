@@ -98,7 +98,7 @@ public class CartManager implements ICartManager, Serializable {
 	
 	@Override
 	public Boolean isCartEmpty(){		
-		return getCart().getListaItems().size()>0;
+		return !(getCart().getListaItems().size()>0);
 	}
 
 	public void setCart(Cart cart) {

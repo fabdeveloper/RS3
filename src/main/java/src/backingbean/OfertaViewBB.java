@@ -1,9 +1,9 @@
 package src.backingbean;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.entity.Oferta;
 import src.shopping.inter.IShoppingFacade;
@@ -22,7 +22,7 @@ public class OfertaViewBB {
 	
 	
 	
-	
+	@Transactional
 	public String addToCart(){
 		return shop.addItemToCart(getOferta(), getCounter());
 	}
