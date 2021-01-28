@@ -61,7 +61,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 		if(getCartManager().isCartEmpty()){// empty cart
 			System.out.println("PurchaseManager.updateOrder() - empty cart");
-			
+
+
+			deleteOrder();
 			
 		}else if(order == null){// if order is null (first item to cart)
 			System.out.println("PurchaseManager.updateOrder() - order == null");
@@ -260,6 +262,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		logger.log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 
 		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
+		flush();
 //		order.getPurchaseStatus().setRemark("DELETED");
 //		setOrder(order);	
 		reset();

@@ -3,6 +3,7 @@ package src.backingbean;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import src.entity.Cart;
 import src.entity.CartItem;
@@ -28,6 +29,7 @@ public class CartValuedBB implements IProcessable{
 		shoppingFacade.removeItemFromCart(item);
 	}
 	
+	@Transactional
 	public void reset(){
 		shoppingFacade.resetCart();
 	}
@@ -55,6 +57,7 @@ public class CartValuedBB implements IProcessable{
 	}
 
 
+	@Transactional
 	@Override
 	public String process(Object obj) {
 		// elimina la oferta del carrito
