@@ -71,6 +71,20 @@ public class Order implements Serializable, IPrototype<Order>{
 		
 		return nuevo;		
 	}
+	
+	public String toString(){
+		super.toString();
+		
+		
+		String cadena = "Order -   " + "id = " + getId() + ", client = " + getClient() + 
+				", cart = " + getCart() + ", confirmation = " + getConfirmationDate() + 
+				", creation = " + getCreationDate() + ", deliverydetails = " + getDeliveryDetails() + 
+				", modification = " + getLastModificationDate() + ", purchasestatus = " + getPurchaseStatus();
+		
+		
+		
+		return cadena;
+	}
 
 	public Integer getId() {
 		return id;

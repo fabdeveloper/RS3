@@ -40,8 +40,8 @@ public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 	}
 
 	@Override
-	public void update(E e) {
-		gestor.getDao().edit(e);
+	public E update(E e) {
+		return gestor.getDao().edit(e);
 	}
 
 	@Override

@@ -73,6 +73,17 @@ public class User implements Serializable, IUser, IPrototype<User>{
 		return user;
 	}
 	
+	public String toString(){
+		super.toString();
+		
+		String cadena = "";
+		cadena = "User -   " + "id = " + getId() + ", name = " + getName() + 
+				", nick = " + getNick() + ", address = " + getAddress() + ", email = " + getEmail() + "\n";
+		
+		
+		return cadena;
+	}
+	
 	@Override
 	public Integer getId() {
 		return id;

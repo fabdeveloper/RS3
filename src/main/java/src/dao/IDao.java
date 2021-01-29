@@ -16,7 +16,7 @@ public interface IDao<T> {
 
 	public abstract void create(T entity);
 
-	public abstract void edit(T entity);
+	public abstract T edit(T entity);
 
 	public abstract void remove(T entity);
 

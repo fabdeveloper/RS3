@@ -60,6 +60,7 @@ public class CartValuedBB implements IProcessable{
 	@Transactional
 	@Override
 	public String process(Object obj) {
+		System.out.println("CartValuedBB.process() - ");
 		// elimina la oferta del carrito
 		int indice = 0;
 		if(obj instanceof Integer){
@@ -69,6 +70,9 @@ public class CartValuedBB implements IProcessable{
 			indice = Integer.valueOf((String)obj);
 		}
 		for(CartItem of : shoppingFacade.getCart().getListaItems()){
+			System.out.println("indice = " + indice);
+			System.out.println("CartItem:  " + of);
+			
 			if(of.getId().intValue() == indice){
 				removeItem(of);
 			}			

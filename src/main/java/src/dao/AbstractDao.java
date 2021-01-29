@@ -44,8 +44,9 @@ public abstract class AbstractDao<T> implements IDao<T> {
 	}
 	@Auditor
 	@Override
-	public void edit(T entity){
-		getEntityManager().merge(entity);
+	public T edit(T entity){
+		T nuevo = getEntityManager().merge(entity);
+		return nuevo;
 	}
 	@Auditor
 	@Override

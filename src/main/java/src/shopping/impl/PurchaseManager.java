@@ -61,8 +61,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 		if(getCartManager().isCartEmpty()){// empty cart
 			System.out.println("PurchaseManager.updateOrder() - empty cart");
-
-
+			
 			deleteOrder();
 			
 		}else if(order == null){// if order is null (first item to cart)
@@ -79,7 +78,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			mergeOrder();
 			
 		}
-		
+		System.out.println("ORDER :  *********************");
+		System.out.println(order.toString());
+
 	}
 
 	@Override
@@ -116,12 +117,16 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		System.out.println("PurchaseManager.mergeOrder()");
 
 		order.setLastModificationDate(new Date());
-		serviceLocator.getOrderServices().update(order); // graba la orden en DB	
+		order = serviceLocator.getOrderServices().update(order); // graba la orden en DB	
 		flush();
 	}
 	
 	private void flush(){
 		serviceLocator.getEntityManager().flush();
+	}
+	
+	private void refresh(){
+		serviceLocator.getEntityManager().refresh(order);
 	}
 	
 	private boolean isPaymentProcessOK(){

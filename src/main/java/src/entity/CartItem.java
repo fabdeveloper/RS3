@@ -45,6 +45,15 @@ public class CartItem implements Serializable, IPrototype<CartItem> {
 		
 		return nuevo;
 	}
+	
+	public String toString(){
+		super.toString();
+		
+		String cadena = "";
+		cadena = "CartItem - id = " + getId() + ", ofertaid = " + getOferta().getId() + ", counter = " + getCounter() + ", cartId = " + getCart().getId() + "\n";
+		
+		return cadena;
+	}
 	// Getters and Setters
 	
 	public Integer getId() {
