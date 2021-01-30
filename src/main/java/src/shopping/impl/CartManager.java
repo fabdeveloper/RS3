@@ -101,6 +101,7 @@ public class CartManager implements ICartManager, Serializable {
 		return !(getCart().getListaItems().size()>0);
 	}
 
+	@Override
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}

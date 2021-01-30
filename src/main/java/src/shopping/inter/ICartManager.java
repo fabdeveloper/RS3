@@ -10,6 +10,7 @@ public interface ICartManager {
 	public Cart removeItem(CartItem item);
 	public Cart reset();
 	public Cart getCart();
+	public void setCart(Cart cart);
 	public Boolean isCartEmpty();
 
 }

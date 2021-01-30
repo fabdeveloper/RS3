@@ -77,9 +77,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			order.setLastModificationDate(new Date());
 			mergeOrder();
 			
+			getCartManager().setCart(order.getCart());
+			
 		}
 		System.out.println("ORDER :  *********************");
-		System.out.println(order.toString());
+		if(order != null)System.out.println(order.toString());
 
 	}
 

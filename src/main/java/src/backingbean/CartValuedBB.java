@@ -70,13 +70,17 @@ public class CartValuedBB implements IProcessable{
 			indice = Integer.valueOf((String)obj);
 		}
 		for(CartItem of : shoppingFacade.getCart().getListaItems()){
-			System.out.println("indice = " + indice);
+			System.out.println("indice a eliminar = " + indice);
 			System.out.println("CartItem:  " + of);
-			
+		}
+		CartItem itemNoDeseado = null;
+		for(CartItem of : shoppingFacade.getCart().getListaItems()){			
 			if(of.getId().intValue() == indice){
-				removeItem(of);
+				itemNoDeseado = of;				
 			}			
-		}		
+		}
+		if(itemNoDeseado != null)removeItem(itemNoDeseado);
+		
 		return null;
 	}
 	
