@@ -1,6 +1,10 @@
 package src.backingbean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -87,6 +91,15 @@ public class CartValuedBB implements IProcessable{
 	
 	public void modifItem(Integer id, Integer numItems){
 		System.out.println("CartValuedBB.modifItem - itemid = " + id + ", nuevo numItems = " + numItems);
+	}
+	
+	public List<SelectItem> getListaStock(Integer stock){
+		List<SelectItem> lista = new ArrayList<SelectItem>();
+		for (int i = 1; i <= stock; i++) {
+			String num = "" + i;
+			lista.add(new SelectItem(i, num));
+		}
+		return lista;		
 	}
 	
 

@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <p:head>
@@ -18,12 +19,14 @@
 		<composite:attribute name="textoboton"></composite:attribute>
 		<composite:attribute name="iditem"></composite:attribute>
 		<composite:attribute name="numItems"></composite:attribute>
+		<composite:attribute name="listaItems"></composite:attribute>
 		
 		<composite:attribute name="divclass" default="divclass"></composite:attribute>
 		<composite:attribute name="botonclass" default="botonclass"></composite:attribute>
 		
 		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
 		
+		<composite:clientBehavior name="valueChange" event="valueChange" target="selectonemenu"></composite:clientBehavior>
 		<composite:clientBehavior name="actioneventitemcartcomp" event="action" target="formitemcart"></composite:clientBehavior>
 	</composite:interface>
 	<composite:implementation>
@@ -36,7 +39,11 @@
 			<p:outputText value="#{cc.attrs.texto2}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto3}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/><p:form>
-			<p:inputText value="#{cc.attrs.numItems}" onchange="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"></p:inputText>
+<!-- 			<p:inputText value="#{cc.attrs.numItems}" onchange="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"></p:inputText> -->
+			<p:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}" >
+				<c:selectItems value="#{cc.attrs.listaItems}"></c:selectItems>
+				<c:ajax event="valueChange"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"/>
+			</p:selectOneMenu>
 				</p:form>
 			<p:form id="formitemcart">
 				<p:commandButton class="#{cc.attrs.botonclass}" style="float:right;"  value="#{cc.attrs.textoboton}" action="#{cc.attrs.bean.process(cc.attrs.iditem)}"></p:commandButton>

@@ -33,8 +33,6 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 	@Column(name="NAME")
 	private String name;
 	
-
-	
 	@ManyToOne
 	@JoinColumn(name="ARTICULO_ID" )
 	private Articulo articulo; //FK
@@ -52,14 +50,11 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 	@Column(name="URL_IMAGE_BIG")
 	private String urlImagebig;
 	
-	public String getUrlImagebig() {
-		return urlImagebig;
-	}
+	@Column(name="STOCK")
+	private Integer stock;
+	
+	
 
-
-	public void setUrlImagebig(String urlImagebig) {
-		this.urlImagebig = urlImagebig;
-	}
 
 
 	@Override
@@ -127,14 +122,20 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 		this.urlImage = urlImage;
 	}
 	
+	public String getUrlImagebig() {
+		return urlImagebig;
+	}
 
+	public void setUrlImagebig(String urlImagebig) {
+		this.urlImagebig = urlImagebig;
+	}
 
+	public Integer getStock() {
+		return stock;
+	}
 
-	
-	
-	
-	
-	
-	
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}	
 
 }
