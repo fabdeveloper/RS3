@@ -88,9 +88,10 @@ public class CartValuedBB implements IProcessable{
 		return null;
 	}
 	
-	
+	@Transactional
 	public void modifItem(Integer id, Integer numItems){
 		System.out.println("CartValuedBB.modifItem - itemid = " + id + ", nuevo numItems = " + numItems);
+		shoppingFacade.changeNumItems(id, numItems);
 	}
 	
 	public List<SelectItem> getListaStock(Integer stock){

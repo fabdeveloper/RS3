@@ -117,6 +117,25 @@ public class CartManager implements ICartManager, Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public Cart modifyItem(Integer id, Integer numItems) {
+		CartItem item = getItemById(id);
+		item.setCounter(numItems);	
+		cart.setValue(valuate());
+		return cart;
+	}
+
+	@Override
+	public CartItem getItemById(Integer id) {
+		CartItem item = null;
+		for(CartItem ci : cart.getListaItems()){
+			if(ci.getId().compareTo(id) == 0){
+				item = ci;
+			}
+		}
+		return item;
+	}
 	
 	
 	

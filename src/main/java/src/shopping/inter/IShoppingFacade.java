@@ -38,5 +38,6 @@ public interface IShoppingFacade {
 	public String invalidateSession();
 	public Boolean isClient();
 	public String getCallerName();
+	public String changeNumItems(Integer id, Integer numItems);
 
 }

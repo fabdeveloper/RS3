@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+
 import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.CartItem;
@@ -202,6 +203,13 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String getCallerName(){		
 		return serviceLocator.getSessionManager().getCallerName();		
+	}
+
+	@Override
+	public String changeNumItems(Integer id, Integer numItems) {
+		cartManager.modifyItem(id, numItems);
+		purchaseManager.updateOrder();
+		return serviceLocator.getViewStateMachine().setCartView();
 	}
 
 

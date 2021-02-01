@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	 	
+	xmlns:ui="http://primefaces.org/ui"
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <p:head>
@@ -26,7 +28,7 @@
 		
 		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
 		
-		<composite:clientBehavior name="valueChange" event="valueChange" target="selectonemenu"></composite:clientBehavior>
+<!-- 		<composite:clientBehavior name="valueChange" event="valueChange" target="selectonemenu"></composite:clientBehavior> -->
 		<composite:clientBehavior name="actioneventitemcartcomp" event="action" target="formitemcart"></composite:clientBehavior>
 	</composite:interface>
 	<composite:implementation>
@@ -39,11 +41,10 @@
 			<p:outputText value="#{cc.attrs.texto2}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto3}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/><p:form>
-<!-- 			<p:inputText value="#{cc.attrs.numItems}" onchange="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"></p:inputText> -->
-			<p:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}" >
+			<ui:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}" >
 				<c:selectItems value="#{cc.attrs.listaItems}"></c:selectItems>
-				<c:ajax event="valueChange"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"/>
-			</p:selectOneMenu>
+				<c:ajax event="itemSelect"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}"/>
+			</ui:selectOneMenu>
 				</p:form>
 			<p:form id="formitemcart">
 				<p:commandButton class="#{cc.attrs.botonclass}" style="float:right;"  value="#{cc.attrs.textoboton}" action="#{cc.attrs.bean.process(cc.attrs.iditem)}"></p:commandButton>
