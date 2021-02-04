@@ -12,6 +12,12 @@ import src.inter.IServiceLocator;
 
 public interface IShoppingFacade {
 	
+	public IServiceLocator getServiceLocator();
+
+	public IPurchaseManager getPurchaseManager();
+	public ICartManager getCartManager();
+	public IStockManager getStockManager();
+	
 	public List<Product> getAvail();	
 	public  List<Articulo> getAvail(Product prod);	
 	public List<Oferta> getAvail(Articulo articulo);
@@ -24,8 +30,7 @@ public interface IShoppingFacade {
 	public Cart getCart();
 	public Order getOrder();
 //	public void setOrder(Order order);
-	public IPurchaseManager getPurchaseManager();
-	public ICartManager getCartManager();
+
 	public String findOrder(Integer order_id);
 	public String cancelOrder();
 	public String deleteOrder();
@@ -34,7 +39,6 @@ public interface IShoppingFacade {
 	public Oferta getOfertaSeleccionada();
 	public String showOrder();
 	public String nuevaCompra();
-	public IServiceLocator getServiceLocator();
 	public String invalidateSession();
 	public Boolean isClient();
 	public String getCallerName();

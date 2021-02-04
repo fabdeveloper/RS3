@@ -82,8 +82,14 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		return getOrder().getClient();
 	}
 
+//	@Override
+//	public String process(Object obj) {
+//		return shoppingFacade.showOrder();
+//	}
+	
+	@Transactional
 	@Override
-	public String process(Object obj) {
+	public String process(){
 		return shoppingFacade.showOrder();
 	}
 

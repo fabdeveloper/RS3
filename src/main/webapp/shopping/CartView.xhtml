@@ -3,25 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsf/core">
+	
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </p:head>
 <p:body>
-	<ui:composition template="../templates/cartviewtemplate.xhtml">
-
-		<ui:define name="listado de ofertas">		
+	<ui:composition template="../templates/cartviewtemplate.xhtml"> 
+	<div>
+		<ui:define name="listado de ofertas">	
+				<div id="cartlista">
 			<em:cartlistaofertascomp		
 				lista="#{cartValuedBB.getCart().getListaItems()}"		
 				bean="#{cartValuedBB}"
 				botonclass="botonclass"
 				divclass="divclass"		
-			></em:cartlistaofertascomp>			
+			></em:cartlistaofertascomp>				
+						</div>
+					
 		</ui:define>
 
-		<ui:define name="totales">		
 		
-			<em:output4botoncomp
+		<ui:define name="totales">		
+			<div id="totales">
+			<em:output4botoncomp 
 				texto1="Numero de articulos : "
 				texto2="#{cartValuedBB.getCart().getListaItems().size()}"
 				texto3="Precio total : "
@@ -30,12 +36,14 @@
 				botonclass="botonclass"
 				botontext="Confirmar compra"				
 			></em:output4botoncomp>		
-		
+		</div>
 		</ui:define>
+		
+		
 
 		<ui:define name="confirmar compra">
-		
-		<em:output4botoncomp
+		<div id="confirmar">
+		<em:output4botoncomp 
 			texto1="Numero de articulos : "
 			texto2="#{cartValuedBB.getCart().getListaItems().size()}"
 			texto3="Precio total : "
@@ -45,8 +53,10 @@
 			botontext="Confirmar compra"	
 		
 		></em:output4botoncomp>
+		</div>
 
 		</ui:define>
+		
 		<ui:define name="columna izquierda">
 		
 		<p:form>
@@ -55,6 +65,9 @@
 			</p:form>
 
 		</ui:define>
+					<c:ajax event="itemSelect" execute="cartlista" render="totales confirmar" immediate="true" />			
+		
+		</div>
 
 
 	</ui:composition>

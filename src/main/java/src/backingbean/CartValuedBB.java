@@ -88,6 +88,11 @@ public class CartValuedBB implements IProcessable{
 		return null;
 	}
 	
+	@Override
+	public String process(){
+		return configOrder();
+	}
+	
 	@Transactional
 	public void modifItem(Integer id, Integer numItems){
 		System.out.println("CartValuedBB.modifItem - itemid = " + id + ", nuevo numItems = " + numItems);

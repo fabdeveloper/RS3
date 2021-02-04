@@ -18,14 +18,17 @@
 		<composite:attribute name="botonclass"></composite:attribute>
 		<composite:attribute name="divclass"></composite:attribute>
 		
+		<composite:clientBehavior name="itemSelect" event="itemSelect" target="itemcartcomp" ></composite:clientBehavior>
+		
 
 	</composite:interface>
 
 	<composite:implementation>
+	<div id="itemcartcomp">
 
-		<ui:repeat value="#{cc.attrs.lista}"  var="objeto">
+		<ui:repeat  value="#{cc.attrs.lista}"  var="objeto">
 		
-		<em:itemcartcomp
+		<em:itemcartcomp  
 			urlimage="#{objeto.oferta.urlImage}"
 			texto1="#{objeto.oferta.name}"
 			texto2="#{objeto.oferta.articulo.getName()}"
@@ -43,7 +46,9 @@
 		
 		
 		
+		
 		</ui:repeat>
+		</div>
 
 	</composite:implementation>
 
