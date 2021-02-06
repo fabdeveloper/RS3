@@ -18,7 +18,7 @@ public interface ICartManager {
 	public Cart getCart();
 	public void setCart(Cart cart);
 	public Boolean isCartEmpty();
-	public Boolean validate();
-	public List<StockError> getError();
+//	public Boolean validate();
+//	public List<Error> getErrorList();
 
 }

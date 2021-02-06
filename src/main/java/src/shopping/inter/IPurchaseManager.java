@@ -10,7 +10,8 @@ public interface IPurchaseManager {
 	
 	public String createOrder();
 	public void updateOrder();
-	public String confirm();
+	public Boolean preConfirmation();
+	public Boolean confirm();
 	public User getClient();
 	public Cart getCart();
 	public PurchaseStatus getPurchaseStatus();

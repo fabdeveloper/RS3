@@ -1,5 +1,14 @@
 package src.service;
 
+/**************************************************************************/
+/*	Service Locator
+ * 	
+ * 	
+ * 
+ * 	Author : Fabricio Tosi
+ */
+/**************************************************************************/
+
 import java.io.Serializable;
 
 import javax.annotation.Resource;
@@ -60,10 +69,7 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Inject 
 	private IEntityServices<DeliveryDetails> deliveryDetailsServices;
 	
-	@Inject
-	private IViewStateMachine viewStateMachine;
-	@Inject
-	private ISessionManager sessionManager;
+
 	@Inject 
 	private IShoppingFacade shoppingFacade;
 	
@@ -132,15 +138,6 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 		return deliveryDetailsServices;
 	}
 
-	@Override
-	public IViewStateMachine getViewStateMachine() {
-		return viewStateMachine;
-	}
-
-	@Override
-	public ISessionManager getSessionManager() {
-		return sessionManager;
-	}
 
 	@Override
 	public IShoppingFacade getShoppingFacade() {

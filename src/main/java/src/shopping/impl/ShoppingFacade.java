@@ -1,5 +1,14 @@
 package src.shopping.impl;
 
+/**************************************************************************/
+/*	Session Facade
+ * 	Dispatcher View
+ * 	
+ * 
+ * 	Author : Fabricio Tosi
+ */
+/**************************************************************************/
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,8 +26,11 @@ import src.entity.Product;
 import src.inter.IServiceLocator;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
+import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
+import src.shopping.inter.IStockManager;
+import src.shopping.inter.IViewStateMachine;
 
 @SessionScoped
 public class ShoppingFacade implements IShoppingFacade, Serializable{
@@ -35,6 +47,12 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	private ICartManager cartManager;
 	@Inject
 	private IPurchaseManager purchaseManager;
+	@Inject 
+	private IStockManager stockManager;
+	@Inject
+	private IViewStateMachine viewStateMachine;
+	@Inject
+	private ISessionManager sessionManager;
 	
 	private Oferta ofertaSeleccionada;
 
@@ -66,31 +84,34 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	public String addItemToCart(Oferta item, Integer numItems) {
 		cartManager.addItem(item, numItems);
 		purchaseManager.updateOrder();
-		return serviceLocator.getViewStateMachine().setCartView();
+		return viewStateMachine.setCartView();
 	}
 
 	@Override
 	public String removeItemFromCart(CartItem item) {
 		cartManager.removeItem(item);
 		purchaseManager.updateOrder();
-		return serviceLocator.getViewStateMachine().setCartView();
+		return viewStateMachine.setCartView();
 	}
 
 	@Override
 	public String resetCart() {
 		cartManager.reset();
 		purchaseManager.updateOrder();
-		return serviceLocator.getViewStateMachine().setCartView();
+		return viewStateMachine.setCartView();
 	}
 
 	@Override
 	public String purchaseConfirm() {
-		return purchaseManager.confirm();
+		purchaseManager.confirm();
+		
+		
+		return viewStateMachine.setOrderView();
 	}
 
 	@Override
 	public String configOrder() {
-		return serviceLocator.getViewStateMachine().setConfigView();
+		return viewStateMachine.setConfigView();
 	}
 
 	public IAvailabilityManager getAvailabilityManager() {
@@ -143,37 +164,37 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		
 		logger.log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
 
-		return serviceLocator.getViewStateMachine().setOrderView();
+		return viewStateMachine.setOrderView();
 	}
 
 	@Override
 	public String cancelOrder() {
 		purchaseManager.cancelOrder();
-		return serviceLocator.getViewStateMachine().setOrderView();
+		return viewStateMachine.setOrderView();
 
 	}
 
 	@Override
 	public String deleteOrder() {
 		purchaseManager.deleteOrder();
-		return serviceLocator.getViewStateMachine().setOrderView();
+		return viewStateMachine.setOrderView();
 	}
 
 	@Override
 	public String setPaymentProcessOK(Boolean result) {
 		purchaseManager.setPaymentProcessOK(result);
-		return purchaseManager.confirm();
+		return "";
 	}
 
 	@Override
 	public String showOfertaDetail(Oferta oferta) {
 		setOfertaSeleccionada(oferta);		
-		return serviceLocator.getViewStateMachine().setOfertaView();
+		return viewStateMachine.setOfertaView();
 	}
 
 	@Override
 	public String showOrder() {
-		return serviceLocator.getViewStateMachine().setOrderView();
+		return viewStateMachine.setOrderView();
 	}
 
 	@Override
@@ -181,7 +202,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		purchaseManager.reset();
 		cartManager.reset();
 
-		return serviceLocator.getViewStateMachine().setAvailabilityView();
+		return viewStateMachine.setAvailabilityView();
 	}
 
 	@Override
@@ -191,26 +212,42 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String invalidateSession() {		
-		serviceLocator.getSessionManager().invalidateSession();
-		return serviceLocator.getViewStateMachine().setHomeView();		
+		sessionManager.invalidateSession();
+		return viewStateMachine.setHomeView();		
 	}
 	
 	@Override
 	public Boolean isClient(){			
-		return serviceLocator.getSessionManager().isClient();
+		return sessionManager.isClient();
 	}
 	
 	@Override
 	public String getCallerName(){		
-		return serviceLocator.getSessionManager().getCallerName();		
+		return sessionManager.getCallerName();		
 	}
 
 	@Override
 	public String changeNumItems(Integer id, Integer numItems) {
 		cartManager.modifyItem(id, numItems);
 		purchaseManager.updateOrder();
-		return serviceLocator.getViewStateMachine().setCartView();
+		return viewStateMachine.setCartView();
 	}
+
+	@Override
+	public IStockManager getStockManager() {
+		return stockManager;
+	}
+	
+	@Override
+	public IViewStateMachine getViewStateMachine() {
+		return viewStateMachine;
+	}
+
+	@Override
+	public ISessionManager getSessionManager() {
+		return sessionManager;
+	}
+
 
 
 

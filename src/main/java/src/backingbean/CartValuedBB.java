@@ -26,7 +26,7 @@ public class CartValuedBB implements IProcessable{
 	
 	
 	public String moreItems(){
-		return shoppingFacade.getServiceLocator().getViewStateMachine().setAvailabilityView();
+		return shoppingFacade.getViewStateMachine().setAvailabilityView();
 	}
 	
 	public void removeItem(CartItem item){

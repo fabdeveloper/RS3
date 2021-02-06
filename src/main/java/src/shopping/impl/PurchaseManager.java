@@ -1,7 +1,9 @@
 package src.shopping.impl;
 
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,7 +11,9 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+
 import src.entity.Cart;
+import src.entity.CartItem;
 import src.entity.DeliveryDetails;
 import src.entity.Order;
 import src.entity.PurchaseStatus;
@@ -17,6 +21,7 @@ import src.entity.User;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.IPurchaseManager;
+import src.shopping.inter.IStockManager;
 
 @SessionScoped
 //@DeclareRoles({"CLIENT", "ADMIN"})
@@ -84,9 +89,30 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		if(order != null)System.out.println(order.toString());
 
 	}
+	
+	@Override
+	public Boolean preConfirmation() {
+		Boolean ok = true;
+		IStockManager stockM = serviceLocator.getShoppingFacade().getStockManager();
+		// actualizar stock
+		for(CartItem item : getCart().getListaItems()){
+			if(!stockM.consumirStock(item.getOferta().getId(), item.getCounter())){
+				ok = false;
+			}
+		}
+		// grabar preconfirmacion
+		if(ok){
+			order.setLastModificationDate(new Date());
+			order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
+			mergeOrder();
+		}
+		
+		return ok;
+	}
 
 	@Override
-	public String confirm() {
+	public Boolean confirm() {
+		Boolean ok = true;
 		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
 	
 
@@ -101,10 +127,11 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 			
 		}else{  // PAYMENT ERROR
+			ok = false;
 			throw new RuntimeException("Payment Error");
 		}
 
-		return serviceLocator.getViewStateMachine().setOrderView();
+		return ok;
 	}
 	
 	private void persistOrder(){
@@ -280,6 +307,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	public void reset() {
 		this.order = null;
 	}
+
+
 
 
 

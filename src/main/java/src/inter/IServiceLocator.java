@@ -48,10 +48,6 @@ public interface IServiceLocator {
 
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices();
 	
-	public IViewStateMachine getViewStateMachine();
-	
-	public ISessionManager getSessionManager();
-	
 	public IShoppingFacade getShoppingFacade();
 
 
