@@ -90,7 +90,7 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	@Transactional
 	@Override
 	public String process(){
-		return shoppingFacade.showOrder();
+		return shoppingFacade.preConfirm();
 	}
 
 }

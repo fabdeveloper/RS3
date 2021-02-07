@@ -28,6 +28,7 @@ public interface IShoppingFacade {
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
 	public String configOrder();
+	public String preConfirm();
 	public String purchaseConfirm();
 //	public String createOrder();
 	public Cart getCart();

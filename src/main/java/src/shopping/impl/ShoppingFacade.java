@@ -100,6 +100,14 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		purchaseManager.updateOrder();
 		return viewStateMachine.setCartView();
 	}
+	
+	@Override
+	public String preConfirm() {
+		purchaseManager.preConfirmation();
+		
+		
+		return viewStateMachine.setOrderView();
+	}
 
 	@Override
 	public String purchaseConfirm() {
