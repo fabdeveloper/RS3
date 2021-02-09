@@ -75,4 +75,9 @@ public class StockManager implements IStockManager {
 		return oferta;
 	}
 
+	@Override
+	public Oferta getOferta() {
+		return oferta;
+	}
+
 }

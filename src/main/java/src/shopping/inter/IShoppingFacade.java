@@ -30,11 +30,8 @@ public interface IShoppingFacade {
 	public String configOrder();
 	public String preConfirm();
 	public String purchaseConfirm();
-//	public String createOrder();
 	public Cart getCart();
 	public Order getOrder();
-//	public void setOrder(Order order);
-
 	public String findOrder(Integer order_id);
 	public String cancelOrder();
 	public String deleteOrder();
@@ -47,5 +44,9 @@ public interface IShoppingFacade {
 	public Boolean isClient();
 	public String getCallerName();
 	public String changeNumItems(Integer id, Integer numItems);
+	// StockManagement
+	public Boolean consumirStock(Integer oferta_id, Integer unidades);
+	public Boolean recuperarStock(Integer oferta_id, Integer unidades);
+
 
 }

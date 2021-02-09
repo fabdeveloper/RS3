@@ -18,5 +18,7 @@ public interface IStockManager {
 	public void load(Integer oferta_id);
 	
 	public Oferta updateStock(Oferta oferta, Integer unidades);
+	
+	public Oferta getOferta();
 
 }

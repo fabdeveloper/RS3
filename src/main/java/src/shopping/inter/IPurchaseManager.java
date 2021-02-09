@@ -1,5 +1,7 @@
 package src.shopping.inter;
 
+import java.util.List;
+
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
 import src.entity.Order;
@@ -10,7 +12,7 @@ public interface IPurchaseManager {
 	
 	public String createOrder();
 	public void updateOrder();
-	public Boolean preConfirmation();
+	public List<RuntimeException> preConfirmation();
 	public Boolean confirm();
 	public User getClient();
 	public Cart getCart();
