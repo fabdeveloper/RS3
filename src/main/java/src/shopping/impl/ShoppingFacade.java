@@ -103,10 +103,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
 	@Override
 	public String preConfirm() {
-		purchaseManager.preConfirmation();
+		boolean ok = purchaseManager.preConfirmation();
+		String result = viewStateMachine.setOrderView();		
+		if(!ok)result = viewStateMachine.setErrorView();		
 		
-		
-		return viewStateMachine.setOrderView();
+		return result;
 	}
 
 	@Override
@@ -254,6 +255,24 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public ISessionManager getSessionManager() {
 		return sessionManager;
+	}
+
+	@Override
+	public Boolean consumirStock(Integer oferta_id, Integer unidades) {		
+		return stockManager.consumirStock(oferta_id, unidades);
+	}
+
+	@Override
+	public Boolean recuperarStock(Integer oferta_id, Integer unidades) {
+		return stockManager.recuperarStock(oferta_id, unidades);
+	}
+
+	@Override
+	public String paymentError() {
+		purchaseManager.paymentError();
+		
+		
+		return getViewStateMachine().setErrorView();
 	}
 
 

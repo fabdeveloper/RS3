@@ -140,9 +140,9 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return getOrder().getCart();
 	}
 
-	@Override
-	public String process(Object obj) {
-		String retorno = "";
+//	@Override
+//	public String process(Object obj) {
+//		String retorno = "";
 //		String id = "0";
 //		if(obj instanceof Integer){ id = ((Integer) obj).toString(); }
 //		if(obj instanceof String){	id = (String)obj; }	
@@ -155,17 +155,18 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 //			break;
 //			default:;			
 //		}		
-		return retorno;
-	}
+//		return retorno;
+//	}
 	
 	@Transactional
 	public String simulaPagoOk(){		
 		return shoppingFacade.purchaseConfirm();
 	}
 	
+	@Transactional
 	public String simulaPagoKo(){		
-		
-		return "";
+		return shoppingFacade.paymentError();
+//		return "";
 	}
 	
 	@Override

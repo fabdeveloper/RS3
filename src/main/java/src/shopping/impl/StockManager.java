@@ -4,6 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import src.entity.Oferta;
+import src.exception.ConsumeStockException;
+import src.exception.DBException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.IStockManager;
 
@@ -21,13 +23,18 @@ public class StockManager implements IStockManager {
 		Boolean ok = true;
 		// check availability
 		int nuevoStock = disponible(oferta_id) - unidades;
+		// consume stock
 		if(nuevoStock >= 0){
-			updateStock(oferta, nuevoStock);		
+			try{
+				updateStock(oferta, nuevoStock);		
+
+			}catch(Throwable t){
+				throw new DBException("error consumiendo stock", t);
+			}
 			
 		}else{
 			ok = false;
-//			throw new RuntimeException("Stock Exception : oferta_id = " + oferta_id + ", unidades = " + unidades);
-			
+			throw new ConsumeStockException("insufficient stock available").setOferta(oferta).setDisponible(oferta.getStock());			
 		}
 		return ok;
 	}
@@ -35,8 +42,13 @@ public class StockManager implements IStockManager {
 	@Override
 	public Boolean recuperarStock(Integer oferta_id, Integer unidades) {
 		Boolean ok = true;
-		// TODO Auto-generated method stub
-		
+		int nuevoStock = disponible(oferta_id) + unidades;
+		try{
+			updateStock(oferta, nuevoStock);		
+
+		}catch(Throwable t){
+			throw new DBException("error recuperando stock", t);
+		}
 		return ok;
 	}
 
@@ -70,8 +82,9 @@ public class StockManager implements IStockManager {
 
 	@Override
 	public Oferta updateStock(Oferta oferta, Integer unidades) {
-		oferta.setStock(unidades);
-		oferta = serviceLocator.getOfertaServices().update(oferta);
+		Oferta ofertaActualizada = oferta.clone();
+		ofertaActualizada.setStock(unidades);		
+		oferta = serviceLocator.getOfertaServices().update(ofertaActualizada);
 		return oferta;
 	}
 

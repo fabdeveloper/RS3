@@ -27,14 +27,8 @@ public interface IShoppingFacade {
 	public String addItemToCart(Oferta item, Integer numItems);
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
-	public String configOrder();
-	public String preConfirm();
-	public String purchaseConfirm();
 	public Cart getCart();
-	public Order getOrder();
-	public String findOrder(Integer order_id);
-	public String cancelOrder();
-	public String deleteOrder();
+
 	public String setPaymentProcessOK(Boolean result);
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
@@ -48,5 +42,14 @@ public interface IShoppingFacade {
 	public Boolean consumirStock(Integer oferta_id, Integer unidades);
 	public Boolean recuperarStock(Integer oferta_id, Integer unidades);
 
+	// PurchaseManagement
+	public String configOrder();
+	public String preConfirm();
+	public String purchaseConfirm();
+	public Order getOrder();
+	public String findOrder(Integer order_id);
+	public String cancelOrder();
+	public String deleteOrder();
+	public String paymentError();
 
 }

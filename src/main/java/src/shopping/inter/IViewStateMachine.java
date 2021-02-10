@@ -8,6 +8,7 @@ public interface IViewStateMachine {
 	public String setOrderView();	
 	public String setConfigView();
 	public String setHomeView();
+	public String setErrorView();
 
 
 }

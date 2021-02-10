@@ -38,5 +38,10 @@ public class ViewStateMachine implements IViewStateMachine {
 	public String setHomeView() {
 		return "home";
 	}
+	
+	@Override
+	public String setErrorView(){
+		return "error";
+	}
 
 }

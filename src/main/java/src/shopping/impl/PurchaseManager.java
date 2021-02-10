@@ -2,32 +2,22 @@ package src.shopping.impl;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Cart;
-import src.entity.CartItem;
 import src.entity.DeliveryDetails;
 import src.entity.Order;
 import src.entity.PurchaseStatus;
 import src.entity.User;
-import src.exception.ConsumeStockException;
 import src.exception.DBException;
-import src.exception.RS3Exception;
-import src.exception.RecuperaStockException;
-import src.exception.StockException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.IPurchaseManager;
-import src.shopping.inter.IStockManager;
 
 @SessionScoped
 //@DeclareRoles({"CLIENT", "ADMIN"})
@@ -95,58 +85,6 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	}
 	
-	@Override
-	public List<RuntimeException> preConfirmation() {
-		List<CartItem> listaConsumidos = new ArrayList<CartItem>();
-//		List<CartItem> listaErrores = new ArrayList<CartItem>();	
-		List<RuntimeException> listaException = new ArrayList<RuntimeException>();
-		
-		Boolean ok = true;
-		try{ // consumir stock			
-			for(CartItem item : getCart().getListaItems()){
-				boolean btemp = serviceLocator.getShoppingFacade().consumirStock(item.getOferta().getId(), item.getCounter());
-				
-				if(btemp){listaConsumidos.add(item);}
-				else{ 
-					ok = false; // error de stock
-//					listaErrores.add(item); 					
-					listaException.add(new ConsumeStockException("insufficient stock")
-							.setCartItem(item)
-							.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));					
-				}
-			}
-		}catch(Throwable t){
-			ok = false;
-			// DBException
-			listaException.add(new DBException("error consuming stock", t));			
-		}
-		try{ // grabar preconfirmacion			
-			if(ok){				
-				order.setLastModificationDate(new Date());
-				order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
-				mergeOrder();
-			}
-		}catch(Throwable t){
-			ok = false;
-			// DBException
-			listaException.add(new DBException("preconfirmation DB error", t));				
-		}
-		if(!ok){ // recuperar stock consumido
-			for(CartItem item : listaConsumidos){
-				try{
-					serviceLocator.getShoppingFacade().recuperarStock(
-							item.getOferta().getId(),
-							item.getCounter());
-					
-				}catch(Throwable t){
-					listaException.add(new RecuperaStockException("insufficient stock")
-					.setCartItem(item)
-					.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));						
-				}
-			}			
-		}		
-		return listaException;
-	}
 
 	@Override
 	public Boolean confirm() {
@@ -288,10 +226,6 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		return order;
 	}
 
-//	@Override
-//	public void setOrder(Order neworder) {
-//		order = neworder;
-//	}
 
 	@Override
 	public Order findOrder(Integer order_id) {
@@ -346,8 +280,101 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		this.order = null;
 	}
 
+	@Override
+	public Boolean preConfirmation() {
+		Boolean ok = true;
+		
+		// consumir stock
+		getCart().getListaItems().forEach(i -> serviceLocator.getShoppingFacade().
+				consumirStock(i.getOferta().getId(), i.getCounter()));
+
+		
+		try{ // grabar preconfirmacion			
+					
+			order.setLastModificationDate(new Date());
+			order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
+			mergeOrder();
+		
+		}catch(Throwable t){
+			order.getPurchaseStatus().setRemark("NO-CONFIRMADO");
+			throw new DBException("preconfirmation DB error", t);				
+		}		
+		return ok;
+	}
+
+	@Override
+	public void paymentError() {		
+		order.setLastModificationDate(new Date());
+		order.getPurchaseStatus().setRemark("PAYMENT-ERROR");
+		// actualiza status		
+		try{ 	
+			mergeOrder();
+		
+		}catch(Throwable t){
+			throw new DBException("Error updating order on PAYMENT-ERROR", t);				
+		}
+		// recupera stock
+		getCart().getListaItems()
+			.forEach(i->serviceLocator.getShoppingFacade()
+				.recuperarStock(i.getOferta().getId(), i.getCounter()));
+		
+	}
+
 
 
 
 
 }
+
+
+//@Override
+//public List<RuntimeException> preConfirmation() {
+//	List<CartItem> listaConsumidos = new ArrayList<CartItem>();
+//	List<RuntimeException> listaException = new ArrayList<RuntimeException>();
+//	
+//	Boolean ok = true;
+//	try{ // consumir stock			
+//		for(CartItem item : getCart().getListaItems()){
+//			boolean btemp = serviceLocator.getShoppingFacade().consumirStock(item.getOferta().getId(), item.getCounter());
+//			
+//			if(btemp){listaConsumidos.add(item);}
+//			else{ 
+//				ok = false; // error de stock
+//				listaException.add(new ConsumeStockException("insufficient stock")
+//						.setCartItem(item)
+//						.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));					
+//			}
+//		}
+//	}catch(Throwable t){
+//		ok = false;
+//		// DBException
+//		listaException.add(new DBException("error consuming stock", t));			
+//	}
+//	try{ // grabar preconfirmacion			
+//		if(ok){				
+//			order.setLastModificationDate(new Date());
+//			order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
+//			mergeOrder();
+//		}
+//	}catch(Throwable t){
+//		ok = false;
+//		// DBException
+//		listaException.add(new DBException("preconfirmation DB error", t));				
+//	}
+//	if(!ok){ // recuperar stock consumido
+//		for(CartItem item : listaConsumidos){
+//			try{
+//				serviceLocator.getShoppingFacade().recuperarStock(
+//						item.getOferta().getId(),
+//						item.getCounter());
+//				
+//			}catch(Throwable t){
+//				listaException.add(new RecuperaStockException("insufficient stock")
+//				.setCartItem(item)
+//				.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));						
+//			}
+//		}			
+//	}		
+//	return listaException;
+//}
+
