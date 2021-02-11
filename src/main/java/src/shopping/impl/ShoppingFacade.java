@@ -35,7 +35,6 @@ import src.shopping.inter.IViewStateMachine;
 @SessionScoped
 public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
-
 	private static final long serialVersionUID = 1L;
 
 	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
@@ -103,19 +102,26 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
 	@Override
 	public String preConfirm() {
-		boolean ok = purchaseManager.preConfirmation();
 		String result = viewStateMachine.setOrderView();		
-		if(!ok)result = viewStateMachine.setErrorView();		
-		
+		try{
+			purchaseManager.preConfirmation();
+		}catch(Throwable t){
+			result = viewStateMachine.setErrorView();
+//			 setRollbackOnly
+			serviceLocator.getSessionContext().setRollbackOnly();			
+		}		
 		return result;
 	}
 
 	@Override
 	public String purchaseConfirm() {
-		purchaseManager.confirm();
-		
-		
-		return viewStateMachine.setOrderView();
+		String result = viewStateMachine.setOrderView();
+		try{
+			purchaseManager.confirm();
+		}catch(Throwable t){
+			result = viewStateMachine.setErrorView();			
+		}		
+		return result;
 	}
 
 	@Override
@@ -269,9 +275,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String paymentError() {
-		purchaseManager.paymentError();
-		
-		
+		try{
+			purchaseManager.paymentError();
+		}catch(Throwable t){
+			
+		}		
 		return getViewStateMachine().setErrorView();
 	}
 

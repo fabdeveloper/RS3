@@ -91,21 +91,31 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		Boolean ok = true;
 		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
 	
-
-		if(isPaymentProcessOK()){ // OK
-			
-//			serviceLocator.getOrderServices().create(order); // graba la orden en DB
-			order.getPurchaseStatus().setRemark("CONFIRMADO");
-			order.setLastModificationDate(new Date());
-			order.setConfirmationDate(new Date());
-
+		order.getPurchaseStatus().setRemark("CONFIRMADO");
+		order.setLastModificationDate(new Date());
+		order.setConfirmationDate(new Date());
+		
+		try{
 			mergeOrder();
 			
+		}catch(Throwable t){
+			throw new DBException("CONFIRMATION ERROR - order_id = " + order.getId() , t);
 			
-		}else{  // PAYMENT ERROR
-			ok = false;
-			throw new RuntimeException("Payment Error");
 		}
+
+//		if(isPaymentProcessOK()){ // OK
+//			
+//			order.getPurchaseStatus().setRemark("CONFIRMADO");
+//			order.setLastModificationDate(new Date());
+//			order.setConfirmationDate(new Date());
+//
+//			mergeOrder();
+//			
+//			
+//		}else{  // PAYMENT ERROR
+//			ok = false;
+//			throw new RuntimeException("Payment Error");
+//		}
 
 		return ok;
 	}
