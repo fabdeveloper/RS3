@@ -10,7 +10,6 @@ public interface IPurchaseManager {
 	
 	public String createOrder();
 	public void updateOrder();
-//	public List<RuntimeException> preConfirmation();
 	public Boolean preConfirmation();
 	public Boolean confirm();
 	public User getClient();
@@ -18,8 +17,8 @@ public interface IPurchaseManager {
 	public PurchaseStatus getPurchaseStatus();
 	public DeliveryDetails getDeliveryDetails();
 	public Order getOrder();
-//	public void setOrder(Order neworder);
 	public Order findOrder(Integer order_id);
+	public Boolean loadPendingOrder(String user_nick);
 	public Order cancelOrder();
 	public Order deleteOrder();
 	public Boolean getPaymentProcessOK();

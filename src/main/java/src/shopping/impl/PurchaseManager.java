@@ -330,6 +330,21 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 	}
 
+	@Override
+	public Boolean loadPendingOrder(String user_nick) {
+		Boolean result = true;
+//		if(user_nick.isEmpty() || user_nick.matches("") || user_nick == null) return false;
+		try{
+			order = serviceLocator.getOrderServices().getGestorE().getDao()
+					.createNamedQuery("loadPendingOrder", "client_nick", user_nick );
+		}catch(Throwable t){
+			result = false;
+		}
+		if(result)getCartManager().setCart(order.getCart());
+		
+		return result;
+	}
+
 
 
 

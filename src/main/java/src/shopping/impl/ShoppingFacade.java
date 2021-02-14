@@ -10,6 +10,7 @@ package src.shopping.impl;
 /**************************************************************************/
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -228,6 +229,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String invalidateSession() {		
 		sessionManager.invalidateSession();
+		nuevaCompra();
 		return viewStateMachine.setHomeView();		
 	}
 	
@@ -281,6 +283,12 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			
 		}		
 		return getViewStateMachine().setErrorView();
+	}
+
+	@Override
+	public Boolean loadPendingOrder() {
+		System.out.println("ShoppingFacade - loadPendingOrder() - " + new Date());
+		return purchaseManager.loadPendingOrder(getCallerName());
 	}
 
 

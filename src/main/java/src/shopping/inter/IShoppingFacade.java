@@ -51,5 +51,6 @@ public interface IShoppingFacade {
 	public String cancelOrder();
 	public String deleteOrder();
 	public String paymentError();
+	public Boolean loadPendingOrder();
 
 }

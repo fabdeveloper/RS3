@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -20,6 +23,9 @@ import src.inter.IPrototype;
 @RequestScoped
 @Entity
 @Table(name="ORDERS")
+@NamedQueries({
+	@NamedQuery(name="loadPendingOrder", query = "SELECT o FROM Order o WHERE o.purchaseStatus.remark NOT IN('CONFIRMED', 'CANCELLED') AND o.client.nick LIKE :client_nick")
+})
 public class Order implements Serializable, IPrototype<Order>{
 	
 	private static final long serialVersionUID = 1L;
@@ -48,7 +54,7 @@ public class Order implements Serializable, IPrototype<Order>{
 	@Column(name="CREATION_DATE")
 	private Date creationDate;
 	
-	//  REEMPLAZAR POR UN STRING ************************************
+	//  TODO : REEMPLAZAR POR UN STRING ************************************
 	@NotNull
 	@OneToOne(cascade=CascadeType.ALL)
 	private PurchaseStatus purchaseStatus;

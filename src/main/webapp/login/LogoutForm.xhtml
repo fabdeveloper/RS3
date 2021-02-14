@@ -7,6 +7,7 @@
 </p:head>
 <p:body>
 	<p:form>
+		<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
 		<p:outputText value="#{sessionManagementBB.getCallerName()}"></p:outputText>
 		<p:commandButton value="Cerrar Sesion" action="#{sessionManagementBB.invalidateSession()}"></p:commandButton>
 	</p:form>
