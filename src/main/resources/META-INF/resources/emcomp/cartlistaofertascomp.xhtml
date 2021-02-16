@@ -28,21 +28,21 @@
 
 		<ui:repeat  value="#{cc.attrs.lista}"  var="objeto">
 		
-		<em:itemcartcomp  
-			urlimage="#{objeto.oferta.urlImage}"
-			texto1="#{objeto.oferta.name}"
-			texto2="#{objeto.oferta.articulo.getName()}"
-			texto3="#{objeto.oferta.descripcion}"
-			texto4="#{objeto.oferta.precio}"
-			textoboton="Eliminar"
-			iditem="#{objeto.id}"
-			numItems="#{objeto.counter}"
-			listaItems="#{cc.attrs.bean.getListaStock(objeto.oferta.stock)}"
-			botonclass="#{cc.attrs.botonclass}"
-			divclass="#{cc.attrs.divclass}"
-			bean="#{cc.attrs.bean}"		
-		
-		></em:itemcartcomp>
+			<em:itemcartcomp  
+				urlimage="#{objeto.oferta.urlImage}"
+				texto1="#{objeto.oferta.name}"
+				texto2="#{objeto.oferta.articulo.getName()}"
+				texto3="#{objeto.oferta.descripcion}"
+				texto4="#{objeto.oferta.precio}"
+				textoboton="Eliminar"
+				iditem="#{objeto.id}"
+				numItems="#{objeto.counter}"
+				listaItems="#{cc.attrs.bean.getListaStock(objeto.oferta.stock)}"
+				botonclass="#{cc.attrs.botonclass}"
+				divclass="#{cc.attrs.divclass}"
+				bean="#{cc.attrs.bean}"		
+			
+			></em:itemcartcomp>
 		
 		
 		

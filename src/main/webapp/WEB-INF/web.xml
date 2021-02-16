@@ -60,12 +60,22 @@
     		<web-resource-name>RS3</web-resource-name>
     		<url-pattern>/app/service/get</url-pattern>
     		<url-pattern>/UserManagement.xhtml</url-pattern>
+    		<url-pattern>/shopping/CartDetail.xhtml</url-pattern>
+    		<url-pattern>/shopping/CartView.xhtml</url-pattern>
+    		<url-pattern>/shopping/ConfigDetail.xhtml</url-pattern>
+    		<url-pattern>/shopping/ConfigView.xhtml</url-pattern>    		
+    	 	<url-pattern>/shopping/OrderDetail.xhtml</url-pattern>
+    		<url-pattern>/shopping/OrderView.xhtml</url-pattern>
+    		<url-pattern>/shopping/PurchaseDetail.xhtml</url-pattern>
+    		<url-pattern>/shopping/PurchaseDetailView.xhtml</url-pattern>    		
+    		<url-pattern>/shopping/PurchaseView.xhtml</url-pattern>
+    		
     		
     	
     	</web-resource-collection>
     	<auth-constraint>
     		<role-name>CLIENT</role-name>
-    	        <role-name>ADMIN</role-name>
+    	    <role-name>ADMIN</role-name>
     	
     	</auth-constraint>
     	<user-data-constraint>

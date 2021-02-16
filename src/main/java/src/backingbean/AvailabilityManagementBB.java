@@ -37,6 +37,13 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 	private transient List<EntityViewTransferObject> listaOfertasTO;
 	
 	
+	public void reLoad(){
+		// obtener producto selecctionado
+		// obtener articulo seleccionado
+		// cargar productos
+		// cargar articulos
+		// cargar ofertas
+	}
 
 	@Override
 	public String process(Object obj) {
@@ -164,9 +171,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 		return null;		
 	}
 	
-//	public String addItemToCart(Oferta item){
-//		return shoppingFacade.addItemToCart(item);
-//	}
+
 	
 	@PostConstruct
 	public void loadProducts(){

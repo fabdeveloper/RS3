@@ -9,6 +9,7 @@ public interface IViewStateMachine {
 	public String setConfigView();
 	public String setHomeView();
 	public String setErrorView();
+	public String setLoginView();
 
 
 }

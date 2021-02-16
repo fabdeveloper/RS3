@@ -21,9 +21,10 @@
 		<p:graphicImage  url="#{ofertaViewBB.getOferta().getUrlImagebig()}" style="height:500px;"> </p:graphicImage>
 		</ui:define>
 
-		<ui:define name="columna derecha">			
+		<ui:define name="columna derecha">
+			<p:outputText rendered="#{!ofertaViewBB.isClient()}" value="Login para continuar"></p:outputText>
 			<p:form>
-				<p:commandButton class="botonclass" id="botonaddtocart" value="agregar al carrito" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
+				<p:commandButton  rendered="#{ofertaViewBB.isClient()}" class="botonclass" id="botonaddtocart" value="agregar al carrito" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
 			<br/><br/>
 				<p:outputText value="Cantidad : "></p:outputText>
 				<p:inputText value="#{ofertaViewBB.counter}"></p:inputText>

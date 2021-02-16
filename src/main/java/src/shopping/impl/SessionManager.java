@@ -1,5 +1,6 @@
 package src.shopping.impl;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.annotation.security.DeclareRoles;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import src.exception.URLException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ISessionManager;
 
@@ -39,6 +41,25 @@ public class SessionManager implements ISessionManager, Serializable {
 	@Override
 	public String getCallerName(){		
 		return serviceLocator.getSessionContext().getCallerPrincipal().getName();		
+	}
+
+	@Override
+	public void dispatch(String url) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		try {
+			externalContext.dispatch(url);
+		} catch (IOException e) {
+			throw new URLException(url, e);
+		}
+		
+	}
+
+	@Override
+	public void callLogin() {
+//		String url = serviceLocator.getShoppingFacade().getViewStateMachine().setLoginView();
+		String url = "/login/LoginForm.xhtml";
+		dispatch(url);
 	}
 
 }

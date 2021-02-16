@@ -44,4 +44,9 @@ public class ViewStateMachine implements IViewStateMachine {
 		return "error";
 	}
 
+	@Override
+	public String setLoginView() {
+		return "login";
+	}
+
 }

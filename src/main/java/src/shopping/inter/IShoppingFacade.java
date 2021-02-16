@@ -28,11 +28,11 @@ public interface IShoppingFacade {
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
 	public Cart getCart();
+	public String showCart();
 
 	public String setPaymentProcessOK(Boolean result);
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
-	public String showOrder();
 	public String nuevaCompra();
 	public String invalidateSession();
 	public Boolean isClient();
@@ -47,6 +47,7 @@ public interface IShoppingFacade {
 	public String preConfirm();
 	public String purchaseConfirm();
 	public Order getOrder();
+	public String showOrder();
 	public String findOrder(Integer order_id);
 	public String cancelOrder();
 	public String deleteOrder();

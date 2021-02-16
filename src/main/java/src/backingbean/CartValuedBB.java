@@ -50,6 +50,10 @@ public class CartValuedBB implements IProcessable{
 	public Cart getCart() {
 		return shoppingFacade.getCart();
 	}
+	
+	public String showCart(){
+		return shoppingFacade.showCart();
+	}
 
 
 	public IShoppingFacade getShoppingFacade() {
@@ -94,9 +98,9 @@ public class CartValuedBB implements IProcessable{
 	}
 	
 	@Transactional
-	public void modifItem(Integer id, Integer numItems){
+	public String modifItem(Integer id, Integer numItems){
 		System.out.println("CartValuedBB.modifItem - itemid = " + id + ", nuevo numItems = " + numItems);
-		shoppingFacade.changeNumItems(id, numItems);
+		return shoppingFacade.changeNumItems(id, numItems);
 	}
 	
 	public List<SelectItem> getListaStock(Integer stock){

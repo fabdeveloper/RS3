@@ -6,11 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </p:head>
 <p:body>
-	<p:form>
-		<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
-		<p:outputText value="#{sessionManagementBB.getCallerName()}"></p:outputText>
-		<p:commandButton value="Cerrar Sesion" action="#{sessionManagementBB.invalidateSession()}"></p:commandButton>
-	</p:form>
+	<div class="margenderecho" style="display: inline;">
+		<p:form>
+			<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
+			<p:outputText value="#{sessionManagementBB.getCallerName()}" style="display: inline;"></p:outputText>
+			<p:commandButton class="botonclass margenderecho" value="Cerrar Sesion" action="#{sessionManagementBB.invalidateSession()}" style="display: inline; width: auto;"></p:commandButton>
+		</p:form>
+	</div>
+	<div class="margenderecho" style="display: inline;" onclick="#{cartValuedBB.showCart()}">
+		<p:outputLabel value="Cart : " ></p:outputLabel>
+		<p:outputText value="#{cartValuedBB.getCart().getListaItems().size()}"></p:outputText>
+		<p:outputLabel value=" items"></p:outputLabel>
+		
+	</div>
 
 </p:body>
 </html>

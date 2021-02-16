@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -82,6 +84,15 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String addItemToCart(Oferta item, Integer numItems) {
+//		try{
+//			if(!isClient())sessionManager.callLogin();
+//
+//		}catch(Throwable t){
+//			System.out.println("ShoppingFacade.addItemToCart - exception callLogin() - " + t.getMessage());
+//			return "";
+//		}
+//		if(!isClient())return "";
+		
 		cartManager.addItem(item, numItems);
 		purchaseManager.updateOrder();
 		return viewStateMachine.setCartView();
@@ -289,6 +300,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	public Boolean loadPendingOrder() {
 		System.out.println("ShoppingFacade - loadPendingOrder() - " + new Date());
 		return purchaseManager.loadPendingOrder(getCallerName());
+	}
+
+	@Override
+	public String showCart() {
+		return getViewStateMachine().setCartView();
 	}
 
 
