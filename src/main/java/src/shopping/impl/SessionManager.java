@@ -8,8 +8,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import src.exception.RS3LoginException;
 import src.exception.URLException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ISessionManager;
@@ -61,5 +63,33 @@ public class SessionManager implements ISessionManager, Serializable {
 		String url = "/login/LoginForm.xhtml";
 		dispatch(url);
 	}
+
+	@Override
+	public Boolean login(String user, String password) {
+		Boolean response = true;
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		try{
+			request.login(user, password);
+		}catch(Throwable t){
+			response = false;
+			throw new RS3LoginException("user = " + user, t);
+		}
+		return response;
+	}
+
+	@Override
+	public Boolean logout() {
+		Boolean response = true;
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		try{
+			request.logout();
+		}catch(Throwable t){
+			response = false;
+			throw new RS3LoginException("Logout error", t);
+		}
+		return response;
+	}
+	
+	
 
 }

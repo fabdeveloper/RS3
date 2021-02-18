@@ -10,7 +10,7 @@
 		<p:form>
 			<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
 			<p:outputText value="#{sessionManagementBB.getCallerName()}" style="display: inline;"></p:outputText>
-			<p:commandButton class="botonclass margenderecho" value="Cerrar Sesion" action="#{sessionManagementBB.invalidateSession()}" style="display: inline; width: auto;"></p:commandButton>
+			<p:commandButton class="botonclass margenderecho" value="Cerrar Sesion" action="#{sessionManagementBB.logout()}" style="display: inline; width: auto;"></p:commandButton>
 		</p:form>
 	</div>
 	<div class="margenderecho" style="display: inline;" onclick="#{cartValuedBB.showCart()}">

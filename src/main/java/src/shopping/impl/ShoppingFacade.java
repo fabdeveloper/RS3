@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
@@ -305,6 +307,32 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String showCart() {
 		return getViewStateMachine().setCartView();
+	}
+
+	@Override
+	public String login(String user, String password) {
+		try{
+			sessionManager.login(user, password);			
+		}catch(Throwable t){
+			// grabar logs
+			logger.log(Level.FINE, "ShoppingFacade.login() " + new Date());
+			// mostrar FacesMessage
+		}
+		return null;
+	}
+
+	@Override
+	public String logout() {
+		try{
+			sessionManager.logout();
+		}catch(Throwable t){
+			// grabar logs
+			logger.log(Level.FINE, "ShoppingFacade.logout() " + new Date());
+			// mostrar FacesMessage
+			String stringmsg = "Logout error";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
+		}
+		return null;
 	}
 
 

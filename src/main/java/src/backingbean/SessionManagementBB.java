@@ -7,16 +7,20 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import src.inter.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 @Named
 @SessionScoped
-public class SessionManagementBB implements Serializable {
+public class SessionManagementBB implements Serializable, IProcessable {
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
 	private boolean isLoaded = false;
+	
+	private String user;
+	private String password;
 	
 	
 	public Boolean loadPendingOrder(){
@@ -49,13 +53,46 @@ public class SessionManagementBB implements Serializable {
 	public void setIsLoaded(boolean isLoaded) {
 		this.isLoaded = isLoaded;
 	}
-
-	public boolean isLoaded() {
+	
+	public boolean isLoaded(){
 		return loadPendingOrder();
 	}
 
 	public void setLoaded(boolean isLoaded) {
 		this.isLoaded = isLoaded;
 	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	@Override
+	public String process(){
+		login();
+		return null;		
+	}
+	
+	public String login(){
+		shoppingFacade.login(user, password);
+		return null;
+	}
+	
+	public String logout(){
+		shoppingFacade.logout();
+		return null;
+	}
+
 
 }

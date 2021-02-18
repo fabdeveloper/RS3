@@ -7,5 +7,7 @@ public interface ISessionManager {
 	public void invalidateSession();
 	public void dispatch(String url);
 	public void callLogin();
+	public Boolean login(String user, String password);
+	public Boolean logout();
 
 }

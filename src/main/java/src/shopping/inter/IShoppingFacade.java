@@ -24,6 +24,7 @@ public interface IShoppingFacade {
 	public List<Product> getAvail();	
 	public  List<Articulo> getAvail(Product prod);	
 	public List<Oferta> getAvail(Articulo articulo);
+	
 	public String addItemToCart(Oferta item, Integer numItems);
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
@@ -34,10 +35,8 @@ public interface IShoppingFacade {
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
 	public String nuevaCompra();
-	public String invalidateSession();
-	public Boolean isClient();
-	public String getCallerName();
 	public String changeNumItems(Integer id, Integer numItems);
+	
 	// StockManagement
 	public Boolean consumirStock(Integer oferta_id, Integer unidades);
 	public Boolean recuperarStock(Integer oferta_id, Integer unidades);
@@ -53,5 +52,14 @@ public interface IShoppingFacade {
 	public String deleteOrder();
 	public String paymentError();
 	public Boolean loadPendingOrder();
+
+	// SessionManagement
+	public String login(String user, String password);
+	public String logout();
+	public String invalidateSession();
+	public Boolean isClient();
+	public String getCallerName();
+
+
 
 }
