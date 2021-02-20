@@ -5,54 +5,52 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <p:head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>RS3</title>
-<p:outputStylesheet>
-
-</p:outputStylesheet>
-
 </p:head>
 
 <body>
 	
 	<p:form>
-		<p:outputLabel value="id"></p:outputLabel>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_id')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textid" name="textid"
-			value="#{userManagementViewHelperBB.transferObject.id}"
-			style="width: 357px; "></p:inputText>
+			value="#{userManagementBB.user.id}"
+			style="width: 50%; "></p:inputText>
 		<br />
-		<p:outputLabel value="name"></p:outputLabel>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_name')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textname" name="textname"
-			value="#{userManagementViewHelperBB.transferObject.name}"
-			style="width: 357px; "></p:inputText>
+			value="#{userManagementBB.user.name}"
+			style="width: 50%; "></p:inputText>
 		<br />
-		<p:outputLabel value="nick"></p:outputLabel>
-		<p:inputText id="textnick" name="textnick" title="nick"
-			value="#{userManagementViewHelperBB.transferObject.nick}"
-			style="width: 357px; "></p:inputText>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_nick')}" style="with:50%"></p:outputLabel>
+		<p:inputText id="textnick" name="textnick"
+			value="#{userManagementBB.user.nick}"
+			style="width: 50%; "></p:inputText>
 		<br />
-		<p:outputLabel value="email"></p:outputLabel>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_email')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textemail" name="textemail"
-			value="#{userManagementViewHelperBB.transferObject.email}"
-			style="width: 357px; "></p:inputText>
+			value="#{userManagementBB.user.email}"
+			style="width: 50%; "></p:inputText>
 		<br />
-		<p:outputLabel value="password"></p:outputLabel>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_password')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textpassword" name="textpassword"
-			value="#{userManagementViewHelperBB.transferObject.password}"
-			style="width: 357px; "></p:inputText>
+			value="#{userManagementBB.user.password}"
+			style="width: 50%; "></p:inputText>
+		<br />
+
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_address')}" style="with:50%"></p:outputLabel>
+		<p:inputText id="textaddress" name="textaddress"
+			value="#{userManagementBB.user.address}"
+			style="width: 50%; "></p:inputText>
+		<br />
+				<p:outputLabel value="#{localizationManagementBB.getString('user_management_telephone')}" style="with:50%"></p:outputLabel>
+		<p:inputText id="texttelephone" name="texttelephone"
+			value="#{userManagementBB.user.telephone}"
+			style="width: 50%; "></p:inputText>
 		<br />
 		
-		<p:commandButton id="botoncrear" name="botoncrear" value="crear user"
+				
+		<p:commandButton id="botoncrear" name="botoncrear" value="#{localizationManagementBB.getString('user_management_buttontext_crear_user')}"
 			action="#{userManagementViewHelperBB.callCreate}"></p:commandButton>
-		<p:commandButton id="botonvertodos" name="botonvertodos"
-			value="ver todos"
-			action="#{userManagementViewHelperBB.callReadAll()}"></p:commandButton>
-		<br />
-		<p:outputLabel value="id grupo"></p:outputLabel>
-		<p:inputText id="textidgroup" name="textidgroup"
-			value="#{userManagementViewHelperBB.idGrupo}"
-			style="width: 357px; "></p:inputText>
 		<br />
 	</p:form>
 </body>

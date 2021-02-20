@@ -16,5 +16,7 @@ public interface IEntityServices<E> {
 	public E update(E e);
 	public void delete(E e);
 	public List<E> readAll();
+	
+	public E createNamedQuery(String queryname, String paramname, String paramvalue);
 
 }

@@ -53,5 +53,10 @@ public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 	public List<E> readAll() {
 		return gestor.getDao().getAll();
 	}
+	
+	@Override
+	public E createNamedQuery(String queryname, String paramname, String paramvalue){
+		return gestor.getDao().createNamedQuery(queryname, paramname, paramvalue);		
+	}
 
 }

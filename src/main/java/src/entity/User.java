@@ -50,7 +50,8 @@ public class User implements Serializable, IUser, IPrototype<User>{
 	private String password;
 	@Column(name="ADDRESS")
 	private String address;
-	
+	@Column(name="TELEPHONE")
+	private String telephone;
 
 	@ManyToMany
 	@JoinTable(name="USER_GRUPO",
@@ -68,6 +69,7 @@ public class User implements Serializable, IUser, IPrototype<User>{
 		user.setName(this.getName());
 		user.setNick(this.getNick());
 		user.setPassword(this.getPassword());
+		user.setTelephone(this.getTelephone());
 		user.setListaGrupos(this.getListaGrupos());
 		
 		return user;
@@ -138,6 +140,14 @@ public class User implements Serializable, IUser, IPrototype<User>{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 	@Override
