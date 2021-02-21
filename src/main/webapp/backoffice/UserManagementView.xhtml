@@ -5,9 +5,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>User Management View</title>
 </p:head>
 <p:body>
-	<ui:include src="#{(sessionManagementBB.isClient()?'LogoutForm.xhtml':'Login.xhtml')}"></ui:include>
+	<ui:composition template="UserManagementTemplate.xhtml">
+
+		<ui:define name="columna central">
+			<ui:include src="UserManagement.xhtml"></ui:include>
+
+		</ui:define>
+
+
+
+
+	</ui:composition>
+
+
+
 
 </p:body>
 </html>

@@ -50,7 +50,10 @@
 		
 				
 		<p:commandButton id="botoncrear" name="botoncrear" value="#{localizationManagementBB.getString('user_management_buttontext_crear_user')}"
-			action="#{userManagementViewHelperBB.callCreate}"></p:commandButton>
+			action="#{userManagementBB.createNew}"></p:commandButton>
+		<br />
+		<p:commandButton id="botonactualizar" name="botonactualizar" value="#{localizationManagementBB.getString('user_management_buttontext_actualizar_user')}"
+			action="#{userManagementBB.updateUser}"></p:commandButton>
 		<br />
 	</p:form>
 </body>

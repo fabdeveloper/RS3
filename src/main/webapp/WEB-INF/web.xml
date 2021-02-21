@@ -59,7 +59,6 @@
     	<web-resource-collection>
     		<web-resource-name>RS3</web-resource-name>
     		<url-pattern>/app/service/get</url-pattern>
-    		<url-pattern>/UserManagement.xhtml</url-pattern>
     		<url-pattern>/shopping/CartDetail.xhtml</url-pattern>
     		<url-pattern>/shopping/CartView.xhtml</url-pattern>
     		<url-pattern>/shopping/ConfigDetail.xhtml</url-pattern>

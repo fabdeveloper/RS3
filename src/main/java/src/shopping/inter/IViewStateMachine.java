@@ -10,6 +10,7 @@ public interface IViewStateMachine {
 	public String setHomeView();
 	public String setErrorView();
 	public String setLoginView();
+	public String setUserManagementView();
 
 
 }

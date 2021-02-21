@@ -7,13 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </p:head>
 <p:body>
-	<div class="margenderecho">
+	<div class="margenderecho" style="display:inline;">
 		<em:logincomp
 			user="#{sessionManagementBB.user}"
 			password="#{sessionManagementBB.password}"
 			textbutton="#{localizationManagementBB.getString('login_buttontext')}"
 			bean="#{sessionManagementBB}"		
 		></em:logincomp>
+	</div>
+	<div class="margenderecho" style="display:inline;">
+	<p:form>
+			<p:commandButton value="#{localizationManagementBB.getString('login_create_account')}" action="#{userManagementBB.setUserManagementView}"></p:commandButton>
+			<p:commandButton value="#{localizationManagementBB.getString('login_forgot_your_password')}" action="#{userManagementBB.setRestorePasswordView}"></p:commandButton>
+		</p:form>
 	</div>
 </p:body>
 </html>

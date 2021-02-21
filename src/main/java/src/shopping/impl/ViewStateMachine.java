@@ -49,4 +49,9 @@ public class ViewStateMachine implements IViewStateMachine {
 		return "login";
 	}
 
+	@Override
+	public String setUserManagementView() {
+		return "user";
+	}
+
 }

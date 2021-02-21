@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>User Management Template</title>
+	<p:outputStylesheet library="css" name="slideshowcontrol.css"></p:outputStylesheet>
+
+</p:head>
+<p:body>
+
+	<div id="contenedor" class="divclass" style="height: 100%;">
+		<p>contenedor</p>
+
+		<div id="columnaizquierda" class="divclass margenizquierdo"
+			style="width: 15%;">
+			<p>columnaizquierda</p>
+			<ui:insert name="columna izquierda"></ui:insert>
+		</div>
+		<div id="columnaderecha" class="divclass margenderecho"
+			style="width: 15%;">
+			<p>columnaderecha</p>
+			<ui:insert name="columna derecha"></ui:insert>
+			
+		</div>
+		<div id="columnacentral" class="divclass centradohorizontal"
+			style="width: 60%;">
+			<p>columnacentral</p>
+			<ui:insert name="columna central"></ui:insert>
+			
+		</div>
+
+
+	</div>
+
+</p:body>
+</html>
