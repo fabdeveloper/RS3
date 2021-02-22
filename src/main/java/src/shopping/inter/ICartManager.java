@@ -14,6 +14,7 @@ public interface ICartManager {
 	public Cart removeItem(CartItem item);
 	public Cart modifyItem(Integer id, Integer numItems);
 	public CartItem getItemById(Integer id);
+	public CartItem getItemByOfertaId(Integer oferta_id);
 	public Cart reset();
 	public Cart getCart();
 	public void setCart(Cart cart);

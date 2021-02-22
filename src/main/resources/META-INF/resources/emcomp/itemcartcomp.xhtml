@@ -30,7 +30,7 @@
 		
 		
 		<composite:clientBehavior name="itemSelect" event="itemSelect" target="selectonemenu" ></composite:clientBehavior>
-		<composite:clientBehavior name="actioneventitemcartcomp" event="action" target="formitemcart"></composite:clientBehavior>
+<!-- 		<composite:clientBehavior name="actioneventitemcartcomp" event="action" target="formitemcart"></composite:clientBehavior> -->
 	</composite:interface>
 	<composite:implementation>
 		<div class="#{cc.attrs.divclass}" style="height:125px;" >
@@ -42,7 +42,7 @@
 			<p:outputText value="#{cc.attrs.texto2}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto3}"></p:outputText><br/>
 			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/><p:form>
-			<ui:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}"  >
+			<ui:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}" >
 				<c:selectItems value="#{cc.attrs.listaItems}"></c:selectItems>
 				<c:ajax event="itemSelect"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}" update="totales confirmar"/>
 			</ui:selectOneMenu>

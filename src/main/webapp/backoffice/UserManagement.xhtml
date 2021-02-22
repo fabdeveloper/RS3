@@ -12,38 +12,45 @@
 	
 	<p:form>
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_id')}" style="with:50%"></p:outputLabel>
-		<p:inputText id="textid" name="textid"
+		<p:inputText id="textid" name="textid" 
+		immediate="true" maxlength="10"
 			value="#{userManagementBB.user.id}"
 			style="width: 50%; "></p:inputText>
 		<br />
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_name')}" style="with:50%"></p:outputLabel>
-		<p:inputText id="textname" name="textname"
-			value="#{userManagementBB.user.name}"
+		<p:inputText id="textname" name="textname" 
+			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_name_required_msg')}"
+			value="#{userManagementBB.user.name}" 
 			style="width: 50%; "></p:inputText>
 		<br />
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_nick')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textnick" name="textnick"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_nick_required_msg')}"
 			value="#{userManagementBB.user.nick}"
 			style="width: 50%; "></p:inputText>
 		<br />
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_email')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textemail" name="textemail"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_email_required_msg')}"
 			value="#{userManagementBB.user.email}"
 			style="width: 50%; "></p:inputText>
 		<br />
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_password')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textpassword" name="textpassword"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_password_required_msg')}"
 			value="#{userManagementBB.user.password}"
 			style="width: 50%; "></p:inputText>
 		<br />
 
 		<p:outputLabel value="#{localizationManagementBB.getString('user_management_address')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="textaddress" name="textaddress"
+			immediate="true" maxlength="100" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_address_required_msg')}"
 			value="#{userManagementBB.user.address}"
 			style="width: 50%; "></p:inputText>
 		<br />
-				<p:outputLabel value="#{localizationManagementBB.getString('user_management_telephone')}" style="with:50%"></p:outputLabel>
+		<p:outputLabel value="#{localizationManagementBB.getString('user_management_telephone')}" style="with:50%"></p:outputLabel>
 		<p:inputText id="texttelephone" name="texttelephone"
+			immediate="true" maxlength="20" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_telephone_required_msg')}"
 			value="#{userManagementBB.user.telephone}"
 			style="width: 50%; "></p:inputText>
 		<br />

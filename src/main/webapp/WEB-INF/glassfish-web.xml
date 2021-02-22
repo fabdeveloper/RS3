@@ -25,26 +25,9 @@
   <security-role-mapping>
   <role-name>ADMIN</role-name>
   <group-name>ADMIN</group-name>
-  <principal-name>fab</principal-name>
+<!--   <principal-name>fab</principal-name> -->
   </security-role-mapping>
    
-  <!--
-    <security-role-mapping>
-    <role-name>CLIENT</role-name>
-    <group-name>USERS_DE4TA</group-name>
-  </security-role-mapping>
-  
-  
- 
-  <security-role-mapping>
-    <role-name>CLIENT</role-name>
-    <group-name>mygroup</group-name>
-  </security-role-mapping>  
-  
-    <security-role-mapping>
-    <role-name>PARTNER</role-name>
-    <group-name>TutorialUser</group-name>
-  </security-role-mapping>    
-  -->
+
 
 </glassfish-web-app>

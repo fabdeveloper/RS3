@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import src.entity.Cart;
 import src.entity.CartItem;
 import src.entity.Oferta;
+import src.exception.StockException;
 import src.factory.IBeanFactory;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ICartManager;
@@ -53,16 +54,31 @@ public class CartManager implements ICartManager, Serializable {
 
 	@Override
 	public Cart addItem(Oferta item, Integer numItems) {
-		if(cart == null)reset();
 		
-		// crear CartItem
-		CartItem nuevoItem = serviceLocator.getCartItemServices().getGestorE().getFactory().crear();
-		nuevoItem.setCounter(numItems);
-		nuevoItem.setOferta(item);
-		nuevoItem.setCart(cart);
+		if(cart == null)reset();		
 		
-		// agregar item
-		cart.getListaItems().add(nuevoItem);
+		// si oferta existe entonces incrementar numItems
+		Integer oferta_id = item.getId();
+		CartItem cartItem = getItemByOfertaId(oferta_id);
+
+		if(cartItem == null){ // oferta no existe en el carrito
+			// crear CartItem
+			cartItem = serviceLocator.getCartItemServices().getTransferObject();
+			cartItem.setCounter(numItems);
+			cartItem.setOferta(item);
+			cartItem.setCart(cart);
+			// agregar item
+			cart.getListaItems().add(cartItem);
+			
+		}else{ // existe
+			Integer newCounter = cartItem.getCounter() + numItems;
+			if(newCounter > item.getStock()){
+				String mensaje = "Stock insuficiente - Oferta = " + item.getName() + ", maximo = " + item.getStock() + ", solicitado = " + newCounter;
+				throw new StockException(mensaje);
+			}else{
+				cartItem.setCounter(newCounter);
+			}
+		}
 		cart.setValue(valuate()); // TODO - obtener ValuationManager a traves de serviceLocator
 		
 		return cart;
@@ -136,6 +152,17 @@ public class CartManager implements ICartManager, Serializable {
 			}
 		}
 		return item;
+	}
+	
+	@Override
+	public CartItem getItemByOfertaId(Integer oferta_id){
+		CartItem cartitem = null;		
+		for(CartItem item : getCart().getListaItems()){
+			if(oferta_id.compareTo(item.getOferta().getId()) == 0){
+				cartitem = item;
+			}
+		}		
+		return cartitem;		
 	}
 	
 

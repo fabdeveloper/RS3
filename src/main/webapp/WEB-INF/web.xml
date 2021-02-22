@@ -7,8 +7,7 @@
         <session-timeout>
             30
         </session-timeout>
-    </session-config>
-    
+    </session-config>    
     
     <context-param>
     	<param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -18,20 +17,16 @@
     <servlet>
     	<servlet-name>Faces Servlet</servlet-name>
     	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    	<load-on-startup>1</load-on-startup>
-    
+    	<load-on-startup>1</load-on-startup>    
     </servlet>
     <servlet-mapping>
     	<servlet-name>Faces Servlet</servlet-name>
-    	<url-pattern>*.xhtml</url-pattern>
-    
-    </servlet-mapping>
-    
+    	<url-pattern>*.xhtml</url-pattern>    
+    </servlet-mapping>    
     
     <welcome-file-list>
     	<welcome-file>Home.xhtml</welcome-file>
-    </welcome-file-list>
-    
+    </welcome-file-list>    
 
     <login-config>
 	    <auth-method>FORM</auth-method>
@@ -40,20 +35,17 @@
 		    <form-login-page>/login/LoginForm.xhtml</form-login-page>
 		    <form-error-page>/login/error.xhtml</form-error-page>	    
 	    </form-login-config>  
-    </login-config>
-  
+    </login-config>  
 
     <security-role>
         <description/>
         <role-name>CLIENT</role-name>
     </security-role>
     
-        <security-role>
+    <security-role>
         <description/>
         <role-name>ADMIN</role-name>
     </security-role>
-  
-
 
     <security-constraint>
     	<web-resource-collection>
@@ -68,13 +60,11 @@
     		<url-pattern>/shopping/PurchaseDetail.xhtml</url-pattern>
     		<url-pattern>/shopping/PurchaseDetailView.xhtml</url-pattern>    		
     		<url-pattern>/shopping/PurchaseView.xhtml</url-pattern>
-    		
-    		
     	
     	</web-resource-collection>
     	<auth-constraint>
     		<role-name>CLIENT</role-name>
-    	    <role-name>ADMIN</role-name>
+<!--     	    <role-name>ADMIN</role-name> -->
     	
     	</auth-constraint>
     	<user-data-constraint>
@@ -82,7 +72,5 @@
     	</user-data-constraint>    
     
     </security-constraint>
-
-     
     
 </web-app>
