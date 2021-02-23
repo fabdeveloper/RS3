@@ -16,8 +16,8 @@
 
 <p:body>
 
-<div class="divauto">
-			<em:inputtext1fieldcomp
+<div class="divauto" id="busca">
+			<em:inputtext1fieldcomp 
 				label="localizador del pedido"
 				text="#{purchaseDetailViewBB.localizador}"
 				buttontext="Buscar pedido"
@@ -25,7 +25,12 @@
 				buttonclass="botonrcorner"
 				inputtextclass="inputtext"
 			></em:inputtext1fieldcomp>
-			</div>
+	</div>
+	<p:messages>
+		<p:message ></p:message>
+	
+	</p:messages>
+	
 
 </p:body>
 </html>

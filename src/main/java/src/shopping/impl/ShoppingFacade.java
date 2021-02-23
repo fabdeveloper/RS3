@@ -28,6 +28,7 @@ import src.entity.CartItem;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
+import src.exception.RS3Exception;
 import src.inter.IServiceLocator;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
@@ -187,13 +188,32 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String findOrder(Integer order_id) {
+		String dispatch = viewStateMachine.setOrderView();
 		logger.log(Level.INFO, "ShoppingFacade-findOrder - order_id = " + order_id);
-		
-		Order order = purchaseManager.findOrder(order_id);
+		Order order = null;
+		try{
+			order = purchaseManager.findOrder(order_id);
+			if(order == null){
+				throw new RS3Exception("Pedido no encontrado nº " + order_id);
+			}
+		}catch(Throwable t){
+			logAndMessage(t);
+			dispatch =  null;
+		}
+
 		
 		logger.log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
 
-		return viewStateMachine.setOrderView();
+		return dispatch;
+	}
+	
+	private void logAndMessage(Throwable t){
+		// log
+		String msg = "mensage de error = " + t.getMessage();
+		logger.log(Level.WARNING, msg);
+		// message
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+		
 	}
 
 	@Override
