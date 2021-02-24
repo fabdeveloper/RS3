@@ -19,6 +19,7 @@ public interface IShoppingFacade {
 	public IStockManager getStockManager();
 	public IViewStateMachine getViewStateMachine();
 	public ISessionManager getSessionManager();
+	public ILocationManager getLocationManager();
 
 	
 	public List<Product> getAvail();	
@@ -61,5 +62,7 @@ public interface IShoppingFacade {
 	public String getCallerName();
 
 
+	// LocationManager
+	public String getString(String prop);
 
 }

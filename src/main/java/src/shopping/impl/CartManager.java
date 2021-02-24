@@ -164,6 +164,11 @@ public class CartManager implements ICartManager, Serializable {
 		}		
 		return cartitem;		
 	}
+
+	@Override
+	public Integer getNumItems() {
+		return getCart().getListaItems().size();
+	}
 	
 
 }

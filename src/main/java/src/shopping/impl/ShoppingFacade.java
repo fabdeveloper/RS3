@@ -32,6 +32,7 @@ import src.exception.RS3Exception;
 import src.inter.IServiceLocator;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
+import src.shopping.inter.ILocationManager;
 import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
@@ -45,7 +46,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	static Logger logger = Logger.getLogger(ShoppingFacade.class.getName());
 	
-	@Inject private IServiceLocator serviceLocator;
+	@Inject 
+	private IServiceLocator serviceLocator;
 	@Inject
 	private IAvailabilityManager availabilityManager;
 	@Inject
@@ -58,6 +60,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	private IViewStateMachine viewStateMachine;
 	@Inject
 	private ISessionManager sessionManager;
+	@Inject
+	private ILocationManager locationManager;
 	
 	private Oferta ofertaSeleccionada;
 
@@ -352,7 +356,17 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			String stringmsg = "Logout error";
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
 		}
-		return null;
+		return viewStateMachine.setHomeView();
+	}
+
+	@Override
+	public ILocationManager getLocationManager() {
+		return locationManager;
+	}
+
+	@Override
+	public String getString(String prop) {
+		return locationManager.getString(prop);
 	}
 
 
