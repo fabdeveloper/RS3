@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://java.sun.com/jsf/html">
 <p:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </p:head>
 <p:body>
-	<ui:composition template="templates/hometemplate.xhtml">
+<p:form>
+		<p:commandButton id="homebutton" value="#{searchBarBB.getHomeButtonText()}" action="#{searchBarBB.homeButtonAction()}"></p:commandButton>
+	</p:form>
 
-		<ui:define name="logsearchbar">
-			<ui:include src="login/LogBar.xhtml"></ui:include>
-		</ui:define>
-
-		<ui:define name="body">
-			<ui:include src="home/body.xhtml"></ui:include>
-		</ui:define>
-
-
-	</ui:composition>	
 </p:body>
 </html>

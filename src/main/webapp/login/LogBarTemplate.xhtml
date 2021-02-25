@@ -5,27 +5,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>hometemplate</title>
-	<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>
-	
 </p:head>
 <p:body>
-	<div class="divclass">
-		<ui:insert name="logsearchbar">searchbar</ui:insert>
+	<div class="margenizquierdo">
+		<ui:insert name="searchbar"></ui:insert>
 	</div>
-	<div class="divclass">	
-		<ui:insert name="menubar">menubar</ui:insert>
+	<div class="margenderecho">
+		<ui:insert name="logbar"></ui:insert>
 	</div>
-	<div class="divclass">	
-		<ui:insert name="body">body</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="foot">foot</ui:insert>
-	</div>
-
-	
-	
-
 
 </p:body>
 </html>
