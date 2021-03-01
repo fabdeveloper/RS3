@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://primefaces.org/ui"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+</p:head>
+<p:body>
+	<composite:interface>
+		<composite:attribute name="listaItems1"></composite:attribute>
+		<composite:attribute name="listaItems2"></composite:attribute>
+		<composite:attribute name="departmentbuttontext" default="ALL"></composite:attribute>
+		<composite:attribute name="productListRendered"></composite:attribute>
+		
+		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
+		<composite:attribute name="listener" type="src.inter.IListener"></composite:attribute>
+		<composite:attribute name="button1class"></composite:attribute>
+		<composite:attribute name="selected1"></composite:attribute>
+		<composite:attribute name="text2"></composite:attribute>
+		<composite:attribute name="inputtextclass2"></composite:attribute>
+		<composite:attribute name="selected2"></composite:attribute>
+		<composite:attribute name="articulosListRendered"></composite:attribute>
+		
+		<composite:attribute name="searchbuttontext"></composite:attribute>
+		<composite:attribute name="button3class"></composite:attribute>
+
+<!-- 		<composite:clientBehavior name="keypress" event="keypress" target="searchtext" ></composite:clientBehavior> -->
+
+	</composite:interface>
+	<composite:implementation>
+		<p:form>
+			<p:commandButton id="productbutton" value="#{cc.attrs.departmentbuttontext}"
+				action="#{cc.attrs.bean.process()}" class="#{cc.attrs.button1class}"></p:commandButton>
+				
+			<ui:selectOneListbox value="#{cc.attrs.selected1}" rendered="#{cc.attrs.productListRendered}" id="productlist">
+				<c:selectItems value="#{cc.attrs.listaItems1}"></c:selectItems>
+				<c:ajax event="click"  listener="#{cc.attrs.listener.listener1()}"  render="@form"/>
+				
+			</ui:selectOneListbox>
+			
+			<p:inputText id="searchtext" value="#{cc.attrs.text2}" immediate="true" 
+				class="#{cc.attrs.inputtextclass2}" >				
+				</p:inputText>
+			<c:ajax event="keyup"  listener="#{cc.attrs.listener.listener2()}"  execute="searchtext" render="@form mismensajes"/>
+				
+				
+			<ui:selectOneMenu id="menu2" value="#{cc.attrs.selected2}" rendered="#{cc.attrs.articulosListRendered}" >
+				<c:selectItems value="#{cc.attrs.listaItems2}"></c:selectItems>
+				<c:ajax event="itemSelect"  listener="#{cc.attrs.listener.listener3()}" render="@form"/>
+				
+			</ui:selectOneMenu>
+
+			<p:commandButton value="#{cc.attrs.searchbuttontext}"
+				action="#{cc.attrs.bean.process3()}"
+				class="#{cc.attrs.button3class}"></p:commandButton>
+				
+<!-- 			<c:ajax event="@all" execute="menu2" render="@form"></c:ajax>	 -->
+		</p:form>
+
+	</composite:implementation>
+</p:body>
+</html>

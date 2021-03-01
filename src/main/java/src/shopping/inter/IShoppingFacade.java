@@ -14,6 +14,7 @@ public interface IShoppingFacade {
 	
 	public IServiceLocator getServiceLocator();
 
+	// Managers
 	public IPurchaseManager getPurchaseManager();
 	public ICartManager getCartManager();
 	public IStockManager getStockManager();
@@ -22,21 +23,22 @@ public interface IShoppingFacade {
 	public ILocationManager getLocationManager();
 
 	
+	// AvailabilityManagement
 	public List<Product> getAvail();	
 	public  List<Articulo> getAvail(Product prod);	
 	public List<Oferta> getAvail(Articulo articulo);
 	
+	// CartManagement
 	public String addItemToCart(Oferta item, Integer numItems);
+	public String changeNumItems(Integer id, Integer numItems);
 	public String removeItemFromCart(CartItem item);
 	public String resetCart();
 	public Cart getCart();
 	public String showCart();
 
-	public String setPaymentProcessOK(Boolean result);
 	public String showOfertaDetail(Oferta oferta);
 	public Oferta getOfertaSeleccionada();
 	public String nuevaCompra();
-	public String changeNumItems(Integer id, Integer numItems);
 	
 	// StockManagement
 	public Boolean consumirStock(Integer oferta_id, Integer unidades);
@@ -52,6 +54,7 @@ public interface IShoppingFacade {
 	public String cancelOrder();
 	public String deleteOrder();
 	public String paymentError();
+	public String setPaymentProcessOK(Boolean result);
 	public Boolean loadPendingOrder();
 
 	// SessionManagement

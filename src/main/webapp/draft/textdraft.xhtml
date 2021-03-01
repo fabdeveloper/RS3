@@ -8,15 +8,14 @@
 	
 <p:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>DRAFT</title>
 				<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet>
-
 </p:head>
 
 
 <p:body>
 
-<div class="divauto" id="busca">
+	<div class="divauto" id="busca">
 			<em:inputtext1fieldcomp 
 				label="localizador del pedido"
 				text="#{purchaseDetailViewBB.localizador}"
@@ -26,11 +25,30 @@
 				inputtextclass="inputtext"
 			></em:inputtext1fieldcomp>
 	</div>
-	<p:messages>
-		<p:message ></p:message>
 	
+	<p:messages id="mismensajes">
+		<p:message ></p:message>	
 	</p:messages>
 	
+	<div>
+		<em:SearchBarComp 
+			listaItems1="#{searchBarCompBB.productList}"
+			listaItems2="#{searchBarCompBB.articulosList}"
+			listaItems3=""
+			departmentbuttontext="#{searchBarCompBB.departmentButtonText}"
+			productListRendered="#{searchBarCompBB.productListRendered}"
+			button1class=""
+			button3class=""
+			bean="#{searchBarCompBB}"
+			listener="#{searchBarCompBB}"
+			selected1="#{searchBarCompBB.productSelected}"
+			selected2="#{searchBarCompBB.articuloSelected}"
+			articulosListRendered="#{searchBarCompBB.articulosListRendered}"
+			text2="#{searchBarCompBB.text2}"
+			inputtextclass2=""
+			searchbuttontext=""	
+		></em:SearchBarComp>	
+	</div>
 
 </p:body>
 </html>

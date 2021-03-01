@@ -12,8 +12,8 @@
 		<composite:attribute name="password"></composite:attribute>	
 		
 		<composite:attribute name="textbutton" default="Login"></composite:attribute>		
-		<composite:attribute name="classinputtext" default="inputclass"></composite:attribute>		
-		<composite:attribute name="classbutton" default="botonclass"></composite:attribute>	
+		<composite:attribute name="classinputtext" ></composite:attribute>		
+		<composite:attribute name="classbutton" ></composite:attribute>	
 					
 		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
 
@@ -21,9 +21,9 @@
 	<composite:implementation>
 	
 	<p:form>
-			<p:inputText class="#{cc.attrs.classinputtext}" value="#{cc.attrs.user}" style="display:inline;"></p:inputText>
-			<p:inputSecret class="#{cc.attrs.classinputtext}" value="#{cc.attrs.password}" style="display:inline;"></p:inputSecret>
-			<p:commandButton class="#{cc.attrs.classbutton}" style="with:auto;display:inline;" value="#{cc.attrs.textbutton}" action="#{cc.attrs.bean.process()}"></p:commandButton>
+			<p:inputText class="#{cc.attrs.classinputtext}" value="#{cc.attrs.user}" ></p:inputText>
+			<p:inputSecret class="#{cc.attrs.classinputtext}" value="#{cc.attrs.password}" ></p:inputSecret>
+			<p:commandButton class="#{cc.attrs.classbutton}"  value="#{cc.attrs.textbutton}" action="#{cc.attrs.bean.process()}"></p:commandButton>
 		</p:form>
 	</composite:implementation>
 
