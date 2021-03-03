@@ -8,15 +8,21 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import src.entity.Product;
 import src.inter.IListener;
 import src.inter.IProcessable;
+import src.shopping.inter.IShoppingFacade;
 
 
 @Named
 @SessionScoped
 public class SearchBarCompBB implements Serializable, IProcessable, IListener {
+	
+	@Inject
+	private IShoppingFacade shoppingFacade;
 	
 	private String text2 = "start";
 	
@@ -30,12 +36,12 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	@PostConstruct
 	public void init(){
-		productList = new ArrayList<String>();
+//		productList = new ArrayList<String>();		
+//		productList.add("product1");
+//		productList.add("product2");
+		
 		articulosList = new ArrayList<String>();
-		
-		productList.add("product1");
-		productList.add("product2");
-		
+
 		articulosList.add("articulo 1");
 		articulosList.add("articulo 2");
 		articulosList.add("articulo 3");		
@@ -43,6 +49,12 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	@Override
 	public String process(){
+		if(productList == null){
+			productList = new ArrayList<String>();
+			for(Product prod : getShoppingFacade().getDepartmentStoreList()){
+				productList.add(prod.getName());
+			} 
+		}
 		setProductListRendered(true);
 		
 		return null;
@@ -141,6 +153,14 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 
 	public void setArticulosListRendered(Boolean articulosListRendered) {
 		this.articulosListRendered = articulosListRendered;
+	}
+
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
 	}
 
 

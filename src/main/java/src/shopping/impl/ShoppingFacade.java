@@ -369,6 +369,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		return locationManager.getString(prop);
 	}
 
+	@Override
+	public List<Product> getDepartmentStoreList() {
+		return getAvail();
+	}
+
 
 
 

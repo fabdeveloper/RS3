@@ -20,7 +20,7 @@ public class ProductAvailabilityManager implements IAvailabilityManager {
 
 	@Override
 	public List<Product> getAvail(){
-		return serviceLocator.getProductServices().getGestorE().getDao().getAll();
+		return serviceLocator.getProductServices().readAll();
 	}
 	@Override
 	public  List<Articulo> getAvail(Product prod){
