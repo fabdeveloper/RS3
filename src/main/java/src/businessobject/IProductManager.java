@@ -3,11 +3,8 @@ package src.businessobject;
 import java.util.List;
 
 import src.entity.Product;
+import src.entitymanager.IEntityManager;
 
-public interface IProductManager {
+public interface IProductManager extends IEntityManager<Product>{	
 	
-	public List<Product> getProductList();
-	
-	public Product getProductByName(String name);
-
 }

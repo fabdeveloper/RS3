@@ -7,30 +7,12 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Oferta;
+import src.entitymanager.AbstractEntityManager;
 import src.inter.IServiceLocator;
 
 @SessionScoped
-public class OfertaManager implements IOfertaManager, Serializable {
+public class OfertaManager extends AbstractEntityManager<Oferta> implements IOfertaManager, Serializable {
 
-
-	@Inject 
-	private IServiceLocator serviceLocator;
-	
-	
-
-	public IServiceLocator getServiceLocator() {
-		return serviceLocator;
-	}
-
-	public void setServiceLocator(IServiceLocator serviceLocator) {
-		this.serviceLocator = serviceLocator;
-	}
-
-	@Override
-	public List<Oferta> getOfertasList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Oferta> getOfertasByProductId(Integer prod_id) {
@@ -45,13 +27,13 @@ public class OfertaManager implements IOfertaManager, Serializable {
 	}
 
 	@Override
-	public Oferta getOfertaById(Integer id) {
+	public Oferta getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Oferta getOfertaByName(String name) {
+	public Oferta getByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

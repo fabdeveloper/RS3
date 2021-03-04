@@ -24,6 +24,8 @@ import src.inter.IPrototype;
 @Entity
 @Table(name="ARTICULOS")
 @NamedQueries({
+	@NamedQuery(name="articuloById", query="SELECT b FROM Articulo b WHERE b.id = :articulo_id"),
+	@NamedQuery(name="articuloByName", query="SELECT b FROM Articulo b WHERE b.name = :articulo_name"),
 	@NamedQuery(name="articulos por product_id", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id")}
 	)
 public class Articulo implements Serializable, IPrototype<Articulo>{

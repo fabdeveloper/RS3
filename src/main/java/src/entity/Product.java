@@ -22,7 +22,8 @@ import src.inter.IPrototype;
 @Entity
 @Table(name="PRODUCTS")
 @NamedQueries({
-	@NamedQuery(name="productos por nombre", query="SELECT b FROM Product b WHERE b.name LIKE :name"),
+	@NamedQuery(name="productById", query="SELECT b FROM Product b WHERE b.id = :product_id"),
+	@NamedQuery(name="productByName", query="SELECT b FROM Product b WHERE b.name LIKE :product_name"),
 	@NamedQuery(name="productos por tipo", query="SELECT b FROM Product b WHERE b.tipo LIKE :tipo")}	
 	)
 //@MappedSuperclass

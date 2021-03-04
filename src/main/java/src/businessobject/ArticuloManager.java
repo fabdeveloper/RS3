@@ -7,29 +7,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
+import src.entitymanager.AbstractEntityManager;
 import src.inter.IServiceLocator;
 
 @SessionScoped
-public class ArticuloManager implements IArticuloManager, Serializable {
+public class ArticuloManager extends AbstractEntityManager<Articulo> implements IArticuloManager, Serializable {
 
-	@Inject 
-	private IServiceLocator serviceLocator;
-	
-	
 
-	public IServiceLocator getServiceLocator() {
-		return serviceLocator;
-	}
-
-	public void setServiceLocator(IServiceLocator serviceLocator) {
-		this.serviceLocator = serviceLocator;
-	}
-
-	@Override
-	public List<Articulo> getArticulosList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Articulo> getArticulosByProductId(Integer prod_id) {
@@ -38,13 +22,13 @@ public class ArticuloManager implements IArticuloManager, Serializable {
 	}
 
 	@Override
-	public Articulo getArticuloByName(String name) {
+	public Articulo getByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Articulo getArticuloById(Integer id) {
+	public Articulo getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
