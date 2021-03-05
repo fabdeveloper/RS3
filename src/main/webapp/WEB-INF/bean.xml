@@ -5,6 +5,9 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_2.xsd"
        bean-discovery-mode="all">
        
+   <alternatives>
+   		<class>src.shooping.impl.AvailManager</class>   
+   </alternatives>
        
 <!--        <interceptors><class>src.interceptors.AuditInterceptor</class></interceptors> -->
 </beans>

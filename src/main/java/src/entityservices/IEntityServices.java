@@ -18,5 +18,9 @@ public interface IEntityServices<E> {
 	public List<E> readAll();
 	
 	public E createNamedQuery(String queryname, String paramname, String paramvalue);
+	public List<E> createNamedQueryListResult(String queryname, String paramname, String paramvalue);
+	public List<E> createNamedQueryListResultIntParam(String queryname, String paramname, Integer paramvalue);
+
+
 
 }

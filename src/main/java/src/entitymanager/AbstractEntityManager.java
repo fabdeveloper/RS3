@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import src.entity.Product;
 import src.entityservices.IEntityServices;
 
 public abstract class AbstractEntityManager<E> implements IEntityManager<E> {
@@ -45,8 +46,7 @@ public abstract class AbstractEntityManager<E> implements IEntityManager<E> {
 
 	@Override
 	public List<E> loadAll() {
-		all = getEntityServices().readAll();
-		setValidList(true);
+		setAll(getEntityServices().readAll());
 		return all;
 	}
 
@@ -54,16 +54,23 @@ public abstract class AbstractEntityManager<E> implements IEntityManager<E> {
 		return validList;
 	}
 
+	@Override
 	public void setValidList(Boolean validList) {
 		this.validList = validList;
 	}
 
+	@Override
 	public void setAll(List<E> all) {
 		this.all = all;
+		setValidList(true);
 	}
 
+	@Override
 	public void setSelected(E selected) {
 		this.selected = selected;
 	}
+
+
+
 
 }

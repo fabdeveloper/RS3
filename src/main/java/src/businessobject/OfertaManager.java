@@ -22,8 +22,8 @@ public class OfertaManager extends AbstractEntityManager<Oferta> implements IOfe
 
 	@Override
 	public List<Oferta> getOfertasByArticuloId(Integer articulo_id) {
-		// TODO Auto-generated method stub
-		return null;
+		setAll(getEntityServices().createNamedQueryListResultIntParam("ofertasByArticuloId", "articulo_id", articulo_id));
+		return getAll();	
 	}
 
 	@Override
@@ -34,8 +34,14 @@ public class OfertaManager extends AbstractEntityManager<Oferta> implements IOfe
 
 	@Override
 	public Oferta getByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Oferta sel = null;
+		for(Oferta of : getAll()){
+			if(of.getName().matches(name)){
+				sel = of;
+				break;
+			}
+		}
+		return sel;
 	}
 
 }

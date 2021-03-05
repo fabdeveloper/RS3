@@ -17,14 +17,20 @@ public class ArticuloManager extends AbstractEntityManager<Articulo> implements 
 
 	@Override
 	public List<Articulo> getArticulosByProductId(Integer prod_id) {
-		// TODO Auto-generated method stub
-		return null;
+		setAll(getEntityServices().createNamedQueryListResultIntParam("articulosByProductId", "product_id", prod_id));
+		return getAll();
 	}
 
 	@Override
 	public Articulo getByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Articulo sel = null;
+		for(Articulo art : getAll()){
+			if(art.getName().matches(name)){
+				sel = art;
+				break;
+			}
+		}
+		return sel;
 	}
 
 	@Override

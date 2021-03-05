@@ -374,6 +374,17 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		return getAvail();
 	}
 
+	@Override
+	public List<Articulo> getArticulosByProductName(String prod_name) {
+		return availabilityManager.getArticulosByProductName(prod_name);
+	}
+
+	@Override
+	public String getOfertasByArticuloName(String arti_name) {
+		availabilityManager.getOfertasByArticuloName(arti_name);
+		return viewStateMachine.setAvailabilityView();
+	}
+
 
 
 

@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import src.entity.Articulo;
 import src.entity.Product;
 import src.inter.IListener;
 import src.inter.IProcessable;
@@ -62,10 +63,16 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	@Override
 	public String listener1(){
+		// seleccionado un producto de la lista de productos
 		departmentButtonText = productSelected;
 		setFacesMessage("producto = " + productSelected);
 		setProductListRendered(false);
-
+		
+		// cargar la lista de articulos
+		articulosList = new ArrayList<String>();
+		for(Articulo art : shoppingFacade.getArticulosByProductName(productSelected)){
+			articulosList.add(art.getName());
+		}
 		return null;
 	}
 	
@@ -79,10 +86,14 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	@Override
 	public String listener3(){
+		// selecciona un articulo de la lista
 		text2 = articuloSelected;
 		setFacesMessage("articulo = " + articuloSelected);
 		setArticulosListRendered(false);
-		return null;
+		
+		// carga la lista de ofertas
+		
+		return shoppingFacade.getOfertasByArticuloName(articuloSelected);
 	}
 
 	public String getText2() {

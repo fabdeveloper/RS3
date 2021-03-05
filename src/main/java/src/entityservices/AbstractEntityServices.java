@@ -59,4 +59,14 @@ public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 		return gestor.getDao().createNamedQuery(queryname, paramname, paramvalue);		
 	}
 
+	@Override
+	public List<E> createNamedQueryListResult(String queryname,	String paramname, String paramvalue) {
+		return gestor.getDao().createNamedQueryListResult(queryname, paramname, paramvalue);		
+	}
+
+	@Override
+	public List<E> createNamedQueryListResultIntParam(String queryname,	String paramname, Integer paramvalue) {
+		return gestor.getDao().createNamedQueryListResultIntParam(queryname, paramname, paramvalue);		
+	}
+
 }
