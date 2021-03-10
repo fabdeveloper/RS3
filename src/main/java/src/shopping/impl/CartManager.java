@@ -110,6 +110,7 @@ public class CartManager implements ICartManager, Serializable {
 
 	@Override
 	public Cart getCart() {
+		if(cart == null)reset();
 		return cart;
 	}
 	

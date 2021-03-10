@@ -7,7 +7,7 @@
 
 	
 <p:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />	
 </p:head>
 <p:body>
 	<composite:interface>
@@ -18,7 +18,7 @@
 		<composite:attribute name="boton2text" default="D"></composite:attribute>		
 		<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
 		<composite:attribute name="lista" type="java.util.List"></composite:attribute>	
-		<composite:attribute name="divpanel" default="divpanel"></composite:attribute>		
+		<composite:attribute name="divpanel" ></composite:attribute>		
 			
 	</composite:interface>
 
@@ -35,27 +35,10 @@
 			
 			</div>	
 			<form>
-				<input id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" type="button" onclick="iralaizquierda()"/>
-				<input id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}" type="button" onclick="iraladerecha()"/>
-				
-				<script type="text/javascript">
-						var velocidad = 10;
-						var pos = 0;
-						
-						function iralaizquierda(){
-							var panel = document.getElementById("#{cc.attrs.divpanel}");						
-							var vi = velocidad*(-1);
-							pos = pos + vi;
-							panel.style.left = pos + "%";			
-						}
-						
-						function iraladerecha(){
-							var panel = document.getElementById("#{cc.attrs.divpanel}");						
-							var vd = velocidad;
-							pos = pos + vd;
-							panel.style.left = pos + "%";
-						}				
-				</script>
+				<input id="boton1" class="#{cc.attrs.boton1class}" value="#{cc.attrs.boton1text}" type="button" onclick="iralaizquierda('#{cc.attrs.divpanel}', 55)"/>
+				<input id="boton2" class="#{cc.attrs.boton2class}" value="#{cc.attrs.boton2text}" type="button" onclick="iraladerecha('#{cc.attrs.divpanel}', 55)"/>
+				<script src="js/slideshowcomp.js"></script>
+
 			</form>
 
 		</div>

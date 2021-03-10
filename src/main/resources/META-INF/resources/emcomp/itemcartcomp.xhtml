@@ -44,7 +44,7 @@
 			<p:outputText value="#{cc.attrs.texto4}"></p:outputText><br/><p:form>
 			<ui:selectOneMenu id="selectonemenu" value="#{cc.attrs.numItems}" >
 				<c:selectItems value="#{cc.attrs.listaItems}"></c:selectItems>
-				<c:ajax event="itemSelect"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}" update="totales confirmar"/>
+				<c:ajax event="itemSelect"  listener="#{cc.attrs.bean.modifItem(cc.attrs.iditem, cc.attrs.numItems)}" update="totales confirmar" render="totales confirmar"/>
 			</ui:selectOneMenu>
 				</p:form>
 			<p:form id="formitemcart">

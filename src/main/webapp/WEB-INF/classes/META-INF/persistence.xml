@@ -6,7 +6,9 @@
 	  <persistence-unit name="RS3_PU" transaction-type="JTA">
     	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-        <jta-data-source>SuperDS</jta-data-source>
+<!--         <jta-data-source>SuperDS</jta-data-source> -->
+        <jta-data-source>jdbc/MySQLConnDS</jta-data-source>
+
     			<class>src.entity.User</class>
         		<class>src.entity.Grupo</class>
                 <class>src.entity.Order</class>
