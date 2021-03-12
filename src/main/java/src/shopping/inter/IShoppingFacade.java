@@ -16,6 +16,7 @@ public interface IShoppingFacade {
 
 	// Managers
 	public IPurchaseManager getPurchaseManager();
+	public IAvailabilityManager getAvailabilityManager();
 	public ICartManager getCartManager();
 	public IStockManager getStockManager();
 	public IViewStateMachine getViewStateMachine();

@@ -10,6 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>DRAFT</title>
 				<p:outputStylesheet  library="css" name="draft1.css" ></p:outputStylesheet>
+				<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>
+				
 </p:head>
 
 
@@ -28,7 +30,7 @@
 <br/>
 	<hr />
 <br/>
-	
+	<div class="divclass">
 		<em:SearchBarComp 
 			listaItems1="#{searchBarCompBB.productList}"
 			listaItems2="#{searchBarCompBB.articulosList}"
@@ -43,11 +45,24 @@
 			articulosListRendered="#{searchBarCompBB.articulosListRendered}"
 			text2="#{searchBarCompBB.text2}"
 			inputtextclass2=""
-			searchbuttontext=""	
+			searchbuttontext="search"	
 		></em:SearchBarComp>	
-	
+	</div>
 
 
+<div class="divclass">
+
+	<em:slideShowComp 
+		bean="#{searchBarCompBB}"
+		lista="#{searchBarCompBB.ofertaList}"
+		divpanel="panel"
+
+	></em:slideShowComp>
+
+
+
+
+</div>
 	<p:messages id="mismensajes">
 		<p:message ></p:message>	
 	</p:messages>

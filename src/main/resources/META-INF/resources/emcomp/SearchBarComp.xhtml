@@ -30,7 +30,7 @@
 	</composite:interface>
 	<composite:implementation>
 		<p:form>
-			<div sytle="display: inline-block;">
+			<div class="margenizquierdo" sytle="display: inline-block;">
 				<p:commandButton sytle="display:block;" 
 								id="productbutton" 
 								value="#{cc.attrs.departmentbuttontext}"
@@ -48,7 +48,7 @@
 					</ui:selectOneListbox>				
 			</div>
 			
-			<div sytle="display: inline-block;">	
+			<div class="margensuperior" sytle="display: inline-block;">	
 				<p:inputText sytle="display:block;" 
 							id="searchtext" 
 							value="#{cc.attrs.text2}" 
@@ -68,7 +68,7 @@
 				
 			</div>
 			
-			<div sytle="display: inline-block;">
+			<div class="margensuperior" sytle="display: inline-block;">
 					<p:commandButton value="#{cc.attrs.searchbuttontext}" 
 									action="#{cc.attrs.bean.process3()}" 
 									class="#{cc.attrs.button3class}">

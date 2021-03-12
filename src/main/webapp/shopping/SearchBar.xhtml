@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://java.sun.com/jsf/html">
+<html xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp">
+	
 <p:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </p:head>
 <p:body>
-<p:form>
-		<p:commandButton id="homebutton" value="#{searchBarBB.getHomeButtonText()}" action="#{searchBarBB.homeButtonAction()}"></p:commandButton>
-	</p:form>
+
+	<em:SearchBarComp
+				listaItems1="#{searchBarCompBB.productList}"
+			listaItems2="#{searchBarCompBB.articulosList}"
+			departmentbuttontext="#{searchBarCompBB.departmentButtonText}"
+			productListRendered="#{searchBarCompBB.productListRendered}"
+			button1class=""
+			button3class=""
+			bean="#{searchBarCompBB}"
+			listener="#{searchBarCompBB}"
+			selected1="#{searchBarCompBB.productSelected}"
+			selected2="#{searchBarCompBB.articuloSelected}"
+			articulosListRendered="#{searchBarCompBB.articulosListRendered}"
+			text2="#{searchBarCompBB.text2}"
+			inputtextclass2=""
+			searchbuttontext="search"	
+	
+	></em:SearchBarComp>
+
+
+
 
 </p:body>
 </html>

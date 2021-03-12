@@ -5,23 +5,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Account Management</title>
 </p:head>
 <p:body>
-	<ui:composition template="LogBarTemplate.xhtml">
-	
-		<ui:define name="homebar">
-			<ui:include src="../shopping/HomeBar.xhtml"></ui:include>
-		</ui:define>
+	<ui:composition template="../templates/shop/ShopGeneralTemplate.xhtml">
 
-		<ui:define name="searchbar">
-			<ui:include src="../shopping/SearchBar.xhtml"></ui:include>
+		<ui:define name="LogBar">
+					<ui:include src="../login/LogBar.xhtml"></ui:include>
+		
 		</ui:define>
 		
-		<ui:define name="logbar">
-				<ui:include src="#{(sessionManagementBB.isClient()?'Logout.xhtml':'Login.xhtml')}"></ui:include>
+		<ui:define name="Body">
+					<ui:include src="UserManagementView.xhtml"></ui:include>
+		
 		</ui:define>
 
+
+
+
 	</ui:composition>
+
 
 </p:body>
 </html>

@@ -12,10 +12,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Articulo;
+import src.entity.Oferta;
 import src.entity.Product;
 import src.inter.IListener;
 import src.inter.IProcessable;
 import src.shopping.inter.IShoppingFacade;
+import src.transferobject.EntityViewTransferObject;
 
 
 @Named
@@ -35,6 +37,8 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	private Boolean productListRendered = false;
 	private Boolean articulosListRendered = false;
 	
+	private List<EntityViewTransferObject> ofertaList;
+	
 	@PostConstruct
 	public void init(){
 //		productList = new ArrayList<String>();		
@@ -49,7 +53,12 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	}
 	
 	@Override
-	public String process(){
+	public String process(Object obj) {
+		return "";
+	}
+	
+	@Override
+	public String process(){ // carga y muestra lista de productos
 		if(productList == null){
 			productList = new ArrayList<String>();
 			for(Product prod : getShoppingFacade().getDepartmentStoreList()){
@@ -77,7 +86,7 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	}
 	
 	@Override
-	public String listener2(){
+	public String listener2(){ // muestra la lista de articulos
 		
 		setFacesMessage("texto = " + text2);
 		setArticulosListRendered(true);
@@ -91,9 +100,24 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 		setFacesMessage("articulo = " + articuloSelected);
 		setArticulosListRendered(false);
 		
+		ofertaList = new ArrayList<EntityViewTransferObject>();
+		EntityViewTransferObject trans;
 		// carga la lista de ofertas
+		for(Oferta oferta : shoppingFacade.getAvailabilityManager().getOfertasByArticuloName(articuloSelected)) {
+			trans = new EntityViewTransferObject();
+			trans.setOfid(oferta.getId().toString());
+			trans.setTextbottom("compra");
+			trans.setTextcenter(oferta.getName());
+			trans.setTextobotonenviar("aquí");
+			trans.setTexttop(oferta.getArticulo().getName());
+			trans.setUrlimage(oferta.getUrlImage());
+			ofertaList.add(trans);  
+		}
 		
-		return shoppingFacade.getOfertasByArticuloName(articuloSelected);
+		
+		
+//		return shoppingFacade.getOfertasByArticuloName(articuloSelected);
+		return "";
 	}
 
 	public String getText2() {
@@ -173,6 +197,15 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
 		this.shoppingFacade = shoppingFacade;
 	}
+
+	public List<EntityViewTransferObject> getOfertaList() {
+		return ofertaList;
+	}
+
+	public void setOfertaList(List<EntityViewTransferObject> ofertaList) {
+		this.ofertaList = ofertaList;
+	}
+
 
 
 

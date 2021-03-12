@@ -148,6 +148,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		return viewStateMachine.setConfigView();
 	}
 
+	@Override
 	public IAvailabilityManager getAvailabilityManager() {
 		return availabilityManager;
 	}

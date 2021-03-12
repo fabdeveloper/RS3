@@ -1,6 +1,7 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -57,7 +58,25 @@ public class Articulo implements Serializable, IPrototype<Articulo>{
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="articulo")
 	private List<Atributo> listaAtributos;
 	
+	@Column(name="CREATION_DATE")
+	private Date creationDate;
 	
+	
+	@Override
+	public Articulo clone(){
+		
+		Articulo nuevo = new Articulo();
+		nuevo.setId(this.getId());
+		nuevo.setDescripcion(this.getDescripcion());
+		nuevo.setPrice(this.getPrice());
+		nuevo.setName(this.getName());
+		nuevo.setProduct(this.getProduct());
+		nuevo.setListaAtributos(this.getListaAtributos());
+		nuevo.setUrlImage(this.getUrlImage());
+		nuevo.setCreationDate(this.getCreationDate());
+		
+		return nuevo;
+	}
 	
 	
 	/****************************************/
@@ -95,9 +114,7 @@ public class Articulo implements Serializable, IPrototype<Articulo>{
 
 	public void setPrice(Float price) {
 		this.price = price;
-	}
-	
-	
+	}	
 	
 	public String getName() {
 		return name;
@@ -106,12 +123,6 @@ public class Articulo implements Serializable, IPrototype<Articulo>{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
-	
-	
-	
 
 	public String getUrlImage() {
 		return urlImage;
@@ -119,19 +130,6 @@ public class Articulo implements Serializable, IPrototype<Articulo>{
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
-	}
-
-	@Override
-	public Articulo clone(){
-		
-		Articulo nuevo = new Articulo();
-		nuevo.setId(this.getId());
-		nuevo.setDescripcion(this.getDescripcion());
-		nuevo.setPrice(this.getPrice());
-		nuevo.setName(this.getName());
-		nuevo.setProduct(this.getProduct());
-		nuevo.setListaAtributos(this.getListaAtributos());
-		return nuevo;
 	}
 
 	public List<Atributo> getListaAtributos() {
@@ -144,6 +142,14 @@ public class Articulo implements Serializable, IPrototype<Articulo>{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 	
 

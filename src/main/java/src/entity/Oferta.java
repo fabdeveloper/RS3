@@ -1,6 +1,7 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
@@ -55,9 +56,12 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 	@Column(name="STOCK")
 	private Integer stock;
 	
+	@Column(name="CREATION_DATE")
+	private Date creationDate;
+
+	@Column(name="EXPIRATION_DATE")
+	private Date expirationDate;
 	
-
-
 
 	@Override
 	public Oferta clone(){
@@ -69,6 +73,8 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 		oferta.setArticulo(this.getArticulo());
 		oferta.setUrlImage(this.getUrlImage());
 		oferta.setUrlImagebig(this.getUrlImagebig());
+		oferta.setCreationDate(this.getCreationDate());
+		oferta.setExpirationDate(this.getExpirationDate());
 
 
 		return oferta;
@@ -138,6 +144,22 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 
 	public void setStock(Integer stock) {
 		this.stock = stock;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}	
 
 }

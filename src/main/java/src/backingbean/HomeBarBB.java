@@ -9,7 +9,7 @@ import src.shopping.inter.IShoppingFacade;
 
 @Named
 @RequestScoped
-public class SearchBarBB {
+public class HomeBarBB {
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;
