@@ -24,7 +24,11 @@ import src.inter.IPrototype;
 	@NamedQuery(name="ofertaById", query="SELECT b FROM Oferta b WHERE b.id = :oferta_id"),
 	@NamedQuery(name="ofertaByName", query="SELECT b FROM Oferta b WHERE b.name = :oferta_name"),
 	@NamedQuery(name="ofertasByArticuloId", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
-	@NamedQuery(name="ofertas por product_id", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id")
+	@NamedQuery(name="ofertasByProductId", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id"),
+	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC")
+
+//	@NamedQuery(name="ofertasNultimas", query="SELECT b FROM Oferta b ORDER BY b.id DESC LIMIT 10")
+
 	})
 public class Oferta implements Serializable, IPrototype<Oferta>{
 	

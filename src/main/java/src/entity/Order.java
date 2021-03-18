@@ -24,7 +24,9 @@ import src.inter.IPrototype;
 @Entity
 @Table(name="ORDERS")
 @NamedQueries({
-	@NamedQuery(name="loadPendingOrder", query = "SELECT o FROM Order o WHERE o.purchaseStatus.remark NOT IN('CONFIRMED', 'CANCELLED') AND o.client.nick LIKE :client_nick")
+	@NamedQuery(name="loadPendingOrder", query = "SELECT o FROM Order o WHERE o.purchaseStatus.remark NOT IN('CONFIRMED', 'CANCELLED') AND o.client.nick LIKE :client_nick"),
+	@NamedQuery(name="ordersAll", query="SELECT b FROM Order b ORDER BY b.id DESC")
+
 })
 public class Order implements Serializable, IPrototype<Order>{
 	

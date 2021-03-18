@@ -3,14 +3,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
+<p:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
-	<ui:include src="login/LoginForm.xhtml"></ui:include>
+<title>Index</title>
+</p:head>
+<p:body>
+	<ui:composition template="templates/shop/ShopGeneralTemplate.xhtml">
+
+
+			
+			
+		<ui:define name="LogBar">
+			<ui:include src="login/LogBar.xhtml"></ui:include>
+
+		</ui:define>
+		
+
+			
+			
+		<ui:define name="Body">
+			<ui:include src="home/indexview.xhtml"></ui:include>
+
+		<p:messages>
+			<p:message></p:message>
+
+		</p:messages>
+
+		</ui:define>
+		
+<!-- 
+		
+		<ui:define name="Ofertas">
+			<ui:include src=""></ui:include>
+
+		</ui:define>
+		
+		<ui:define name="Footer">
+			<ui:include src=""></ui:include>
+
+		</ui:define>
+
+
+ -->
 
 
 
-</body>
+
+
+	</ui:composition>
+
+
+
+
+
+</p:body>
 </html>

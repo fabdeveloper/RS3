@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import src.gestor.IGestorE;
 import src.inter.IServiceLocator;
 
-public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
+public  class AbstractEntityServices<E> implements IEntityServices<E> {
 	
 	@Inject
 	private IGestorE<E> gestor;
@@ -67,6 +67,12 @@ public abstract class AbstractEntityServices<E> implements IEntityServices<E> {
 	@Override
 	public List<E> createNamedQueryListResultIntParam(String queryname,	String paramname, Integer paramvalue) {
 		return gestor.getDao().createNamedQueryListResultIntParam(queryname, paramname, paramvalue);		
+	}
+
+	@Override
+	public List<E> createNamedQueryLimited(String queryname, Integer limit) {
+
+		return gestor.getDao().createNamedQueryLimited(queryname, limit);
 	}
 
 }

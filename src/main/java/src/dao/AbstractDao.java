@@ -154,6 +154,19 @@ public abstract class AbstractDao<T> implements IDao<T> {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<T> createNamedQueryLimited(String queryname, Integer limit){
+		List<T> result = null;
+		try{
+			result = getEntityManager().createNamedQuery(queryname, entityClass).setMaxResults(limit).getResultList();
+		}catch(Throwable t){
+			throw new DBException("AbstractDao createNamedQueryLimited() error - queryname = " + queryname + ", limit = " + limit);
+		}
+		return result;
+	}
+	
+	
 		
 
 }
