@@ -22,6 +22,7 @@ import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.CartItem;
 import src.entity.DeliveryDetails;
+import src.entity.Etiqueta;
 import src.entity.Grupo;
 import src.entity.Oferta;
 import src.entity.Order;
@@ -68,7 +69,8 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	private IEntityServices<PurchaseStatus> purchaseStatusServices;
 	@Inject 
 	private IEntityServices<DeliveryDetails> deliveryDetailsServices;
-	
+	@Inject 
+	private IEntityServices<Etiqueta> etiquetaServices;
 
 	@Inject 
 	private IShoppingFacade shoppingFacade;
@@ -142,6 +144,11 @@ public class ServiceLocator implements IServiceLocator, Serializable{
 	@Override
 	public IShoppingFacade getShoppingFacade() {
 		return shoppingFacade;
+	}
+
+	@Override
+	public IEntityServices<Etiqueta> getEtiquetaServices() {
+		return etiquetaServices;
 	}
 
 

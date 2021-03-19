@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.CartItem;
+import src.entity.Etiqueta;
 import src.entity.Oferta;
 import src.entity.Order;
 import src.inter.IProcessable;
@@ -93,8 +94,18 @@ public class IndexViewBB implements IProcessable{
 	
 	public String sugerenciasAvail() {
 		// listado de ofertas sugeridas, navidad, sanvalentin, halloween, etc
-		serviceLocator.getOfertaServices().createNamedQueryLimited("", 10);
+		listaSugerencias = new ArrayList<Oferta>();
+		
+		// etiquetas where startDate < sysdate < stopDate
+		List<Etiqueta> etiquetasValidasEncontradas = serviceLocator.getEtiquetaServices().createNamedQueryListResult("etiquetasActivasHoy", null, null);
 
+		for(Etiqueta etiqueta : etiquetasValidasEncontradas) {
+			// ofertas where oferta and etiqueta in jointable
+			List<Oferta> listaOfertasConEtiqueta = serviceLocator.getOfertaServices().createNamedQueryListResult("ofertasConEtiquetaActiva", null, null);
+			for(Oferta oferta : listaOfertasConEtiqueta) {
+				listaSugerencias.add(oferta);
+			}
+		}
 		
 		return "";
 	}
@@ -159,7 +170,10 @@ public class IndexViewBB implements IProcessable{
 		this.listaMasVendidosArticulos = listaMasVendidosArticulos;
 	}
 
-	public List<Oferta> getListaSugerencias() {
+	public List<Oferta> getListaSugerencias() {		
+		if(listaSugerencias == null) {
+			sugerenciasAvail();
+		}		
 		return listaSugerencias;
 	}
 
@@ -220,6 +234,12 @@ public class IndexViewBB implements IProcessable{
 	}
 
 	public List<OfertaViewTO> getListaSugerenciasTO() {
+		if(listaSugerenciasTO == null) {
+			listaSugerenciasTO = new ArrayList<OfertaViewTO>();
+			for(Oferta oferta : getListaSugerencias()) {
+				listaSugerenciasTO.add(OfertaViewTO.getNewOfertaViewTO(oferta));
+			}
+		}
 		return listaSugerenciasTO;
 	}
 

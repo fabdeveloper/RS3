@@ -9,6 +9,7 @@ import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.CartItem;
 import src.entity.DeliveryDetails;
+import src.entity.Etiqueta;
 import src.entity.Grupo;
 import src.entity.Oferta;
 import src.entity.Order;
@@ -47,6 +48,8 @@ public interface IServiceLocator {
 	public IEntityServices<PurchaseStatus> getPurchaseStatusServices();
 
 	public IEntityServices<DeliveryDetails> getDeliveryDetailsServices();
+	
+	public IEntityServices<Etiqueta> getEtiquetaServices();
 	
 	public IShoppingFacade getShoppingFacade();
 

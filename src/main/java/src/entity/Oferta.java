@@ -1,7 +1,9 @@
 package src.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,9 +29,10 @@ import src.inter.IPrototype;
 	@NamedQuery(name="ofertaByName", query="SELECT b FROM Oferta b WHERE b.name = :oferta_name"),
 	@NamedQuery(name="ofertasByArticuloId", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
 	@NamedQuery(name="ofertasByProductId", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id"),
-	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC")
+	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC"),
+	@NamedQuery(name="ofertasConEtiquetaActiva", query="SELECT b FROM Oferta b WHERE :etiqueta IN b.listaEtiquetas")
+	
 
-//	@NamedQuery(name="ofertasNultimas", query="SELECT b FROM Oferta b ORDER BY b.id DESC LIMIT 10")
 
 	})
 public class Oferta implements Serializable, IPrototype<Oferta>{
@@ -66,7 +71,15 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 	@Column(name="EXPIRATION_DATE")
 	private Date expirationDate;
 	
-
+	@ManyToMany
+	@JoinTable(name="ETIQUETA_OFERTA",
+			joinColumns=@JoinColumn(name="ETIQUETA_ID", table="ETIQUETAS", referencedColumnName="ID"),
+			inverseJoinColumns=@JoinColumn(name="OFERTA_ID", table="OFERTAS", referencedColumnName="ID"))
+	private List<Etiqueta> listaEtiquetas;
+	
+	
+	
+	
 	@Override
 	public Oferta clone(){
 		Oferta oferta = new Oferta();
@@ -79,6 +92,7 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 		oferta.setUrlImagebig(this.getUrlImagebig());
 		oferta.setCreationDate(this.getCreationDate());
 		oferta.setExpirationDate(this.getExpirationDate());
+		oferta.setListaEtiquetas(this.getListaEtiquetas());
 
 
 		return oferta;
@@ -164,6 +178,24 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
-	}	
+	}
+
+
+	public List<Etiqueta> getListaEtiquetas() {
+		return listaEtiquetas;
+	}
+
+
+	public void setListaEtiquetas(List<Etiqueta> listaEtiquetas) {
+		this.listaEtiquetas = listaEtiquetas;
+	}
+	
+	public void addEtiqueta(Etiqueta etiqueta) {
+		if(listaEtiquetas == null) {
+			listaEtiquetas = new ArrayList<Etiqueta>();
+		}
+		listaEtiquetas.add(etiqueta);
+		
+	}
 
 }
