@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</p:head>
+<p:body>
+
+	<ui:component >
+
+
+		<composite:interface>
+			<composite:attribute name="outputText1" default=""></composite:attribute>
+			<composite:attribute name="outputText2" default=""></composite:attribute>
+			<composite:attribute name="outputText3" default=""></composite:attribute>
+			<composite:attribute name="outputText4" default=""></composite:attribute>
+			<composite:attribute name="outputText5" default=""></composite:attribute>
+			<composite:attribute name="outputText6" default=""></composite:attribute>
+			<composite:attribute name="outputText7" default=""></composite:attribute>
+			
+			<composite:attribute name="buttontext" default="buy it now"></composite:attribute>			
+			<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
+			
+
+		</composite:interface>
+
+		<composite:implementation>
+		<div style="height: 611px; width: 295px">
+
+	<p:form>
+				<p:graphicImage style="width: 235px; height: 214px; "></p:graphicImage>
+
+				<p:outputText value="#{cc.attrs.outputText1}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText2}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText3}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText4}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText5}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText6}"></p:outputText>
+				<p:outputText value="#{cc.attrs.outputText7}"></p:outputText>
+
+			
+					<p:commandButton value="#{cc.attrs.}" action="#{cc.attrs.}"></p:commandButton>
+				</p:form>
+		</div>
+		
+		</composite:implementation>
+
+	</ui:component>
+
+
+
+</p:body>
+</html>

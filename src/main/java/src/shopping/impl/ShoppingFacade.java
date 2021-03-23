@@ -220,6 +220,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
 		
 	}
+	
+	@Override
+	public void publish(String msg) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+	}
 
 	@Override
 	public String cancelOrder() {

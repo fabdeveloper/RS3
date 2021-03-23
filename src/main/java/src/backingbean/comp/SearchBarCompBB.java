@@ -37,6 +37,8 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	private Boolean productListRendered = false;
 	private Boolean articulosListRendered = false;
 	
+	private String buttonText = "buy it now";
+	
 	private List<EntityViewTransferObject> ofertaList;
 	
 	@PostConstruct
@@ -204,6 +206,14 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 
 	public void setOfertaList(List<EntityViewTransferObject> ofertaList) {
 		this.ofertaList = ofertaList;
+	}
+
+	public String getButtonText() {
+		return buttonText;
+	}
+
+	public void setButtonText(String buttonText) {
+		this.buttonText = buttonText;
 	}
 
 

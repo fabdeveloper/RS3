@@ -30,10 +30,12 @@ import src.inter.IPrototype;
 	@NamedQuery(name="ofertasByArticuloId", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
 	@NamedQuery(name="ofertasByProductId", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id"),
 	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC"),
-	@NamedQuery(name="ofertasConEtiquetaActiva", query="SELECT b FROM Oferta b WHERE :etiqueta IN b.listaEtiquetas")
+	@NamedQuery(name="ofertasConEtiquetaActiva", query="SELECT b FROM Oferta b inner join b.listaEtiquetas a  WHERE a.id = :etiqueta_id")
 	
 
-
+//	select distinct d from Document d inner join d.accessors a where a.id = :id
+	
+	
 	})
 public class Oferta implements Serializable, IPrototype<Oferta>{
 	
@@ -73,8 +75,8 @@ public class Oferta implements Serializable, IPrototype<Oferta>{
 	
 	@ManyToMany
 	@JoinTable(name="ETIQUETA_OFERTA",
-			joinColumns=@JoinColumn(name="ETIQUETA_ID", table="ETIQUETAS", referencedColumnName="ID"),
-			inverseJoinColumns=@JoinColumn(name="OFERTA_ID", table="OFERTAS", referencedColumnName="ID"))
+			joinColumns=@JoinColumn(name="OFERTA_ID", table="OFERTAS", referencedColumnName="ID"),
+			inverseJoinColumns=@JoinColumn(name="ETIQUETA_ID", table="ETIQUETAS", referencedColumnName="ID"))
 	private List<Etiqueta> listaEtiquetas;
 	
 	

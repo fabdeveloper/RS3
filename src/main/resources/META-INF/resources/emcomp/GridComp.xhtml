@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</p:head>
+<p:body>
+	<ui:component>
+
+
+		<composite:interface>
+			<composite:attribute name="cols" default="4"></composite:attribute>
+			<composite:attribute name="list" type="java.util.List"></composite:attribute>
+			<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
+
+		</composite:interface>
+
+		<composite:implementation>
+			
+			<table>
+				<tbody>
+
+					<ui:repeat value="#{cc.attrs.list}" var="objeto">					
+					    <c:if test="#{cc.attrs.bean.isFirst()}">
+					   			 <tr>
+					    </c:if>					    
+						
+							<td>
+								<em:ofertaviewcomp id="itemview"
+									urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
+									textcenter="#{objeto.textcenter}"
+									textbottom="#{objeto.textbottom}" bean="#{cc.attrs.bean}"
+									ofid="#{objeto.ofid}"
+									textobotonenviar="#{objeto.textobotonenviar}"
+									botonclass="#{cc.attrs.botonclass}">
+								</em:ofertaviewcomp>
+							</td>
+									
+						<c:if test="#{cc.attrs.bean.isLast()}">
+					    		</tr>
+					    </c:if>
+						
+					</ui:repeat>
+
+				</tbody>
+			</table>
+
+
+
+
+
+		</composite:implementation>
+
+
+
+	</ui:component>
+
+
+</p:body>
+</html>

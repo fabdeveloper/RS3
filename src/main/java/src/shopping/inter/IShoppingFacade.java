@@ -71,5 +71,9 @@ public interface IShoppingFacade {
 
 	// LocationManager
 	public String getString(String prop);
+	
+	
+	// General
+	public void publish(String msg);
 
 }
