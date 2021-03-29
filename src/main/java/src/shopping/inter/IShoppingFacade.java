@@ -31,6 +31,7 @@ public interface IShoppingFacade {
 	public List<Product> getDepartmentStoreList();
 	public List<Articulo> getArticulosByProductName(String prod_name);
 	public String getOfertasByArticuloName(String arti_name);
+	public String showAvail(String articuloname);
 	
 	// CartManagement
 	public String addItemToCart(Oferta item, Integer numItems);

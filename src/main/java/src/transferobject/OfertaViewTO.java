@@ -3,6 +3,9 @@
  */
 package src.transferobject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import src.entity.Oferta;
 
 /**
@@ -27,5 +30,7 @@ public class OfertaViewTO extends EntityViewTransferObject {
 		
 		return to;
 	}
+	
+
 
 }

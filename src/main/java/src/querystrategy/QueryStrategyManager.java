@@ -3,11 +3,17 @@
  */
 package src.querystrategy;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
+
 /**
  * @author fabo_
  *
  */
-public class QueryStrategyManager extends AbstractQueryStrategyManager {
+
+@SessionScoped
+public class QueryStrategyManager extends AbstractQueryStrategyManager implements Serializable {
 	
 	private IQueryStrategy strategy;
 
@@ -20,6 +26,7 @@ public class QueryStrategyManager extends AbstractQueryStrategyManager {
 		return strategy;
 	}
 
+	@Override
 	public void setStrategy(IQueryStrategy strategy) {
 		this.strategy = strategy;
 	}

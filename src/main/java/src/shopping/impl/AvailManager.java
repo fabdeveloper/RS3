@@ -13,17 +13,27 @@ import src.businessobject.IProductManager;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
+import src.inter.IServiceLocator;
+import src.querystrategy.AbstractQueryStrategy;
+import src.querystrategy.IQueryStrategyManager;
+import src.querystrategy.OfertasPorArticuloName;
 import src.shopping.inter.IAvailabilityManager;
+import src.transferobject.OfertaViewTO;
 
 @SessionScoped
 public class AvailManager implements IAvailabilityManager, Serializable {
 	
+	@Inject 
+	private IServiceLocator serviceLocator;
 	@Inject
 	private IProductManager productManager;
 	@Inject 
 	private IArticuloManager articuloManager;
 	@Inject 
 	private IOfertaManager ofertaManager;
+	
+	@Inject
+	private IQueryStrategyManager<Oferta, OfertaViewTO> queryManager;
 	
 
 	@Override
@@ -82,6 +92,35 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 		List<Oferta> list = null;
 		if(arti != null) list = getAvail(arti);
 		return list;
+	}
+
+	@Override
+	public IQueryStrategyManager getQueryManager() {
+		return queryManager;
+	}
+
+
+
+	@Override
+	public void searchName(String name) {
+		AbstractQueryStrategy ofertasPorArticuloNameQuery = new OfertasPorArticuloName();
+		ofertasPorArticuloNameQuery.setParametro(name);
+		ofertasPorArticuloNameQuery.setServiceLocator(getServiceLocator());
+		this.getQueryManager().setStrategy(ofertasPorArticuloNameQuery);
+		this.getQueryManager().refresh();
+		
+	}
+
+	public IServiceLocator getServiceLocator() {
+		return serviceLocator;
+	}
+
+	public void setServiceLocator(IServiceLocator serviceLocator) {
+		this.serviceLocator = serviceLocator;
+	}
+
+	public void setQueryManager(IQueryStrategyManager<Oferta, OfertaViewTO> queryManager) {
+		this.queryManager = queryManager;
 	}
 
 	

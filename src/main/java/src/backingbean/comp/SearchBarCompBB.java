@@ -215,6 +215,12 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	public void setButtonText(String buttonText) {
 		this.buttonText = buttonText;
 	}
+	
+	@Override
+	public String process3() {		
+		return shoppingFacade.showAvail(articuloSelected);
+		
+	}
 
 
 

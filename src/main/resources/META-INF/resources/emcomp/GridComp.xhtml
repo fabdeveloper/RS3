@@ -4,8 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:em="http://java.sun.com/jsf/composite/emcomp"
 	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:p="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://java.sun.com/jsf/html">
 
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -16,51 +16,56 @@
 
 		<composite:interface>
 			<composite:attribute name="cols" default="4"></composite:attribute>
-			<composite:attribute name="list" type="java.util.List"></composite:attribute>
+			<composite:attribute name="listF" type="java.util.List"></composite:attribute>
 			<composite:attribute name="bean" type="src.inter.IProcessable"></composite:attribute>
+			<composite:attribute name="botonclass" default="buttonclass"></composite:attribute>
+
 
 		</composite:interface>
 
 		<composite:implementation>
-			
+
+
 			<table>
-				<tbody>
+				<c:forEach items="${cc.attrs.listF}" var="map">
+			    	<tr>fila
+			        <c:forEach items="${map}" var="objeto">
 
-					<ui:repeat value="#{cc.attrs.list}" var="objeto">					
-					    <c:if test="#{cc.attrs.bean.isFirst()}">
-					   			 <tr>
-					    </c:if>					    
-						
-							<td>
-								<em:ofertaviewcomp id="itemview"
-									urlimage="#{objeto.urlimage}" texttop="#{objeto.texttop}"
-									textcenter="#{objeto.textcenter}"
-									textbottom="#{objeto.textbottom}" bean="#{cc.attrs.bean}"
-									ofid="#{objeto.ofid}"
-									textobotonenviar="#{objeto.textobotonenviar}"
-									botonclass="#{cc.attrs.botonclass}">
-								</em:ofertaviewcomp>
-							</td>
-									
-						<c:if test="#{cc.attrs.bean.isLast()}">
-					    		</tr>
-					    </c:if>
-						
-					</ui:repeat>
+			            <td>col
+			            
+			            <em:OfertaResultViewComp 
+			            		outputText1="${objeto.outputText1}"
+           			            outputText2="${objeto.outputText2}"
+           			            outputText3="${objeto.outputText3}"
+           			            outputText4="${objeto.outputText4}"
+           			            outputText5="${objeto.outputText5}"
+           			            outputText6="${objeto.outputText6}"
+           			            outputText7="${objeto.outputText7}"
+           			            bean="${cc.attrs.bean}"		 
+           			            buttontext="hardcodedtext"           
+			            
+			             >			            
+			          	</em:OfertaResultViewComp>
+            
+			            
+			            
+			            </td>
 
-				</tbody>
+        			</c:forEach>
+    				</tr>
+				</c:forEach>
+
 			</table>
-
+			
+			
+			
 
 
 
 
 		</composite:implementation>
 
-
-
 	</ui:component>
-
 
 </p:body>
 </html>

@@ -4,6 +4,7 @@
 package src.backingbean;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,6 +18,7 @@ import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.QueryStrategyManager;
 import src.querystrategy.TodasLasOfertasQS;
 import src.shopping.inter.IShoppingFacade;
+import src.transferobject.OfertaResultViewTO;
 import src.transferobject.OfertaViewTO;
 
 @Named
@@ -31,7 +33,56 @@ public class GridCompBB implements IProcessable, IGridMaker {
 	private Integer cols = 4;
 	
 	private List<OfertaViewTO> list;
+	
+	private List<OfertaResultViewTO> listResult;
+	
 	private int counter = 0;
+
+	private List<List<OfertaViewTO>> matriz;
+	
+	private List<List<OfertaResultViewTO>> matrizResult;
+	
+	private Iterator iterator;
+	
+	
+
+	
+	public void initMatriz() {
+		List<List<OfertaViewTO>> matrizTemp = new ArrayList<List<OfertaViewTO>>();
+//		int end = 0;
+		for(int start = 0, end = start+cols; 				
+				start < getList().size() && end <= getList().size(); 				
+				start= end+1 , 
+						end = (start+cols > getList().size()) ? getList().size() : start+cols)			
+		{
+			matrizTemp.add(getList().subList(start, end));
+		}
+		matriz = matrizTemp;
+	}
+	
+	public void initMatrizResult() {
+		List<List<OfertaResultViewTO>> matrizTemp = new ArrayList<List<OfertaResultViewTO>>();
+		for(int start = 0, end = start+cols; 				
+				start < getList().size() && end <= getList().size(); 				
+				start= end+1 , 
+						end = (start+cols > getList().size()) ? getList().size() : start+cols)			
+		{
+			matrizTemp.add(getListResult().subList(start, end));
+		}
+		matrizResult = matrizTemp;
+	}
+	
+	public List<List<OfertaViewTO>> getMatriz() {
+		if(matriz == null) {
+			initMatriz();
+		}
+		return matriz;
+	}
+
+	public void setMatriz(List<List<OfertaViewTO>> matriz) {
+		this.matriz = matriz;
+	}
+
 
 	@Override
 	public void setCols(Integer cols) {
@@ -52,7 +103,11 @@ public class GridCompBB implements IProcessable, IGridMaker {
 	}
 	
 	public void initList() {
-		list = querysm.getListaTO();
+		list = getQuerysm().getListaTO();
+	}
+	
+	public void initListResult() {
+		listResult = getQuerysm().getListResultTO();
 	}
 
 	@Override
@@ -92,16 +147,52 @@ public class GridCompBB implements IProcessable, IGridMaker {
 		this.shoppingFacade = shoppingFacade;
 	}
 
-	public IQueryStrategyManager getQuerysm() {
+	public IQueryStrategyManager<Oferta, OfertaViewTO> getQuerysm() {
 		if(querysm == null) {
-			querysm = new QueryStrategyManager(new TodasLasOfertasQS(shoppingFacade.getServiceLocator()));
+			querysm = getShoppingFacade().getAvailabilityManager().getQueryManager();			
 		}
 		return querysm;
 	}
 
-	public void setQuerysm(IQueryStrategyManager querysm) {
+	public void setQuerysm(IQueryStrategyManager<Oferta, OfertaViewTO> querysm) {
 		this.querysm = querysm;
 	}
+
+	public Iterator getIterator() {
+		if(iterator == null) {
+			iterator = getList().iterator();
+		}
+		return iterator;
+	}
+
+	public void setIterator(Iterator iterator) {
+		this.iterator = iterator;
+	}
+	
+
+	
+	public List<OfertaResultViewTO> getListResult() {
+		if(listResult == null) {
+			initListResult();
+		}
+		return listResult;
+	}
+
+	public void setListResult(List<OfertaResultViewTO> listResult) {
+		this.listResult = listResult;
+	}
+
+	public List<List<OfertaResultViewTO>> getMatrizResult() {
+		if(matrizResult == null) {
+			initMatrizResult();
+		}
+		return matrizResult;
+	}
+
+	public void setMatrizResult(List<List<OfertaResultViewTO>> matrizResult) {
+		this.matrizResult = matrizResult;
+	}
+
 
 
 	

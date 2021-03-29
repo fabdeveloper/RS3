@@ -5,6 +5,9 @@ package src.querystrategy;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import src.entity.Oferta;
 import src.inter.IServiceLocator;
 
@@ -18,6 +21,10 @@ public class TodasLasOfertasQS implements IQueryStrategy {
 
 	@Override
 	public List<Oferta> executeStrategy() {
+		String msg = "Numero de ofertas = " + serviceLocator.getOfertaServices().readAll().size();		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+		
+	
 		return serviceLocator.getOfertaServices().readAll();
 	}
 	
