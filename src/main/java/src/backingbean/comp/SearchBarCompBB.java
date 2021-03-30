@@ -20,6 +20,10 @@ import src.shopping.inter.IShoppingFacade;
 import src.transferobject.EntityViewTransferObject;
 
 
+/**
+ * @author fabo_
+ *
+ */
 @Named
 @SessionScoped
 public class SearchBarCompBB implements Serializable, IProcessable, IListener {
@@ -216,8 +220,10 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 		this.buttonText = buttonText;
 	}
 	
+	
+	
 	@Override
-	public String process3() {		
+	public String process3() {		// SearchButton onClick()
 		return shoppingFacade.showAvail(articuloSelected);
 		
 	}

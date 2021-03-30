@@ -28,13 +28,8 @@ public class GridCompBB implements IProcessable, IGridMaker {
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
-	private IQueryStrategyManager<Oferta,OfertaViewTO> querysm;
 	
 	private Integer cols = 4;
-	
-	private List<OfertaViewTO> list;
-	
-	private List<OfertaResultViewTO> listResult;
 	
 	private int counter = 0;
 
@@ -62,9 +57,12 @@ public class GridCompBB implements IProcessable, IGridMaker {
 	
 	public void initMatrizResult() {
 		List<List<OfertaResultViewTO>> matrizTemp = new ArrayList<List<OfertaResultViewTO>>();
-		for(int start = 0, end = start+cols; 				
-				start < getList().size() && end <= getList().size(); 				
-				start= end+1 , 
+		for(int start = 0, end = ((start+cols > getList().size()) ? getList().size() : start+cols); 				
+//				start < getList().size() && end <= getList().size(); 	
+				
+				start < getList().size(); 				
+
+				start= start+end , 
 						end = (start+cols > getList().size()) ? getList().size() : start+cols)			
 		{
 			matrizTemp.add(getListResult().subList(start, end));
@@ -96,24 +94,14 @@ public class GridCompBB implements IProcessable, IGridMaker {
 
 	@Override
 	public List<OfertaViewTO> getList() {
-		if(list == null) {
-			initList();
-		}
-		return list;
-	}
-	
-	public void initList() {
-		list = getQuerysm().getListaTO();
-	}
-	
-	public void initListResult() {
-		listResult = getQuerysm().getListResultTO();
-	}
 
-	@Override
-	public void setList(List<OfertaViewTO> list) {
-		this.list = list;		
+		return getQueryManager().getListaTO();
 	}
+	
+	public IQueryStrategyManager<Oferta, OfertaViewTO> getQueryManager() {
+		return shoppingFacade.getAvailabilityManager().getQueryManager();
+	}
+	
 
 	public int getCounter() {
 		return counter;
@@ -147,16 +135,9 @@ public class GridCompBB implements IProcessable, IGridMaker {
 		this.shoppingFacade = shoppingFacade;
 	}
 
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getQuerysm() {
-		if(querysm == null) {
-			querysm = getShoppingFacade().getAvailabilityManager().getQueryManager();			
-		}
-		return querysm;
-	}
 
-	public void setQuerysm(IQueryStrategyManager<Oferta, OfertaViewTO> querysm) {
-		this.querysm = querysm;
-	}
+
+
 
 	public Iterator getIterator() {
 		if(iterator == null) {
@@ -172,15 +153,11 @@ public class GridCompBB implements IProcessable, IGridMaker {
 
 	
 	public List<OfertaResultViewTO> getListResult() {
-		if(listResult == null) {
-			initListResult();
-		}
-		return listResult;
+
+		return getQueryManager().getListResultTO();
 	}
 
-	public void setListResult(List<OfertaResultViewTO> listResult) {
-		this.listResult = listResult;
-	}
+
 
 	public List<List<OfertaResultViewTO>> getMatrizResult() {
 		if(matrizResult == null) {
@@ -191,6 +168,12 @@ public class GridCompBB implements IProcessable, IGridMaker {
 
 	public void setMatrizResult(List<List<OfertaResultViewTO>> matrizResult) {
 		this.matrizResult = matrizResult;
+	}
+
+	@Override
+	public void setList(List<OfertaViewTO> list) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
