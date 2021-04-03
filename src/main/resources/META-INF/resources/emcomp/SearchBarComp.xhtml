@@ -29,26 +29,30 @@
 
 	</composite:interface>
 	<composite:implementation>
-		<p:form>
-			<div class="margenizquierdo" sytle="display: inline-block;">
-				<p:commandButton sytle="display:block;" 
-								id="productbutton" 
-								value="#{cc.attrs.departmentbuttontext}"
-								action="#{cc.attrs.bean.process()}" 
-								class="#{cc.attrs.button1class}">
-				</p:commandButton>
+		<p:form style="width:100%; height:100%;">
+				<p:panelGrid border="1" columns="3">
+
+			
+
+					<p:commandButton sytle="display:block;" 
+									id="productbutton" 
+									value="#{cc.attrs.departmentbuttontext}"
+									action="#{cc.attrs.bean.process()}" 
+									class="#{cc.attrs.button1class}">
+					</p:commandButton>
 					
 					
-					<ui:selectOneListbox sytle="position:absolute; display:block;"  
+					<ui:selectOneListbox sytle="position:absolute; display:block;overflow: visible;"  
 										value="#{cc.attrs.selected1}" 
 										rendered="#{cc.attrs.productListRendered}" 
 										id="productlist">
 						<c:selectItems value="#{cc.attrs.listaItems1}"></c:selectItems>
 						<c:ajax event="click"  listener="#{cc.attrs.listener.listener1()}"  render="@form"/>						
-					</ui:selectOneListbox>				
-			</div>
+					</ui:selectOneListbox>	
+								
 			
-			<div class="margensuperior" sytle="display: inline-block;">	
+			
+			
 				<p:inputText sytle="display:block;" 
 							id="searchtext" 
 							value="#{cc.attrs.text2}" 
@@ -58,7 +62,7 @@
 				<c:ajax event="keyup"  listener="#{cc.attrs.listener.listener2()}"  execute="searchtext" render="@form mismensajes"/>
 					
 										
-					<ui:selectOneListbox sytle="position:absolute; display:block;" 
+					<ui:selectOneListbox sytle="position:absolute; display:block; overflow: visible;" 
 										id="menu2" 
 										value="#{cc.attrs.selected2}" 
 										rendered="#{cc.attrs.articulosListRendered}"  >
@@ -66,15 +70,15 @@
 						<c:ajax event="click"  listener="#{cc.attrs.listener.listener3()}" render="@form"/>						
 					</ui:selectOneListbox>
 				
-			</div>
 			
-			<div class="margensuperior" sytle="display: inline-block;">
 					<p:commandButton value="#{cc.attrs.searchbuttontext}" 
 									action="#{cc.attrs.bean.process3()}" 
 									class="#{cc.attrs.button3class}">
 					</p:commandButton>
 				
-			</div>
+			
+			</p:panelGrid>
+			
 		</p:form>
 
 	</composite:implementation>

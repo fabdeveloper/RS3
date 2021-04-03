@@ -21,9 +21,14 @@
 	<composite:implementation>
 	
 	<p:form>
+					<p:panelGrid border="1" columns="3">
+	
 			<p:inputText class="#{cc.attrs.classinputtext}" value="#{cc.attrs.user}" ></p:inputText>
 			<p:inputSecret class="#{cc.attrs.classinputtext}" value="#{cc.attrs.password}" ></p:inputSecret>
 			<p:commandButton class="#{cc.attrs.classbutton}"  value="#{cc.attrs.textbutton}" action="#{cc.attrs.bean.process()}"></p:commandButton>
+	
+	</p:panelGrid>
+	
 		</p:form>
 	</composite:implementation>
 

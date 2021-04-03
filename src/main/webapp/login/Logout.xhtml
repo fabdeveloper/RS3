@@ -8,10 +8,16 @@
 <p:body>
 		<p:form>
 			<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
+			
+			<p:panelGrid border="1" columns="4">
+			
 			<p:commandButton id="account" class="" value="#{logoutBB.accountButtonText()}" action="#{logoutBB.accountButtonAction()}"></p:commandButton>
 			<p:commandButton id="pedido" class="" value="#{logoutBB.pedidoButtonText()}" action="#{logoutBB.pedidoButtonAction()}"></p:commandButton>
 			<p:commandButton id="cart" class="" value="#{logoutBB.cartButtonText()}" action="#{logoutBB.cartButtonAction()}"></p:commandButton>
 			<p:commandButton id="closesession" class="" value="#{logoutBB.closeSessionText()}" action="#{logoutBB.closeSessionAction()}"></p:commandButton>
+		
+			</p:panelGrid>
+		
 		</p:form>	
 
 </p:body>

@@ -6,18 +6,49 @@
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<p:outputStylesheet  library="css" name="slideshowcontrol.css" ></p:outputStylesheet>	
+	<style>
+		.diva {
+		  background-color: #eee;
+		  height: 50px;
+		  border: 1px dotted black;
+		  
+		}
+		.divb {
+			height: 98%; width: 25%; position:relative; display:inline-block; border: 1px solid #000;
+		}
+	</style>
 </p:head>
 <p:body>
+
+
+<div class="diva">
+
+		<div class="divb">
+			<ui:insert name="homebar">homebar</ui:insert>	
+		</div>
+		<div class="divb">
+			<ui:insert name="searchbar">searchbar</ui:insert>			
+		</div>
+		<div class="divb">
+			<ui:insert name="logbar">logbar</ui:insert>		
+			
+		</div>
+</div>
+
+
+<!-- 
+
 <div>
 	<div class="margenizquierdo" style="display:inline-block; width:20%;">
-		<ui:insert name="homebar">homebar</ui:insert>
 	</div>
 	<div  style="display:inline-block; width:40%;">
-		<ui:insert name="searchbar">searchbar</ui:insert>
 	</div>
 	<div class="margenderecho"  style="display:inline-block; width:40%;">
-		<ui:insert name="logbar">logbar</ui:insert>
 	</div>
 </div>
+
+ -->
+ 
+ 
 </p:body>
 </html>
