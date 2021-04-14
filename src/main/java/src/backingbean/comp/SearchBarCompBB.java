@@ -95,7 +95,7 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	public String listener2(){ // muestra la lista de articulos
 		
 		setFacesMessage("texto = " + text2);
-		setArticulosListRendered(true);
+		if(!getArticulosListRendered())setArticulosListRendered(true);
 		return null;
 	}
 	
@@ -224,7 +224,8 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	@Override
 	public String process3() {		// SearchButton onClick()
-		return shoppingFacade.showAvail(articuloSelected);
+		shoppingFacade.publish("articulo seleccionado = " + getText2());
+		return shoppingFacade.showAvail(getText2());
 		
 	}
 

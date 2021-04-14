@@ -34,6 +34,7 @@ public class OfertaResultViewTO {
 		resultview.setOutputText4(oferta.getArticulo().getDescripcion());
 		resultview.setOutputText5(oferta.getPrecio().toString());
 		resultview.setOutputText6(oferta.getStock().toString());
+		resultview.setOutputText7(oferta.getId().toString());
 		
 		return resultview;
 	}

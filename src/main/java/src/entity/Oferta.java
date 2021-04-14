@@ -31,6 +31,21 @@ import src.inter.IPrototype;
 	@NamedQuery(name="ofertasByProductId", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id"),
 	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC"),
 	@NamedQuery(name="ofertasByArticuloName", query="SELECT b FROM Oferta b WHERE b.articulo.name = :articulo_name"),
+		
+	@NamedQuery(name="ofertasByString", 
+					query="SELECT ofe "
+							+ "FROM Oferta ofe "
+							+ "WHERE "
+							+ "(ofe.articulo.product.name LIKE :some_text OR "
+							+ "ofe.articulo.product.tipo LIKE :some_text OR "
+							+ "ofe.articulo.name LIKE :some_text OR "
+							+ "ofe.articulo.descripcion LIKE :some_text OR "
+							+ "ofe.name LIKE :some_text OR "
+							+ "ofe.descripcion LIKE :some_text) "			 
+							+ ""),
+	
+		
+
 	@NamedQuery(name="ofertasConEtiquetaActiva", query="SELECT b FROM Oferta b inner join b.listaEtiquetas a  WHERE a.id = :etiqueta_id")
 	
 

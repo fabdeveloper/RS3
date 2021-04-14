@@ -9,6 +9,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+		<style>
+
+		
+		</style>
 </p:head>
 <p:body>
 	<composite:interface>
@@ -29,20 +33,35 @@
 
 	</composite:interface>
 	<composite:implementation>
-		<p:form style="width:100%; height:100%;">
-				<p:panelGrid border="1" columns="3">
+		<p:form >
+				<p:panelGrid  columns="3">
 
 			
 
-					<p:commandButton sytle="display:block;" 
+					<p:commandButton  
 									id="productbutton" 
 									value="#{cc.attrs.departmentbuttontext}"
 									action="#{cc.attrs.bean.process()}" 
 									class="#{cc.attrs.button1class}">
 					</p:commandButton>
+				<p:inputText 
+							id="searchtext" 
+							value="#{cc.attrs.text2}" 
+							class="#{cc.attrs.inputtextclass2}">				
+				</p:inputText>					
+				<c:ajax event="mouseup"  listener="#{cc.attrs.listener.listener2()}"  execute="searchtext" render="@form mismensajes"/>
+				
+					<p:commandButton value="#{cc.attrs.searchbuttontext}" 
+									action="#{cc.attrs.bean.process3()}" 
+									class="#{cc.attrs.button3class}">
+					</p:commandButton>
 					
-					
-					<ui:selectOneListbox sytle="position:absolute; display:block;overflow: visible;"  
+	
+				
+			
+			</p:panelGrid>
+			
+					<ui:selectOneListbox  										
 										value="#{cc.attrs.selected1}" 
 										rendered="#{cc.attrs.productListRendered}" 
 										id="productlist">
@@ -53,33 +72,20 @@
 			
 			
 			
-				<p:inputText sytle="display:block;" 
-							id="searchtext" 
-							value="#{cc.attrs.text2}" 
-							immediate="true" 
-							class="#{cc.attrs.inputtextclass2}">				
-				</p:inputText>					
-				<c:ajax event="keyup"  listener="#{cc.attrs.listener.listener2()}"  execute="searchtext" render="@form mismensajes"/>
-					
+	
 										
-					<ui:selectOneListbox sytle="position:absolute; display:block; overflow: visible;" 
+					<ui:selectOneListbox  
 										id="menu2" 
 										value="#{cc.attrs.selected2}" 
 										rendered="#{cc.attrs.articulosListRendered}"  >
 						<c:selectItems value="#{cc.attrs.listaItems2}"></c:selectItems>
 						<c:ajax event="click"  listener="#{cc.attrs.listener.listener3()}" render="@form"/>						
 					</ui:selectOneListbox>
-				
-			
-					<p:commandButton value="#{cc.attrs.searchbuttontext}" 
-									action="#{cc.attrs.bean.process3()}" 
-									class="#{cc.attrs.button3class}">
-					</p:commandButton>
-				
-			
-			</p:panelGrid>
 			
 		</p:form>
+		
+
+					
 
 	</composite:implementation>
 </p:body>

@@ -103,11 +103,26 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 
 	@Override
 	public void searchName(String name) {
-		AbstractQueryStrategy ofertasPorArticuloNameQuery = new OfertasPorArticuloName();
-		ofertasPorArticuloNameQuery.setParametro(name);
-		ofertasPorArticuloNameQuery.setServiceLocator(getServiceLocator());
-		this.getQueryManager().setStrategy(ofertasPorArticuloNameQuery);
+		
+		AbstractQueryStrategy ofertasPorTexto = new AbstractQueryStrategy() {
+			@Override
+			public List<Oferta> executeStrategy() {
+				return getServiceLocator().getOfertaServices().createNamedQueryListResult("ofertasByString", "some_text", name);
+			}			
+		};
+
+		ofertasPorTexto.setParametro(name);
+		ofertasPorTexto.setServiceLocator(getServiceLocator());
+		this.getQueryManager().setStrategy(ofertasPorTexto);
 		this.getQueryManager().refresh();
+		
+		
+		
+//		AbstractQueryStrategy ofertasPorArticuloNameQuery = new OfertasPorArticuloName();
+//		ofertasPorArticuloNameQuery.setParametro(name);
+//		ofertasPorArticuloNameQuery.setServiceLocator(getServiceLocator());
+//		this.getQueryManager().setStrategy(ofertasPorArticuloNameQuery);
+//		this.getQueryManager().refresh();
 		
 	}
 

@@ -42,6 +42,11 @@ public class GridCompBB implements IProcessable, IGridMaker {
 	
 
 	
+	public String buy(Integer oferta_id) {
+		return getShoppingFacade().showOfertaDetail(getShoppingFacade().getServiceLocator().getOfertaServices().read(oferta_id));
+			
+	}
+	
 	public void initMatriz() {
 		List<List<OfertaViewTO>> matrizTemp = new ArrayList<List<OfertaViewTO>>();
 //		int end = 0;
