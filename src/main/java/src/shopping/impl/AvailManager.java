@@ -17,6 +17,7 @@ import src.inter.IServiceLocator;
 import src.querystrategy.AbstractQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.OfertasPorArticuloName;
+import src.querystrategy.TodasLasOfertasQS;
 import src.shopping.inter.IAvailabilityManager;
 import src.transferobject.OfertaViewTO;
 
@@ -96,6 +97,11 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 
 	@Override
 	public IQueryStrategyManager getQueryManager() {
+		if(queryManager.getStrategy() == null) {
+			TodasLasOfertasQS defaultStrategy = new TodasLasOfertasQS();
+			defaultStrategy.setServiceLocator(getServiceLocator());
+			queryManager.setStrategy(defaultStrategy);
+		}
 		return queryManager;
 	}
 

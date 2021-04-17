@@ -4,8 +4,11 @@
 package src.querystrategy;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+
+import src.entity.Oferta;
 
 /**
  * @author fabo_
@@ -19,10 +22,15 @@ public class QueryStrategyManager extends AbstractQueryStrategyManager implement
 
 	@Override
 	public void updateList() {		
-		listaResultados = strategy.executeStrategy();
+		listaResultados = getStrategy().executeStrategy();
 	}
 
 	public IQueryStrategy getStrategy() {
+//		if(strategy == null) {
+//			UltimasOfertasQS ultimas = new UltimasOfertasQS();
+//			ultimas.setServiceLocator(null);
+//			setStrategy(ultimas);
+//		}
 		return strategy;
 	}
 

@@ -26,6 +26,7 @@ public interface IQueryStrategyManager<LISTARE, LISTATO> {
 	public List<OfertaResultViewTO> getListResultTO();
 	
 	public void setStrategy(IQueryStrategy strategy);
+	public IQueryStrategy getStrategy();
 	
 	public void refresh();
 
