@@ -18,7 +18,7 @@
 	   <from-view-id>/*</from-view-id>
 	   <navigation-case>
 		   <from-outcome>availability</from-outcome>
-		   <to-view-id>/draft/GridOfertasView.xhtml</to-view-id>
+		   <to-view-id>/draft/SearchResultView.xhtml</to-view-id>
 	   </navigation-case>   
    </navigation-rule>
    

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<p:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</p:head>
+<p:body>
+	<ui:composition template="../../templates/shop/ShopGeneralTemplate.xhtml">
+	
+			<ui:define name="LogBar">
+					<ui:include src="../../login/LogBar.xhtml"></ui:include>
+		
+		</ui:define>
+		
+		<ui:define name="Body">
+					<ui:include src="OrdersView.xhtml"></ui:include>
+		
+		</ui:define>
+	
+	
+	
+	
+	</ui:composition>
+
+
+
+</p:body>
+</html>
