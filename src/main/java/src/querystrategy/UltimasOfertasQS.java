@@ -18,7 +18,7 @@ import src.inter.IServiceLocator;
  */
 
 
-public class UltimasOfertasQS implements IQueryStrategy {
+public class UltimasOfertasQS implements IQueryStrategy<Oferta> {
 
 	private IServiceLocator serviceLocator;
 	

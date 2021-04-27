@@ -20,10 +20,7 @@ import src.shopping.inter.IShoppingFacade;
 import src.transferobject.EntityViewTransferObject;
 
 
-/**
- * @author fabo_
- *
- */
+
 @Named
 @SessionScoped
 public class SearchBarCompBB implements Serializable, IProcessable, IListener {

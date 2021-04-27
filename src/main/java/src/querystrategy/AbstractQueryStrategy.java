@@ -3,13 +3,14 @@
  */
 package src.querystrategy;
 
+import src.entity.Oferta;
 import src.inter.IServiceLocator;
 
 /**
  * @author fabo_
  *
  */
-public abstract class AbstractQueryStrategy implements IQueryStrategy {
+public abstract class AbstractQueryStrategy<E> implements IQueryStrategy<E> {
 	
 	protected String parametro;
 	

@@ -15,8 +15,6 @@ import src.entity.Oferta;
 import src.inter.IGridMaker;
 import src.inter.IProcessable;
 import src.querystrategy.IQueryStrategyManager;
-import src.querystrategy.QueryStrategyManager;
-import src.querystrategy.TodasLasOfertasQS;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.OfertaResultViewTO;
 import src.transferobject.OfertaViewTO;
@@ -99,11 +97,10 @@ public class GridCompBB implements IProcessable, IGridMaker {
 
 	@Override
 	public List<OfertaViewTO> getList() {
-
-		return getQueryManager().getListaTO();
+		return OfertaViewTO.getList(getQueryManager().getList());
 	}
 	
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getQueryManager() {
+	public IQueryStrategyManager<Oferta> getQueryManager() {
 		return shoppingFacade.getAvailabilityManager().getQueryManager();
 	}
 	
@@ -158,8 +155,7 @@ public class GridCompBB implements IProcessable, IGridMaker {
 
 	
 	public List<OfertaResultViewTO> getListResult() {
-
-		return getQueryManager().getListResultTO();
+		return OfertaResultViewTO.getList(getQueryManager().getList());
 	}
 
 

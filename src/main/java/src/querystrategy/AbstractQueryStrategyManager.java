@@ -10,81 +10,46 @@ import src.entity.Oferta;
 import src.transferobject.OfertaResultViewTO;
 import src.transferobject.OfertaViewTO;
 
-/**
- * @author fabo_
- *
- */
-public abstract class AbstractQueryStrategyManager implements IQueryStrategyManager<Oferta, OfertaViewTO> {
-	
-	protected List<Oferta> listaResultados;
-	protected List<OfertaViewTO> listaTO;
-	protected List<OfertaResultViewTO> listResultTO;
 
+public abstract class AbstractQueryStrategyManager<E> implements IQueryStrategyManager<E> {
 	
-	
-	
-	
-	@Override
-	public void refresh() {
-		
-		listaResultados = null;
-		listaTO = null;
-		listResultTO = null;			
-		
-	}
+	protected List<E> list;
+	protected IQueryStrategy<E> strategy;
 
 	@Override
-	public List<Oferta> getListaResultados() {
-		if(listaResultados == null) {
-			updateList();
+	public List<E> getList() {
+		if(list == null) {
+			loadList();
 		}
-		return listaResultados;
+		return list;
+	}
+
+
+	@Override
+	public IQueryStrategy<E> getStrategy() {
+		return strategy;
 	}
 
 	@Override
-	public List<OfertaViewTO> getListaTO() {
-		if(listaTO == null) {
-			listaTO = new ArrayList<OfertaViewTO>();
-			for(Oferta oferta : getListaResultados()) {
-				listaTO.add(OfertaViewTO.getNewOfertaViewTO(oferta));
-			}			
-		}		
-		return listaTO;
+	public void reset() {
+		list = null;
 	}
 
-	public List<OfertaResultViewTO> initListResultTO() {
-		if(listResultTO == null) {
-			listResultTO = new ArrayList<OfertaResultViewTO>();
-			for(Oferta oferta : getListaResultados()) {
-				listResultTO.add(OfertaResultViewTO.getOfertaResultViewTO(oferta));
-			}			
-		}		
-		return listResultTO;
+
+
+	@Override
+	public void setStrategy(IQueryStrategy<E> strategy) {
+		this.strategy = strategy;
+		reset();
 	}
 	
 	@Override
-	public abstract void updateList();
-
-	public List<OfertaResultViewTO> getListResultTO() {
-		if(listResultTO == null) {
-			initListResultTO();			
-		}
-		return listResultTO;
-	}
-
-	public void setListResultTO(List<OfertaResultViewTO> listResultTO) {
-		this.listResultTO = listResultTO;
-	}
-
-	public void setListaResultados(List<Oferta> listaResultados) {
-		this.listaResultados = listaResultados;
-	}
-
-	public void setListaTO(List<OfertaViewTO> listaTO) {
-		this.listaTO = listaTO;
+	public void loadList() {
+		list = getStrategy().executeStrategy();
 	}
 	
 	
+
 	
 	
 

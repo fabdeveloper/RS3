@@ -16,7 +16,7 @@ import src.inter.IServiceLocator;
  * @author fabo_
  *
  */
-public class SugerenciasQS implements IQueryStrategy {
+public class SugerenciasQS implements IQueryStrategy<Oferta> {
 	
 	
 	private IServiceLocator serviceLocator;

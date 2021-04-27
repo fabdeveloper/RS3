@@ -79,6 +79,10 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	public String getDeliveryType() {
 		return getDeliveryDetails().getDeliveryType();
 	}
+	
+	public String getDeliveryStatus() {
+		return getDeliveryDetails().getStatus();
+	}
 
 	public String getCartNumItems() {
 		return String.valueOf(getCartItemsList().size());

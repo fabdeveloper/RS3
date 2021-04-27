@@ -1,6 +1,5 @@
 package src.backingbean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,17 +8,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import src.entity.CartItem;
-import src.entity.Etiqueta;
 import src.entity.Oferta;
-import src.entity.Order;
 import src.inter.IProcessable;
 import src.inter.IServiceLocator;
+import src.querystrategy.AbstractQueryStrategyManager;
+import src.querystrategy.IQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.MasVendidosQS;
-import src.querystrategy.QueryStrategyManager;
 import src.querystrategy.SugerenciasQS;
 import src.querystrategy.UltimasOfertasQS;
+import src.querystrategy.orders.OfertaQueryStrategyManager;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.OfertaViewTO;
 
@@ -32,9 +30,9 @@ public class IndexViewBB implements IProcessable{
 	@Inject
 	private IShoppingFacade shop;
 	
-	private IQueryStrategyManager<Oferta, OfertaViewTO> masVendidosQSM;
-	private IQueryStrategyManager<Oferta, OfertaViewTO> sugerenciasQSM;
-	private IQueryStrategyManager<Oferta, OfertaViewTO> ultimasOfertasQSM;
+	private IQueryStrategyManager<Oferta> masVendidosQSM;
+	private IQueryStrategyManager<Oferta> sugerenciasQSM;
+	private IQueryStrategyManager<Oferta> ultimasOfertasQSM;
 
 	
 	
@@ -85,15 +83,16 @@ public class IndexViewBB implements IProcessable{
 	}
 
 	public List<OfertaViewTO> getListaUltimasOfertasTO() {		
-		return getUltimasOfertasQSM().getListaTO();
+		return OfertaViewTO.getList(getUltimasOfertasQSM().getList());
 	}
 
 	public List<OfertaViewTO> getListaMasVendidosArticulosTO() {		
-		return getMasVendidosQSM().getListaTO();
+		return OfertaViewTO.getList(getMasVendidosQSM().getList());
+
 	}
 
 	public List<OfertaViewTO> getListaSugerenciasTO() {
-		return getSugerenciasQSM().getListaTO();
+		return OfertaViewTO.getList(getSugerenciasQSM().getList());
 	}
 
 	public IShoppingFacade getShop() {
@@ -104,36 +103,42 @@ public class IndexViewBB implements IProcessable{
 		this.shop = shop;
 	}
 
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getMasVendidosQSM() {
+	public IQueryStrategyManager<Oferta> getMasVendidosQSM() {
 		if(masVendidosQSM == null) {
-			masVendidosQSM = new QueryStrategyManager(new MasVendidosQS(serviceLocator));
+			masVendidosQSM = new OfertaQueryStrategyManager();
+			IQueryStrategy<Oferta>  masvendidos = new MasVendidosQS(getServiceLocator());
+			masVendidosQSM.setStrategy(masvendidos);
 		}
 		return masVendidosQSM;
 	}
 
-	public void setMasVendidosQSM(IQueryStrategyManager<Oferta, OfertaViewTO> masVendidosQSM) {
+	public void setMasVendidosQSM(IQueryStrategyManager<Oferta> masVendidosQSM) {
 		this.masVendidosQSM = masVendidosQSM;
 	}
 
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getSugerenciasQSM() {
+	public IQueryStrategyManager<Oferta> getSugerenciasQSM() {
 		if(sugerenciasQSM == null) {
-			sugerenciasQSM = new QueryStrategyManager(new SugerenciasQS(serviceLocator));
+			sugerenciasQSM = new OfertaQueryStrategyManager();
+			IQueryStrategy<Oferta>  sugerencias = new SugerenciasQS(getServiceLocator());
+			sugerenciasQSM.setStrategy(sugerencias);
 		}
 		return sugerenciasQSM;
 	}
 
-	public void setSugerenciasQSM(IQueryStrategyManager<Oferta, OfertaViewTO> sugerenciasQSM) {
+	public void setSugerenciasQSM(IQueryStrategyManager<Oferta> sugerenciasQSM) {
 		this.sugerenciasQSM = sugerenciasQSM;
 	}
 
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getUltimasOfertasQSM() {
+	public IQueryStrategyManager<Oferta> getUltimasOfertasQSM() {
 		if(ultimasOfertasQSM == null) {
-			ultimasOfertasQSM = new QueryStrategyManager(new UltimasOfertasQS(serviceLocator));
+			ultimasOfertasQSM = new OfertaQueryStrategyManager();
+			IQueryStrategy<Oferta> ultimasOfertas = new UltimasOfertasQS(getServiceLocator());
+			ultimasOfertasQSM.setStrategy(ultimasOfertas);
 		}
 		return ultimasOfertasQSM;
 	}
 
-	public void setUltimasOfertasQSM(IQueryStrategyManager<Oferta, OfertaViewTO> ultimasOfertasQSM) {
+	public void setUltimasOfertasQSM(IQueryStrategyManager<Oferta> ultimasOfertasQSM) {
 		this.ultimasOfertasQSM = ultimasOfertasQSM;
 	}	
 	

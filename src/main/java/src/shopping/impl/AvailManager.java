@@ -34,7 +34,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 	private IOfertaManager ofertaManager;
 	
 	@Inject
-	private IQueryStrategyManager<Oferta, OfertaViewTO> queryManager;
+	private IQueryStrategyManager<Oferta> queryManager;
 	
 
 	@Override
@@ -120,7 +120,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 		ofertasPorTexto.setParametro(name);
 		ofertasPorTexto.setServiceLocator(getServiceLocator());
 		this.getQueryManager().setStrategy(ofertasPorTexto);
-		this.getQueryManager().refresh();
+		this.getQueryManager().reset();
 		
 		
 		
@@ -140,7 +140,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 		this.serviceLocator = serviceLocator;
 	}
 
-	public void setQueryManager(IQueryStrategyManager<Oferta, OfertaViewTO> queryManager) {
+	public void setQueryManager(IQueryStrategyManager<Oferta> queryManager) {
 		this.queryManager = queryManager;
 	}
 

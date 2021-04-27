@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://java.sun.com/jsf/html">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>OrdersView</title>
 </p:head>
 <p:body>
 	<div class="divclass"
 		style="width: 20%; display: inline-block; border: 1px;">
 		<!--  listado de ordenes del cliente -->
+		<p:form>
+			<p:selectOneListbox value="#{ordersViewBB.itemSel}">
+			<c:selectItems value="#{ordersViewBB.list}" var="order" itemValue="#{order.id}" itemLabel="#{order.confirmationDate}" >
+			</c:selectItems>
 
+
+			</p:selectOneListbox>
+		</p:form>
+		<p:outputText value="#{ordersViewBB.itemSel}"></p:outputText>
 	</div>
 
 	<div class="divclass"
 		style="width: 70%; display: inline-block; border: 1px;">
-		
+
 		<!--  detalle de una orden -->
 		<ui:include src="../../shopping/PurchaseDetail.xhtml"></ui:include>
 

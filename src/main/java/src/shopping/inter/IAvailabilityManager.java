@@ -18,7 +18,7 @@ public interface IAvailabilityManager{
 	public List<Articulo> getArticulosByProductName(String prod_name);
 	public List<Oferta> getOfertasByArticuloName(String arti_name);
 	
-	public IQueryStrategyManager<Oferta, OfertaViewTO> getQueryManager();
+	public IQueryStrategyManager<Oferta> getQueryManager();
 	
 	public void searchName(String name);
 

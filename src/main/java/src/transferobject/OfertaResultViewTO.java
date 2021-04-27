@@ -3,6 +3,9 @@
  */
 package src.transferobject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import src.entity.Oferta;
 
 /**
@@ -37,6 +40,14 @@ public class OfertaResultViewTO {
 		resultview.setOutputText7(oferta.getId().toString());
 		
 		return resultview;
+	}
+	
+	public static List<OfertaResultViewTO> getList(List<Oferta> listaofertas){
+		List<OfertaResultViewTO> listaRespuesta = new ArrayList<OfertaResultViewTO>();
+		for(Oferta oferta : listaofertas) {
+			listaRespuesta.add(getOfertaResultViewTO(oferta));
+		}
+		return listaRespuesta;
 	}
 	
 	

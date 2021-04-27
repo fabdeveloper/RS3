@@ -20,7 +20,7 @@ import src.inter.IServiceLocator;
 
 
 
-public class MasVendidosQS implements IQueryStrategy {
+public class MasVendidosQS implements IQueryStrategy<Oferta> {
 	
 	
 	private IServiceLocator serviceLocator;

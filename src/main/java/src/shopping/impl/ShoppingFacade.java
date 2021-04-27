@@ -394,8 +394,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String showAvail(String articuloname) {
 		availabilityManager.searchName(articuloname);
-		publish("articulos encontrados = " + availabilityManager.getQueryManager().getListaResultados().size());
-		publish("listResultTO creados = " + availabilityManager.getQueryManager().getListResultTO().size());
+		publish("articulos encontrados = " + availabilityManager.getQueryManager().getList().size());
 
 		return viewStateMachine.setAvailabilityView();
 	}

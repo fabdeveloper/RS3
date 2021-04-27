@@ -11,7 +11,7 @@ import src.entity.Oferta;
  * @author fabo_
  *
  */
-public class OfertasPorArticuloName extends AbstractQueryStrategy {
+public class OfertasPorArticuloName extends AbstractQueryStrategy<Oferta> {
 
 	@Override
 	public List<Oferta> executeStrategy() {

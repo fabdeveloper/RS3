@@ -6,6 +6,9 @@ package src.transferobject;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import src.entity.Oferta;
 
 /**
@@ -29,6 +32,15 @@ public class OfertaViewTO extends EntityViewTransferObject {
 	
 		
 		return to;
+	}
+	
+	public static List<OfertaViewTO> getList(List<Oferta> listaofertas){
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("listaofertas = " + listaofertas));
+		List<OfertaViewTO> listaRespuesta = new ArrayList<OfertaViewTO>();
+		for(Oferta oferta : listaofertas) {
+			listaRespuesta.add(OfertaViewTO.getNewOfertaViewTO(oferta));
+		}
+		return listaRespuesta;
 	}
 	
 

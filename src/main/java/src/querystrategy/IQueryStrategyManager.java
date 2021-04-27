@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package src.querystrategy;
 
 import java.util.List;
@@ -9,25 +7,18 @@ import src.entity.Oferta;
 import src.transferobject.OfertaResultViewTO;
 import src.transferobject.OfertaViewTO;
 
-/**
- * @author fabo_
- *
- */
 
 
-public interface IQueryStrategyManager<LISTARE, LISTATO> {
+
+public interface IQueryStrategyManager<E> {
 	
-	public List<LISTARE> getListaResultados();
-	public List<LISTATO> getListaTO();
-	public void updateList();
-	/**
-	 * @return
-	 */
-	public List<OfertaResultViewTO> getListResultTO();
+	public List<E> getList();
+	public void loadList();
+
 	
-	public void setStrategy(IQueryStrategy strategy);
-	public IQueryStrategy getStrategy();
+	public IQueryStrategy<E> getStrategy();
+	public void setStrategy(IQueryStrategy<E> strategy);
 	
-	public void refresh();
+	public void reset();
 
 }
