@@ -62,6 +62,8 @@ public interface IShoppingFacade {
 	public String setPaymentProcessOK(Boolean result);
 	public Boolean loadPendingOrder();
 
+	public String showOrders();
+	
 	// SessionManagement
 	public String login(String user, String password);
 	public String logout();

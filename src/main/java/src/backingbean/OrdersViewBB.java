@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +23,8 @@ import src.querystrategy.orders.OrderQueryStrategyManager;
 @SessionScoped
 public class OrdersViewBB implements Serializable {
 	
-	private String itemSel;
+	private String itemSel = "0";
+	private Order orderseleccionada;
 	
 	private IQueryStrategyManager<Order> qsm;
 	
@@ -71,8 +74,41 @@ public class OrdersViewBB implements Serializable {
 		return getQsm().getList();
 	}
 
+
+	public Order getOrderseleccionada() {
+		if(orderseleccionada == null) {
+			initOrdenSeleccionada();
+		}
+		return orderseleccionada;
+	}
+	
+	public void initOrdenSeleccionada() {
+		publish("OrdersViewBB.initOrdenSeleccionada() ... - items= " + getList().size());
+		for(Order ord : getList()) {
+			publish("order.id = " + ord.getId() + ", itemSel = " + itemSel);
+			if(ord.getId().compareTo(Integer.valueOf(itemSel)) == 0) {
+				orderseleccionada = ord;
+				publish("OrdersViewBB.initOrdenSeleccionada() - encontrado match - ");
+
+			}
+		}
+	}
+	
+	public void resetOrdenSeleccionada() { orderseleccionada = null; }
+
+	public void setOrderseleccionada(Order orderseleccionada) {
+		this.orderseleccionada = orderseleccionada;
+	}
+
 //	public void setList(List<Order> list) {
 //		this.list = list;
 //	}
+	
+	public void publish(String msg) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+		System.out.println(msg);
+	}
+	
+	
 
 }

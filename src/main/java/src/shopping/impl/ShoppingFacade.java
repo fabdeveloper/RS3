@@ -255,6 +255,10 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	public String showOrder() {
 		return viewStateMachine.setOrderView();
 	}
+	@Override
+	public String showOrders() {
+		return viewStateMachine.setOrdersView();
+	}
 
 	@Override
 	public String nuevaCompra() {
@@ -362,7 +366,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			String stringmsg = "Logout error";
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
 		}
-		return viewStateMachine.setHomeView();
+		
+		return invalidateSession();
 	}
 
 	@Override

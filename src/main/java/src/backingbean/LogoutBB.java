@@ -22,7 +22,7 @@ public class LogoutBB {
 	}
 	
 	public String pedidoButtonAction(){
-		return null;
+		return getShoppingFacade().showOrders();
 	}
 	
 	public String accountButtonText(){ // accountButtonText
@@ -51,6 +51,16 @@ public class LogoutBB {
 	public String closeSessionAction(){		
 		return shoppingFacade.logout();
 	}
+
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
+	}
+	
+	
 
 
 	

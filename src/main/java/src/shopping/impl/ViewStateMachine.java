@@ -28,6 +28,10 @@ public class ViewStateMachine implements IViewStateMachine {
 	public String setOrderView() {
 		return "order";
 	}
+	@Override
+	public String setOrdersView() {
+		return "orders";
+	}
 
 	@Override
 	public String setConfigView() {
@@ -53,5 +57,7 @@ public class ViewStateMachine implements IViewStateMachine {
 	public String setUserManagementView() {
 		return "user";
 	}
+
+
 
 }

@@ -9,7 +9,7 @@
 
 </p:head>
 <p:body>
-	<ui:composition template="../templates/shop/PurchaseDetailTemplate.xhtml">
+	<ui:composition template="../../templates/shop/PurchaseDetailTemplate.xhtml">
 		
 
 		
@@ -18,11 +18,11 @@
 		
 			<em:output3fieldscom
 				at1="Identificador del pedido : "
-				at2="#{purchaseDetailViewBB.orderId}"
+				at2="#{ordersViewBB.getOrderseleccionada().getId()}"
 				at3="Fecha de confirmacion: "
-				at4="#{purchaseDetailViewBB.confirmationDate}"
+				at4="#{ordersViewBB.getOrderseleccionada().getConfirmationDate()}"
 				at5="Estado: "
-				at6="#{purchaseDetailViewBB.orderStatus}"
+				at6="#{ordersViewBB.getOrderseleccionada().getPurchaseStatus().getRemark()}"
 			></em:output3fieldscom>
 		</ui:define>	
 			
@@ -31,13 +31,13 @@
 		
 			<em:output6fieldscom
 				at1="Cliente: "
-				at2="#{purchaseDetailViewBB.clientName}"
+				at2="#{ordersViewBB.getOrderseleccionada().getClient().getName()}"
 				at3="Nick: "
-				at4="#{purchaseDetailViewBB.clientNick}"
+				at4="#{ordersViewBB.getOrderseleccionada().getClient().getNick()}"
 				at5="Direccion: "
-				at6="#{purchaseDetailViewBB.clientAddress}"
+				at6="#{ordersViewBB.getOrderseleccionada().getClient().getAddress()}"
 				at7="Email: "
-				at8="#{purchaseDetailViewBB.clientEmail}"				
+				at8="#{ordersViewBB.getOrderseleccionada().getClient().getEmail()}"				
 
 			></em:output6fieldscom>
 		</ui:define>	
@@ -47,13 +47,13 @@
 		
 			<em:output6fieldscom
 				at1="Direccion de entrega: "
-				at2="#{purchaseDetailViewBB.deliveryAddress}"
+				at2="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryAddress()}"
 				at3="Comentarios de entrega: "
-				at4="#{purchaseDetailViewBB.deliveryRemarks}"
+				at4="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getRemark()}"
 				at5="Tipo de envio: "
-				at6="#{purchaseDetailViewBB.deliveryType}"
+				at6="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryType()}"
 				at7="Estado de la entrega : "
-				at8="#{purchaseDetailViewBB.deliveryStatus}"
+				at8="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getStatus()}"
 			></em:output6fieldscom>	
 		</ui:define>
 				
@@ -62,10 +62,10 @@
 		
 			<em:outputcartcomp
 				titulo1="Numero de items: "
-				texto1="#{purchaseDetailViewBB.cartNumItems}"
+				texto1="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems().size()}"
 				titulo2="Precio total: "
-				texto2="#{purchaseDetailViewBB.cartTotalPrice}"
-				lista="#{purchaseDetailViewBB.cartItemsList}"		
+				texto2="#{ordersViewBB.getOrderseleccionada().getCart().getValue()}"
+				lista="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems()}"		
 			></em:outputcartcomp>	
 		</ui:define>
 
