@@ -124,7 +124,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		String result = viewStateMachine.setOrderView();		
 		try{
 			purchaseManager.preConfirmation();
+			nuevaCompra();
+			
 		}catch(Throwable t){
+			publish("error en pre-confirmacion - " + t.getMessage());
+
 			result = viewStateMachine.setErrorView();
 //			 setRollbackOnly
 			serviceLocator.getSessionContext().setRollbackOnly();			
@@ -134,10 +138,11 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public String purchaseConfirm() {
-		String result = viewStateMachine.setOrderView();
+		String result = viewStateMachine.setOrdersView();
 		try{
 			purchaseManager.confirm();
 		}catch(Throwable t){
+			publish("error en confirmacion - " + t.getMessage());
 			result = viewStateMachine.setErrorView();			
 		}		
 		return result;

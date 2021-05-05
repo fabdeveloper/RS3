@@ -46,6 +46,8 @@ public class OrdersViewBB implements Serializable {
 		qsm.setStrategy(strategy);
 		qsm.reset();
 		
+		itemSel = getList().get(0).getId().toString();
+		
 	}
 	
 	
@@ -95,6 +97,12 @@ public class OrdersViewBB implements Serializable {
 	}
 	
 	public void resetOrdenSeleccionada() { orderseleccionada = null; }
+	
+	public void resetOrdenSeleccionada(String itemSel) { 
+		setItemSel(itemSel);
+		resetOrdenSeleccionada(); 
+	}
+
 
 	public void setOrderseleccionada(Order orderseleccionada) {
 		this.orderseleccionada = orderseleccionada;
