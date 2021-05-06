@@ -121,10 +121,9 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	
 	@Override
 	public String preConfirm() {
-		String result = viewStateMachine.setOrderView();		
+		String result = viewStateMachine.setOrderView();	
 		try{
 			purchaseManager.preConfirmation();
-			nuevaCompra();
 			
 		}catch(Throwable t){
 			publish("error en pre-confirmacion - " + t.getMessage());
@@ -141,6 +140,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		String result = viewStateMachine.setOrdersView();
 		try{
 			purchaseManager.confirm();
+			nuevaCompra();
+
 		}catch(Throwable t){
 			publish("error en confirmacion - " + t.getMessage());
 			result = viewStateMachine.setErrorView();			
