@@ -126,7 +126,8 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			purchaseManager.preConfirmation();
 			
 		}catch(Throwable t){
-			publish("error en pre-confirmacion - " + t.getMessage());
+			logger.log(Level.ALL, "error en pre-confirmacion - " + t.getMessage());
+//			publish("error en pre-confirmacion - " + t.getMessage());
 
 			result = viewStateMachine.setErrorView();
 //			 setRollbackOnly
@@ -143,7 +144,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			nuevaCompra();
 
 		}catch(Throwable t){
-			publish("error en confirmacion - " + t.getMessage());
+			logger.log(Level.ALL, "error en confirmacion - " + t.getMessage());
 			result = viewStateMachine.setErrorView();			
 		}		
 		return result;
@@ -221,15 +222,16 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	private void logAndMessage(Throwable t){
 		// log
 		String msg = "mensage de error = " + t.getMessage();
-		logger.log(Level.WARNING, msg);
+		logger.log(Level.ALL, msg);
 		// message
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
 		
 	}
 	
 	@Override
 	public void publish(String msg) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+		logger.log(Level.INFO, msg);
 	}
 
 	@Override
@@ -340,7 +342,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 
 	@Override
 	public Boolean loadPendingOrder() {
-		System.out.println("ShoppingFacade - loadPendingOrder() - " + new Date());
+//		System.out.println("ShoppingFacade - loadPendingOrder() - " + new Date());
 		return purchaseManager.loadPendingOrder(getCallerName());
 	}
 
@@ -355,7 +357,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			sessionManager.login(user, password);			
 		}catch(Throwable t){
 			// grabar logs
-			logger.log(Level.FINE, "ShoppingFacade.login() " + new Date());
+			logger.log(Level.ALL, "ShoppingFacade.login() " + new Date());
 			// mostrar FacesMessage
 		}
 		return null;
@@ -367,10 +369,10 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			sessionManager.logout();
 		}catch(Throwable t){
 			// grabar logs
-			logger.log(Level.FINE, "ShoppingFacade.logout() " + new Date());
+			logger.log(Level.ALL, "ShoppingFacade.logout() " + new Date() + " , msg= " + t.getMessage());
 			// mostrar FacesMessage
-			String stringmsg = "Logout error";
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
+//			String stringmsg = "Logout error";
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
 		}
 		
 		return invalidateSession();

@@ -22,7 +22,7 @@ public class UserManagementBB {
 	
 	
 	public void load(){	
-		System.out.println("UserManagementBB.load - loading user ... - " + new Date());
+//		System.out.println("UserManagementBB.load - loading user ... - " + new Date());
 		if(shoppingFacade.isClient()){
 			user = shoppingFacade.getServiceLocator().getUserServices().createNamedQuery("byNick", "nick", shoppingFacade.getCallerName());
 		}else{

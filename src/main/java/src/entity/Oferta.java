@@ -26,11 +26,11 @@ import src.inter.IPrototype;
 @Table(name="OFERTAS")
 @NamedQueries({
 	@NamedQuery(name="ofertaById", query="SELECT b FROM Oferta b WHERE b.id = :oferta_id"),
-	@NamedQuery(name="ofertaByName", query="SELECT b FROM Oferta b WHERE b.name = :oferta_name"),
+	@NamedQuery(name="ofertaByName", query="SELECT b FROM Oferta b WHERE b.name LIKE :oferta_name"),
 	@NamedQuery(name="ofertasByArticuloId", query="SELECT b FROM Oferta b WHERE b.articulo.id = :articulo_id"),
 	@NamedQuery(name="ofertasByProductId", query="SELECT b FROM Oferta b WHERE b.articulo.product.id = :product_id"),
 	@NamedQuery(name="ofertasAll", query="SELECT b FROM Oferta b ORDER BY b.id DESC"),
-	@NamedQuery(name="ofertasByArticuloName", query="SELECT b FROM Oferta b WHERE b.articulo.name = :articulo_name"),
+	@NamedQuery(name="ofertasByArticuloName", query="SELECT b FROM Oferta b WHERE b.articulo.name LIKE :articulo_name"),
 		
 	@NamedQuery(name="ofertasByString", 
 					query="SELECT ofe "

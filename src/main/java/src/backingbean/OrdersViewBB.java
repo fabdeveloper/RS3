@@ -5,6 +5,8 @@ package src.backingbean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -18,10 +20,13 @@ import src.querystrategy.AllOrdersByNick;
 import src.querystrategy.IQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.orders.OrderQueryStrategyManager;
+import src.shopping.impl.ShoppingFacade;
 
 @Named
 @SessionScoped
 public class OrdersViewBB implements Serializable {
+	static Logger logger = Logger.getLogger(OrdersViewBB.class.getName());
+
 	
 	private String itemSel = "0";
 	private Order orderseleccionada;
@@ -113,8 +118,11 @@ public class OrdersViewBB implements Serializable {
 //	}
 	
 	public void publish(String msg) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
-		System.out.println(msg);
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+//		System.out.println(msg);
+		
+		logger.log(Level.INFO, msg);
+
 	}
 	
 	

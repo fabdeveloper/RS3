@@ -1,6 +1,8 @@
 package src.backingbean;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -18,6 +20,7 @@ import src.querystrategy.MasVendidosQS;
 import src.querystrategy.SugerenciasQS;
 import src.querystrategy.UltimasOfertasQS;
 import src.querystrategy.orders.OfertaQueryStrategyManager;
+import src.shopping.impl.ShoppingFacade;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.OfertaViewTO;
 
@@ -25,6 +28,8 @@ import src.transferobject.OfertaViewTO;
 @RequestScoped
 public class IndexViewBB implements IProcessable{
 	
+	static Logger logger = Logger.getLogger(IndexViewBB.class.getName());
+
 	@Inject
 	private IServiceLocator serviceLocator;
 	@Inject
@@ -64,8 +69,8 @@ public class IndexViewBB implements IProcessable{
 	}
 	
 	private void publish(String msg) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
-
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+		logger.log(Level.INFO, msg);
 	}
 
 	

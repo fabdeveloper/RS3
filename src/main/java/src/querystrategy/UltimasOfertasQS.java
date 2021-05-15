@@ -51,8 +51,8 @@ public class UltimasOfertasQS implements IQueryStrategy<Oferta> {
 	
 	
 	public List<Oferta> ultimasOfertasAvail() {		
-		if(serviceLocator == null) System.out.println("SERViceLocator es NULL");
-		serviceLocator.getShoppingFacade().publish("service locator = " + serviceLocator);
+//		if(serviceLocator == null) System.out.println("SERViceLocator es NULL");
+//		serviceLocator.getShoppingFacade().publish("service locator = " + serviceLocator);
 		return serviceLocator.getOfertaServices().createNamedQueryLimited("ofertasAll", 20);		 
 	}
 

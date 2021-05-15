@@ -27,8 +27,19 @@ import src.inter.IPrototype;
 @NamedQueries({
 	@NamedQuery(name="articuloById", query="SELECT b FROM Articulo b WHERE b.id = :articulo_id"),
 	@NamedQuery(name="articuloByName", query="SELECT b FROM Articulo b WHERE b.name = :articulo_name"),
-	@NamedQuery(name="articulosByProductId", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id")}
-	)
+	@NamedQuery(name="articulosByProductId", query="SELECT b FROM Articulo b WHERE b.product.id = :product_id"),
+	
+	@NamedQuery(name="articulosByString", 
+	query="SELECT art "
+			+ "FROM Articulo art "
+			+ "WHERE "
+			+ "(art.product.name LIKE :some_text OR "
+			+ "art.product.tipo LIKE :some_text OR "
+			+ "art.name LIKE :some_text OR "
+			+ "art.descripcion LIKE :some_text) "			 
+			+ "")	
+	
+})
 public class Articulo implements Serializable, IPrototype<Articulo>{
 	
 

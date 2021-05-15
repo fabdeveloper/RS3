@@ -21,8 +21,8 @@ public class TodasLasOfertasQS implements IQueryStrategy<Oferta> {
 
 	@Override
 	public List<Oferta> executeStrategy() {
-		String msg = "Numero de ofertas = " + serviceLocator.getOfertaServices().readAll().size();		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+//		String msg = "Numero de ofertas = " + serviceLocator.getOfertaServices().readAll().size();		
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
 		
 	
 		return serviceLocator.getOfertaServices().readAll();

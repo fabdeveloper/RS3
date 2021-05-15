@@ -34,6 +34,8 @@
 	</composite:interface>
 	<composite:implementation>
 		<p:form >
+					<div style="position:relative;">
+		
 				<p:panelGrid  columns="3">
 
 			
@@ -47,9 +49,10 @@
 				<p:inputText 
 							id="searchtext" 
 							value="#{cc.attrs.text2}" 
-							class="#{cc.attrs.inputtextclass2}">				
+							class="#{cc.attrs.inputtextclass2}">	
+							<c:ajax event="keydown"  listener="#{cc.attrs.listener.listener2()}"  render="popa mismensajes"/>
+										
 				</p:inputText>					
-				<c:ajax event="mouseup"  listener="#{cc.attrs.listener.listener2()}"  execute="searchtext" render="@form mismensajes"/>
 				
 					<p:commandButton value="#{cc.attrs.searchbuttontext}" 
 									action="#{cc.attrs.bean.process3()}" 
@@ -60,6 +63,8 @@
 				
 			
 			</p:panelGrid>
+			</div>
+											<div style="position:absolute;" id="popp">
 			
 					<ui:selectOneListbox  										
 										value="#{cc.attrs.selected1}" 
@@ -68,20 +73,21 @@
 						<c:selectItems value="#{cc.attrs.listaItems1}"></c:selectItems>
 						<c:ajax event="click"  listener="#{cc.attrs.listener.listener1()}"  render="@form"/>						
 					</ui:selectOneListbox>	
+								</div>
 								
 			
 			
 			
 	
+								<div style="position:absolute;" id="popa">
 										
 					<ui:selectOneListbox  
-										id="menu2" 
 										value="#{cc.attrs.selected2}" 
 										rendered="#{cc.attrs.articulosListRendered}"  >
 						<c:selectItems value="#{cc.attrs.listaItems2}"></c:selectItems>
 						<c:ajax event="click"  listener="#{cc.attrs.listener.listener3()}" render="@form"/>						
 					</ui:selectOneListbox>
-			
+					</div>
 		</p:form>
 		
 

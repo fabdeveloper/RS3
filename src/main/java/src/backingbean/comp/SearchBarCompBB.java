@@ -3,6 +3,8 @@ package src.backingbean.comp;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -16,6 +18,10 @@ import src.entity.Oferta;
 import src.entity.Product;
 import src.inter.IListener;
 import src.inter.IProcessable;
+import src.querystrategy.AbstractQueryStrategy;
+import src.querystrategy.articulos.ArticuloQueryStrategyManager;
+import src.querystrategy.orders.OfertaQueryStrategyManager;
+import src.shopping.impl.ShoppingFacade;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.EntityViewTransferObject;
 
@@ -25,12 +31,15 @@ import src.transferobject.EntityViewTransferObject;
 @SessionScoped
 public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
+	static Logger logger = Logger.getLogger(SearchBarCompBB.class.getName());
+
+	
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
-	private String text2 = "start";
+	private String text2 = "";
 	
-	private String departmentButtonText = "ALL";
+	private String departmentButtonText = null; // "ALL";
 	private String productSelected;
 	private String articuloSelected;
 	private List<String> productList;
@@ -38,75 +47,139 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	private Boolean productListRendered = false;
 	private Boolean articulosListRendered = false;
 	
-	private String buttonText = "buy it now";
+	private String buttonText = null; // "Search";
 	
-	private List<EntityViewTransferObject> ofertaList;
-	
-	@PostConstruct
-	public void init(){
-//		productList = new ArrayList<String>();		
-//		productList.add("product1");
-//		productList.add("product2");
-		
-		articulosList = new ArrayList<String>();
+	private List<EntityViewTransferObject> ofertaList;	
 
-		articulosList.add("articulo 1");
-		articulosList.add("articulo 2");
-		articulosList.add("articulo 3");		
-	}
+	@Inject
+	private ArticuloQueryStrategyManager articuloQSM;
+	@Inject
+	private OfertaQueryStrategyManager ofertaQSM;
+	
 	
 	@Override
 	public String process(Object obj) {
 		return "";
 	}
 	
+	
+	/*
+	 * CUANDO CLICK ENEL BOTON ALL DE SEARCHBAR
+	 */
 	@Override
 	public String process(){ // carga y muestra lista de productos
 		if(productList == null){
-			productList = new ArrayList<String>();
-			for(Product prod : getShoppingFacade().getDepartmentStoreList()){
-				productList.add(prod.getName());
-			} 
+			initProductList(); 
 		}
 		setProductListRendered(true);
 		
 		return null;
 	}
 	
+	/**
+	 * 
+	 */
+	private void initProductList() {
+		productList = new ArrayList<String>();
+		for(Product prod : getShoppingFacade().getDepartmentStoreList()){
+			productList.add(prod.getName());
+		}		
+	}
+
+
+	/*
+	 * CUANDO CLICK EN LA LISTA DE PRODUCTOS
+	 */
 	@Override
 	public String listener1(){
 		// seleccionado un producto de la lista de productos
 		departmentButtonText = productSelected;
-		setFacesMessage("producto = " + productSelected);
-		setProductListRendered(false);
+		logger.log(Level.INFO, "producto = " + productSelected);
 		
-		// cargar la lista de articulos
-		articulosList = new ArrayList<String>();
-		for(Articulo art : shoppingFacade.getArticulosByProductName(productSelected)){
-			articulosList.add(art.getName());
-		}
+		setProductListRendered(false);		
+		initArticulosListByProduct();
+		setArticulosListRendered(true);
+
 		return null;
 	}
 	
+	/**
+	 * 
+	 */
+	private void initArticulosListByProduct() {
+		// cargar la lista de articulos
+		initArticulosList(shoppingFacade.getArticulosByProductName(productSelected));	
+	}
+
+
+	/*
+	 * CUANDO EVENT EN INPUTTEXT
+	 */
 	@Override
 	public String listener2(){ // muestra la lista de articulos
 		
-		setFacesMessage("texto = " + text2);
+		logger.log(Level.INFO, "texto = " + text2);		
+		
+		// crear una QueryStrategy de text2 
+		AbstractQueryStrategy<Articulo> busquedatemporal = new  AbstractQueryStrategy<Articulo>() {
+			
+			@Override
+			public List<Articulo> executeStrategy() {
+				return getShoppingFacade().getServiceLocator().getArticuloServices().createNamedQueryListResult("articulosByString", "some_text", '%'+text2+'%');
+			}
+		};
+		
+		
+		// inicializar un QueryManager
+		
+		getArticuloQSM().setStrategy(busquedatemporal);
+		getArticuloQSM().reset();
+		
+		// cargar la lista de articulos
+		
+		initArticulosListByQSM();
+		
 		if(!getArticulosListRendered())setArticulosListRendered(true);
 		return null;
 	}
 	
+	/**
+	 * 
+	 */
+	public void initArticulosListByQSM() {
+		initArticulosList(getArticuloQSM().getList());		
+	}
+	
+	public void initArticulosList(List<Articulo> listaArticulos) {
+		articulosList = new ArrayList<String>();
+		for(Articulo art : listaArticulos){
+			articulosList.add(art.getName());
+		}	
+	}
+
+
 	@Override
 	public String listener3(){
 		// selecciona un articulo de la lista
 		text2 = articuloSelected;
-		setFacesMessage("articulo = " + articuloSelected);
+		logger.log(Level.INFO, "articulo = " + articuloSelected);
 		setArticulosListRendered(false);
 		
 		ofertaList = new ArrayList<EntityViewTransferObject>();
 		EntityViewTransferObject trans;
 		// carga la lista de ofertas
-		for(Oferta oferta : shoppingFacade.getAvailabilityManager().getOfertasByArticuloName(articuloSelected)) {
+		getOfertaQSM().setStrategy(new AbstractQueryStrategy<Oferta>() {
+
+			@Override
+			public List<Oferta> executeStrategy() {
+				return getShoppingFacade().getServiceLocator().getOfertaServices().createNamedQueryListResult("ofertasByArticuloName", "articulo_name", '%' + articuloSelected + '%');
+			}
+		});
+		getOfertaQSM().reset();
+		
+//		for(Oferta oferta : getShoppingFacade().getAvailabilityManager().getOfertasByArticuloName(articuloSelected)) { mm
+
+		for(Oferta oferta : getOfertaQSM().getList()) { 
 			trans = new EntityViewTransferObject();
 			trans.setOfid(oferta.getId().toString());
 			trans.setTextbottom("compra");
@@ -164,12 +237,15 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 		this.articulosList = articulosList;
 	}
 
-	public void setFacesMessage(String msg){
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
-
-	}
+//	public void setFacesMessage(String msg){
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
+//pp
+//	}
 
 	public String getDepartmentButtonText() {
+		if(departmentButtonText == null) {
+			departmentButtonText = getShoppingFacade().getString("searchbar_allbuttontext");
+		}
 		return departmentButtonText;
 	}
 
@@ -210,6 +286,9 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	}
 
 	public String getButtonText() {
+		if(buttonText == null) {
+			buttonText = getShoppingFacade().getString("searchbar_searchbuttontext");
+		}
 		return buttonText;
 	}
 
@@ -219,9 +298,28 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
 	
 	
+	public ArticuloQueryStrategyManager getArticuloQSM() {
+		return articuloQSM;
+	}
+
+
+	public void setArticuloQSM(ArticuloQueryStrategyManager articuloQSM) {
+		this.articuloQSM = articuloQSM;
+	}
+
+
+	public OfertaQueryStrategyManager getOfertaQSM() {
+		return ofertaQSM;
+	}
+
+	public void setOfertaQSM(OfertaQueryStrategyManager ofertaQSM) {
+		this.ofertaQSM = ofertaQSM;
+	}
+
+
 	@Override
 	public String process3() {		// SearchButton onClick()
-		shoppingFacade.publish("articulo seleccionado = " + getText2());
+		logger.log(Level.INFO, "articulo seleccionado = " + getText2());
 		return shoppingFacade.showAvail(getText2());
 		
 	}

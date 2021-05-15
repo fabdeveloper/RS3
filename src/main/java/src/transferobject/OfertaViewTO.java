@@ -35,7 +35,7 @@ public class OfertaViewTO extends EntityViewTransferObject {
 	}
 	
 	public static List<OfertaViewTO> getList(List<Oferta> listaofertas){
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("listaofertas = " + listaofertas));
+//		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("listaofertas = " + listaofertas));
 		List<OfertaViewTO> listaRespuesta = new ArrayList<OfertaViewTO>();
 		for(Oferta oferta : listaofertas) {
 			listaRespuesta.add(OfertaViewTO.getNewOfertaViewTO(oferta));
