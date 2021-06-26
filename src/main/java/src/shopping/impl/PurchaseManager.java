@@ -7,37 +7,58 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
+import src.entity.DeliveryDetailsStatusType;
+import src.entity.DeliveryType;
 import src.entity.Order;
 import src.entity.PurchaseStatus;
+import src.entity.PurchaseStatusType;
 import src.entity.User;
 import src.exception.DBException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.IPurchaseManager;
+import src.shopping.inter.IShoppingFacade;
 
 @SessionScoped
-//@DeclareRoles({"CLIENT", "ADMIN"})
-//@RolesAllowed("CLIENT")
 public class PurchaseManager implements IPurchaseManager, Serializable {
 	
+
+	private static final long serialVersionUID = 112L;
+
+
 	static Logger logger = Logger.getLogger(PurchaseManager.class.getName());
 	
 
 	@Inject
 	private IServiceLocator serviceLocator;
+	@Inject
+	private IShoppingFacade shoppingFacade;
 	
 	private Order order;
 	private Boolean paymentProcessOK = true;
 
 	
 
+	private void publish(String msg) {
+		publishStandard(msg);
+		publishFaces(msg);
+	}
+	
+	private void publishStandard(String msg) {
+		System.out.println(msg);
+	}
+	private void publishFaces(String msg) {
+		FacesContext.getCurrentInstance().addMessage(msg, new FacesMessage(msg));
+	}
 
 	private ICartManager getCartManager() {
-		return serviceLocator.getShoppingFacade().getCartManager();
+		return getShoppingFacade().getCartManager();
 	}
 
 	@Override
@@ -49,7 +70,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		order.setCreationDate(new Date());
 		setClient();
 		setCart();
-		setPurchaseStatus(); // TODO : revisar PurchaseStatus
+		setPurchaseStatus(); 
 		setDeliveryDetails();
 
 		return "";
@@ -91,7 +112,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		Boolean ok = true;
 		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
 	
-		order.getPurchaseStatus().setRemark("CONFIRMADO");
+		order.getPurchaseStatus().setStatus(PurchaseStatusType.CONFIRMADO);
+		order.getPurchaseStatus().setLastModification(new Date());
 		order.setLastModificationDate(new Date());
 		order.setConfirmationDate(new Date());
 		
@@ -140,13 +162,13 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		serviceLocator.getEntityManager().flush();
 	}
 	
-	private void refresh(){
-		serviceLocator.getEntityManager().refresh(order);
-	}
-	
-	private boolean isPaymentProcessOK(){
-		return paymentProcessOK;
-	}	
+//	private void refresh(){
+//		serviceLocator.getEntityManager().refresh(order);
+//	}
+//	
+//	private boolean isPaymentProcessOK(){
+//		return paymentProcessOK;
+//	}	
 	
 	@Override
 	public Boolean getPaymentProcessOK() {
@@ -192,9 +214,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				.getGestorE().getFactory().crear();
 		
 		purchaseStatus.setLastModification(new Date());
-		purchaseStatus.setRemark("NO CONFIRMADO");
+		purchaseStatus.setStatus(PurchaseStatusType.NO_CONFIRMADO);
 		
-//		purchaseStatus.setOrder(order);
 		order.setPurchaseStatus(purchaseStatus);		
 	}
 	
@@ -203,11 +224,10 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				.getGestorE().getFactory().crear();
 		
 		deliveryDetails.setDeliveryAddress(getClient().getAddress());
-		deliveryDetails.setStatus("pendiente");
-		deliveryDetails.setDeliveryType("normal");
+		deliveryDetails.setStatus(DeliveryDetailsStatusType.PENDIENTE);
+		deliveryDetails.setDeliveryType(DeliveryType.NORMAL);
 		deliveryDetails.setLastModificationDate(new Date());
 		
-//		deliveryDetails.setOrder(order);
 		order.setDeliveryDetails(deliveryDetails);		
 	}
 
@@ -253,18 +273,30 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 		try{
 			if(isCancelable()){
-				order.getPurchaseStatus().setRemark("CANCELLED");
+				order.getPurchaseStatus().setStatus(PurchaseStatusType.CANCELADO);
+				order.getPurchaseStatus().setLastModification(new Date());
+				// graba la cancelacion
 				serviceLocator.getOrderServices().update(order);
+				// recupera el stock
+				getCart().getListaItems()
+				.forEach(i->getShoppingFacade()
+					.recuperarStock(i.getOferta().getId(), i.getCounter()));
+				
+				// inicia el proceso de devolucion
 				if(!refundProcess()){
 					throw new Exception("Refund ERROR");
 				}			
 			}
 			serviceLocator.getOrderServices().getGestorE().getDao().getEntityManager().flush();
 			
-		}catch(Exception e){
-			logger.log(Level.SEVERE, "Rollback transaction : ORDER = " + order.getId() + " - " + e.getMessage() + " - " + e.getStackTrace());
+		}catch(Throwable e){
+			String msg = "Rollback transaction : ORDER = " + order.getId() + " - msg= " + e.getMessage();
+			logger.log(Level.SEVERE, msg);
+			publish(msg);
 			serviceLocator.getSessionContext().setRollbackOnly();
-			order.getPurchaseStatus().setRemark("NOT CANCELLED");
+//			order.getPurchaseStatus().setRemark("NOT CANCELLED");
+//			order.getPurchaseStatus().setStatus(PurchaseStatusType.n);pppppppppppppppppppppppp
+//			order.getPurchaseStatus().setLastModification(new Date());
 		}
 		return order;
 	}
@@ -279,8 +311,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
 		flush();
-//		order.getPurchaseStatus().setRemark("DELETED");
-//		setOrder(order);	
+	
 		reset();
 		return order;
 	}
@@ -294,20 +325,20 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	public Boolean preConfirmation() {
 		Boolean ok = true;
 		
-		// consumir stock
-		getCart().getListaItems().forEach(i -> serviceLocator.getShoppingFacade().
-				consumirStock(i.getOferta().getId(), i.getCounter()));
-
+		order.setLastModificationDate(new Date());
+		order.getPurchaseStatus().setStatus(PurchaseStatusType.PRE_CONFIRMADO);
+		order.getPurchaseStatus().setLastModification(new Date());
 		
-		try{ // grabar preconfirmacion			
-					
-			order.setLastModificationDate(new Date());
-			order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
+		try{ 	
+			// grabar preconfirmacion
 			mergeOrder();
+			// consumir stock
+			getCart().getListaItems().forEach(i -> getShoppingFacade().
+					consumirStock(i.getOferta().getId(), i.getCounter()));
 		
 		}catch(Throwable t){
-			order.getPurchaseStatus().setRemark("NO-CONFIRMADO");
-			throw new DBException("preconfirmation DB error", t);				
+//			order.getPurchaseStatus().setStatus(PurchaseStatusType.NO_CONFIRMADO); 
+			throw new DBException("preconfirmation DB error - msg= " + t.getMessage());				
 		}		
 		return ok;
 	}
@@ -315,33 +346,58 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	@Override
 	public void paymentError() {		
 		order.setLastModificationDate(new Date());
-		order.getPurchaseStatus().setRemark("PAYMENT-ERROR");
-		// actualiza status		
-		try{ 	
+		order.getPurchaseStatus().setStatus(PurchaseStatusType.PAYMENT_ERROR);
+		order.getPurchaseStatus().setLastModification(new Date());
+		
+		try{ 
+			// actualiza status		
 			mergeOrder();
+			// recupera stock
+			getCart().getListaItems()
+				.forEach(i->getShoppingFacade()
+					.recuperarStock(i.getOferta().getId(), i.getCounter()));
 		
 		}catch(Throwable t){
-			throw new DBException("Error updating order on PAYMENT-ERROR", t);				
+			throw new DBException("Error updating order on PAYMENT-ERROR - msg= " + t.getMessage());				
 		}
-		// recupera stock
-		getCart().getListaItems()
-			.forEach(i->serviceLocator.getShoppingFacade()
-				.recuperarStock(i.getOferta().getId(), i.getCounter()));
 		
 	}
 
 	@Override
 	public Boolean loadPendingOrder(String user_nick) {
 		Boolean result = true;
-//		if(user_nick.isEmpty() || user_nick.matches("") || user_nick == null) return false;
 		try{
 			order = serviceLocator.getOrderServices().createNamedQuery("loadPendingOrder", "client_nick", user_nick );
 		}catch(Throwable t){
 			result = false;
+			String msgError = "PurchaseManager.loadPendingOrder() - No se ha cargado ninguna orden - msg= " + t.getMessage();
+			publish(msgError);
 		}
 		if(result)getCartManager().setCart(order.getCart());
+		String msg = "PurchaseManager.loadPendingOrder() - result = " + result;
+		publish(msg);
 		
 		return result;
+	}
+
+	public IServiceLocator getServiceLocator() {
+		return serviceLocator;
+	}
+
+	public void setServiceLocator(IServiceLocator serviceLocator) {
+		this.serviceLocator = serviceLocator;
+	}
+
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
@@ -351,54 +407,5 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 }
 
 
-//@Override
-//public List<RuntimeException> preConfirmation() {
-//	List<CartItem> listaConsumidos = new ArrayList<CartItem>();
-//	List<RuntimeException> listaException = new ArrayList<RuntimeException>();
-//	
-//	Boolean ok = true;
-//	try{ // consumir stock			
-//		for(CartItem item : getCart().getListaItems()){
-//			boolean btemp = serviceLocator.getShoppingFacade().consumirStock(item.getOferta().getId(), item.getCounter());
-//			
-//			if(btemp){listaConsumidos.add(item);}
-//			else{ 
-//				ok = false; // error de stock
-//				listaException.add(new ConsumeStockException("insufficient stock")
-//						.setCartItem(item)
-//						.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));					
-//			}
-//		}
-//	}catch(Throwable t){
-//		ok = false;
-//		// DBException
-//		listaException.add(new DBException("error consuming stock", t));			
-//	}
-//	try{ // grabar preconfirmacion			
-//		if(ok){				
-//			order.setLastModificationDate(new Date());
-//			order.getPurchaseStatus().setRemark("PRE-CONFIRMADO");
-//			mergeOrder();
-//		}
-//	}catch(Throwable t){
-//		ok = false;
-//		// DBException
-//		listaException.add(new DBException("preconfirmation DB error", t));				
-//	}
-//	if(!ok){ // recuperar stock consumido
-//		for(CartItem item : listaConsumidos){
-//			try{
-//				serviceLocator.getShoppingFacade().recuperarStock(
-//						item.getOferta().getId(),
-//						item.getCounter());
-//				
-//			}catch(Throwable t){
-//				listaException.add(new RecuperaStockException("insufficient stock")
-//				.setCartItem(item)
-//				.setOferta(serviceLocator.getShoppingFacade().getStockManager().getOferta()));						
-//			}
-//		}			
-//	}		
-//	return listaException;
-//}
+
 

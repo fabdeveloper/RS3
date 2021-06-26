@@ -9,6 +9,7 @@ import src.entity.Oferta;
 import src.entity.Order;
 import src.entity.Product;
 import src.inter.IServiceLocator;
+import src.manager.IStockManager;
 
 public interface IShoppingFacade {
 	

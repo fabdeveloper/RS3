@@ -12,7 +12,7 @@ import javax.inject.Named;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
-import src.inter.IProcessable;
+import src.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.EntityViewTransferObject;
 
@@ -110,7 +110,7 @@ public class AvailabilityManagementBB implements Serializable, IProcessable{
 			
 			to.setOfid("Product-" + item.getId());
 			to.setTexttop(item.getName());
-			to.setTextcenter(item.getTipo());
+			to.setTextcenter(item.getType());
 			to.setTextbottom("");
 			to.setTextobotonenviar("consulta");			
 			to.setUrlimage(item.getUrlImage());			

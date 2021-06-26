@@ -5,17 +5,8 @@ package src.querystrategy;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-
 import src.entity.Oferta;
 import src.inter.IServiceLocator;
-
-/**
- * @author fabo_
- *
- */
 
 
 public class UltimasOfertasQS implements IQueryStrategy<Oferta> {

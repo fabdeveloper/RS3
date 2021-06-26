@@ -15,6 +15,8 @@ public class ArticuloManager extends AbstractEntityManager<Articulo> implements 
 
 
 
+	private static final long serialVersionUID = 10001L;
+
 	@Override
 	public List<Articulo> getArticulosByProductId(Integer prod_id) {
 		setAll(getEntityServices().createNamedQueryListResultIntParam("articulosByProductId", "product_id", prod_id));
@@ -37,6 +39,10 @@ public class ArticuloManager extends AbstractEntityManager<Articulo> implements 
 	public Articulo getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

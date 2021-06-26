@@ -6,22 +6,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
-import src.inter.IListener;
-import src.inter.IProcessable;
+import src.util.interfaces.IListener;
+import src.util.interfaces.IProcessable;
 import src.querystrategy.AbstractQueryStrategy;
 import src.querystrategy.articulos.ArticuloQueryStrategyManager;
 import src.querystrategy.orders.OfertaQueryStrategyManager;
-import src.shopping.impl.ShoppingFacade;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.EntityViewTransferObject;
 

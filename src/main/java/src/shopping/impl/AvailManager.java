@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
 import src.businessobject.IArticuloManager;
@@ -16,14 +15,14 @@ import src.entity.Product;
 import src.inter.IServiceLocator;
 import src.querystrategy.AbstractQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
-import src.querystrategy.OfertasPorArticuloName;
 import src.querystrategy.TodasLasOfertasQS;
 import src.shopping.inter.IAvailabilityManager;
-import src.transferobject.OfertaViewTO;
 
 @SessionScoped
 public class AvailManager implements IAvailabilityManager, Serializable {
 	
+
+	private static final long serialVersionUID = 111L;
 	@Inject 
 	private IServiceLocator serviceLocator;
 	@Inject
@@ -96,7 +95,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 	}
 
 	@Override
-	public IQueryStrategyManager getQueryManager() {
+	public IQueryStrategyManager<Oferta> getQueryManager() {
 		if(queryManager.getStrategy() == null) {
 			TodasLasOfertasQS defaultStrategy = new TodasLasOfertasQS();
 			defaultStrategy.setServiceLocator(getServiceLocator());
@@ -110,7 +109,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 	@Override
 	public void searchName(String name) {
 		
-		AbstractQueryStrategy ofertasPorTexto = new AbstractQueryStrategy() {
+		AbstractQueryStrategy<Oferta> ofertasPorTexto = new AbstractQueryStrategy<Oferta>() {
 			@Override
 			public List<Oferta> executeStrategy() {
 				return getServiceLocator().getOfertaServices().createNamedQueryListResult("ofertasByString", "some_text", name);
@@ -121,15 +120,7 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 		ofertasPorTexto.setServiceLocator(getServiceLocator());
 		this.getQueryManager().setStrategy(ofertasPorTexto);
 		this.getQueryManager().reset();
-		
-		
-		
-//		AbstractQueryStrategy ofertasPorArticuloNameQuery = new OfertasPorArticuloName();
-//		ofertasPorArticuloNameQuery.setParametro(name);
-//		ofertasPorArticuloNameQuery.setServiceLocator(getServiceLocator());
-//		this.getQueryManager().setStrategy(ofertasPorArticuloNameQuery);
-//		this.getQueryManager().refresh();
-		
+				
 	}
 
 	public IServiceLocator getServiceLocator() {
@@ -142,6 +133,10 @@ public class AvailManager implements IAvailabilityManager, Serializable {
 
 	public void setQueryManager(IQueryStrategyManager<Oferta> queryManager) {
 		this.queryManager = queryManager;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	

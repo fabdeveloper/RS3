@@ -22,7 +22,7 @@
 		
 			<em:slideShowComp	
 				bean="#{indexViewBB}"
-				lista="#{indexViewBB.listaUltimasOfertasTO}"
+				lista="#{indexViewBB.getListaUltimasOfertasTO()}"
 				divclass="divslide"
 				boton1class="botonslide"
 				boton2class="botonslide margenderecho"
@@ -40,7 +40,7 @@
 		
 			<em:slideShowComp	
 				bean="#{indexViewBB}"
-				lista="#{indexViewBB.listaMasVendidosArticulosTO}"
+				lista="#{indexViewBB.getListaMasVendidosArticulosTO()}"
 				divclass="divslide"
 				boton1class="botonslide"
 				boton2class="botonslide margenderecho"
@@ -58,7 +58,7 @@
 		<ui:define name="bloque3">
 			<em:slideShowComp	
 				bean="#{indexViewBB}"
-				lista="#{indexViewBB.listaSugerenciasTO}"
+				lista="#{indexViewBB.getListaSugerenciasTO()}"
 				divclass="divslide"
 				boton1class="botonslide"
 				boton2class="botonslide margenderecho"

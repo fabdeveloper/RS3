@@ -15,11 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import src.entity.Articulo;
@@ -30,13 +26,13 @@ import src.entity.Order;
 import src.entity.Product;
 import src.exception.RS3Exception;
 import src.inter.IServiceLocator;
+import src.manager.IStockManager;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
 import src.shopping.inter.ILocationManager;
 import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
-import src.shopping.inter.IStockManager;
 import src.shopping.inter.IViewStateMachine;
 
 @SessionScoped

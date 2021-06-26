@@ -9,8 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,7 +18,6 @@ import src.querystrategy.AllOrdersByNick;
 import src.querystrategy.IQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.orders.OrderQueryStrategyManager;
-import src.shopping.impl.ShoppingFacade;
 
 @Named
 @SessionScoped

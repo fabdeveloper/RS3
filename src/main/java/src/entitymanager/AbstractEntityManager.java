@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import src.entity.Product;
 import src.entityservices.IEntityServices;
 
 public abstract class AbstractEntityManager<E> implements IEntityManager<E> {

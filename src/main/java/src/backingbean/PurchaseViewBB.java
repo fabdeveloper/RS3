@@ -1,9 +1,6 @@
 package src.backingbean;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,10 +8,10 @@ import javax.interceptor.Interceptors;
 import javax.transaction.Transactional;
 
 import src.entity.Cart;
-import src.entity.DeliveryDetails;
+import src.entity.DeliveryType;
 import src.entity.Order;
 import src.entity.User;
-import src.inter.IProcessable;
+import src.util.interfaces.IProcessable;
 import src.interceptors.AuditInterceptor;
 import src.shopping.inter.IShoppingFacade;
 
@@ -23,6 +20,8 @@ import src.shopping.inter.IShoppingFacade;
 @SessionScoped
 public class PurchaseViewBB implements IProcessable, Serializable{
 	
+
+	private static final long serialVersionUID = 122L;
 	//private Order order;
 	
 	@Inject
@@ -70,11 +69,11 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		getOrder().getDeliveryDetails().setDeliveryAddress(deliveryAddress);
 	}
 	
-	public String getDeliveryType(){
+	public DeliveryType getDeliveryType(){
 		return getOrder().getDeliveryDetails().getDeliveryType();
 	}
 	
-	public void setDeliveryType(String deliveryType){
+	public void setDeliveryType(DeliveryType deliveryType){
 		getOrder().getDeliveryDetails().setDeliveryType(deliveryType);
 	}	
 	
@@ -82,11 +81,19 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		return getOrder().getClient();
 	}
 
-//	@Override
-//	public String process(Object obj) {
-//		return shoppingFacade.showOrder();
-//	}
 	
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Transactional
 	@Override
 	public String process(){

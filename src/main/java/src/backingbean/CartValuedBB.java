@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import src.entity.Cart;
 import src.entity.CartItem;
 import src.entity.Oferta;
-import src.inter.IProcessable;
+import src.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 

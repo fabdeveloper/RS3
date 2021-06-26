@@ -14,18 +14,21 @@ import javax.transaction.Transactional;
 import src.entity.Cart;
 import src.entity.CartItem;
 import src.entity.DeliveryDetails;
-import src.entity.Oferta;
+import src.entity.DeliveryDetailsStatusType;
+import src.entity.DeliveryType;
 import src.entity.Order;
-import src.entity.PurchaseStatus;
 import src.entity.User;
-import src.inter.IProcessable;
-import src.service.ServiceLocator;
+import src.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 @Named
 @SessionScoped
 public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	
+
+	private static final long serialVersionUID = 1099L;
+
+
 	static Logger logger = Logger.getLogger(PurchaseDetailViewBB.class.getName());
 	
 	
@@ -45,7 +48,7 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	}
 
 	public String getOrderStatus() {
-		return getOrder().getPurchaseStatus().getRemark();
+		return getOrder().getPurchaseStatus().getStatus().name();
 	}
 
 	public Integer getOrderId() {
@@ -76,11 +79,11 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return getDeliveryDetails().getRemark();
 	}
 	
-	public String getDeliveryType() {
+	public DeliveryType getDeliveryType() {
 		return getDeliveryDetails().getDeliveryType();
 	}
 	
-	public String getDeliveryStatus() {
+	public DeliveryDetailsStatusType getDeliveryStatus() {
 		return getDeliveryDetails().getStatus();
 	}
 
@@ -124,9 +127,6 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return shoppingFacade.getOrder();
 	}
 
-//	private void setOrder(Order order) {
-//		this.order = order;
-//	}
 
 	private User getUser() {
 		return getOrder().getClient();
@@ -136,9 +136,6 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 		return getOrder().getDeliveryDetails();
 	}
 
-//	private PurchaseStatus getPurchaseStatus() {
-//		return getOrder().getPurchaseStatus();
-//	}
 	
 	private Cart getCart() {
 		return getOrder().getCart();
@@ -162,6 +159,18 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 //		return retorno;
 //	}
 	
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public static void setLogger(Logger logger) {
+		PurchaseDetailViewBB.logger = logger;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Transactional
 	public String simulaPagoOk(){		
 		return shoppingFacade.purchaseConfirm();

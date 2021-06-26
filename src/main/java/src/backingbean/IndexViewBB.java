@@ -5,22 +5,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import src.util.interfaces.IProcessable;
 import src.entity.Oferta;
-import src.inter.IProcessable;
 import src.inter.IServiceLocator;
-import src.querystrategy.AbstractQueryStrategyManager;
 import src.querystrategy.IQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.MasVendidosQS;
 import src.querystrategy.SugerenciasQS;
 import src.querystrategy.UltimasOfertasQS;
 import src.querystrategy.orders.OfertaQueryStrategyManager;
-import src.shopping.impl.ShoppingFacade;
 import src.shopping.inter.IShoppingFacade;
 import src.transferobject.OfertaViewTO;
 

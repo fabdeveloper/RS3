@@ -2,12 +2,11 @@ package src.backingbean;
 
 import java.io.Serializable;
 
-import javax.annotation.security.DeclareRoles;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import src.inter.IProcessable;
+import src.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 @Named
