@@ -1,6 +1,3 @@
-/**
- * 
- */
 package src.backingbean;
 
 import java.io.Serializable;
@@ -22,6 +19,10 @@ import src.querystrategy.orders.OrderQueryStrategyManager;
 @Named
 @SessionScoped
 public class OrdersViewBB implements Serializable {
+
+	private static final long serialVersionUID = 1000L;
+
+
 	static Logger logger = Logger.getLogger(OrdersViewBB.class.getName());
 
 	
@@ -110,10 +111,20 @@ public class OrdersViewBB implements Serializable {
 		this.orderseleccionada = orderseleccionada;
 	}
 
-//	public void setList(List<Order> list) {
-//		this.list = list;
-//	}
+
 	
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public static void setLogger(Logger logger) {
+		OrdersViewBB.logger = logger;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public void publish(String msg) {
 //		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
 //		System.out.println(msg);

@@ -13,6 +13,9 @@ import src.shopping.inter.IShoppingFacade;
 @SessionScoped
 public class SessionManagementBB implements Serializable, IProcessable {
 	
+
+	private static final long serialVersionUID = 10001L;
+
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
@@ -91,6 +94,18 @@ public class SessionManagementBB implements Serializable, IProcessable {
 	public String logout(){
 		shoppingFacade.logout();
 		return null;
+	}
+
+	public IShoppingFacade getShoppingFacade() {
+		return shoppingFacade;
+	}
+
+	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
+		this.shoppingFacade = shoppingFacade;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
