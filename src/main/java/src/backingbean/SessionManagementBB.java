@@ -6,7 +6,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import src.util.interfaces.IProcessable;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 @Named

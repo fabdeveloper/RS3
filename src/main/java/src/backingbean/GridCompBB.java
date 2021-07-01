@@ -12,12 +12,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import src.entity.Oferta;
-import src.util.interfaces.IGridMaker;
-import src.util.interfaces.IProcessable;
+import src.jsfcompslib.transferobject.OfertaResultViewTO;
+import src.jsfcompslib.transferobject.OfertaViewTO;
+import src.jsfcompslib.util.interfaces.IGridMaker;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.querystrategy.IQueryStrategyManager;
 import src.shopping.inter.IShoppingFacade;
-import src.transferobject.OfertaResultViewTO;
-import src.transferobject.OfertaViewTO;
 
 @Named
 @RequestScoped

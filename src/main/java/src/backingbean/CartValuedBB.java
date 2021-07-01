@@ -11,8 +11,7 @@ import javax.transaction.Transactional;
 
 import src.entity.Cart;
 import src.entity.CartItem;
-import src.entity.Oferta;
-import src.util.interfaces.IProcessable;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 

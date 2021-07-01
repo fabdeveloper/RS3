@@ -2,12 +2,10 @@ package src.shopping.inter;
 
 import java.util.List;
 
-import src.businessobject.IProductManager;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
 import src.querystrategy.IQueryStrategyManager;
-import src.transferobject.OfertaViewTO;
 
 public interface IAvailabilityManager{
 	

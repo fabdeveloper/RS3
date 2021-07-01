@@ -8,9 +8,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import src.util.interfaces.IProcessable;
 import src.entity.Oferta;
 import src.inter.IServiceLocator;
+import src.jsfcompslib.transferobject.OfertaViewTO;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.querystrategy.IQueryStrategy;
 import src.querystrategy.IQueryStrategyManager;
 import src.querystrategy.MasVendidosQS;
@@ -18,7 +19,6 @@ import src.querystrategy.SugerenciasQS;
 import src.querystrategy.UltimasOfertasQS;
 import src.querystrategy.orders.OfertaQueryStrategyManager;
 import src.shopping.inter.IShoppingFacade;
-import src.transferobject.OfertaViewTO;
 
 @Named
 @RequestScoped

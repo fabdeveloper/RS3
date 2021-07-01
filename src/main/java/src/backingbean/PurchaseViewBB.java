@@ -11,8 +11,8 @@ import src.entity.Cart;
 import src.entity.DeliveryType;
 import src.entity.Order;
 import src.entity.User;
-import src.util.interfaces.IProcessable;
 import src.interceptors.AuditInterceptor;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
 
 

@@ -76,7 +76,11 @@
   		<version>0</version>  		
   	</dependency>
 
-
+	  		<dependency>
+  		<groupId>EShop</groupId>
+  <artifactId>JSFCompsLib</artifactId>
+  <version>0</version>	
+  	</dependency>
 
 
   </dependencies>

@@ -12,9 +12,9 @@ import javax.inject.Named;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
-import src.util.interfaces.IProcessable;
+import src.jsfcompslib.transferobject.EntityViewTransferObject;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.shopping.inter.IShoppingFacade;
-import src.transferobject.EntityViewTransferObject;
 
 
 @Named

@@ -13,13 +13,13 @@ import javax.inject.Named;
 import src.entity.Articulo;
 import src.entity.Oferta;
 import src.entity.Product;
-import src.util.interfaces.IListener;
-import src.util.interfaces.IProcessable;
+import src.jsfcompslib.transferobject.EntityViewTransferObject;
+import src.jsfcompslib.util.interfaces.IListener;
+import src.jsfcompslib.util.interfaces.IProcessable;
 import src.querystrategy.AbstractQueryStrategy;
 import src.querystrategy.articulos.ArticuloQueryStrategyManager;
 import src.querystrategy.orders.OfertaQueryStrategyManager;
 import src.shopping.inter.IShoppingFacade;
-import src.transferobject.EntityViewTransferObject;
 
 
 
@@ -27,6 +27,10 @@ import src.transferobject.EntityViewTransferObject;
 @SessionScoped
 public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 	
+
+	private static final long serialVersionUID = 1L;
+
+
 	static Logger logger = Logger.getLogger(SearchBarCompBB.class.getName());
 
 	
@@ -310,6 +314,21 @@ public class SearchBarCompBB implements Serializable, IProcessable, IListener {
 
 	public void setOfertaQSM(OfertaQueryStrategyManager ofertaQSM) {
 		this.ofertaQSM = ofertaQSM;
+	}
+
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+
+	public static void setLogger(Logger logger) {
+		SearchBarCompBB.logger = logger;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 
