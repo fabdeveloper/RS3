@@ -28,7 +28,7 @@ public class OfertaDaoTestIT {
 		oferta.setName("TEST");
 		int numRegistrosAntes = ofertaDao.count();
 		et.begin();
-		ofertaDao.create(oferta);
+		ofertaDao.persist(oferta);
 		et.commit();
 		int numRegistrosDespues = ofertaDao.count();
 		for(Oferta registro: ofertaDao.getAll()){

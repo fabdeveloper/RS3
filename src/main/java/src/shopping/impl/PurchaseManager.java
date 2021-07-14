@@ -146,7 +146,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		System.out.println("PurchaseManager.persistOrder()");
 
 		order.setLastModificationDate(new Date());
-		serviceLocator.getOrderServices().create(order); // graba la orden en DB
+		serviceLocator.getOrderServices().persist(order); // graba la orden en DB
 		flush();
 	}
 	
@@ -154,7 +154,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		System.out.println("PurchaseManager.mergeOrder()");
 
 		order.setLastModificationDate(new Date());
-		order = serviceLocator.getOrderServices().update(order); // graba la orden en DB	
+		order = serviceLocator.getOrderServices().merge(order); // graba la orden en DB	
 		flush();
 	}
 	
@@ -276,7 +276,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 				order.getPurchaseStatus().setStatus(PurchaseStatusType.CANCELADO);
 				order.getPurchaseStatus().setLastModification(new Date());
 				// graba la cancelacion
-				serviceLocator.getOrderServices().update(order);
+				serviceLocator.getOrderServices().merge(order);
 				// recupera el stock
 				getCart().getListaItems()
 				.forEach(i->getShoppingFacade()

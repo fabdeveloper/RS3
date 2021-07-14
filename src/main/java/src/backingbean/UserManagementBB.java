@@ -34,12 +34,12 @@ public class UserManagementBB {
 				shoppingFacade.getServiceLocator().getGrupoServices()
 					.createNamedQuery("grupo_byName", "name", "CLIENTS"));
 		
-		shoppingFacade.getServiceLocator().getUserServices().create(user);
+		shoppingFacade.getServiceLocator().getUserServices().persist(user);
 	}
 	
 	@Transactional
 	public void updateUser(){
-		shoppingFacade.getServiceLocator().getUserServices().update(user);
+		shoppingFacade.getServiceLocator().getUserServices().merge(user);
 	}
 	
 	public String setUserManagementView(){
