@@ -2,11 +2,8 @@ package src.manager;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
-import org.mockito.invocation.Invocation;
-
 import static org.mockito.Mockito.*;
 
 import java.util.HashMap;
@@ -28,9 +25,7 @@ public class StockManagerTest {
 	private IEntityServices<Oferta> ofertaServices;
 	private Map<Integer, Oferta> dbMap;
 	
-	ArgumentCaptor<Oferta> ofertaCaptor = ArgumentCaptor.forClass(Oferta.class); 
-	ArgumentCaptor<Integer> integerCaptor = ArgumentCaptor.forClass(Integer.class); 
-	
+
 	
 	@Before
 	public void initDependencies() {
@@ -66,23 +61,17 @@ public class StockManagerTest {
 	private IEntityServices<Oferta> mockOfertaServices(){
 		IEntityServices<Oferta> ofertaServices = mock(OfertaServices.class);
 	
-//		when(ofertaServices.read(id)).thenReturn(findById(id));
-//		when(ofertaServices.merge(oferta)).thenReturn(mergeOf(oferta));
-
-//		when(ofertaServices.read(integerCaptor.capture())).thenReturn(findById(integerCaptor.getValue()));
-//		when(ofertaServices.merge(ofertaCaptor.capture())).thenReturn(mergeOf(ofertaCaptor.getValue()));
-		
 		
 		when(ofertaServices.read(any())).thenAnswer(invocation ->{
-			final Object[] namedArgs = invocation.getArguments();
+			final Object[] args = invocation.getArguments();
 					
-			return findById((Integer)namedArgs[0]);
+			return findById((Integer)args[0]);
 				});
 		
 		when(ofertaServices.merge(any())).thenAnswer(invocation ->{
-					final Object[] namedArgs = invocation.getArguments();
+					final Object[] args = invocation.getArguments();
 							
-					return mergeOf((Oferta)namedArgs[0]);
+					return mergeOf((Oferta)args[0]);
 						});
 		
 		return ofertaServices;		
@@ -130,7 +119,7 @@ public class StockManagerTest {
 		Integer stock_despues;
 		
 		stock_antes = dbMap.get(id_oferta).getStock();			
-		stockManager.recuperarStock(id_oferta, stock_solicitado);
+		stockManager.recuperarStock(id_oferta, stock_solicitado);		
 		stock_despues = dbMap.get(id_oferta).getStock();
 
 		Assert.assertTrue("Error recuperando stock", stock_despues-stock_antes == stock_solicitado);		

@@ -162,13 +162,6 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		serviceLocator.getEntityManager().flush();
 	}
 	
-//	private void refresh(){
-//		serviceLocator.getEntityManager().refresh(order);
-//	}
-//	
-//	private boolean isPaymentProcessOK(){
-//		return paymentProcessOK;
-//	}	
 	
 	@Override
 	public Boolean getPaymentProcessOK() {
@@ -186,26 +179,15 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	
 	private void setClient() {
 		String clientNick = serviceLocator.getSessionContext().getCallerPrincipal().getName();
-		logger.log(Level.INFO, "PURCHASE MANAGER - " + new Date() + " - setClient() - clientNick = " + clientNick);
-//		if(clientNick.matches("ANONYMOUS") || clientNick == null || clientNick.length() < 1){
-//			User user = serviceLocator.getUserServices().getGestorE().getFactory().crear();
-//			user.setAddress("NO INICIADO");
-//			user.setEmail("NO INICIADO");
-//			user.setName("NO INICIADO");
-//			user.setNick(clientNick);
-//			
-//			order.setClient(user);
-//		}else{
-			User user = serviceLocator.getUserServices().getGestorE().getDao()
-					.createNamedQuery("byNick", "nick", clientNick);
-			
-			order.setClient(user);
-//		}
+
+		User user = serviceLocator.getUserServices().getGestorE().getDao()
+				.createNamedQuery("byNick", "nick", clientNick);
+		
+		order.setClient(user);
 
 	}
 	
 	private void setCart() {
-//		cartManager.getCart().setOrder(order);
 		order.setCart(getCartManager().getCart());
 	}
 
@@ -259,11 +241,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public Order findOrder(Integer order_id) {
-		logger.log(Level.INFO, "PurchaseManager-find: order_id = " + order_id);
-		
+//		logger.log(Level.INFO, "PurchaseManager-find: order_id = " + order_id);		
 		order = serviceLocator.getOrderServices().getGestorE().getDao().find(order_id);
-		logger.log(Level.INFO, "PurchaseManager-find: encontrada order = " + order);
-
+//		logger.log(Level.INFO, "PurchaseManager-find: encontrada order = " + order);
 		return order;
 	}
 
@@ -302,7 +282,19 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 	
 	private boolean isCancelable(){
-		return true;
+		boolean bcancelable = true;
+		PurchaseStatusType status = order.getPurchaseStatus().getStatus();
+		switch(status) {
+		case CONFIRMADO:
+			bcancelable = false;
+			break;
+		case CERRADO:
+			bcancelable = false;
+			break;
+			default:
+				break;
+		}
+		return bcancelable;
 	}
 
 	@Override
