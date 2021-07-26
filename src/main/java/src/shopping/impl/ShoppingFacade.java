@@ -122,7 +122,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			purchaseManager.preConfirmation();
 			
 		}catch(Throwable t){
-			logger.log(Level.ALL, "error en pre-confirmacion - " + t.getMessage());
+			getLogger().log(Level.ALL, "error en pre-confirmacion - " + t.getMessage());
 //			publish("error en pre-confirmacion - " + t.getMessage());
 
 			result = viewStateMachine.setErrorView();
@@ -140,7 +140,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			nuevaCompra();
 
 		}catch(Throwable t){
-			logger.log(Level.ALL, "error en confirmacion - " + t.getMessage());
+			getLogger().log(Level.ALL, "error en confirmacion - " + t.getMessage());
 			result = viewStateMachine.setErrorView();			
 		}		
 		return result;
@@ -197,7 +197,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String findOrder(Integer order_id) {
 		String dispatch = viewStateMachine.setOrderView();
-		logger.log(Level.INFO, "ShoppingFacade-findOrder - order_id = " + order_id);
+		getLogger().log(Level.INFO, "ShoppingFacade-findOrder - order_id = " + order_id);
 		Order order = null;
 		try{
 			order = purchaseManager.findOrder(order_id);
@@ -210,7 +210,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		}
 
 		
-		logger.log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
+		getLogger().log(Level.INFO, "ShoppingFacade-findOrder - encontrada order = " + order);
 
 		return dispatch;
 	}
@@ -218,7 +218,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	private void logAndMessage(Throwable t){
 		// log
 		String msg = "mensage de error = " + t.getMessage();
-		logger.log(Level.ALL, msg);
+		getLogger().log(Level.ALL, msg);
 		// message
 //		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
 		
@@ -227,7 +227,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public void publish(String msg) {
 //		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
-		logger.log(Level.INFO, msg);
+		getLogger().log(Level.INFO, msg);
 	}
 
 	@Override
@@ -353,7 +353,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			sessionManager.login(user, password);			
 		}catch(Throwable t){
 			// grabar logs
-			logger.log(Level.ALL, "ShoppingFacade.login() " + new Date());
+			getLogger().log(Level.ALL, "ShoppingFacade.login() " + new Date());
 			// mostrar FacesMessage
 		}
 		return null;
@@ -365,7 +365,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 			sessionManager.logout();
 		}catch(Throwable t){
 			// grabar logs
-			logger.log(Level.ALL, "ShoppingFacade.logout() " + new Date() + " , msg= " + t.getMessage());
+			getLogger().log(Level.ALL, "ShoppingFacade.logout() " + new Date() + " , msg= " + t.getMessage());
 			// mostrar FacesMessage
 //			String stringmsg = "Logout error";
 //			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(stringmsg));
@@ -403,10 +403,43 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Override
 	public String showAvail(String articuloname) {
 		availabilityManager.searchName(articuloname);
-		publish("articulos encontrados = " + availabilityManager.getQueryManager().getList().size());
+//		publish("articulos encontrados = " + availabilityManager.getQueryManager().getList().size());
 
 		return viewStateMachine.setAvailabilityView();
 	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public static void setLogger(Logger logger) {
+		ShoppingFacade.logger = logger;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setServiceLocator(IServiceLocator serviceLocator) {
+		this.serviceLocator = serviceLocator;
+	}
+
+	public void setStockManager(IStockManager stockManager) {
+		this.stockManager = stockManager;
+	}
+
+	public void setViewStateMachine(IViewStateMachine viewStateMachine) {
+		this.viewStateMachine = viewStateMachine;
+	}
+
+	public void setSessionManager(ISessionManager sessionManager) {
+		this.sessionManager = sessionManager;
+	}
+
+	public void setLocationManager(ILocationManager locationManager) {
+		this.locationManager = locationManager;
+	}
+	
 	
 	
 

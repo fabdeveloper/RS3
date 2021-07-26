@@ -16,7 +16,7 @@ import src.exception.URLException;
 import src.inter.IServiceLocator;
 import src.shopping.inter.ISessionManager;
 
-@DeclareRoles({"CLIENT","ADMIN"})
+//@DeclareRoles({"CLIENT","ADMIN"})
 @SessionScoped
 public class SessionManager implements ISessionManager, Serializable {
 	

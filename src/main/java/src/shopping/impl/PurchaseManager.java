@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import src.backingbean.OrdersViewBB;
 import src.entity.Cart;
 import src.entity.DeliveryDetails;
 import src.entity.DeliveryDetailsStatusType;
@@ -40,6 +41,9 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
+	@Inject
+	private OrdersViewBB ordersViewBB;
+	
 	private Order order;
 	private Boolean paymentProcessOK = true;
 
@@ -63,7 +67,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public String createOrder() {
-		logger.log(Level.INFO, "PURCHASEMANAGER - createOrder() - " + new Date());
+		getLogger().log(Level.INFO, "PURCHASEMANAGER - createOrder() - " + new Date());
 		
 		order = serviceLocator.getOrderServices().getGestorE().getFactory().crear();
 		order.setLastModificationDate(new Date());
@@ -81,19 +85,19 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	public void updateOrder(){
 		
 		if(getCartManager().isCartEmpty()){// empty cart
-			System.out.println("PurchaseManager.updateOrder() - empty cart");
+//			System.out.println("PurchaseManager.updateOrder() - empty cart");
 			
 			deleteOrder();
 			
 		}else if(order == null){// if order is null (first item to cart)
-			System.out.println("PurchaseManager.updateOrder() - order == null");
+//			System.out.println("PurchaseManager.updateOrder() - order == null");
 
 			createOrder();
 			order.setCreationDate(new Date());
 			persistOrder();
 			
 		}else{ // add modif remove  item(not empty cart)
-			System.out.println("PurchaseManager.updateOrder() - add or modify cart");
+//			System.out.println("PurchaseManager.updateOrder() - add or modify cart");
 
 			order.setLastModificationDate(new Date());
 			mergeOrder();
@@ -101,16 +105,20 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			getCartManager().setCart(order.getCart());
 			
 		}
-		System.out.println("ORDER :  *********************");
+//		System.out.println("ORDER :  *********************");
 		if(order != null)System.out.println(order.toString());
 
+	}
+	
+	private OrdersViewBB getOrdersViewBB() {
+		return ordersViewBB;
 	}
 	
 
 	@Override
 	public Boolean confirm() {
 		Boolean ok = true;
-		logger.log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
+		getLogger().log(Level.INFO, "PURCHASEMANAGER - confirm() - " + new Date() + " - ORDER= " + order);
 	
 		order.getPurchaseStatus().setStatus(PurchaseStatusType.CONFIRMADO);
 		order.getPurchaseStatus().setLastModification(new Date());
@@ -119,6 +127,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 		
 		try{
 			mergeOrder();
+			getOrdersViewBB().initQsm();
 			
 		}catch(Throwable t){
 			throw new DBException("CONFIRMATION ERROR - order_id = " + order.getId() , t);
@@ -143,7 +152,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 	
 	private void persistOrder(){
-		System.out.println("PurchaseManager.persistOrder()");
+//		System.out.println("PurchaseManager.persistOrder()");
 
 		order.setLastModificationDate(new Date());
 		serviceLocator.getOrderServices().persist(order); // graba la orden en DB
@@ -151,7 +160,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	}
 	
 	private void mergeOrder(){
-		System.out.println("PurchaseManager.mergeOrder()");
+//		System.out.println("PurchaseManager.mergeOrder()");
 
 		order.setLastModificationDate(new Date());
 		order = serviceLocator.getOrderServices().merge(order); // graba la orden en DB	
@@ -249,7 +258,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public Order cancelOrder() {
-		logger.log(Level.INFO, "PURCHASEMANAGER - cancelOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
+		getLogger().log(Level.INFO, "PURCHASEMANAGER - cancelOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 		
 		try{
 			if(isCancelable()){
@@ -271,8 +280,8 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			
 		}catch(Throwable e){
 			String msg = "Rollback transaction : ORDER = " + order.getId() + " - msg= " + e.getMessage();
-			logger.log(Level.SEVERE, msg);
-			publish(msg);
+			getLogger().log(Level.SEVERE, msg);
+//			publish(msg);
 			serviceLocator.getSessionContext().setRollbackOnly();
 //			order.getPurchaseStatus().setRemark("NOT CANCELLED");
 //			order.getPurchaseStatus().setStatus(PurchaseStatusType.n);pppppppppppppppppppppppp
@@ -299,7 +308,7 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 
 	@Override
 	public Order deleteOrder() {
-		logger.log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
+		getLogger().log(Level.INFO, "PURCHASEMANAGER - deleteOrder() - " + new Date() + " - ORDER_ID = " + order.getId());
 
 		serviceLocator.getOrderServices().getGestorE().getDao().remove(order);
 		flush();
@@ -362,12 +371,12 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 			order = serviceLocator.getOrderServices().createNamedQuery("loadPendingOrder", "client_nick", user_nick );
 		}catch(Throwable t){
 			result = false;
-			String msgError = "PurchaseManager.loadPendingOrder() - No se ha cargado ninguna orden - msg= " + t.getMessage();
-			publish(msgError);
+//			String msgError = "PurchaseManager.loadPendingOrder() - No se ha cargado ninguna orden - msg= " + t.getMessage();
+//			publish(msgError);
 		}
 		if(result)getCartManager().setCart(order.getCart());
-		String msg = "PurchaseManager.loadPendingOrder() - result = " + result;
-		publish(msg);
+//		String msg = "PurchaseManager.loadPendingOrder() - result = " + result;
+//		publish(msg);
 		
 		return result;
 	}
@@ -391,6 +400,20 @@ public class PurchaseManager implements IPurchaseManager, Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public static void setLogger(Logger logger) {
+		PurchaseManager.logger = logger;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	
+	
 
 
 

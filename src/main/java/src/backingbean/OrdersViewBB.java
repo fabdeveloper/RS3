@@ -49,8 +49,18 @@ public class OrdersViewBB implements Serializable {
 		qsm.setStrategy(strategy);
 		qsm.reset();
 		
-		itemSel = getList().get(0).getId().toString();
+		if(getList().size()>0) {
+			itemSel = getList().get(0).getId().toString();
+		}
 		
+	}
+	
+	public Boolean pedidosButtonEnabled() {
+		return !(getList().size() > 0);
+	}
+	
+	public void refreshList() {
+		getQsm().reset();
 	}
 	
 	
@@ -88,12 +98,12 @@ public class OrdersViewBB implements Serializable {
 	}
 	
 	public void initOrdenSeleccionada() {
-		publish("OrdersViewBB.initOrdenSeleccionada() ... - items= " + getList().size());
+//		publish("OrdersViewBB.initOrdenSeleccionada() ... - items= " + getList().size());
 		for(Order ord : getList()) {
-			publish("order.id = " + ord.getId() + ", itemSel = " + itemSel);
+//			publish("order.id = " + ord.getId() + ", itemSel = " + itemSel);
 			if(ord.getId().compareTo(Integer.valueOf(itemSel)) == 0) {
 				orderseleccionada = ord;
-				publish("OrdersViewBB.initOrdenSeleccionada() - encontrado match - ");
+//				publish("OrdersViewBB.initOrdenSeleccionada() - encontrado match - ");
 
 			}
 		}

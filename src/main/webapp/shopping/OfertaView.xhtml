@@ -2,6 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:lui="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:em="http://jsfcompslib.src/taglib"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
@@ -22,15 +24,50 @@
 		</ui:define>
 
 		<ui:define name="columna derecha">
-			<p:outputText rendered="#{!ofertaViewBB.isClient()}" value="Login para continuar"></p:outputText>
+		
+			<p:outputText rendered="#{!ofertaViewBB.isClient()}" value="#{ofertaViewBB.getStringLoginadvicetext()}"></p:outputText>
 			<p:form>
-				<p:commandButton  rendered="#{ofertaViewBB.isClient()}" class="botonclass" id="botonaddtocart" value="agregar al carrito" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
+				<p:commandButton  rendered="#{ofertaViewBB.isClient()}" class="botonclass" id="botonaddtocart" value="#{ofertaViewBB.getStringAddToCart()}" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
 			<br/><br/>
-				<p:outputText value="Cantidad : "></p:outputText>
-				<p:inputText value="#{ofertaViewBB.counter}"></p:inputText>
-
-
+<!-- 				<p:outputText value="Cantidad : "></p:outputText> -->
+<!-- 				<p:inputText value="#{ofertaViewBB.counter}"></p:inputText> -->
 			</p:form>
+			
+			<!-- 
+			<p:form >
+				<p:outputLabel value="#{ofertaViewBB.getStringTextoetiquetadesplegable()}"></p:outputLabel>
+				
+				<lui:selectOneMenu id="selectonemenu" value="#{ofertaViewBB.counter}">
+					<c:selectItems value="#{ofertaViewBB.getListaDisponible()}"></c:selectItems>
+					<lui:ajax event="itemSelect" process="@all" update="@all" listener="#{ofertaViewBB.process2()}"/>		
+				</lui:selectOneMenu>
+				
+			</p:form>
+			
+			 -->
+			
+			<!-- AddUnitsComp -->
+			
+<!-- 				texto1="" -->
+<!-- 				texto2="" -->
+<!-- 				texto3="" -->
+<!-- 				texto4="" -->
+<!-- 				divclass="" -->
+<!-- 				botonclass="" -->	
+<!-- 		
+			
+			<em:AddUnitsComp				
+				textoboton="#{ofertaViewBB.getStringAddToCart()}"
+				textoetiquetadesplegable="#{ofertaViewBB.getStringTextoetiquetadesplegable()}"
+				loginadvicetext="#{ofertaViewBB.getStringLoginadvicetext()}"				
+				numItems="#{ofertaViewBB.counter}"
+				listaItems="#{ofertaViewBB.getListaDisponible()}"				
+				bean="#{ofertaViewBB}"				
+			>
+			</em:AddUnitsComp>
+			
+			 -->	
+			 
 		</ui:define>
 	</ui:composition>
 </p:body>

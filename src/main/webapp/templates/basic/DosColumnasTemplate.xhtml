@@ -5,24 +5,28 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <p:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
 	<p:outputStylesheet library="css" name="slideshowcontrol.css"></p:outputStylesheet>
-	
+
 </p:head>
 <p:body>
 
-	<div class="divclass" style="position: sticky; top: 0; z-index: 1; background-color: white; opacity: 1.0;">
-		<ui:insert name="LogBar">LogBar</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="Body">Body</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="Ofertas">Ofertas</ui:insert>
-	</div>
-	<div class="divclass">	
-		<ui:insert name="Footer">Footer</ui:insert>
-	</div>
+	<div id="contenedor" class="divclass" style="height: 100%;">
+		<p>contenedor</p>
 
+		<div id="columnaizquierda" class="divclass" style="width: 20%;">
+			<p>columnaizquierda</p>
+			<ui:insert name="columna izquierda"></ui:insert>
+		</div>
+		<div id="columnaderecha" class="divclass" style="width: 70%;">
+			<p>columnaderecha</p>
+			<ui:insert name="columna derecha"></ui:insert>
+			
+		</div>
+
+
+
+	</div>
 
 </p:body>
 </html>
