@@ -28,13 +28,13 @@
 		<ui:define name="totales">		
 			<div id="totales">
 			<em:output4botoncomp 
-				texto1="Numero de articulos : "
+				texto1="#{cartValuedBB.getStringNumeroDeArticulos()}"
 				texto2="#{cartValuedBB.getCart().getListaItems().size()}"
-				texto3="Precio total : "
+				texto3="#{cartValuedBB.getStringPrecioTotal()}"
 				texto4="#{cartValuedBB.getCart().getValue()}"
 				bean="#{cartValuedBB}"
 				botonclass="botonclass"
-				botontext="Confirmar compra"				
+				botontext="#{cartValuedBB.getStringConfirmarCompra()}"				
 			></em:output4botoncomp>		
 		</div>
 		</ui:define>
@@ -44,13 +44,13 @@
 		<ui:define name="confirmar compra">
 		<div id="confirmar">
 		<em:output4botoncomp 
-			texto1="Numero de articulos : "
+			texto1="#{cartValuedBB.getStringNumeroDeArticulos()}"
 			texto2="#{cartValuedBB.getCart().getListaItems().size()}"
-			texto3="Precio total : "
+			texto3="#{cartValuedBB.getStringPrecioTotal()}"
 			texto4="#{cartValuedBB.getCart().getValue()}"
 			bean="#{cartValuedBB}"
 			botonclass="botonclass"
-			botontext="Confirmar compra"	
+			botontext="#{cartValuedBB.getStringConfirmarCompra()}"	
 		
 		></em:output4botoncomp>
 		</div>
@@ -60,8 +60,8 @@
 		<ui:define name="columna izquierda">
 		
 		<p:form>
-				<p:commandButton id="botonvaciarcarrito" class="botonclass" value="Vaciar carrito" action="#{cartValuedBB.reset}"></p:commandButton>
-				<p:commandButton id="botoncomprarmas" class="botonclass" value="Comprar mas" action="#{cartValuedBB.moreItems}"></p:commandButton>
+				<p:commandButton id="botonvaciarcarrito" class="botonclass" value="#{cartValuedBB.getStringVaciarCarrito()}" action="#{cartValuedBB.reset}"></p:commandButton>
+				<p:commandButton id="botoncomprarmas" class="botonclass" value="#{cartValuedBB.getStringComprarMas()}" action="#{cartValuedBB.moreItems}"></p:commandButton>
 			</p:form>
 
 		</ui:define>

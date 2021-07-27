@@ -15,21 +15,21 @@
 		<ui:define name="bloque1">	
 		<em:output6fieldscom
 		
-			at1="Id : "
+			at1="#{ofertaViewBB.getStringOfertaId()}"
 			at2="#{ofertaViewBB.getOferta().getId()}"
-			at3="Name : "
+			at3="#{ofertaViewBB.getStringOfertaName()}"
 			at4="#{ofertaViewBB.getOferta().getName()}"
-			at5="Price : "
+			at5="#{ofertaViewBB.getStringOfertaPrice()}"
 			at6="#{ofertaViewBB.getOferta().getPrecio()}"		
 		></em:output6fieldscom>		
 		<em:output6fieldscom
 		
-			at1="Description : "
+			at1="#{ofertaViewBB.getStringOfertaDescription()}"
 			at2="#{ofertaViewBB.getOferta().getDescripcion()}"
 			
 			at4="#{ofertaViewBB.getOferta().getArticulo().getName()}"
 			at5="#{ofertaViewBB.getOferta().getArticulo().getProduct().getName()}"
-			at6="Otra informacion de la oferta"		
+			at6="#{ofertaViewBB.getStringOfertaInfo()}"		
 		></em:output6fieldscom>			
 		</ui:define>
 

@@ -28,8 +28,8 @@
 				<p:commandButton class="botonrcorner" value="Simula pago KO"
 					action="#{purchaseViewBB.simulaPagoKO()}"></p:commandButton>
 				<br />
-				<p:button id="stripebutton" value="Pagar con Stripe"></p:button><br />
-				<p:outputText value="Order id: "></p:outputText>
+				<p:button id="stripebutton" value="#{purchaseViewBB.getStringPagarConStripe()}"></p:button><br />
+				<p:outputText value="#{purchaseDetailViewBB.getStringOrderId()}"></p:outputText>
 				<p:outputText value="#{purchaseViewBB.getOrder().id}"></p:outputText>
 				<br />
 			</p:form>
@@ -37,19 +37,19 @@
 
 		<ui:define name="client">
 		
-			<em:outputusercomp label1="Nick: "
-				text1="#{purchaseViewBB.getUser().nick}" label2="Name: "
-				text2="#{purchaseViewBB.getUser().name}" label3="Email: "
+			<em:outputusercomp label1="#{purchaseDetailViewBB.getStringUserNick()}"
+				text1="#{purchaseViewBB.getUser().nick}" label2="#{purchaseDetailViewBB.getStringUserName()}"
+				text2="#{purchaseViewBB.getUser().name}" label3="#{purchaseDetailViewBB.getStringUserEmail()}"
 				text3="#{purchaseViewBB.getUser().email}"></em:outputusercomp>
 		</ui:define>
 
 		<ui:define id="deliverydetails" name="delivery">
 		
-			<em:inputdeliverydetailscomp titulotexto1="Direccion de envio: "
+			<em:inputdeliverydetailscomp titulotexto1="#{purchaseDetailViewBB.getStringDeliveryAddress()}"
 				texto1="#{purchaseViewBB.deliveryAddress}"
-				titulotexto2="Comentarios: "
+				titulotexto2="#{purchaseDetailViewBB.getStringDeliveryRemarks()}"
 				texto2="#{purchaseViewBB.remark}"
-				titulo3="Tipo de envio: "
+				titulo3="#{purchaseDetailViewBB.getStringDeliveryType()}"
 				texto3="#{purchaseViewBB.deliveryType}" 
 				buttonclass="botonrcorner"
 				inputtextclass="inputtext">
@@ -60,9 +60,9 @@
 
 		<ui:define name="cart">
 		
-			<em:outputcartcomp titulo1="Numero de items: "
+			<em:outputcartcomp titulo1="#{purchaseDetailViewBB.getStringCartNumArticulos()}"
 				texto1="#{purchaseViewBB.getCart().getListaOfertas().size()}"
-				titulo2="Precio total: " texto2="#{purchaseViewBB.getCart().value}"
+				titulo2="#{purchaseDetailViewBB.getStringCartPrice()}" texto2="#{purchaseViewBB.getCart().value}"
 				lista="#{purchaseViewBB.getCart().listaOfertas}"></em:outputcartcomp>
 		</ui:define>
 

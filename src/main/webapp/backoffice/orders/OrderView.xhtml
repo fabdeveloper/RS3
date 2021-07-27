@@ -17,11 +17,11 @@
 		<ui:define name="bloque1">
 		
 			<em:output3fieldscom
-				at1="Identificador del pedido : "
+				at1="#{purchaseDetailViewBB.getStringOrderId()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getId()}"
-				at3="Fecha de confirmacion: "
+				at3="#{purchaseDetailViewBB.getStringOrderConfirmationDate()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getConfirmationDate()}"
-				at5="Estado: "
+				at5="#{purchaseDetailViewBB.getStringOrderStatus()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getPurchaseStatus().getStatus()}"
 			></em:output3fieldscom>
 		</ui:define>	
@@ -30,13 +30,13 @@
 		<ui:define name="bloque4">
 		
 			<em:output6fieldscom
-				at1="Cliente: "
+				at1="#{purchaseDetailViewBB.getStringUserName()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getClient().getName()}"
-				at3="Nick: "
+				at3="#{purchaseDetailViewBB.getStringUserNick()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getClient().getNick()}"
-				at5="Direccion: "
+				at5="#{purchaseDetailViewBB.getStringUserAddress()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getClient().getAddress()}"
-				at7="Email: "
+				at7="#{purchaseDetailViewBB.getStringUserEmail()}"
 				at8="#{ordersViewBB.getOrderseleccionada().getClient().getEmail()}"				
 
 			></em:output6fieldscom>
@@ -46,13 +46,13 @@
 		<ui:define name="bloque3">
 		
 			<em:output6fieldscom
-				at1="Direccion de entrega: "
+				at1="#{purchaseDetailViewBB.getStringDeliveryAddress()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryAddress()}"
-				at3="Comentarios de entrega: "
+				at3="#{purchaseDetailViewBB.getStringDeliveryRemarks()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getRemark()}"
-				at5="Tipo de envio: "
+				at5="#{purchaseDetailViewBB.getStringDeliveryType()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryType()}"
-				at7="Estado de la entrega : "
+				at7="#{purchaseDetailViewBB.getStringDeliveryStatus()}"
 				at8="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getStatus()}"
 			></em:output6fieldscom>	
 		</ui:define>
@@ -61,9 +61,9 @@
 		<ui:define name="bloque2">
 		
 			<em:outputcartcomp
-				titulo1="Numero de items: "
+				titulo1="#{purchaseDetailViewBB.getStringCartNumArticulos()}"
 				texto1="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems().size()}"
-				titulo2="Precio total: "
+				titulo2="#{purchaseDetailViewBB.getStringCartPrice()}"
 				texto2="#{ordersViewBB.getOrderseleccionada().getCart().getValue()}"
 				lista="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems()}"		
 			></em:outputcartcomp>	

@@ -14,8 +14,8 @@
 		<ui:define name="datos de usuario">
 		
 			<em:outputusercomp label1="Nick: "
-				text1="#{purchaseViewBB.getUser().nick}" label2="Name: "
-				text2="#{purchaseViewBB.getUser().name}" label3="Email: "
+				text1="#{purchaseViewBB.getUser().nick}" label2="#{purchaseViewBB.getStringUserName()}"
+				text2="#{purchaseViewBB.getUser().name}" label3="#{purchaseViewBB.getStringUserEmail()}"
 				text3="#{purchaseViewBB.getUser().email}"
 				></em:outputusercomp>
 		
@@ -24,14 +24,16 @@
 		
 		<ui:define name="datos de entrega">
 		
-			<em:inputdeliverydetailscomp titulotexto1="Direccion de envio: "
+			<em:inputdeliverydetailscomp 
+				titulotexto1="#{purchaseViewBB.getStringDireccionEnvio()}"
 				texto1="#{purchaseViewBB.deliveryAddress}"
-				titulotexto2="Comentarios: "
+				titulotexto2="#{purchaseViewBB.getStringComentarios()}"
 				texto2="#{purchaseViewBB.remark}"
-				titulo3="Tipo de envio: "
+				titulo3="#{purchaseViewBB.getStringTipoEnvio()}"
 				texto3="#{purchaseViewBB.deliveryType}" 
 				buttonclass="botonclass"
 				inputtextclass="inputclass"
+				buttontext="#{purchaseViewBB.getStringActualizarDatosEnvio()}"
 				bean="#{purchaseViewBB}"				
 				>
 				

@@ -17,11 +17,11 @@
 		<ui:define name="bloque1">
 		
 			<em:output3fieldscom
-				at1="Identificador del pedido : "
+				at1="#{purchaseDetailViewBB.getStringOrderId()}"
 				at2="#{purchaseDetailViewBB.orderId}"
-				at3="Fecha de confirmacion: "
+				at3="#{purchaseDetailViewBB.getStringOrderConfirmationDate()}"
 				at4="#{purchaseDetailViewBB.confirmationDate}"
-				at5="Estado: "
+				at5="#{purchaseDetailViewBB.getStringOrderStatus()}"
 				at6="#{purchaseDetailViewBB.orderStatus}"
 			></em:output3fieldscom>
 		</ui:define>	
@@ -30,13 +30,13 @@
 		<ui:define name="bloque4">
 		
 			<em:output6fieldscom
-				at1="Cliente: "
+				at1="#{purchaseDetailViewBB.getStringUserName()}"
 				at2="#{purchaseDetailViewBB.clientName}"
-				at3="Nick: "
+				at3="#{purchaseDetailViewBB.getStringUserNick()}"
 				at4="#{purchaseDetailViewBB.clientNick}"
-				at5="Direccion: "
+				at5="#{purchaseDetailViewBB.getStringUserAddress()}"
 				at6="#{purchaseDetailViewBB.clientAddress}"
-				at7="Email: "
+				at7="#{purchaseDetailViewBB.getStringUserEmail()}"
 				at8="#{purchaseDetailViewBB.clientEmail}"				
 
 			></em:output6fieldscom>
@@ -46,13 +46,13 @@
 		<ui:define name="bloque3">
 		
 			<em:output6fieldscom
-				at1="Direccion de entrega: "
+				at1="#{purchaseDetailViewBB.getStringDeliveryAddress()}"
 				at2="#{purchaseDetailViewBB.deliveryAddress}"
-				at3="Comentarios de entrega: "
+				at3="#{purchaseDetailViewBB.getStringDeliveryRemarks()}"
 				at4="#{purchaseDetailViewBB.deliveryRemarks}"
-				at5="Tipo de envio: "
+				at5="#{purchaseDetailViewBB.getStringDeliveryType()}"
 				at6="#{purchaseDetailViewBB.deliveryType}"
-				at7="Estado de la entrega : "
+				at7="#{purchaseDetailViewBB.getStringDeliveryStatus()}"
 				at8="#{purchaseDetailViewBB.deliveryStatus}"
 			></em:output6fieldscom>	
 		</ui:define>
@@ -61,9 +61,9 @@
 		<ui:define name="bloque2">
 		
 			<em:outputcartcomp
-				titulo1="Numero de items: "
+				titulo1="#{purchaseDetailViewBB.getStringCartNumArticulos()}"
 				texto1="#{purchaseDetailViewBB.cartNumItems}"
-				titulo2="Precio total: "
+				titulo2="#{purchaseDetailViewBB.getStringCartPrice()}"
 				texto2="#{purchaseDetailViewBB.cartTotalPrice}"
 				lista="#{purchaseDetailViewBB.cartItemsList}"		
 			></em:outputcartcomp>	

@@ -40,11 +40,7 @@ public class CartValuedBB implements IProcessable{
 	public String configOrder(){
 		return shoppingFacade.configOrder();
 	}
-	
-	
-//	public String createOrder(){
-//		return shoppingFacade.createOrder();
-//	}
+
 
 	public Cart getCart() {
 		return shoppingFacade.getCart();
@@ -100,11 +96,7 @@ public class CartValuedBB implements IProcessable{
 	public String modifItem(Integer id, Integer numItems){
 		return shoppingFacade.changeNumItems(id, numItems);
 	}
-	
-//	@Transactional
-//	public void modifItem(Integer id, Integer numItems){
-//		shoppingFacade.changeNumItems(id, numItems);
-//	}
+
 	
 	public List<SelectItem> getListaStock(Integer stock){
 		List<SelectItem> lista = new ArrayList<SelectItem>();
@@ -113,6 +105,30 @@ public class CartValuedBB implements IProcessable{
 			lista.add(new SelectItem(i, num));
 		}
 		return lista;		
+	}
+	
+	private String getString(String etiqueta) {
+		return getShoppingFacade().getString(etiqueta);
+	}
+	
+	public String getStringNumeroDeArticulos() {
+		return getString("cartview_total_Numerodearticulos");
+	}
+	
+	public String getStringPrecioTotal() {
+		return getString("cartview_total_Preciototal");
+	}
+	
+	public String getStringConfirmarCompra() {
+		return getString("cartview_total_buttontext_Confirmarcompra");
+	}
+	
+	public String getStringVaciarCarrito() {
+		return getString("cartview_total_buttontext_Vaciarcarrito");
+	}
+	
+	public String getStringComprarMas() {
+		return getString("cartview_total_buttontext_Comprarmas");
 	}
 	
 

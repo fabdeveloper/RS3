@@ -68,6 +68,28 @@ public class OfertaViewBB implements IProcessable {
 		return getString("oferta_loginadvicetext");
 	}
 	
+	public String getStringOfertaId() {
+		return getString("ofertaviewaux_oferta_code");
+	}
+	
+	public String getStringOfertaName() {
+		return getString("ofertaviewaux_oferta_name");
+	}
+	
+	public String getStringOfertaPrice() {
+		return getString("ofertaviewaux_oferta_price");
+	}
+	
+	public String getStringOfertaDescription() {
+		return getString("ofertaviewaux_oferta_description");
+	}
+	
+	public String getStringOfertaInfo() {
+		return getString("ofertaviewaux_oferta_info");
+	}
+	
+	
+	
 	/***************************************************/
 	
 	private List<Integer> listaDisponible;
