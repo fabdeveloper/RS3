@@ -22,48 +22,12 @@
 
 		<ui:define name="columna derecha">
 		
-			<p:outputText rendered="#{!ofertaViewBB.isClient()}" value="#{ofertaViewBB.getStringLoginadvicetext()}"></p:outputText>
+			<p:outputText rendered="#{!ofertaViewBB.isClient()}" value="#{generalLocalizationHelper.getStringLoginadvicetext()}"></p:outputText>
 			<p:form>
-				<p:commandButton  rendered="#{ofertaViewBB.isClient()}" class="botonclass" id="botonaddtocart" value="#{ofertaViewBB.getStringAddToCart()}" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
+				<p:commandButton  rendered="#{ofertaViewBB.isClient()}" class="botonclass" id="botonaddtocart" value="#{generalLocalizationHelper.getStringAddToCart()}" action="#{ofertaViewBB.addToCart()}"></p:commandButton>
 			<br/><br/>
-<!-- 				<p:outputText value="Cantidad : "></p:outputText> -->
-<!-- 				<p:inputText value="#{ofertaViewBB.counter}"></p:inputText> -->
+
 			</p:form>
-			
-			<!-- 
-			<p:form >
-				<p:outputLabel value="#{ofertaViewBB.getStringTextoetiquetadesplegable()}"></p:outputLabel>
-				
-				<lui:selectOneMenu id="selectonemenu" value="#{ofertaViewBB.counter}">
-					<c:selectItems value="#{ofertaViewBB.getListaDisponible()}"></c:selectItems>
-					<lui:ajax event="itemSelect" process="@all" update="@all" listener="#{ofertaViewBB.process2()}"/>		
-				</lui:selectOneMenu>
-				
-			</p:form>
-			
-			 -->
-			
-			<!-- AddUnitsComp -->
-			
-<!-- 				texto1="" -->
-<!-- 				texto2="" -->
-<!-- 				texto3="" -->
-<!-- 				texto4="" -->
-<!-- 				divclass="" -->
-<!-- 				botonclass="" -->	
-<!-- 		
-			
-			<em:AddUnitsComp				
-				textoboton="#{ofertaViewBB.getStringAddToCart()}"
-				textoetiquetadesplegable="#{ofertaViewBB.getStringTextoetiquetadesplegable()}"
-				loginadvicetext="#{ofertaViewBB.getStringLoginadvicetext()}"				
-				numItems="#{ofertaViewBB.counter}"
-				listaItems="#{ofertaViewBB.getListaDisponible()}"				
-				bean="#{ofertaViewBB}"				
-			>
-			</em:AddUnitsComp>
-			
-			 -->	
 			 
 		</ui:define>
 	</ui:composition>

@@ -12,21 +12,21 @@
 		<ui:define name="bloque1">	
 		<em:output6fieldscom
 		
-			at1="#{ofertaViewBB.getStringOfertaId()}"
+			at1="#{generalLocalizationHelper.getStringOfertaId()}"
 			at2="#{ofertaViewBB.getOferta().getId()}"
-			at3="#{ofertaViewBB.getStringOfertaName()}"
+			at3="#{generalLocalizationHelper.getStringOfertaName()}"
 			at4="#{ofertaViewBB.getOferta().getName()}"
-			at5="#{ofertaViewBB.getStringOfertaPrice()}"
+			at5="#{generalLocalizationHelper.getStringOfertaPrice()}"
 			at6="#{ofertaViewBB.getOferta().getPrecio()}"		
 		></em:output6fieldscom>		
 		<em:output6fieldscom
 		
-			at1="#{ofertaViewBB.getStringOfertaDescription()}"
+			at1="#{generalLocalizationHelper.getStringOfertaDescription()}"
 			at2="#{ofertaViewBB.getOferta().getDescripcion()}"
 			
 			at4="#{ofertaViewBB.getOferta().getArticulo().getName()}"
 			at5="#{ofertaViewBB.getOferta().getArticulo().getProduct().getName()}"
-			at6="#{ofertaViewBB.getStringOfertaInfo()}"		
+			at6="#{generalLocalizationHelper.getStringOfertaInfo()}"		
 		></em:output6fieldscom>			
 		</ui:define>
 

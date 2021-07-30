@@ -107,6 +107,10 @@ public class CartValuedBB implements IProcessable{
 		return lista;		
 	}
 	
+	/*****************************************************/
+	// LOCALIZATION
+	
+	/*
 	private String getString(String etiqueta) {
 		return getShoppingFacade().getString(etiqueta);
 	}
@@ -130,6 +134,8 @@ public class CartValuedBB implements IProcessable{
 	public String getStringComprarMas() {
 		return getString("cartview_total_buttontext_Comprarmas");
 	}
+	
+	*/
 	
 
 	

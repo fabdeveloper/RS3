@@ -17,17 +17,13 @@ public class LogoutBB {
 
 
 	
-	public String pedidoButtonText(){
-		return shoppingFacade.getString("logout_pedido");
-	}
+
 	
 	public String pedidoButtonAction(){
 		return getShoppingFacade().showOrders();
 	}
 	
-	public String accountButtonText(){ // accountButtonText
-		return shoppingFacade.getCallerName();
-	}
+
 	
 	public String accountButtonAction(){
 		return shoppingFacade.getViewStateMachine().setUserManagementView();
@@ -35,7 +31,7 @@ public class LogoutBB {
 	
 	public String cartButtonText(){
 		Integer numItems = shoppingFacade.getCartManager().getNumItems();
-		String cart = shoppingFacade.getString("logout_cart");
+		String cart = shoppingFacade.getString("logout_cart");   // TODO : LOCALIZATION MANAGER
 		String text = cart + ": " + numItems;
 		return text;
 	}
@@ -44,9 +40,11 @@ public class LogoutBB {
 		return shoppingFacade.getViewStateMachine().setCartView();
 	}
 	
-	public String closeSessionText(){
-		return shoppingFacade.getString("logout_close_session_buttontext");
+	public String accountButtonText(){ // accountButtonText
+		return shoppingFacade.getCallerName();
 	}
+	
+
 	
 	public String closeSessionAction(){		
 		return shoppingFacade.logout();
@@ -59,6 +57,26 @@ public class LogoutBB {
 	public void setShoppingFacade(IShoppingFacade shoppingFacade) {
 		this.shoppingFacade = shoppingFacade;
 	}
+	
+	
+	
+	
+	/*****************************************/
+	// LOCALIZATION
+	
+	
+	/*
+	public String closeSessionText(){
+		return shoppingFacade.getString("logout_close_session_buttontext");
+	}
+	
+
+	
+	public String pedidoButtonText(){
+		return shoppingFacade.getString("logout_pedido");
+	}
+	
+	*/
 	
 	
 

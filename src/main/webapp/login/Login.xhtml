@@ -13,12 +13,12 @@
 		<em:logincomp
 			user="#{sessionManagementBB.user}"
 			password="#{sessionManagementBB.password}"
-			textbutton="#{localizationManagementBB.getString('login_buttontext')}"
+			textbutton="#{generalLocalizationHelper.getString('login_buttontext')}"
 			bean="#{sessionManagementBB}"		
 		></em:logincomp>
 
-			<p:commandButton value="#{localizationManagementBB.getString('login_create_account')}" action="#{userManagementBB.setUserManagementView}"></p:commandButton>
-			<p:commandButton value="#{localizationManagementBB.getString('login_forgot_your_password')}" action="#{userManagementBB.setRestorePasswordView}"></p:commandButton>
+			<p:commandButton value="#{generalLocalizationHelper.getString('login_create_account')}" action="#{userManagementBB.setUserManagementView}"></p:commandButton>
+			<p:commandButton value="#{generalLocalizationHelper.getString('login_forgot_your_password')}" action="#{userManagementBB.setRestorePasswordView}"></p:commandButton>
 		
 				</p:panelGrid>
 		

@@ -14,11 +14,11 @@
 		<ui:define name="bloque1">
 		
 			<em:output3fieldscom
-				at1="#{purchaseDetailViewBB.getStringOrderId()}"
+				at1="#{generalLocalizationHelper.getStringOrderId()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getId()}"
-				at3="#{purchaseDetailViewBB.getStringOrderConfirmationDate()}"
+				at3="#{generalLocalizationHelper.getStringOrderConfirmationDate()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getConfirmationDate()}"
-				at5="#{purchaseDetailViewBB.getStringOrderStatus()}"
+				at5="#{generalLocalizationHelper.getStringOrderStatus()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getPurchaseStatus().getStatus()}"
 			></em:output3fieldscom>
 		</ui:define>	
@@ -27,13 +27,13 @@
 		<ui:define name="bloque4">
 		
 			<em:output6fieldscom
-				at1="#{purchaseDetailViewBB.getStringUserName()}"
+				at1="#{generalLocalizationHelper.getStringUserName()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getClient().getName()}"
-				at3="#{purchaseDetailViewBB.getStringUserNick()}"
+				at3="#{generalLocalizationHelper.getStringUserNick()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getClient().getNick()}"
-				at5="#{purchaseDetailViewBB.getStringUserAddress()}"
+				at5="#{generalLocalizationHelper.getStringUserAddress()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getClient().getAddress()}"
-				at7="#{purchaseDetailViewBB.getStringUserEmail()}"
+				at7="#{generalLocalizationHelper.getStringUserEmail()}"
 				at8="#{ordersViewBB.getOrderseleccionada().getClient().getEmail()}"				
 
 			></em:output6fieldscom>
@@ -43,13 +43,13 @@
 		<ui:define name="bloque3">
 		
 			<em:output6fieldscom
-				at1="#{purchaseDetailViewBB.getStringDeliveryAddress()}"
+				at1="#{generalLocalizationHelper.getStringDeliveryAddress()}"
 				at2="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryAddress()}"
-				at3="#{purchaseDetailViewBB.getStringDeliveryRemarks()}"
+				at3="#{generalLocalizationHelper.getStringDeliveryRemarks()}"
 				at4="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getRemark()}"
-				at5="#{purchaseDetailViewBB.getStringDeliveryType()}"
+				at5="#{generalLocalizationHelper.getStringDeliveryType()}"
 				at6="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getDeliveryType()}"
-				at7="#{purchaseDetailViewBB.getStringDeliveryStatus()}"
+				at7="#{generalLocalizationHelper.getStringDeliveryStatus()}"
 				at8="#{ordersViewBB.getOrderseleccionada().getDeliveryDetails().getStatus()}"
 			></em:output6fieldscom>	
 		</ui:define>
@@ -58,9 +58,9 @@
 		<ui:define name="bloque2">
 		
 			<em:outputcartcomp
-				titulo1="#{purchaseDetailViewBB.getStringCartNumArticulos()}"
+				titulo1="#{generalLocalizationHelper.getStringCartNumArticulos()}"
 				texto1="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems().size()}"
-				titulo2="#{purchaseDetailViewBB.getStringCartPrice()}"
+				titulo2="#{generalLocalizationHelper.getStringCartPrice()}"
 				texto2="#{ordersViewBB.getOrderseleccionada().getCart().getValue()}"
 				lista="#{ordersViewBB.getOrderseleccionada().getCart().getListaItems()}"		
 			></em:outputcartcomp>	

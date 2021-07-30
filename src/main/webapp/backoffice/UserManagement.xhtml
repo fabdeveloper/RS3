@@ -13,41 +13,41 @@
 
 		<p:panelGrid columns="2">
 
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_id')}"></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_id')}"></p:outputLabel>
 		<p:inputText id="textid" name="textid" 
 		immediate="true" maxlength="10" readonly="true"
 			value="#{userManagementBB.user.id}"
 			></p:inputText>
 		
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_name')}" ></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_name')}" ></p:outputLabel>
 		<p:inputText id="textname" name="textname" 
-			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_name_required_msg')}"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_name_required_msg')}"
 			value="#{userManagementBB.user.name}" 
 			></p:inputText>
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_nick')}" ></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_nick')}" ></p:outputLabel>
 		<p:inputText id="textnick" name="textnick"
-			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_nick_required_msg')}"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_nick_required_msg')}"
 			value="#{userManagementBB.user.nick}"
 			></p:inputText>
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_email')}" ></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_email')}" ></p:outputLabel>
 		<p:inputText id="textemail" name="textemail"
-			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_email_required_msg')}"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_email_required_msg')}"
 			value="#{userManagementBB.user.email}"
 			></p:inputText>
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_password')}"></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_password')}"></p:outputLabel>
 		<p:inputText id="textpassword" name="textpassword"
-			immediate="true" maxlength="40" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_password_required_msg')}"
+			immediate="true" maxlength="40" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_password_required_msg')}"
 			value="#{userManagementBB.user.password}"
 			></p:inputText>
 
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_address')}"></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_address')}"></p:outputLabel>
 		<p:inputText id="textaddress" name="textaddress"
-			immediate="true" maxlength="100" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_address_required_msg')}"
+			immediate="true" maxlength="100" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_address_required_msg')}"
 			value="#{userManagementBB.user.address}"
 			></p:inputText>
-		<p:outputLabel value="#{localizationManagementBB.getString('user_management_telephone')}" ></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('user_management_telephone')}" ></p:outputLabel>
 		<p:inputText id="texttelephone" name="texttelephone"
-			immediate="true" maxlength="20" required="true" requiredMessage="#{localizationManagementBB.getString('user_management_telephone_required_msg')}"
+			immediate="true" maxlength="20" required="true" requiredMessage="#{generalLocalizationHelper.getString('user_management_telephone_required_msg')}"
 			value="#{userManagementBB.user.telephone}"
 			></p:inputText>
 		
@@ -55,9 +55,9 @@
 
 			
 					</p:panelGrid>
-							<p:commandButton id="botoncrear" name="botoncrear" value="#{localizationManagementBB.getString('user_management_buttontext_crear_user')}"
+							<p:commandButton id="botoncrear" name="botoncrear" value="#{generalLocalizationHelper.getString('user_management_buttontext_crear_user')}"
 			action="#{userManagementBB.createNew}"></p:commandButton>
-		<p:commandButton id="botonactualizar" name="botonactualizar" value="#{localizationManagementBB.getString('user_management_buttontext_actualizar_user')}"
+		<p:commandButton id="botonactualizar" name="botonactualizar" value="#{generalLocalizationHelper.getString('user_management_buttontext_actualizar_user')}"
 			action="#{userManagementBB.updateUser}"></p:commandButton>
 	</p:form>
 </body>

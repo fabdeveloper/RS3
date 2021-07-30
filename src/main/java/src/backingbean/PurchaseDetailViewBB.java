@@ -203,8 +203,9 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	
 	
 	/********************************************************/
+	//  LOCALIZATION
 	
-	
+	/*
 	private String getString(String etiqueta) {
 		return getShoppingFacade().getString(etiqueta);
 	}
@@ -272,6 +273,7 @@ public class PurchaseDetailViewBB implements IProcessable, Serializable {
 	public String getStringButtonTextModifyOrder() {
 		return getString("purchasedetailview_buttontext_modify_order");
 	}
+	*/
 
 	
 	

@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>JEE7</groupId>
+  <groupId>EShop</groupId>
   <artifactId>RS3</artifactId>
   <version>1</version>
   <packaging>war</packaging>
@@ -76,11 +76,18 @@
   		<version>0</version>  		
   	</dependency>
 
-	  		<dependency>
-  		<groupId>EShop</groupId>
-  <artifactId>JSFCompsLib</artifactId>
-  <version>0</version>	
+	<dependency>
+		  <groupId>EShop</groupId>
+		  <artifactId>JSFCompsLib</artifactId>
+		  <version>0</version>	
   	</dependency>
+  	
+  	
+	<dependency>
+		<groupId>EShop</groupId>
+		<artifactId>LocalizationUtility</artifactId>
+		<version>1</version>	  	
+	</dependency>
 
 
   </dependencies>

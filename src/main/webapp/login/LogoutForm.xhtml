@@ -10,13 +10,13 @@
 		<p:form>
 			<p:inputHidden value="#{sessionManagementBB.isLoaded}"></p:inputHidden>
 			<p:outputText value="#{sessionManagementBB.getCallerName()}" style="display: inline;"></p:outputText>
-			<p:commandButton class="botonclass margenderecho" value="#{localizationManagementBB.getString('logout_close_session_buttontext')}" action="#{sessionManagementBB.logout()}" style="display: inline; width: auto;"></p:commandButton>
+			<p:commandButton class="botonclass margenderecho" value="#{generalLocalizationHelper.getString('logout_close_session_buttontext')}" action="#{sessionManagementBB.logout()}" style="display: inline; width: auto;"></p:commandButton>
 		</p:form>
 	</div>
 	<div class="margenderecho" style="display: inline;" onclick="#{cartValuedBB.showCart()}">
-		<p:outputLabel value="#{localizationManagementBB.getString('logout_cart')}" ></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('logout_cart')}" ></p:outputLabel>
 		<p:outputText value="#{cartValuedBB.getCart().getListaItems().size()}"></p:outputText>
-		<p:outputLabel value="#{localizationManagementBB.getString('logout_num_items')}"></p:outputLabel>
+		<p:outputLabel value="#{generalLocalizationHelper.getString('logout_num_items')}"></p:outputLabel>
 		
 	</div>
 

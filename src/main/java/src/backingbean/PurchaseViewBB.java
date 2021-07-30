@@ -100,6 +100,12 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		return shoppingFacade.preConfirm();
 	}
 	
+	
+	/***************************************************/
+	// LOCALIZATION
+	
+	/*
+	
 	private String getString(String etiqueta) {
 		return getShoppingFacade().getString(etiqueta);
 	}
@@ -131,5 +137,6 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	public String getStringPagarConStripe() {
 		return getString("purchaseview_buttontext_pagarconStripe");
 	}
+	*/
 
 }

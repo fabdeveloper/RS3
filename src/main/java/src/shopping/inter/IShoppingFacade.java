@@ -2,6 +2,7 @@ package src.shopping.inter;
 
 import java.util.List;
 
+import localizationUtility.src.inter.ILocalizationManager;
 import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.CartItem;
@@ -22,7 +23,7 @@ public interface IShoppingFacade {
 	public IStockManager getStockManager();
 	public IViewStateMachine getViewStateMachine();
 	public ISessionManager getSessionManager();
-	public ILocationManager getLocationManager();
+	public ILocalizationManager getLocationManager();
 
 	
 	// AvailabilityManagement

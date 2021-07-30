@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
+import localizationUtility.src.inter.ILocalizationManager;
 import src.entity.Articulo;
 import src.entity.Cart;
 import src.entity.CartItem;
@@ -29,7 +30,6 @@ import src.inter.IServiceLocator;
 import src.manager.IStockManager;
 import src.shopping.inter.IAvailabilityManager;
 import src.shopping.inter.ICartManager;
-import src.shopping.inter.ILocationManager;
 import src.shopping.inter.ISessionManager;
 import src.shopping.inter.IShoppingFacade;
 import src.shopping.inter.IPurchaseManager;
@@ -57,7 +57,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 	@Inject
 	private ISessionManager sessionManager;
 	@Inject
-	private ILocationManager locationManager;
+	private ILocalizationManager locationManager;
 	
 	private Oferta ofertaSeleccionada;
 
@@ -374,15 +374,17 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		return invalidateSession();
 	}
 
+	
 	@Override
-	public ILocationManager getLocationManager() {
+	public ILocalizationManager getLocationManager() {
 		return locationManager;
 	}
 
 	@Override
 	public String getString(String prop) {
-		return locationManager.getString(prop);
+		return getLocationManager().getString(prop);
 	}
+	
 
 	@Override
 	public List<Product> getDepartmentStoreList() {
@@ -436,7 +438,7 @@ public class ShoppingFacade implements IShoppingFacade, Serializable{
 		this.sessionManager = sessionManager;
 	}
 
-	public void setLocationManager(ILocationManager locationManager) {
+	public void setLocationManager(ILocalizationManager locationManager) {
 		this.locationManager = locationManager;
 	}
 	

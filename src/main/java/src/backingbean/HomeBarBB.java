@@ -14,9 +14,7 @@ public class HomeBarBB {
 	@Inject
 	private IShoppingFacade shoppingFacade;
 	
-	public String getHomeButtonText(){
-		return shoppingFacade.getString("searchbar_homebuttontext");
-	}
+
 	
 	public String homeButtonAction(){
 		return shoppingFacade.getViewStateMachine().setHomeView();		
@@ -31,6 +29,14 @@ public class HomeBarBB {
 	}
 	
 	
+	/*********************************/
+	// LOCALIZATION
+	
+	/*
+	public String getHomeButtonText(){
+		return shoppingFacade.getString("searchbar_homebuttontext");
+	}
+	*/
 	
 
 
