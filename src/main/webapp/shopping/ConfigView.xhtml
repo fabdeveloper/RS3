@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:p="http://java.sun.com/jsf/html"
-	xmlns:em="http://jsfcompslib.src/taglib"
+	xmlns:comps="http://jsfcompslib.src/taglib"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <p:body>
@@ -11,31 +11,44 @@
 
 		<ui:define name="datos de usuario">
 		
-			<em:outputusercomp label1="Nick: "
+			<comps:outputusercomp label1="Nick: "
 				text1="#{purchaseViewBB.getUser().nick}" label2="#{generalLocalizationHelper.getStringUserName()}"
 				text2="#{purchaseViewBB.getUser().name}" label3="#{generalLocalizationHelper.getStringUserEmail()}"
 				text3="#{purchaseViewBB.getUser().email}"
-				></em:outputusercomp>
+				></comps:outputusercomp>
 		
 		
 		</ui:define>
 		
 		<ui:define name="datos de entrega">
 		
-			<em:inputdeliverydetailscomp 
-				titulotexto1="#{generalLocalizationHelper.getStringDireccionEnvio()}"
-				texto1="#{purchaseViewBB.deliveryAddress}"
-				titulotexto2="#{generalLocalizationHelper.getStringComentarios()}"
-				texto2="#{purchaseViewBB.remark}"
-				titulo3="#{generalLocalizationHelper.getStringTipoEnvio()}"
-				texto3="#{purchaseViewBB.deliveryType}" 
+
+			
+			<comps:UpdatableDeliveryDetailsComp
+				addresslabel="#{generalLocalizationHelper.getStringDeliveryAddress()}"
+				address="#{purchaseViewBB.deliveryDetails.deliveryAddress}"
+				remarkslabel="#{generalLocalizationHelper.getStringDeliveryRemarks()}"
+				remarks="#{purchaseViewBB.deliveryDetails.remark}"
+				remarksrendered="#{purchaseViewBB.remarksRendered}"
+				deliverytypedisabled="#{purchaseViewBB.deliveryTypeDisabled}"
+				typelabel="#{generalLocalizationHelper.getStringDeliveryType()}"
+				typeselected="#{purchaseViewBB.deliveryDetails.deliveryType}"
+				listaDeliveryTypes="#{purchaseViewBB.listaDeliveryTypes}"
+				deliverystatusdisabled="#{purchaseViewBB.deliveryStatusDisabled}"
+				statuslabel="#{generalLocalizationHelper.getStringDeliveryStatus()}"
+				statusselected="#{purchaseViewBB.deliveryDetails.status}"
+				listaDeliveryStatusTypes="#{purchaseViewBB.listaDeliveryStatusTypes}"
+				lastModificationDate="#{purchaseViewBB.deliveryDetails.lastModificationDate}"
+				lastModificationDateDisabled="#{purchaseViewBB.lastModificationDateDisabled}"
+				lastModificationDateRendered="#{purchaseViewBB.lastModificationDateRendered}"
+				menuEventListener="#{purchaseViewBB.menuEventListener()}"
 				buttonclass="botonclass"
 				inputtextclass="inputclass"
 				buttontext="#{generalLocalizationHelper.getStringActualizarDatosEnvio()}"
-				bean="#{purchaseViewBB}"				
-				>
-				
-			</em:inputdeliverydetailscomp>
+				updateDeliveryInfo="#{purchaseViewBB.updateDeliveryInfo()}"
+			></comps:UpdatableDeliveryDetailsComp>
+
+
 		
 		</ui:define>
 		

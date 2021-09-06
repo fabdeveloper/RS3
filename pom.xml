@@ -11,7 +11,6 @@
 
   <name>RS3</name>
 
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -26,38 +25,35 @@
       <scope>test</scope>
     </dependency>
     
-                    <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-<dependency>
-    <groupId>javax</groupId>
-    <artifactId>javaee-api</artifactId>
-    <version>8.0</version>
-    <scope>provided</scope>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-<dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-all</artifactId>
-    <version>1.10.19</version>
-    <scope>test</scope>
-</dependency>
-
-
-<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.47</version>
-</dependency>
-
-
-
-<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
-<dependency>
-    <groupId>org.primefaces</groupId>
-    <artifactId>primefaces</artifactId>
-    <version>8.0</version>
-</dependency>
+    <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+	<dependency>
+	    <groupId>javax</groupId>
+	    <artifactId>javaee-api</artifactId>
+	    <version>8.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-all</artifactId>
+	    <version>1.10.19</version>
+	    <scope>test</scope>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.47</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+	<dependency>
+	    <groupId>org.primefaces</groupId>
+	    <artifactId>primefaces</artifactId>
+	    <version>8.0</version>
+	</dependency>
 
 	<dependency>
   		<groupId>EShop</groupId>
@@ -69,15 +65,13 @@
 		  <groupId>EShop</groupId>
 		  <artifactId>JSFCompsLib</artifactId>
 		  <version>0</version>	
-  	</dependency>
-  	
+  	</dependency>  	
   	
 	<dependency>
 		<groupId>EShop</groupId>
 		<artifactId>LocalizationUtility</artifactId>
 		<version>1</version>	  	
 	</dependency>
-
 
   </dependencies>
 
@@ -129,7 +123,6 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
         </plugin>
-
 
       </plugins>
   </build>

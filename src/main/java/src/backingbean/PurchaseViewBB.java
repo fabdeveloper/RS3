@@ -1,6 +1,9 @@
 package src.backingbean;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -8,6 +11,8 @@ import javax.interceptor.Interceptors;
 import javax.transaction.Transactional;
 
 import src.entity.Cart;
+import src.entity.DeliveryDetails;
+import src.entity.DeliveryDetailsStatusType;
 import src.entity.DeliveryType;
 import src.entity.Order;
 import src.entity.User;
@@ -18,20 +23,46 @@ import src.shopping.inter.IShoppingFacade;
 
 @Named
 @SessionScoped
-public class PurchaseViewBB implements IProcessable, Serializable{
-	
+public class PurchaseViewBB implements IProcessable, Serializable{	
 
 	private static final long serialVersionUID = 122L;
-	//private Order order;
 	
 	@Inject
 	private IShoppingFacade shoppingFacade;
+
+
+	private List<DeliveryType> listaDeliveryTypes;
+	private List<DeliveryDetailsStatusType> listaDeliveryStatusTypes;
+
+	private Boolean remarksRendered = false;
+	private Boolean deliveryTypeDisabled = false;
+	private Boolean deliveryStatusDisabled = true;	
+	private Boolean lastModificationDateDisabled = true;
+	private Boolean lastModificationDateRendered = false;
+	
 	
 	@Interceptors({AuditInterceptor.class})
 	@Transactional
 	public String purchaseConfirm(){
 		return shoppingFacade.purchaseConfirm();		
 	}
+	
+	@Transactional
+	@Override
+	public String process(){
+		return shoppingFacade.preConfirm();
+	}
+	
+	
+	@Transactional
+	public String updateDeliveryInfo() {
+		return getShoppingFacade().preConfirm();		
+	}
+	
+	public String menuEventListener() {
+		return null;
+	}
+	
 	
 	public String simulaPagoOK(){		
 		return "pagoOK";
@@ -42,10 +73,6 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 	}
 	
 	public Order getOrder(){
-//		if(order == null){
-//			order = shoppingFacade.getOrder();
-//		}
-//		return order;
 		return shoppingFacade.getOrder();
 	}
 	
@@ -53,29 +80,31 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		return getOrder().getCart();
 	}
 	
-	public void setRemark(String remark){
-		getOrder().getDeliveryDetails().setRemark(remark);
-	}
 	
-	public String getRemark(){
-		return getOrder().getDeliveryDetails().getRemark();
-	}
 	
-	public String getDeliveryAddress(){
-		return getOrder().getDeliveryDetails().getDeliveryAddress();
-	}
-	
-	public void setDeliveryAddress(String deliveryAddress){
-		getOrder().getDeliveryDetails().setDeliveryAddress(deliveryAddress);
-	}
-	
-	public DeliveryType getDeliveryType(){
-		return getOrder().getDeliveryDetails().getDeliveryType();
-	}
-	
-	public void setDeliveryType(DeliveryType deliveryType){
-		getOrder().getDeliveryDetails().setDeliveryType(deliveryType);
-	}	
+//	public void setRemark(String remark){
+//		getOrder().getDeliveryDetails().setRemark(remark);
+//	}
+//	
+//	public String getRemark(){
+//		return getOrder().getDeliveryDetails().getRemark();
+//	}
+//	
+//	public String getDeliveryAddress(){
+//		return getOrder().getDeliveryDetails().getDeliveryAddress();
+//	}
+//	
+//	public void setDeliveryAddress(String deliveryAddress){
+//		getOrder().getDeliveryDetails().setDeliveryAddress(deliveryAddress);
+//	}
+//	
+//	public DeliveryType getDeliveryType(){
+//		return getOrder().getDeliveryDetails().getDeliveryType();
+//	}
+//	
+//	public void setDeliveryType(DeliveryType deliveryType){
+//		getOrder().getDeliveryDetails().setDeliveryType(deliveryType);
+//	}	
 	
 	public User getUser(){
 		return getOrder().getClient();
@@ -94,49 +123,82 @@ public class PurchaseViewBB implements IProcessable, Serializable{
 		return serialVersionUID;
 	}
 
-	@Transactional
-	@Override
-	public String process(){
-		return shoppingFacade.preConfirm();
+
+	
+	
+	
+	public DeliveryDetails getDeliveryDetails() {
+		return getOrder().getDeliveryDetails();
 	}
-	
-	
-	/***************************************************/
-	// LOCALIZATION
-	
-	/*
-	
-	private String getString(String etiqueta) {
-		return getShoppingFacade().getString(etiqueta);
+
+	public void setDeliveryDetails(DeliveryDetails deliveryDetails) {
+		getOrder().setDeliveryDetails(deliveryDetails);
 	}
-	
-	public String getStringDireccionEnvio() {
-		return getString("configview_delivery_direcciondeenvio");
+
+
+	public List<DeliveryType> getListaDeliveryTypes() {
+		if(listaDeliveryTypes == null) {
+			listaDeliveryTypes = Arrays.asList(DeliveryType.values());
+		}
+		return listaDeliveryTypes;
 	}
-	
-	public String getStringComentarios() {
-		return getString("configview_delivery_comentarios");
+
+	public void setListaDeliveryTypes(List<DeliveryType> listaDeliveryTypes) {
+		this.listaDeliveryTypes = listaDeliveryTypes;
 	}
-	
-	public String getStringTipoEnvio() {
-		return getString("configview_delivery_tipodeenvio");
+
+	public List<DeliveryDetailsStatusType> getListaDeliveryStatusTypes() {
+		if(listaDeliveryStatusTypes == null) {
+			listaDeliveryStatusTypes = Arrays.asList(DeliveryDetailsStatusType.values());
+		}
+		return listaDeliveryStatusTypes;
 	}
-	
-	public String getStringActualizarDatosEnvio() {
-		return getString("configview_delivery_buttontext_update");
+
+	public void setListaDeliveryStatusTypes(List<DeliveryDetailsStatusType> listaDeliveryStatusTypes) {
+		this.listaDeliveryStatusTypes = listaDeliveryStatusTypes;
 	}
-	
-	public String getStringUserName() {
-		return getString("user_management_name");
+
+
+
+	public Boolean getRemarksRendered() {
+		return remarksRendered;
 	}
-	
-	public String getStringUserEmail() {
-		return getString("user_management_email");
+
+	public void setRemarksRendered(Boolean remarksRendered) {
+		this.remarksRendered = remarksRendered;
 	}
-	
-	public String getStringPagarConStripe() {
-		return getString("purchaseview_buttontext_pagarconStripe");
+
+	public Boolean getDeliveryTypeDisabled() {
+		return deliveryTypeDisabled;
 	}
-	*/
+
+	public void setDeliveryTypeDisabled(Boolean deliveryTypeDisabled) {
+		this.deliveryTypeDisabled = deliveryTypeDisabled;
+	}
+
+	public Boolean getDeliveryStatusDisabled() {
+		return deliveryStatusDisabled;
+	}
+
+	public void setDeliveryStatusDisabled(Boolean deliveryStatusDisabled) {
+		this.deliveryStatusDisabled = deliveryStatusDisabled;
+	}
+
+	public Boolean getLastModificationDateDisabled() {
+		return lastModificationDateDisabled;
+	}
+
+	public void setLastModificationDateDisabled(Boolean lastModificationDateDisabled) {
+		this.lastModificationDateDisabled = lastModificationDateDisabled;
+	}
+
+	public Boolean getLastModificationDateRendered() {
+		return lastModificationDateRendered;
+	}
+
+	public void setLastModificationDateRendered(Boolean lastModificationDateRendered) {
+		this.lastModificationDateRendered = lastModificationDateRendered;
+	}
+
 
 }
